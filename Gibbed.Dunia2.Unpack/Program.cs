@@ -156,6 +156,7 @@ namespace Gibbed.Dunia2.Unpack
                             continue;
                         }
 
+                        string type;
                         string extension;
                         {
                             var guess = new byte[64];
@@ -179,7 +180,9 @@ namespace Gibbed.Dunia2.Unpack
                                 }
                             }
 
-                            extension = FileExtensions.Detect(guess, Math.Min(guess.Length, read));
+                            var tuple = FileExtensions.Detect(guess, Math.Min(guess.Length, read));
+                            type = tuple != null ? tuple.Item1 : "unknown";
+                            extension = tuple != null ? tuple.Item2 : null;
                         }
 
                         if (fat.Version >= 9)
@@ -191,8 +194,16 @@ namespace Gibbed.Dunia2.Unpack
                             entryName = entry.NameHash.ToString("X8");
                         }
 
-                        entryName = Path.ChangeExtension(entryName, "." + extension);
-                        entryName = Path.Combine(extension, entryName);
+                        if (string.IsNullOrEmpty(extension) == false)
+                        {
+                            entryName = Path.ChangeExtension(entryName, "." + extension);
+                        }
+
+                        if (string.IsNullOrEmpty(type) == false)
+                        {
+                            entryName = Path.Combine(type, entryName);
+                        }
+
                         entryName = Path.Combine("__UNKNOWN", entryName);
                     }
                     else

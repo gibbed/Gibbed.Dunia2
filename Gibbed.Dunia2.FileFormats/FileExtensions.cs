@@ -20,17 +20,18 @@
  *    distribution.
  */
 
+using System;
 using System.Text;
 
 namespace Gibbed.Dunia2.FileFormats
 {
     public static class FileExtensions
     {
-        public static string Detect(byte[] guess, int read)
+        public static Tuple<string, string> Detect(byte[] guess, int read)
         {
             if (read == 0)
             {
-                return "null";
+                return new Tuple<string, string>("null", null);
             }
 
             if (read >= 5 &&
@@ -40,7 +41,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[3] == 'M' &&
                 guess[4] == 'A')
             {
-                return "mgb";
+                return new Tuple<string, string>("ui", "mgb");
             }
 
             if (read >= 4 &&
@@ -49,7 +50,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[2] == 'X' &&
                 guess[3] == 0)
             {
-                return "xbt";
+                return new Tuple<string, string>("gfx", "xbt");
             }
 
             if (read >= 4 &&
@@ -58,7 +59,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[2] == 'E' &&
                 guess[3] == 'M')
             {
-                return "xbg";
+                return new Tuple<string, string>("gfx", "xbg");
             }
 
             if (read >= 4 &&
@@ -67,7 +68,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[2] == 'A' &&
                 guess[3] == 'T')
             {
-                return "material.bin";
+                return new Tuple<string, string>("gfx", "material.bin");
             }
 
             if (read >= 3 &&
@@ -75,7 +76,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[1] == 'E' &&
                 guess[2] == 'F')
             {
-                return "uef";
+                return new Tuple<string, string>("ui", "feu");
             }
 
             if (read >= 4 &&
@@ -84,7 +85,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[2] == 'P' &&
                 guess[3] == 'S')
             {
-                return "spk";
+                return new Tuple<string, string>("sfx", "spk");
             }
 
             if (read >= 4 &&
@@ -93,7 +94,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[2] == 'C' &&
                 guess[3] == 'F')
             {
-                return "fcb";
+                return new Tuple<string, string>("game", "fcb");
             }
 
             if (read >= 4 &&
@@ -102,7 +103,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[2] == 'N' &&
                 guess[3] == 'G')
             {
-                return "png";
+                return new Tuple<string, string>("gfx", "png");
             }
 
             if (read >= 3 &&
@@ -110,7 +111,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[1] == 0 &&
                 guess[2] == 0xFF)
             {
-                return "maybe.rml";
+                return new Tuple<string, string>("misc", "maybe.rml");
             }
 
             if (read >= 8 &&
@@ -119,7 +120,7 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[6] == 0x76 &&
                 guess[7] == 0x4E)
             {
-                return "hMvN";
+                return new Tuple<string, string>("gfx", "hMvN");
             }
 
             if (read >= 20 &&
@@ -128,42 +129,37 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[18] == 0xE0 &&
                 guess[19] == 0x57)
             {
-                return "hkx";
+                return new Tuple<string, string>("gfx", "hkx");
             }
 
             string text = Encoding.ASCII.GetString(guess, 0, read);
 
             if (read >= 3 && text.StartsWith("-- ") == true)
             {
-                return "lua";
+                return new Tuple<string, string>("scripts", "lua");
             }
 
             if (read >= 6 && text.StartsWith("<root>") == true)
             {
-                return "root.xml";
+                return new Tuple<string, string>("misc", "root.xml");
             }
 
             if (read >= 9 && text.StartsWith("<package>") == true)
             {
-                return "mgb.desc";
-            }
-
-            if (read >= 6 && text.StartsWith("<root>") == true)
-            {
-                return "root.xml";
+                return new Tuple<string, string>("ui", "mbg.desc");
             }
 
             if (read >= 12 && text.StartsWith("<NewPartLib>") == true)
             {
-                return "NewPartLib.xml";
+                return new Tuple<string, string>("misc", "NewPartLib.xml");
             }
 
             if (read >= 11 && text.StartsWith("<MovieData>") == true)
             {
-                return "MovieData.xml";
+                return new Tuple<string, string>("misc", "MovieData.xml");
             }
 
-            return "unknown";
+            return null;
         }
     }
 }

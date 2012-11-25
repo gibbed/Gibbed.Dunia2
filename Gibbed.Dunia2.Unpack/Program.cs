@@ -94,9 +94,19 @@ namespace Gibbed.Dunia2.Unpack
                 return;
             }
 
-            var fatPath = extras[0];
-            var outputPath = extras.Count > 1 ? extras[1] : Path.ChangeExtension(fatPath, null);
-            var datPath = Path.ChangeExtension(fatPath, ".dat");
+            string fatPath = extras[0];
+            string outputPath = extras.Count > 1 ? extras[1] : Path.ChangeExtension(fatPath, null) + "_unpack";
+            string datPath;
+
+            if (Path.GetExtension(fatPath) == ".dat")
+            {
+                datPath = fatPath;
+                fatPath = Path.ChangeExtension(fatPath, ".fat");
+            }
+            else
+            {
+                datPath = Path.ChangeExtension(fatPath, ".dat");
+            }
 
             var manager = ProjectData.Manager.Load();
             if (manager.ActiveProject == null)
@@ -106,27 +116,30 @@ namespace Gibbed.Dunia2.Unpack
 
             ProjectData.HashList<ulong> hashes;
 
+            BigFile fat;
             using (var header = File.OpenRead(fatPath))
+            {
+                fat = new BigFile();
+                fat.Deserialize(header);
+            }
+
+            if (fat.Version >= 9) // TODO: check if this is right...
+            {
+                hashes = manager.LoadLists(
+                    "*.filelist",
+                    a => CRC64.Hash(a.ToLowerInvariant()),
+                    s => s.Replace("/", "\\"));
+            }
+            else
+            {
+                hashes = manager.LoadLists(
+                    "*.filelist",
+                    a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
+                    s => s.Replace("/", "\\"));
+            }
+
             using (var data = File.OpenRead(datPath))
             {
-                var fat = new BigFile();
-                fat.Deserialize(header);
-
-                if (fat.Version >= 9) // TODO: check if this is right...
-                {
-                    hashes = manager.LoadLists(
-                        "*.filelist",
-                        a => CRC64.Hash(a.ToLowerInvariant()),
-                        s => s.Replace("/", "\\"));
-                }
-                else
-                {
-                    hashes = manager.LoadLists(
-                        "*.filelist",
-                        a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
-                        s => s.Replace("/", "\\"));
-                }
-
                 long current = 0;
                 long total = fat.Entries.Count;
                 var padding = total.ToString(CultureInfo.InvariantCulture).Length;

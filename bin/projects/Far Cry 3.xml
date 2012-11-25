@@ -1,0 +1,8 @@
+<project>
+	<name>Far Cry 3</name>
+	<dependencies>
+		<dependency>Shared</dependency>
+	</dependencies>
+	<list_location>Far Cry 3</list_location>
+	<install_locations />
+</project>

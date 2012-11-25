@@ -30,7 +30,7 @@ namespace Gibbed.Dunia2.FileFormats
 {
     public class BigFile
     {
-        public const uint Signature = 0x46415432; // FAT2
+        public const uint Signature = 0x46415432; // 'FAT2'
 
         public int Version;
         public Big.Platform Platform;
@@ -44,13 +44,13 @@ namespace Gibbed.Dunia2.FileFormats
             var magic = input.ReadValueU32(Endian.Little);
             if (magic != Signature)
             {
-                throw new FormatException("not a big file");
+                throw new FormatException("bad magic");
             }
 
             var version = input.ReadValueS32(Endian.Little); // 58
             if (version < 2 || version > 9)
             {
-                throw new FormatException("unsupported big file version");
+                throw new FormatException("unsupported file version");
             }
 
             var platform = Big.Platform.Invalid;
@@ -67,25 +67,25 @@ namespace Gibbed.Dunia2.FileFormats
                 platform != Big.Platform.X360 &&
                 platform != Big.Platform.PS3)
             {
-                throw new FormatException();
+                throw new FormatException("unsupported/invalid platform");
             }
 
             if (platform == Big.Platform.PC &&
                 ( /*unknown5C < 0 ||*/ unknown5C > 3))
             {
-                throw new FormatException();
+                throw new FormatException("@5C is invalid for PC platform");
             }
 
             if (platform == Big.Platform.X360 &&
                 (unknown5C < 1 || unknown5C > 4))
             {
-                throw new FormatException();
+                throw new FormatException("@5C is invalid for X360 platform");
             }
 
             if (platform == Big.Platform.PS3 &&
                 (unknown5C < 1 || unknown5C > 4))
             {
-                throw new FormatException();
+                throw new FormatException("@5C is invalid for PS3 platform");
             }
 
             var endian = platform == Big.Platform.PC ? Endian.Little : Endian.Big;
@@ -101,7 +101,7 @@ namespace Gibbed.Dunia2.FileFormats
             if (version >= _EntrySerializers.Count ||
                 _EntrySerializers[version] == null)
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("entry serializer is missing");
             }
             var entrySerializer = _EntrySerializers[version];
 

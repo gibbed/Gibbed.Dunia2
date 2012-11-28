@@ -125,17 +125,15 @@ namespace Gibbed.Dunia2.Unpack
 
             if (fat.Version >= 9) // TODO: check if this is right...
             {
-                hashes = manager.LoadLists(
-                    "*.filelist",
-                    a => CRC64.Hash(a.ToLowerInvariant()),
-                    s => s.Replace("/", "\\"));
+                hashes = manager.LoadLists("*.filelist",
+                                           a => CRC64.Hash(a.ToLowerInvariant()),
+                                           s => s.Replace("/", "\\"));
             }
             else
             {
-                hashes = manager.LoadLists(
-                    "*.filelist",
-                    a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
-                    s => s.Replace("/", "\\"));
+                hashes = manager.LoadLists("*.filelist",
+                                           a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
+                                           s => s.Replace("\\", "/"));
             }
 
             using (var data = File.OpenRead(datPath))
@@ -258,7 +256,7 @@ namespace Gibbed.Dunia2.Unpack
             }
             else if (entry.CompressionScheme == FileFormats.Big.CompressionScheme.LZO1x)
             {
-                throw new NotImplementedException();
+                DecompressLzoEntry(entry, input, output);
             }
             else if (entry.CompressionScheme == FileFormats.Big.CompressionScheme.Zlib)
             {
@@ -268,6 +266,38 @@ namespace Gibbed.Dunia2.Unpack
             {
                 throw new NotImplementedException();
             }
+        }
+
+        private static void DecompressLzoEntry(FileFormats.Big.Entry entry, Stream input, Stream output)
+        {
+            input.Seek(entry.Offset, SeekOrigin.Begin);
+
+            var compressedData = new byte[entry.CompressedSize];
+            if (input.Read(compressedData, 0, compressedData.Length) != compressedData.Length)
+            {
+                throw new EndOfStreamException();
+            }
+
+            var uncompressedData = new byte[entry.UncompressedSize];
+            int actualUncompressedLength = uncompressedData.Length;
+
+            var result = LZO.Decompress(compressedData,
+                                        0,
+                                        compressedData.Length,
+                                        uncompressedData,
+                                        0,
+                                        ref actualUncompressedLength);
+            if (result != LZO.ErrorCode.Success)
+            {
+                throw new FormatException(string.Format("LZO decompression failure ({0})", result));
+            }
+
+            if (actualUncompressedLength != uncompressedData.Length)
+            {
+                throw new FormatException("LZO decompression failure (uncompressed size mismatch)");
+            }
+
+            output.Write(uncompressedData, 0, uncompressedData.Length);
         }
 
         private static void DecompressZlibEntry(FileFormats.Big.Entry entry, Stream input, Stream output)
@@ -305,6 +335,8 @@ namespace Gibbed.Dunia2.Unpack
                     var uncompressedBlockSize = i + 1 < blockCount
                                                     ? Math.Min(maximumUncompressedBlockSize, left)
                                                     : left;
+                    //var uncompressedBlockSize = Math.Min(maximumUncompressedBlockSize, left);
+
                     using (var temp = input.ReadToMemoryStream(compressedBlockSize))
                     {
                         var zlib = new InflaterInputStream(temp, new Inflater(true));
@@ -322,6 +354,11 @@ namespace Gibbed.Dunia2.Unpack
                 {
                     throw new NotImplementedException();
                 }
+            }
+
+            if (left > 0)
+            {
+                Console.WriteLine("WAT");
             }
         }
     }

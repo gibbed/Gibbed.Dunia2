@@ -47,17 +47,19 @@ namespace Gibbed.Dunia2.FileFormats.Big
 
         public void Deserialize(Stream input, Endian endian, out Entry entry)
         {
-            var a = input.ReadValueU64(endian);
+            var a = input.ReadValueU32(endian);
             var b = input.ReadValueU32(endian);
             var c = input.ReadValueU32(endian);
             var d = input.ReadValueU32(endian);
+            var e = input.ReadValueU32(endian);
 
-            entry.NameHash = a;
-            entry.UncompressedSize = (b & 0xFFFFFFFCu) >> 2;
-            entry.CompressionScheme = (CompressionScheme)((b & 0x00000003u) >> 0);
-            entry.Offset = (long)c << 2;
-            entry.Offset |= ((d & 0xC0000000u) >> 30);
-            entry.CompressedSize = (uint)((d & 0x3FFFFFFFul) >> 0);
+            entry.NameHash = b;
+            entry.NameHash |= ((ulong)a) << 32;
+            entry.UncompressedSize = (c & 0xFFFFFFFCu) >> 2;
+            entry.CompressionScheme = (CompressionScheme)((c & 0x00000003u) >> 0);
+            entry.Offset = (long)d << 2;
+            entry.Offset |= ((e & 0xC0000000u) >> 30);
+            entry.CompressedSize = (uint)((e & 0x3FFFFFFFul) >> 0);
         }
     }
 }

@@ -91,11 +91,17 @@ namespace Gibbed.Dunia2.FileFormats
             var endian = platform == Big.Platform.PC ? Endian.Little : Endian.Big;
 
             uint unknown8C = 0;
-            uint unknown90 = 0;
+            uint unknown90 = 0; // extra table count?
             if (version >= 9)
             {
                 unknown8C = input.ReadValueU32(Endian.Little);
                 unknown90 = input.ReadValueU32(Endian.Little);
+            }
+
+            if (unknown8C != 0 ||
+                unknown90 != 0)
+            {
+                throw new NotImplementedException();
             }
 
             if (version >= _EntrySerializers.Count ||
@@ -113,13 +119,53 @@ namespace Gibbed.Dunia2.FileFormats
                 this.Entries.Add(entry);
             }
 
-            // TODO: there's more data...
+            uint unknown1Count = input.ReadValueU32(Endian.Little);
+            for (uint i = 0; i < unknown1Count; i++)
+            {
+                throw new NotSupportedException();
+                input.ReadBytes(16);
+            }
+
+            if (version >= 7)
+            {
+                uint unknown2Count = input.ReadValueU32(Endian.Little);
+                for (uint i = 0; i < unknown2Count; i++)
+                {
+                    throw new NotSupportedException();
+                    input.ReadBytes(16);
+                }
+            }
 
             this.Version = version;
             this.Platform = platform;
             this.Unknown5C = unknown5C;
             this.Unknown8C = unknown8C;
             this.Unknown90 = unknown90;
+
+            foreach (var entry in this.Entries)
+            {
+                if (entry.CompressionScheme == Big.CompressionScheme.None)
+                {
+                    if (platform != Big.Platform.X360 &&
+                        entry.UncompressedSize != 0)
+                    {
+                        throw new FormatException("got entry with no compression with a non-zero uncompressed size");
+                    }
+                }
+                else if (entry.CompressionScheme == Big.CompressionScheme.LZO1x ||
+                         entry.CompressionScheme == Big.CompressionScheme.Zlib)
+                {
+                    if (entry.CompressedSize == 0 &&
+                        entry.UncompressedSize > 0)
+                    {
+                        throw new FormatException("got entry with compression with a zero compressed size and a non-zero uncompressed size");
+                    }
+                }
+                else
+                {
+                    throw new FormatException("got entry with unsupported compression scheme");
+                }
+            }
         }
 
         private static readonly ReadOnlyCollection<Big.IEntrySerializer> _EntrySerializers;

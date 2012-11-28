@@ -34,11 +34,11 @@ namespace Gibbed.Dunia2.FileFormats.Big
         // oooooooo oooooooo oooooooo oooooooo
         // oocccccc cccccccc cccccccc cccccccc
 
-        // hash = 64 bits
-        // compression scheme = 2 bits
-        // uncompressed size = 30 bits
-        // compressed size = 30 bits
-        // offset = 34 bits
+        // [h] hash = 64 bits
+        // [u] uncompressed size = 30 bits
+        // [s] compression scheme = 2 bits
+        // [o] offset = 34 bits
+        // [c] compressed size = 30 bits
 
         public void Serialize(Stream output, Entry entry, Endian endian)
         {
@@ -58,27 +58,6 @@ namespace Gibbed.Dunia2.FileFormats.Big
             entry.Offset = (long)c << 2;
             entry.Offset |= ((d & 0xC0000000u) >> 30);
             entry.CompressedSize = (uint)((d & 0x3FFFFFFFul) >> 0);
-
-            if (entry.CompressionScheme == CompressionScheme.None)
-            {
-                if (entry.UncompressedSize != 0)
-                {
-                    throw new FormatException();
-                }
-            }
-            else if (entry.CompressionScheme == CompressionScheme.LZO1x ||
-                     entry.CompressionScheme == CompressionScheme.Zlib)
-            {
-                if (entry.CompressedSize == 0 &&
-                    entry.UncompressedSize > 0)
-                {
-                    throw new FormatException();
-                }
-            }
-            else
-            {
-                throw new FormatException();
-            }
         }
     }
 }

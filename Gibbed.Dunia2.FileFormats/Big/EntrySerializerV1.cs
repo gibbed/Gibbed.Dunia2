@@ -22,18 +22,48 @@
 
 using System;
 using System.IO;
+using Gibbed.IO;
 
 namespace Gibbed.Dunia2.FileFormats.Big
 {
     internal class EntrySerializerV1 : IEntrySerializer
     {
-        public void Serialize(Stream output, Entry entry, IO.Endian endian)
+        // hhhhhhhh hhhhhhhh hhhhhhhh hhhhhhhh
+        // ???????? ???????? ???????? ????????
+        // uuuuuuuu uuuuuuuu uuuuuuuu uuuuuuss
+        // oooooooo oooooooo oooooooo oooooooo
+        // oocccccc cccccccc cccccccc cccccccc
+        // ???????? ???????? ???????? ????????
+
+        // [h] hash = 32 bits
+        // [?] unknown = 32 bits
+        // [u] uncompressed size = 30 bits
+        // [s] compression scheme = 2 bits
+        // [o] offset = 34 bits
+        // [c] compressed size = 30 bits
+        // [?] unknown = 32 bits
+
+        public void Serialize(Stream output, Entry entry, Endian endian)
         {
             throw new NotImplementedException();
         }
 
-        public void Deserialize(Stream input, IO.Endian endian, out Entry entry)
+        public void Deserialize(Stream input, Endian endian, out Entry entry)
         {
+            var a = input.ReadValueU32(endian);
+            /*var b =*/ input.ReadValueU32(endian);
+            var c = input.ReadValueU32(endian);
+            var d = input.ReadValueU32(endian);
+            var e = input.ReadValueU32(endian);
+            /*var f =*/ input.ReadValueU32(endian);
+
+            entry.NameHash = a;
+            entry.UncompressedSize = (e & 0xFFFFFFFCu) >> 2;
+            entry.CompressionScheme = (CompressionScheme)((e & 0x00000003u) >> 0);
+            entry.Offset = (long)d << 2;
+            entry.Offset |= ((c & 0xC0000000u) >> 30);
+            entry.CompressedSize = (uint)((c & 0x3FFFFFFFul) >> 0);
+
             throw new NotImplementedException();
         }
     }

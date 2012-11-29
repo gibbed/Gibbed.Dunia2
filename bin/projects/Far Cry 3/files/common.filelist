@@ -1,4 +1,4 @@
-; 2840/3062 (92%)
+; 2841/3062 (92%)
 actionmaps\inputactionmapchat.xml
 actionmaps\inputactionmapcommon.xml
 actionmaps\inputactionmapconsole.xml
@@ -382,6 +382,7 @@ graphics\fonts\couriernew9x16.xbt
 graphics\fonts\terminal4x7.xbt
 graphics\fonts\terminal6x9.xbt
 graphics\move\movemgr.bin
+graphics\terrain\water\watercloud_n.xbt
 ingameeditor\ambience_inventory.xml
 ingameeditor\collection_inventory.xml
 ingameeditor\object_icons.xbt

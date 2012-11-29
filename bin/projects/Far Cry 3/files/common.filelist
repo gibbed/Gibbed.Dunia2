@@ -1,4 +1,4 @@
-; 2836/3062 (92%)
+; 2840/3062 (92%)
 actionmaps\inputactionmapchat.xml
 actionmaps\inputactionmapcommon.xml
 actionmaps\inputactionmapconsole.xml
@@ -389,6 +389,7 @@ ingameeditor\object_inventory.xml
 ingameeditor\spline_inventory.xml
 ingameeditor\texture_inventory.xml
 ingameeditor\water_inventory.xml
+ingameeditor\wilderness\mainland_mountains.lua
 ingameeditor\wilderness\tropical_islands.lua
 ingameeditor\wilderness_inventory.xml
 languages\bink_subtitles.xml
@@ -503,6 +504,9 @@ ui\common\fonts\fire\trade_gothic_neurotic_default.ffd
 ui\common\fonts\fire\trade_gothic_neurotic_default_1.xbt
 ui\common\fonts\fire\tradegothic_lt_bold_default.ffd
 ui\common\fonts\fire\tradegothic_lt_bold_default_1.xbt
+ui\common\fonts\fire\tradegothic_lt_bold_japaneseset.ffd
+ui\common\fonts\fire\tradegothic_lt_bold_japaneseset_1.xbt
+ui\common\fonts\fire\tradegothic_lt_bold_japaneseset_2.xbt
 ui\common\fonts\fontgenerator\fontgenerator.feu
 ui\common\hud\objectiveindicator.feu
 ui\common\lib.feu

@@ -1,10 +1,11 @@
-; 82/197 (41%)
+; 83/197 (42%)
 domino\library\sp\lib_common.exitzonewarninglistener.lua
 domino\library\sp\lib_common.flag_controler.lua
 domino\library\sp\lib_common.isjapanversion.lua
 domino\library\sp\lib_common.phonecall.lua
 domino\library\sp\lib_common.restorealarmstate.lua
 domino\library\sp\lib_common.tarp_switcher.lua
+domino\library\sp\lib_mission.addmissionlocationmarker.lua
 domino\library\sp\lib_mission.assertspecial.lua
 domino\library\sp\lib_mission.giver.lua
 domino\library\sp\lib_mission.mainmission.lua

@@ -1,4 +1,6 @@
-; 85/197 (43%)
+; 95/197 (48%)
+domino\library\sp\lib_common.bng_playermodel.lua
+domino\library\sp\lib_common.displaymarkerincave.lua
 domino\library\sp\lib_common.exitzonewarninglistener.lua
 domino\library\sp\lib_common.flag_controler.lua
 domino\library\sp\lib_common.isjapanversion.lua
@@ -17,6 +19,7 @@ domino\library\sp\lib_mission.missionnormalend.lua
 domino\library\sp\lib_mission.optional.lua
 domino\library\sp\lib_mission.quest.lua
 domino\library\sp\lib_mission.questgiver.lua
+domino\library\sp\lib_mission.teleporttonextmissionlocation.lua
 domino\library\sp\lib_mission.ulc.lua
 domino\library\sp\lib_mission.ulcgiver.lua
 domino\library\sp\lib_mission.wasmissionquicklaunched.lua
@@ -37,6 +40,8 @@ domino\library\sp\lib_sidequest.wantedsqdeathcheck.lua
 domino\system\missionbomb.lua
 domino\system\updaterealtree_v2.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_020\ulc_020_main.ulc_020_main.lua
+domino\user\fc3\fc3_hubandchainquests\sqc_010\sqc_010_brief.sqc_010_brief.lua
+domino\user\fc3\fc3_hubandchainquests\sqc_010\sqc_010_brief.sqc_010_brief_b10.lua
 domino\user\fc3\fc3_mainmissions\cit_020\cit_020_b30\cit_020_b30.cit_020_b30_chasevehiclesetup.lua
 domino\user\fc3\fc3_mainmissions\cit_020\cit_020_b30\cit_020_b30.cit_020_b30_convoyescape.lua
 domino\user\fc3\fc3_mainmissions\cit_020\cit_020_b30\cit_020_b30.cit_020_b30_failcondition.lua
@@ -45,11 +50,13 @@ domino\user\fc3\fc3_mainmissions\cit_020\cit_020_b30\cit_020_b30.cit_020_b30_obj
 domino\user\fc3\fc3_mainmissions\cit_020\cit_020_b30\cit_020_b30.cit_020_b30_obj_getinvehicle.lua
 domino\user\fc3\fc3_mainmissions\cit_020\cit_020_b30\cit_020_b30.cit_020_b30_obj_reachconvoy.lua
 domino\user\fc3\fc3_mainmissions\cit_020\cit_020_b30\cit_020_b30.cit_020_b30_roadambush.lua
+domino\user\fc3\fc3_mainmissions\den_040\den_040_b10\den_040_b10.den_040_b10.lua
 domino\user\fc3\fc3_mainmissions\den_040\den_040_b10\den_040_b10.den_040_b10_init.lua
 domino\user\fc3\fc3_mainmissions\den_040\den_040_b10\den_040_b10.den_040_b10_vantagepoint.lua
 domino\user\fc3\fc3_mainmissions\den_040\den_040_b10\den_040_b10.den_040_b20_init.lua
 domino\user\fc3\fc3_mainmissions\den_040\den_040_b10\den_040_b10.den_040_backupalarmstate.lua
 domino\user\fc3\fc3_mainmissions\den_040\den_040_b10\den_040_b10.obj_disablealarm.lua
+domino\user\fc3\fc3_mainmissions\den_040\den_040_b20\den_040_b20.den_040_b20.lua
 domino\user\fc3\fc3_mainmissions\den_040\den_040_b20\den_040_b20.obj_destroyweaponcaches.lua
 domino\user\fc3\fc3_mainmissions\doc_020\doc_020_b20e\doc_020_b20e.dia_hallucinationdialogs.lua
 domino\user\fc3\fc3_mainmissions\doc_020\doc_020_b20e\doc_020_b20e.evt_birds.lua
@@ -66,6 +73,8 @@ domino\user\fc3\fc3_mainmissions\doc_020\doc_020_b20e\doc_020_b20e.fx_rockdoors.
 domino\user\fc3\fc3_mainmissions\doc_020\doc_020_b20e\doc_020_b20e.fx_trigger.lua
 domino\user\fc3\fc3_mainmissions\doc_020\doc_020_b20e\doc_020_b20e.snd_b02_voicesbeforedeadtrees.lua
 domino\user\fc3\fc3_mainmissions\doc_020\doc_020_b20e\doc_020_b20e.snd_b02_voicesbeforevines.lua
+domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b43c\jas_130_b43c.cin_rescue_liza.lua
+domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b43c\jas_130_b43c.jas_130_b43c.lua
 domino\user\fc3\fc3_mainmissions\sam_015\sam_015_b30\sam_015_b30.sam_015_b30_aiinvincibility.lua
 domino\user\fc3\fc3_mainmissions\sam_015\sam_015_b30\sam_015_b30.sam_015_b30_isreloaded.lua
 domino\user\fc3\fc3_mainmissions\sam_015\sam_015_b30\sam_015_b30.sam_015_b30_lastreinforcement.lua
@@ -79,6 +88,7 @@ domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.obj_oliverreach
 graphics\_materials\hlevasseur-m-0305201059847438.material.bin
 graphics\_materials\hlevasseur-m-20120306124126.material.bin
 graphics\_materials\lpcantin-m-20120620164859.material.bin
+graphics\_materials\sdesjardins-m-2012011361442971.material.bin
 graphics\_materials\sdesjardins-m-2012011861327035.material.bin
 graphics\_materials\sdesjardins-m-20120329154106.material.bin
 graphics\_materials\thomasbengtsson-m-2010082037239341.material.bin

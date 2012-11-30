@@ -1,4 +1,4 @@
-; 2841/3062 (92%)
+; 2842/3062 (92%)
 actionmaps\inputactionmapchat.xml
 actionmaps\inputactionmapcommon.xml
 actionmaps\inputactionmapconsole.xml
@@ -11,6 +11,7 @@ dialog\dialogmanagerindices.dat
 dialog\mpbarkdata.bark.xml
 dialog\mpbarkmanager.xml
 dialog\spbarkmanager.xml
+domino\system\coop\lualibraries\lualibcoop.lua
 domino\system\lualibraries\lualibcore.lua
 domino\system\lualibraries\lualibdebug.lua
 domino\system\lualibraries\lualibevents.lua

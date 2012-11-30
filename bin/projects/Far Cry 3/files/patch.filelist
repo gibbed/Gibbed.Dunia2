@@ -1,4 +1,4 @@
-; 177/197 (89%)
+; 180/197 (91%)
 domino\library\sp\lib_common.backupinventory.lua
 domino\library\sp\lib_common.bng_playermodel.lua
 domino\library\sp\lib_common.displaymarkerincave.lua
@@ -165,10 +165,13 @@ domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.log_ismissionre
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.obj_freethetarget.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.obj_oliverreachjason.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.wil_050_b20.lua
+graphics\_materials\akotelnikoff-m-2012032134076621.material.bin
+graphics\_materials\akotelnikoff-m-2012032654065929.material.bin
 graphics\_materials\bwaddingham-m-2011090238689715.material.bin
 graphics\_materials\hlevasseur-m-0305201059847438.material.bin
 graphics\_materials\hlevasseur-m-20120306124126.material.bin
 graphics\_materials\kosullivan-m-0109201140209205.material.bin
+graphics\_materials\lpcantin-m-2012040637700224.material.bin
 graphics\_materials\lpcantin-m-20120620164859.material.bin
 graphics\_materials\sdesjardins-m-2012011361442971.material.bin
 graphics\_materials\sdesjardins-m-2012011861327035.material.bin

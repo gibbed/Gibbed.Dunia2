@@ -1,4 +1,4 @@
-; 44517/181657 (24%)
+; 44519/181657 (24%)
 dialog\citra\citra.stimuli.dsc
 dialog\daisy\daisy.stimuli.dsc
 dialog\dennis\dennis.stimuli.dsc
@@ -46,6 +46,7 @@ domino\library\sp\lib_common.isjapanversion.lua
 domino\library\sp\lib_common.phonecall.lua
 domino\library\sp\lib_common.resettimeofday.lua
 domino\library\sp\lib_common.restorealarmstate.lua
+domino\library\sp\lib_common.sqs_rebel_cheering.lua
 domino\library\sp\lib_common.switchpawnplayerboxforquicklaunch.lua
 domino\library\sp\lib_common.tarp_switcher.lua
 domino\library\sp\lib_defend.animalcage.lua
@@ -1369,6 +1370,7 @@ domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b40e\jas_130_b40e.jas_130_b40e.
 domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b40e\jas_130_b40e.obj_rescuefriend.lua
 domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b40e\jas_130_b40e.tut_melee.lua
 domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b43c\jas_130_b43c.cin_rescue_liza.lua
+domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b43c\jas_130_b43c.globals.lua
 domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b43c\jas_130_b43c.jas_130_b43c.lua
 domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b50\jas_130_b50.ai_vehicleattackb50_01.lua
 domino\user\fc3\fc3_mainmissions\jas_130\jas_130_b50\jas_130_b50.chk_currentspeeddisplayb50.lua

@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using Gibbed.IO;
 
 namespace Gibbed.Dunia2.FileFormats
@@ -34,10 +35,108 @@ namespace Gibbed.Dunia2.FileFormats
 
         public int Version;
         public Big.Platform Platform;
-        public uint Unknown5C;
-        public uint Unknown8C;
-        public uint Unknown90;
+        public uint Unknown74;
+        public uint UnknownA8;
+        public uint UnknownAC;
         public readonly List<Big.Entry> Entries = new List<Big.Entry>();
+
+        public void Serialize(FileStream output)
+        {
+            var version = this.Version;
+
+            if (version < 2 || version > 9)
+            {
+                throw new FormatException("unsupported file version");
+            }
+
+            if (this.Platform != Big.Platform.Any &&
+                this.Platform != Big.Platform.PC &&
+                this.Platform != Big.Platform.X360 &&
+                this.Platform != Big.Platform.PS3)
+            {
+                throw new FormatException("unsupported/invalid platform");
+            }
+
+            if (IsValidPlatform(this.Platform, this.Unknown74) == false)
+            {
+                throw new FormatException("invalid platform settings");
+            }
+
+            var endian = (this.Platform == Big.Platform.PC || this.Platform == Big.Platform.Any)
+                             ? Endian.Little
+                             : Endian.Big;
+
+            output.WriteValueU32(Signature, Endian.Little);
+            output.WriteValueS32(version, Endian.Little);
+
+            if (version >= 3)
+            {
+                var platform = ((uint)this.Platform) & 0xFF;
+                platform |= this.Unknown74 << 8;
+                output.WriteValueU32(platform, Endian.Little);
+            }
+
+            var subfatIndices = this.Entries
+                .Where(e => e.SubFatIndex >= 0)
+                .Select(e => e.SubFatIndex)
+                .Distinct()
+                .OrderBy(sfi => sfi)
+                .ToArray();
+
+            if (version < 9 &&
+                subfatIndices.Length > 0)
+            {
+                throw new InvalidOperationException();
+            }
+
+            foreach (var subfatIndex in subfatIndices)
+            {
+                Console.WriteLine("SFI:{0}", subfatIndex);
+            }
+
+            if (version >= 9)
+            {
+                output.WriteValueU32(0x12345678, Endian.Little); // ???
+                output.WriteValueS32(subfatIndices.Length, Endian.Little);
+            }
+
+            if (version >= _EntrySerializers.Count ||
+                _EntrySerializers[version] == null)
+            {
+                throw new InvalidOperationException("entry serializer is missing");
+            }
+            var entrySerializer = _EntrySerializers[version];
+
+            var mainEntries = this.Entries
+                .Where(e => e.SubFatIndex < 0)
+                .OrderBy(e => e.NameHash)
+                .ToArray();
+            output.WriteValueS32(mainEntries.Length, Endian.Little);
+            foreach (var entry in mainEntries)
+            {
+                entrySerializer.Serialize(output, entry, endian);
+            }
+
+            output.WriteValueU32(0, Endian.Little);
+
+            if (version >= 7)
+            {
+                output.WriteValueU32(0, Endian.Little);
+            }
+
+            foreach (var subfatIndex in subfatIndices)
+            {
+                var subfatEntries = this.Entries
+                .Where(e => e.SubFatIndex == subfatIndex)
+                .OrderBy(e => e.NameHash)
+                .ToArray();
+                output.WriteValueS32(subfatEntries.Length, Endian.Little);
+                foreach (var entry in subfatEntries)
+                {
+                    entrySerializer.Serialize(output, entry, endian);
+                }
+            }
+        }
 
         public void Deserialize(Stream input)
         {
@@ -47,61 +146,45 @@ namespace Gibbed.Dunia2.FileFormats
                 throw new FormatException("bad magic");
             }
 
-            var version = input.ReadValueS32(Endian.Little); // 58
+            var version = input.ReadValueS32(Endian.Little);
             if (version < 2 || version > 9)
             {
                 throw new FormatException("unsupported file version");
             }
 
             var platform = Big.Platform.Invalid;
-            uint unknown5C = 0;
+            uint unknown74 = 0;
 
             if (version >= 3)
             {
-                unknown5C = input.ReadValueU32(Endian.Little); // ###### ##
-                platform = (Big.Platform)(unknown5C & 0xFF);
-                unknown5C >>= 8;
+                unknown74 = input.ReadValueU32(Endian.Little); // ###### ##
+                platform = (Big.Platform)(unknown74 & 0xFF);
+                unknown74 >>= 8;
             }
 
-            if (platform != Big.Platform.PC &&
+            if (platform != Big.Platform.Any &&
+                platform != Big.Platform.PC &&
                 platform != Big.Platform.X360 &&
                 platform != Big.Platform.PS3)
             {
                 throw new FormatException("unsupported/invalid platform");
             }
 
-            if (platform == Big.Platform.PC &&
-                ( /*unknown5C < 0 ||*/ unknown5C > 3))
+            if (IsValidPlatform(platform, unknown74) == false)
             {
-                throw new FormatException("@5C is invalid for PC platform");
+                throw new FormatException("invalid platform settings");
             }
 
-            if (platform == Big.Platform.X360 &&
-                (unknown5C < 1 || unknown5C > 4))
-            {
-                throw new FormatException("@5C is invalid for X360 platform");
-            }
+            var endian = (platform == Big.Platform.PC || platform == Big.Platform.Any)
+                             ? Endian.Little
+                             : Endian.Big;
 
-            if (platform == Big.Platform.PS3 &&
-                (unknown5C < 1 || unknown5C > 4))
-            {
-                throw new FormatException("@5C is invalid for PS3 platform");
-            }
-
-            var endian = platform == Big.Platform.PC ? Endian.Little : Endian.Big;
-
-            uint unknown8C = 0;
-            uint unknown90 = 0; // extra table count?
+            uint unknownA8 = 0;
+            uint subfatCount = 0; // extra table count?
             if (version >= 9)
             {
-                unknown8C = input.ReadValueU32(Endian.Little);
-                unknown90 = input.ReadValueU32(Endian.Little);
-            }
-
-            if (unknown8C != 0 ||
-                unknown90 != 0)
-            {
-                throw new NotImplementedException();
+                unknownA8 = input.ReadValueU32(Endian.Little);
+                subfatCount = input.ReadValueU32(Endian.Little);
             }
 
             if (version >= _EntrySerializers.Count ||
@@ -116,6 +199,7 @@ namespace Gibbed.Dunia2.FileFormats
             {
                 Big.Entry entry;
                 entrySerializer.Deserialize(input, endian, out entry);
+                entry.SubFatIndex = -1;
                 this.Entries.Add(entry);
             }
 
@@ -136,11 +220,30 @@ namespace Gibbed.Dunia2.FileFormats
                 }
             }
 
+            for (uint i = 0; i < subfatCount; i++)
+            {
+                var subfatEntries = new List<Big.Entry>();
+                uint subfatEntryCount = input.ReadValueU32(Endian.Little);
+                for (uint j = 0; j < subfatEntryCount; j++)
+                {
+                    Big.Entry entry;
+                    entrySerializer.Deserialize(input, endian, out entry);
+                    entry.SubFatIndex = (int)i;
+                    subfatEntries.Add(entry);
+                }
+                this.Entries.AddRange(subfatEntries);
+            }
+
+            if (unknownA8 != 0)
+            {
+                //throw new NotImplementedException();
+            }
+
             this.Version = version;
             this.Platform = platform;
-            this.Unknown5C = unknown5C;
-            this.Unknown8C = unknown8C;
-            this.Unknown90 = unknown90;
+            this.Unknown74 = unknown74;
+            this.UnknownA8 = unknownA8;
+            this.UnknownAC = subfatCount;
 
             foreach (var entry in this.Entries)
             {
@@ -158,7 +261,8 @@ namespace Gibbed.Dunia2.FileFormats
                     if (entry.CompressedSize == 0 &&
                         entry.UncompressedSize > 0)
                     {
-                        throw new FormatException("got entry with compression with a zero compressed size and a non-zero uncompressed size");
+                        throw new FormatException(
+                            "got entry with compression with a zero compressed size and a non-zero uncompressed size");
                     }
                 }
                 else
@@ -166,6 +270,35 @@ namespace Gibbed.Dunia2.FileFormats
                     throw new FormatException("got entry with unsupported compression scheme");
                 }
             }
+        }
+
+        private static bool IsValidPlatform(Big.Platform platform, uint unknown74)
+        {
+            if (platform == Big.Platform.Any &&
+                unknown74 != 0)
+            {
+                return false;
+            }
+
+            if (platform == Big.Platform.PC &&
+                ( /*unknown5C < 0 ||*/ unknown74 > 3))
+            {
+                return false;
+            }
+
+            if (platform == Big.Platform.X360 &&
+                (unknown74 < 1 || unknown74 > 4))
+            {
+                return false;
+            }
+
+            if (platform == Big.Platform.PS3 &&
+                (unknown74 < 1 || unknown74 > 4))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private static readonly ReadOnlyCollection<Big.IEntrySerializer> _EntrySerializers;

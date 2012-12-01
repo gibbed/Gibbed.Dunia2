@@ -42,7 +42,24 @@ namespace Gibbed.Dunia2.FileFormats.Big
 
         public void Serialize(Stream output, Entry entry, Endian endian)
         {
-            throw new NotImplementedException();
+            var a = (uint)((entry.NameHash & 0xFFFFFFFF00000000ul) >> 32);
+            var b = (uint)((entry.NameHash & 0x00000000FFFFFFFFul) >> 0);
+            
+            uint c = 0;
+            c |= ((entry.UncompressedSize << 2) & 0xFFFFFFFCu);
+            c |= (uint)(((byte)entry.CompressionScheme << 0) & 0x00000003u);
+
+            uint d = (uint)((entry.Offset & 0x00000003FFFFFFFCl) >> 2);
+
+            uint e = 0;
+            e |= (uint)((entry.Offset & 0x0000000000000003l) << 30);
+            e |= (entry.CompressedSize & 0x3FFFFFFFu) << 0;
+
+            output.WriteValueU32(a, endian);
+            output.WriteValueU32(b, endian);
+            output.WriteValueU32(c, endian);
+            output.WriteValueU32(d, endian);
+            output.WriteValueU32(e, endian);
         }
 
         public void Deserialize(Stream input, Endian endian, out Entry entry)
@@ -60,6 +77,7 @@ namespace Gibbed.Dunia2.FileFormats.Big
             entry.Offset = (long)d << 2;
             entry.Offset |= ((e & 0xC0000000u) >> 30);
             entry.CompressedSize = (uint)((e & 0x3FFFFFFFul) >> 0);
+            entry.SubFatIndex = -1;
         }
     }
 }

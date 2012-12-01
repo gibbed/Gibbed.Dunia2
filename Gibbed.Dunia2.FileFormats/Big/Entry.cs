@@ -29,6 +29,7 @@ namespace Gibbed.Dunia2.FileFormats.Big
         public uint CompressedSize;
         public long Offset;
         public CompressionScheme CompressionScheme;
+        public int SubFatIndex;
 
         public override string ToString()
         {

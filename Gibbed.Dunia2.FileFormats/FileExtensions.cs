@@ -44,31 +44,12 @@ namespace Gibbed.Dunia2.FileFormats
                 return new Tuple<string, string>("ui", "mgb");
             }
 
-            if (read >= 4 &&
-                guess[0] == 'T' &&
-                guess[1] == 'B' &&
-                guess[2] == 'X' &&
-                guess[3] == 0)
+            if (read >= 3 &&
+                guess[0] == 'B' &&
+                guess[1] == 'I' &&
+                guess[2] == 'K')
             {
-                return new Tuple<string, string>("gfx", "xbt");
-            }
-
-            if (read >= 4 &&
-                guess[0] == 'H' &&
-                guess[1] == 'S' &&
-                guess[2] == 'E' &&
-                guess[3] == 'M')
-            {
-                return new Tuple<string, string>("gfx", "xbg");
-            }
-
-            if (read >= 4 &&
-                guess[0] == 0 &&
-                guess[1] == 'M' &&
-                guess[2] == 'A' &&
-                guess[3] == 'T')
-            {
-                return new Tuple<string, string>("gfx", "material.bin");
+                return new Tuple<string, string>("gfx", "bik");
             }
 
             if (read >= 3 &&
@@ -77,33 +58,6 @@ namespace Gibbed.Dunia2.FileFormats
                 guess[2] == 'F')
             {
                 return new Tuple<string, string>("ui", "feu");
-            }
-
-            if (read >= 4 &&
-                guess[0] == 1 &&
-                guess[1] == 'K' &&
-                guess[2] == 'P' &&
-                guess[3] == 'S')
-            {
-                return new Tuple<string, string>("sfx", "spk");
-            }
-
-            if (read >= 4 &&
-                guess[0] == 'n' &&
-                guess[1] == 'b' &&
-                guess[2] == 'C' &&
-                guess[3] == 'F')
-            {
-                return new Tuple<string, string>("game", "fcb");
-            }
-
-            if (read >= 4 &&
-                guess[0] == 0x89 &&
-                guess[1] == 'P' &&
-                guess[2] == 'N' &&
-                guess[3] == 'G')
-            {
-                return new Tuple<string, string>("gfx", "png");
             }
 
             if (read >= 3 &&
@@ -132,6 +86,46 @@ namespace Gibbed.Dunia2.FileFormats
                 return new Tuple<string, string>("gfx", "hkx");
             }
 
+            if (read >= 4)
+            {
+                uint magic = BitConverter.ToUInt32(guess, 0);
+
+                if (magic == 0x00584254 || magic == 0x54425800) // '\0XBT'
+                {
+                    return new Tuple<string, string>("gfx", "xbt");
+                }
+
+                if (magic == 0x4D455348) // 'MESH'
+                {
+                    return new Tuple<string, string>("gfx", "xbg");
+                }
+
+                if (magic == 0x54414D00 || magic == 0x004D4154) // '\0MAT'
+                {
+                    return new Tuple<string, string>("gfx", "material.bin");
+                }
+
+                if (magic == 0x53504801) // 'SPK\1'
+                {
+                    return new Tuple<string, string>("sfx", "spk");
+                }
+
+                if (magic == 0x4643626E) // 'FCbn'
+                {
+                    return new Tuple<string, string>("game", "fcb");
+                }
+
+                if (magic == 0x474E5089) // 'PNG\x89'
+                {
+                    return new Tuple<string, string>("gfx", "png");
+                }
+
+                if (magic == 0x4D564D00)
+                {
+                    return new Tuple<string, string>("gfx", "MvN");
+                }
+            }
+
             string text = Encoding.ASCII.GetString(guess, 0, read);
 
             if (read >= 3 && text.StartsWith("-- ") == true)
@@ -154,9 +148,49 @@ namespace Gibbed.Dunia2.FileFormats
                 return new Tuple<string, string>("misc", "NewPartLib.xml");
             }
 
+            if (read >= 14 && text.StartsWith("<BarkDataBase>") == true)
+            {
+                return new Tuple<string, string>("misc", "BarkDataBase.xml");
+            }
+
+            if (read >= 13 && text.StartsWith("<BarkManager>") == true)
+            {
+                return new Tuple<string, string>("misc", "BarkManager.xml");
+            }
+
+            if (read >= 17 && text.StartsWith("<ObjectInventory>") == true)
+            {
+                return new Tuple<string, string>("misc", "ObjectInventory.xml");
+            }
+
+            if (read >= 21 && text.StartsWith("<CollectionInventory>") == true)
+            {
+                return new Tuple<string, string>("misc", "CollectionInventory.xml");
+            }
+
+            if (read >= 14 && text.StartsWith("<SoundRegions>") == true)
+            {
+                return new Tuple<string, string>("misc", "SoundRegions.xml");
+            }
+
             if (read >= 11 && text.StartsWith("<MovieData>") == true)
             {
                 return new Tuple<string, string>("misc", "MovieData.xml");
+            }
+
+            if (read >= 8 && text.StartsWith("<Profile") == true)
+            {
+                return new Tuple<string, string>("misc", "Profile.xml");
+            }
+
+            if (read >= 12 && text.StartsWith("<stringtable") == true)
+            {
+                return new Tuple<string, string>("text", "xml");
+            }
+
+            if (read >= 5 && text.StartsWith("<?xml") == true)
+            {
+                return new Tuple<string, string>("misc", "xml");
             }
 
             return null;

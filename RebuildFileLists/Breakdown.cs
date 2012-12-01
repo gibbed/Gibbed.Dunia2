@@ -20,14 +20,36 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.FileFormats.Big
+using System;
+
+namespace RebuildFileLists
 {
-    public enum Platform : uint
+    internal class Breakdown
     {
-        Any = 0,
-        PC = 1,
-        X360 = 2,
-        PS3 = 3,
-        Invalid = 0xFFFFFFFFu,
+        public long Known = 0;
+        public long Total = 0;
+
+        public int Percent
+        {
+            get
+            {
+                if (this.Total == 0)
+                {
+                    return 0;
+                }
+
+                return (int)Math.Floor((
+                                           (float)this.Known /
+                                           (float)this.Total) * 100.0);
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}/{1} ({2}%)",
+                                 this.Known,
+                                 this.Total,
+                                 this.Percent);
+        }
     }
 }

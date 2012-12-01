@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Gibbed.Dunia2.FileFormats;
 using Gibbed.IO;
 using ICSharpCode.SharpZipLib.Zip.Compression;
@@ -44,6 +45,7 @@ namespace Gibbed.Dunia2.Unpack
         {
             bool showHelp = false;
             bool extractUnknowns = true;
+            string filterPattern = null;
             bool overwriteFiles = false;
             bool verbose = false;
 
@@ -58,6 +60,11 @@ namespace Gibbed.Dunia2.Unpack
                     "nu|no-unknowns",
                     "don't extract unknown files",
                     v => extractUnknowns = v == null
+                    },
+                {
+                    "f|filter=",
+                    "only extract files using pattern",
+                    v => filterPattern = v
                     },
                 {
                     "v|verbose",
@@ -97,6 +104,12 @@ namespace Gibbed.Dunia2.Unpack
             string fatPath = extras[0];
             string outputPath = extras.Count > 1 ? extras[1] : Path.ChangeExtension(fatPath, null) + "_unpack";
             string datPath;
+
+            Regex filter = null;
+            if (string.IsNullOrEmpty(filterPattern) == false)
+            {
+                filter = new Regex(filterPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+            }
 
             if (Path.GetExtension(fatPath) == ".dat")
             {
@@ -142,75 +155,41 @@ namespace Gibbed.Dunia2.Unpack
                 long total = fat.Entries.Count;
                 var padding = total.ToString(CultureInfo.InvariantCulture).Length;
 
+                var duplicates = new Dictionary<ulong, int>();
+
                 foreach (var entry in fat.Entries.OrderBy(e => e.Offset))
                 {
                     current++;
 
-                    var entryName = hashes[entry.NameHash];
-                    if (entryName == null)
+                    string entryName;
+                    if (GetEntryName(data, fat, entry, hashes, extractUnknowns, out entryName))
                     {
-                        if (extractUnknowns == false)
-                        {
-                            continue;
-                        }
+                        continue;
+                    }
 
-                        string type;
-                        string extension;
-                        {
-                            var guess = new byte[64];
-                            int read = 0;
+                    if (entry.SubFatIndex >= 0)
+                    {
+                        entryName = Path.Combine("__SUBFAT", entry.SubFatIndex.ToString(), entryName);
+                    }
 
-                            if (entry.CompressionScheme == FileFormats.Big.CompressionScheme.None)
-                            {
-                                if (entry.CompressedSize > 0)
-                                {
-                                    data.Seek(entry.Offset, SeekOrigin.Begin);
-                                    read = data.Read(guess, 0, (int)Math.Min(entry.CompressedSize, guess.Length));
-                                }
-                            }
-                            else
-                            {
-                                using (var temp = new MemoryStream())
-                                {
-                                    DecompressEntry(entry, data, temp);
-                                    temp.Position = 0;
-                                    read = temp.Read(guess, 0, (int)Math.Min(temp.Length, guess.Length));
-                                }
-                            }
-
-                            var tuple = FileExtensions.Detect(guess, Math.Min(guess.Length, read));
-                            type = tuple != null ? tuple.Item1 : "unknown";
-                            extension = tuple != null ? tuple.Item2 : null;
-                        }
-
-                        if (fat.Version >= 9)
-                        {
-                            entryName = entry.NameHash.ToString("X16");
-                        }
-                        else
-                        {
-                            entryName = entry.NameHash.ToString("X8");
-                        }
-
-                        if (string.IsNullOrEmpty(extension) == false)
-                        {
-                            entryName = Path.ChangeExtension(entryName, "." + extension);
-                        }
-
-                        if (string.IsNullOrEmpty(type) == false)
-                        {
-                            entryName = Path.Combine(type, entryName);
-                        }
-
-                        entryName = Path.Combine("__UNKNOWN", entryName);
+                    if (duplicates.ContainsKey(entry.NameHash) == true)
+                    {
+                        var number = duplicates[entry.NameHash]++;
+                        var e = Path.GetExtension(entryName);
+                        var nn =
+                            Path.ChangeExtension(
+                                Path.ChangeExtension(entryName, null) + "__DUPLICATE_" + number.ToString(), e);
+                        entryName = Path.Combine("__DUPLICATE", nn);
                     }
                     else
                     {
-                        entryName = entryName.Replace("/", "\\");
-                        if (entryName.StartsWith("\\") == true)
-                        {
-                            entryName = entryName.Substring(1);
-                        }
+                        duplicates[entry.NameHash] = 0;
+                    }
+
+                    if (filter != null &&
+                        filter.IsMatch(entryName) == false)
+                    {
+                        continue;
                     }
 
                     var entryPath = Path.Combine(outputPath, entryName);
@@ -242,6 +221,84 @@ namespace Gibbed.Dunia2.Unpack
                     }
                 }
             }
+        }
+
+        private static bool GetEntryName(Stream input,
+                                         BigFile fat,
+                                         FileFormats.Big.Entry entry,
+                                         ProjectData.HashList<ulong> hashes,
+                                         bool extractUnknowns,
+                                         out string entryName)
+        {
+            entryName = hashes[entry.NameHash];
+
+            if (entryName == null)
+            {
+                if (extractUnknowns == false)
+                {
+                    return true;
+                }
+
+                string type;
+                string extension;
+                {
+                    var guess = new byte[64];
+                    int read = 0;
+
+                    if (entry.CompressionScheme == FileFormats.Big.CompressionScheme.None)
+                    {
+                        if (entry.CompressedSize > 0)
+                        {
+                            input.Seek(entry.Offset, SeekOrigin.Begin);
+                            read = input.Read(guess, 0, (int)Math.Min(entry.CompressedSize, guess.Length));
+                        }
+                    }
+                    else
+                    {
+                        using (var temp = new MemoryStream())
+                        {
+                            DecompressEntry(entry, input, temp);
+                            temp.Position = 0;
+                            read = temp.Read(guess, 0, (int)Math.Min(temp.Length, guess.Length));
+                        }
+                    }
+
+                    var tuple = FileExtensions.Detect(guess, Math.Min(guess.Length, read));
+                    type = tuple != null ? tuple.Item1 : "unknown";
+                    extension = tuple != null ? tuple.Item2 : null;
+                }
+
+                if (fat.Version >= 9)
+                {
+                    entryName = entry.NameHash.ToString("X16");
+                }
+                else
+                {
+                    entryName = entry.NameHash.ToString("X8");
+                }
+
+                if (string.IsNullOrEmpty(extension) == false)
+                {
+                    entryName = Path.ChangeExtension(entryName, "." + extension);
+                }
+
+                if (string.IsNullOrEmpty(type) == false)
+                {
+                    entryName = Path.Combine(type, entryName);
+                }
+
+                entryName = Path.Combine("__UNKNOWN", entryName);
+            }
+            else
+            {
+                entryName = entryName.Replace("/", "\\");
+                if (entryName.StartsWith("\\") == true)
+                {
+                    entryName = entryName.Substring(1);
+                }
+            }
+
+            return false;
         }
 
         private static void DecompressEntry(FileFormats.Big.Entry entry,

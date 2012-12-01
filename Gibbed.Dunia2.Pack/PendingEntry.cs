@@ -20,14 +20,14 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.FileFormats.Big
+namespace Gibbed.Dunia2.Pack
 {
-    public enum Platform : uint
+    internal struct PendingEntry
     {
-        Any = 0,
-        PC = 1,
-        X360 = 2,
-        PS3 = 3,
-        Invalid = 0xFFFFFFFFu,
+        public string Name;
+        public ulong NameHash;
+        public string FullPath;
+        public string PartPath;
+        public int SubfatIndex;
     }
 }

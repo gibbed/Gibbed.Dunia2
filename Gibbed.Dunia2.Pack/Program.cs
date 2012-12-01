@@ -207,14 +207,18 @@ namespace Gibbed.Dunia2.Pack
                     else
                     {
                         pendingEntry.Name = string.Join("\\", pieces.Skip(index).ToArray()).ToLowerInvariant();
-                        Console.WriteLine("{0}", pendingEntry.Name);
                         pendingEntry.NameHash = CRC64.Hash(pendingEntry.Name);
                     }
 
                     if (pendingEntries.ContainsKey(pendingEntry.NameHash) == true)
                     {
-                        Console.WriteLine("Ignoring {0} duplicate.", partPath);
-                        Console.WriteLine("  Using {0}", pendingEntries[pendingEntry.NameHash].PartPath);
+                        Console.WriteLine("Ignoring duplicate of {0:X}: {1}", pendingEntry.NameHash, partPath);
+
+                        if (verbose == true)
+                        {
+                            Console.WriteLine("  Previously added from: {0}", pendingEntries[pendingEntry.NameHash].PartPath);
+                        }
+
                         continue;
                     }
 
@@ -244,11 +248,20 @@ namespace Gibbed.Dunia2.Pack
 
             using (var output = File.Create(datPath))
             {
+                long current = 0;
+                long total = pendingEntries.Count;
+                var padding = total.ToString(CultureInfo.InvariantCulture).Length;
+
                 foreach (var pendingEntry in pendingEntries.Select(kv => kv.Value))
                 {
+                    current++;
+
                     if (verbose == true)
                     {
-                        Console.WriteLine(pendingEntry.PartPath);
+                        Console.WriteLine("[{0}/{1}] {2}",
+                                          current.ToString(CultureInfo.InvariantCulture).PadLeft(padding),
+                                          total,
+                                          pendingEntry.PartPath);
                     }
 
                     var entry = new Big.Entry();

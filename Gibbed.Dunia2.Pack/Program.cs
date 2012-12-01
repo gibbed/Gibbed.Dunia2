@@ -95,7 +95,8 @@ namespace Gibbed.Dunia2.Pack
             if (extras.Count < 1 || showHelp == true)
             {
                 Console.WriteLine("Usage: {0} [OPTIONS]+ output_fat input_directory+", GetExecutableName());
-                Console.WriteLine("Pack files from input directories into a Encapsulated Resource File.");
+                Console.WriteLine();
+                Console.WriteLine("Pack files from input directories into a Big File (FAT/DAT pair).");
                 Console.WriteLine();
                 Console.WriteLine("Options:");
                 options.WriteOptionDescriptions(Console.Out);
@@ -299,9 +300,8 @@ namespace Gibbed.Dunia2.Pack
 
         private static void CompressLzoEntry(ref Big.Entry entry, FileStream input, FileStream output)
         {
-            var uncompressedData = new byte[input.Length];
+            var uncompressedData = input.ReadBytes((uint)input.Length);
             var uncompressedSize = (uint)uncompressedData.Length;
-            input.Read(uncompressedData, 0, uncompressedData.Length);
 
             var compressedData = new byte[uncompressedData.Length +
                                           (uncompressedData.Length / 16) + 64 + 3];

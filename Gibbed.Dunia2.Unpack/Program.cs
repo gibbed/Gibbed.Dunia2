@@ -94,7 +94,9 @@ namespace Gibbed.Dunia2.Unpack
 
             if (extras.Count < 1 || extras.Count > 2 || showHelp == true)
             {
-                Console.WriteLine("Usage: {0} [OPTIONS]+ input_sfar [output_dir]", GetExecutableName());
+                Console.WriteLine("Usage: {0} [OPTIONS]+ input_fat [output_dir]", GetExecutableName());
+                Console.WriteLine();
+                Console.WriteLine("Unpack files from a Big File (FAT/DAT pair).");
                 Console.WriteLine();
                 Console.WriteLine("Options:");
                 options.WriteOptionDescriptions(Console.Out);

@@ -29,6 +29,7 @@ using Gibbed.Dunia2.FileFormats;
 using Gibbed.IO;
 using NDesk.Options;
 using Big = Gibbed.Dunia2.FileFormats.Big;
+using EntryCompression = Gibbed.Dunia2.FileFormats.Big.EntryCompression;
 
 namespace Gibbed.Dunia2.Pack
 {
@@ -216,7 +217,8 @@ namespace Gibbed.Dunia2.Pack
 
                         if (verbose == true)
                         {
-                            Console.WriteLine("  Previously added from: {0}", pendingEntries[pendingEntry.NameHash].PartPath);
+                            Console.WriteLine("  Previously added from: {0}",
+                                              pendingEntries[pendingEntry.NameHash].PartPath);
                         }
 
                         continue;
@@ -271,7 +273,7 @@ namespace Gibbed.Dunia2.Pack
 
                     using (var input = File.OpenRead(pendingEntry.FullPath))
                     {
-                        CompressEntry(fat.Platform, ref entry, input, compress, output);
+                        EntryCompression.Compress(fat.Platform, ref entry, input, compress, output);
                         output.Seek(output.Position.Align(16), SeekOrigin.Begin);
                     }
 
@@ -282,69 +284,6 @@ namespace Gibbed.Dunia2.Pack
             using (var output = File.Create(fatPath))
             {
                 fat.Serialize(output);
-            }
-        }
-
-        private static void CompressEntry(Big.Platform platform,
-                                          ref Big.Entry entry,
-                                          FileStream input,
-                                          bool compress,
-                                          FileStream output)
-        {
-            if (compress == false)
-            {
-                entry.CompressionScheme = Big.CompressionScheme.None;
-                entry.UncompressedSize = 0;
-                entry.CompressedSize = (uint)input.Length;
-                output.WriteFromStream(input, input.Length);
-            }
-            else
-            {
-                if (platform == Big.Platform.PC)
-                {
-                    CompressLzoEntry(ref entry, input, output);
-                }
-                else
-                {
-                    throw new NotImplementedException();
-                }
-            }
-        }
-
-        private static void CompressLzoEntry(ref Big.Entry entry, FileStream input, FileStream output)
-        {
-            var uncompressedData = input.ReadBytes((uint)input.Length);
-            var uncompressedSize = (uint)uncompressedData.Length;
-
-            var compressedData = new byte[uncompressedData.Length +
-                                          (uncompressedData.Length / 16) + 64 + 3];
-            var actualCompressedSize = compressedData.Length;
-
-            var result = LZO.Compress(uncompressedData,
-                                      0,
-                                      uncompressedData.Length,
-                                      compressedData,
-                                      0,
-                                      ref actualCompressedSize);
-            if (result != LZO.ErrorCode.Success)
-            {
-                throw new InvalidOperationException("compression error " + result.ToString());
-            }
-
-            if (actualCompressedSize < uncompressedSize)
-            {
-                entry.CompressionScheme = Big.CompressionScheme.LZO1x;
-                entry.UncompressedSize = uncompressedSize;
-                entry.CompressedSize = (uint)actualCompressedSize;
-                output.Write(compressedData, 0, (int)actualCompressedSize);
-            }
-            else
-            {
-                input.Seek(0, SeekOrigin.Begin);
-                entry.CompressionScheme = Big.CompressionScheme.None;
-                entry.UncompressedSize = 0;
-                entry.CompressedSize = (uint)input.Length;
-                output.WriteFromStream(input, input.Length);
             }
         }
     }

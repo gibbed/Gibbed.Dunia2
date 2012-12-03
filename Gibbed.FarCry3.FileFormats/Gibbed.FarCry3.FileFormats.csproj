@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\other\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,6 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapFile.cs" />
+    <Compile Include="Map\Archive.cs" />
+    <Compile Include="Map\CompressedData.cs" />
+    <Compile Include="Map\Data.cs" />
+    <Compile Include="Map\MapId.cs" />
+    <Compile Include="Map\Info.cs" />
+    <Compile Include="Map\Helpers.cs" />
+    <Compile Include="Map\MapSize.cs" />
+    <Compile Include="Map\PlayerRange.cs" />
+    <Compile Include="Map\Snapshot.cs" />
+    <Compile Include="Map\Time.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

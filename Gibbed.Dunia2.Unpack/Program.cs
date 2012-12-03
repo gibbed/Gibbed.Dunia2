@@ -27,10 +27,8 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Gibbed.Dunia2.FileFormats;
-using Gibbed.IO;
-using ICSharpCode.SharpZipLib.Zip.Compression;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using NDesk.Options;
+using EntryDecompression = Gibbed.Dunia2.FileFormats.Big.EntryDecompression;
 
 namespace Gibbed.Dunia2.Unpack
 {
@@ -164,7 +162,7 @@ namespace Gibbed.Dunia2.Unpack
                     current++;
 
                     string entryName;
-                    if (GetEntryName(data, fat, entry, hashes, extractUnknowns, out entryName))
+                    if (GetEntryName(data, fat, entry, hashes, extractUnknowns, out entryName) == false)
                     {
                         continue;
                     }
@@ -219,7 +217,7 @@ namespace Gibbed.Dunia2.Unpack
 
                     using (var output = File.Create(entryPath))
                     {
-                        DecompressEntry(entry, data, output);
+                        EntryDecompression.Decompress(entry, data, output);
                     }
                 }
             }
@@ -238,7 +236,7 @@ namespace Gibbed.Dunia2.Unpack
             {
                 if (extractUnknowns == false)
                 {
-                    return true;
+                    return false;
                 }
 
                 string type;
@@ -259,7 +257,7 @@ namespace Gibbed.Dunia2.Unpack
                     {
                         using (var temp = new MemoryStream())
                         {
-                            DecompressEntry(entry, input, temp);
+                            EntryDecompression.Decompress(entry, input, temp);
                             temp.Position = 0;
                             read = temp.Read(guess, 0, (int)Math.Min(temp.Length, guess.Length));
                         }
@@ -300,125 +298,7 @@ namespace Gibbed.Dunia2.Unpack
                 }
             }
 
-            return false;
-        }
-
-        private static void DecompressEntry(FileFormats.Big.Entry entry,
-                                            Stream input,
-                                            Stream output)
-        {
-            input.Seek(entry.Offset, SeekOrigin.Begin);
-
-            if (entry.CompressionScheme == FileFormats.Big.CompressionScheme.None)
-            {
-                output.WriteFromStream(input, entry.CompressedSize);
-            }
-            else if (entry.CompressionScheme == FileFormats.Big.CompressionScheme.LZO1x)
-            {
-                DecompressLzoEntry(entry, input, output);
-            }
-            else if (entry.CompressionScheme == FileFormats.Big.CompressionScheme.Zlib)
-            {
-                DecompressZlibEntry(entry, input, output);
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        private static void DecompressLzoEntry(FileFormats.Big.Entry entry, Stream input, Stream output)
-        {
-            input.Seek(entry.Offset, SeekOrigin.Begin);
-
-            var compressedData = new byte[entry.CompressedSize];
-            if (input.Read(compressedData, 0, compressedData.Length) != compressedData.Length)
-            {
-                throw new EndOfStreamException();
-            }
-
-            var uncompressedData = new byte[entry.UncompressedSize];
-            int actualUncompressedLength = uncompressedData.Length;
-
-            var result = LZO.Decompress(compressedData,
-                                        0,
-                                        compressedData.Length,
-                                        uncompressedData,
-                                        0,
-                                        ref actualUncompressedLength);
-            if (result != LZO.ErrorCode.Success)
-            {
-                throw new FormatException(string.Format("LZO decompression failure ({0})", result));
-            }
-
-            if (actualUncompressedLength != uncompressedData.Length)
-            {
-                throw new FormatException("LZO decompression failure (uncompressed size mismatch)");
-            }
-
-            output.Write(uncompressedData, 0, uncompressedData.Length);
-        }
-
-        private static void DecompressZlibEntry(FileFormats.Big.Entry entry, Stream input, Stream output)
-        {
-            if (entry.CompressedSize < 16)
-            {
-                throw new FormatException();
-            }
-
-            var sizes = new ushort[8];
-            for (int i = 0; i < 8; i++)
-            {
-                sizes[i] = input.ReadValueU16(Endian.Little);
-            }
-
-            var blockCount = sizes[0];
-            var maximumUncompressedBlockSize = 16 * (sizes[1] + 1);
-
-            long left = entry.UncompressedSize;
-            for (int i = 0, c = 2; i < blockCount; i++, c++)
-            {
-                if (c == 8)
-                {
-                    for (int j = 0; j < 8; j++)
-                    {
-                        sizes[j] = input.ReadValueU16(Endian.Little);
-                    }
-
-                    c = 0;
-                }
-
-                uint compressedBlockSize = sizes[c];
-                if (compressedBlockSize != 0)
-                {
-                    var uncompressedBlockSize = i + 1 < blockCount
-                                                    ? Math.Min(maximumUncompressedBlockSize, left)
-                                                    : left;
-                    //var uncompressedBlockSize = Math.Min(maximumUncompressedBlockSize, left);
-
-                    using (var temp = input.ReadToMemoryStream(compressedBlockSize))
-                    {
-                        var zlib = new InflaterInputStream(temp, new Inflater(true));
-                        output.WriteFromStream(zlib, uncompressedBlockSize);
-                        left -= uncompressedBlockSize;
-                    }
-
-                    var padding = (16 - (compressedBlockSize % 16)) % 16;
-                    if (padding > 0)
-                    {
-                        input.Seek(padding, SeekOrigin.Current);
-                    }
-                }
-                else
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            if (left > 0)
-            {
-                Console.WriteLine("WAT");
-            }
+            return true;
         }
     }
 }

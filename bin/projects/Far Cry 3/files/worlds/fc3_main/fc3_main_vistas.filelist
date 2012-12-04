@@ -1,4 +1,4 @@
-; 10301/13261 (77%)
+; 10317/13261 (77%)
 graphics\__fc3_graphics\_common\terrain\vistadetailmap\terrain_detail_01.xbt
 worlds\fc3_main\levels\b4\generated\vistas\d_0-(00,00).xbt
 worlds\fc3_main\levels\b4\generated\vistas\d_1-(00,00).xbt
@@ -5129,6 +5129,10 @@ worlds\fc3_main\levels\e3\generated\vistas\d_3-(01,04).xbt
 worlds\fc3_main\levels\e3\generated\vistas\d_3-(01,05).xbt
 worlds\fc3_main\levels\e3\generated\vistas\d_3-(01,06).xbt
 worlds\fc3_main\levels\e3\generated\vistas\d_3-(01,07).xbt
+worlds\fc3_main\levels\e3\generated\vistas\d_3-(02,06).xbt
+worlds\fc3_main\levels\e3\generated\vistas\d_3-(02,07).xbt
+worlds\fc3_main\levels\e3\generated\vistas\d_3-(03,06).xbt
+worlds\fc3_main\levels\e3\generated\vistas\d_3-(03,07).xbt
 worlds\fc3_main\levels\e3\generated\vistas\d_3-(04,00).xbt
 worlds\fc3_main\levels\e3\generated\vistas\d_3-(04,01).xbt
 worlds\fc3_main\levels\e3\generated\vistas\d_3-(04,02).xbt
@@ -5190,6 +5194,10 @@ worlds\fc3_main\levels\e3\generated\vistas\g_3-(01,04).vista
 worlds\fc3_main\levels\e3\generated\vistas\g_3-(01,05).vista
 worlds\fc3_main\levels\e3\generated\vistas\g_3-(01,06).vista
 worlds\fc3_main\levels\e3\generated\vistas\g_3-(01,07).vista
+worlds\fc3_main\levels\e3\generated\vistas\g_3-(02,06).vista
+worlds\fc3_main\levels\e3\generated\vistas\g_3-(02,07).vista
+worlds\fc3_main\levels\e3\generated\vistas\g_3-(03,06).vista
+worlds\fc3_main\levels\e3\generated\vistas\g_3-(03,07).vista
 worlds\fc3_main\levels\e3\generated\vistas\g_3-(04,00).vista
 worlds\fc3_main\levels\e3\generated\vistas\g_3-(04,01).vista
 worlds\fc3_main\levels\e3\generated\vistas\g_3-(04,02).vista
@@ -5251,6 +5259,10 @@ worlds\fc3_main\levels\e3\generated\vistas\n_3-(01,04).xbt
 worlds\fc3_main\levels\e3\generated\vistas\n_3-(01,05).xbt
 worlds\fc3_main\levels\e3\generated\vistas\n_3-(01,06).xbt
 worlds\fc3_main\levels\e3\generated\vistas\n_3-(01,07).xbt
+worlds\fc3_main\levels\e3\generated\vistas\n_3-(02,06).xbt
+worlds\fc3_main\levels\e3\generated\vistas\n_3-(02,07).xbt
+worlds\fc3_main\levels\e3\generated\vistas\n_3-(03,06).xbt
+worlds\fc3_main\levels\e3\generated\vistas\n_3-(03,07).xbt
 worlds\fc3_main\levels\e3\generated\vistas\n_3-(04,00).xbt
 worlds\fc3_main\levels\e3\generated\vistas\n_3-(04,01).xbt
 worlds\fc3_main\levels\e3\generated\vistas\n_3-(04,02).xbt
@@ -5312,6 +5324,10 @@ worlds\fc3_main\levels\e3\generated\vistas\s_3-(01,04).xbt
 worlds\fc3_main\levels\e3\generated\vistas\s_3-(01,05).xbt
 worlds\fc3_main\levels\e3\generated\vistas\s_3-(01,06).xbt
 worlds\fc3_main\levels\e3\generated\vistas\s_3-(01,07).xbt
+worlds\fc3_main\levels\e3\generated\vistas\s_3-(02,06).xbt
+worlds\fc3_main\levels\e3\generated\vistas\s_3-(02,07).xbt
+worlds\fc3_main\levels\e3\generated\vistas\s_3-(03,06).xbt
+worlds\fc3_main\levels\e3\generated\vistas\s_3-(03,07).xbt
 worlds\fc3_main\levels\e3\generated\vistas\s_3-(04,00).xbt
 worlds\fc3_main\levels\e3\generated\vistas\s_3-(04,01).xbt
 worlds\fc3_main\levels\e3\generated\vistas\s_3-(04,02).xbt

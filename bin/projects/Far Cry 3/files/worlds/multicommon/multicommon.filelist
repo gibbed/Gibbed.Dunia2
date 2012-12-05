@@ -1,4 +1,4 @@
-; 36784/122255 (30%)
+; 36838/122255 (30%)
 dialog\outsider_nh_female_01\outsider_nh_female_01.stimuli.dsc
 dialog\outsider_nh_female_02\outsider_nh_female_02.stimuli.dsc
 dialog\outsider_nh_female_03\outsider_nh_female_03.stimuli.dsc
@@ -2252,6 +2252,8 @@ graphics\__fc3_graphics\_common\_textures\characters\animals\_common\bloodgore.x
 graphics\__fc3_graphics\_common\_textures\characters\animals\asian_black_bear\ab_bear_eye_d.xbt
 graphics\__fc3_graphics\_common\_textures\characters\animals\asian_black_bear\asian_black_bear_d.xbt
 graphics\__fc3_graphics\_common\_textures\characters\animals\asian_black_bear\asian_black_bear_d_mip0.xbt
+graphics\__fc3_graphics\_common\_textures\characters\animals\asian_black_bear\asian_black_bear_hurt_d.xbt
+graphics\__fc3_graphics\_common\_textures\characters\animals\asian_black_bear\asian_black_bear_hurt_d_mip0.xbt
 graphics\__fc3_graphics\_common\_textures\characters\animals\asian_black_bear\asian_black_bear_m.xbt
 graphics\__fc3_graphics\_common\_textures\characters\animals\asian_black_bear\asian_black_bear_m_mip0.xbt
 graphics\__fc3_graphics\_common\_textures\characters\animals\asian_black_bear\asian_black_bear_n.xbt
@@ -7294,6 +7296,8 @@ graphics\_materials\cromagnoli-m-20120615105831.material.bin
 graphics\_materials\cromagnoli-m-20120615110118.material.bin
 graphics\_materials\cromagnoli-m-20120615110137.material.bin
 graphics\_materials\cromagnoli-m-20120615110353.material.bin
+graphics\_materials\cromagnoli-m-2012070639608141.material.bin
+graphics\_materials\cromagnoli-m-2012070639685447.material.bin
 graphics\_materials\cromagnoli-m-2012070649224591.material.bin
 graphics\_materials\cromagnoli-m-2012070664001929.material.bin
 graphics\_materials\cromagnoli-m-2012070664124241.material.bin
@@ -7933,6 +7937,7 @@ graphics\_materials\jliang-m-2804201242739767.material.bin
 graphics\_materials\jli-m-107201142503596.material.bin
 graphics\_materials\jli-m-107201151201026.material.bin
 graphics\_materials\jli-m-20120419143911.material.bin
+graphics\_materials\jli-m-20120509165448.material.bin
 graphics\_materials\jnleveille-m-2011091454253328.material.bin
 graphics\_materials\jnleveille-m-2011091457457932.material.bin
 graphics\_materials\jomalley-m-20110815152400.material.bin
@@ -8510,6 +8515,7 @@ graphics\_materials\sbeaulieu-m-20120309141348.material.bin
 graphics\_materials\sbeaulieu-m-20120315110253.material.bin
 graphics\_materials\sbeaulieu-m-20120316151551.material.bin
 graphics\_materials\sbeaulieu-m-20120321112800.material.bin
+graphics\_materials\sbeaulieu-m-20120601153046.material.bin
 graphics\_materials\sbeaulieu-m-20120607144055.material.bin
 graphics\_materials\sbeaulieu-m-20120807143354.material.bin
 graphics\_materials\sdesjardins-m-2011040850922188.material.bin
@@ -9244,6 +9250,7 @@ graphics\_materials\xperreault-m-20120507143600.material.bin
 graphics\_materials\xperreault-m-20120511172517.material.bin
 graphics\_materials\xperreault-m-20120515151100.material.bin
 graphics\_materials\xperreault-m-2012052248595313.material.bin
+graphics\_materials\xperreault-m-20120604155217.material.bin
 graphics\_materials\xperreault-m-20120607143822.material.bin
 graphics\_materials\xperreault-m-20120704141227.material.bin
 graphics\_materials\xperreault-m-20120705145830.material.bin
@@ -9374,6 +9381,7 @@ graphics\_materials\yanzhou-m-1908201168399237.material.bin
 graphics\_materials\yanzhou-m-1908201168434578.material.bin
 graphics\_materials\yanzhou-m-2001201257536333.material.bin
 graphics\_materials\yanzhou-m-20120201170940.material.bin
+graphics\_materials\yanzhou-m-20120203143354.material.bin
 graphics\_materials\yanzhou-m-20120206141721.material.bin
 graphics\_materials\yanzhou-m-20120208181926.material.bin
 graphics\_materials\yanzhou-m-20120209140524.material.bin
@@ -16072,7 +16080,9 @@ graphics\characters\_common\facial\generated\00181f78.dpax
 graphics\characters\_common\facial\generated\00181f94.dpax
 graphics\characters\_common\facial\generated\00181f9d.dpax
 graphics\characters\_common\facial\generated\00181fa6.dpax
+graphics\characters\_common\facial\generated\00181fe0.dpax
 graphics\characters\_common\facial\generated\00181ffb.dpax
+graphics\characters\_common\facial\generated\00182018.dpax
 graphics\characters\_common\facial\generated\00182049.dpax
 graphics\characters\_common\facial\generated\00182071.dpax
 graphics\characters\_common\facial\generated\00182098.dpax
@@ -16140,6 +16150,7 @@ graphics\characters\_common\facial\generated\00182706.dpax
 graphics\characters\_common\facial\generated\0018270f.dpax
 graphics\characters\_common\facial\generated\0018272a.dpax
 graphics\characters\_common\facial\generated\00182733.dpax
+graphics\characters\_common\facial\generated\00182760.dpax
 graphics\characters\_common\facial\generated\00182799.dpax
 graphics\characters\_common\facial\generated\001827ac.dpax
 graphics\characters\_common\facial\generated\001827d1.dpax
@@ -16151,19 +16162,23 @@ graphics\characters\_common\facial\generated\00182847.dpax
 graphics\characters\_common\facial\generated\0018287e.dpax
 graphics\characters\_common\facial\generated\00182887.dpax
 graphics\characters\_common\facial\generated\001828b4.dpax
+graphics\characters\_common\facial\generated\001828cf.dpax
 graphics\characters\_common\facial\generated\001828d9.dpax
 graphics\characters\_common\facial\generated\0018290f.dpax
 graphics\characters\_common\facial\generated\0018292a.dpax
 graphics\characters\_common\facial\generated\00182933.dpax
 graphics\characters\_common\facial\generated\00182958.dpax
+graphics\characters\_common\facial\generated\0018296a.dpax
 graphics\characters\_common\facial\generated\001829b7.dpax
 graphics\characters\_common\facial\generated\001829c0.dpax
 graphics\characters\_common\facial\generated\001829c9.dpax
 graphics\characters\_common\facial\generated\001829ed.dpax
 graphics\characters\_common\facial\generated\001829ff.dpax
+graphics\characters\_common\facial\generated\00182a08.dpax
 graphics\characters\_common\facial\generated\00182a11.dpax
 graphics\characters\_common\facial\generated\00182a1a.dpax
 graphics\characters\_common\facial\generated\00182a23.dpax
+graphics\characters\_common\facial\generated\00182a3e.dpax
 graphics\characters\_common\facial\generated\00182a5c.dpax
 graphics\characters\_common\facial\generated\00182a6e.dpax
 graphics\characters\_common\facial\generated\00182a77.dpax
@@ -16411,6 +16426,7 @@ graphics\characters\_common\facial\generated\001853d7.dpax
 graphics\characters\_common\facial\generated\00185416.dpax
 graphics\characters\_common\facial\generated\0018545e.dpax
 graphics\characters\_common\facial\generated\00185482.dpax
+graphics\characters\_common\facial\generated\0018548b.dpax
 graphics\characters\_common\facial\generated\001854a6.dpax
 graphics\characters\_common\facial\generated\001854af.dpax
 graphics\characters\_common\facial\generated\001854b8.dpax
@@ -16649,6 +16665,7 @@ graphics\characters\_common\facial\generated\00189104.dpax
 graphics\characters\_common\facial\generated\0018910d.dpax
 graphics\characters\_common\facial\generated\00189e3e.dpax
 graphics\characters\_common\facial\generated\00189e44.dpax
+graphics\characters\_common\facial\generated\00189e53.dpax
 graphics\characters\_common\facial\generated\00189e62.dpax
 graphics\characters\_common\facial\generated\00189e6c.dpax
 graphics\characters\_common\facial\generated\00189e90.dpax
@@ -16759,6 +16776,7 @@ graphics\characters\_common\facial\generated\0018a5a2.dpax
 graphics\characters\_common\facial\generated\0018a5aa.dpax
 graphics\characters\_common\facial\generated\0018a5cc.dpax
 graphics\characters\_common\facial\generated\0018a5d7.dpax
+graphics\characters\_common\facial\generated\0018a5e1.dpax
 graphics\characters\_common\facial\generated\0018a5eb.dpax
 graphics\characters\_common\facial\generated\0018a5fe.dpax
 graphics\characters\_common\facial\generated\0018a603.dpax
@@ -16783,6 +16801,7 @@ graphics\characters\_common\facial\generated\0018a702.dpax
 graphics\characters\_common\facial\generated\0018a7ab.dpax
 graphics\characters\_common\facial\generated\0018a7c7.dpax
 graphics\characters\_common\facial\generated\0018a7fa.dpax
+graphics\characters\_common\facial\generated\0018a81d.dpax
 graphics\characters\_common\facial\generated\0018a834.dpax
 graphics\characters\_common\facial\generated\0018a866.dpax
 graphics\characters\_common\facial\generated\0018a9b0.dpax
@@ -16905,9 +16924,12 @@ graphics\characters\_common\facial\generated\0018bd26.dpax
 graphics\characters\_common\facial\generated\0018bd2f.dpax
 graphics\characters\_common\facial\generated\0018bd6e.dpax
 graphics\characters\_common\facial\generated\0018bd95.dpax
+graphics\characters\_common\facial\generated\0018bde3.dpax
 graphics\characters\_common\facial\generated\0018be22.dpax
 graphics\characters\_common\facial\generated\0018be39.dpax
+graphics\characters\_common\facial\generated\0018be57.dpax
 graphics\characters\_common\facial\generated\0018be5d.dpax
+graphics\characters\_common\facial\generated\0018be95.dpax
 graphics\characters\_common\facial\generated\0018bea2.dpax
 graphics\characters\_common\facial\generated\0018bead.dpax
 graphics\characters\_common\facial\generated\0018beb8.dpax
@@ -16955,6 +16977,7 @@ graphics\characters\_common\facial\generated\0018c6a8.dpax
 graphics\characters\_common\facial\generated\0018c6eb.dpax
 graphics\characters\_common\facial\generated\0018c71c.dpax
 graphics\characters\_common\facial\generated\0018c725.dpax
+graphics\characters\_common\facial\generated\0018c737.dpax
 graphics\characters\_common\facial\generated\0018c740.dpax
 graphics\characters\_common\facial\generated\0018c76f.dpax
 graphics\characters\_common\facial\generated\0018c778.dpax
@@ -16970,12 +16993,14 @@ graphics\characters\_common\facial\generated\0018c8e0.dpax
 graphics\characters\_common\facial\generated\0018c94f.dpax
 graphics\characters\_common\facial\generated\0018c9a4.dpax
 graphics\characters\_common\facial\generated\0018c9ca.dpax
+graphics\characters\_common\facial\generated\0018ca14.dpax
 graphics\characters\_common\facial\generated\0018ca1d.dpax
 graphics\characters\_common\facial\generated\0018ca42.dpax
 graphics\characters\_common\facial\generated\0018ca4b.dpax
 graphics\characters\_common\facial\generated\0018ca55.dpax
 graphics\characters\_common\facial\generated\0018ca60.dpax
 graphics\characters\_common\facial\generated\0018cae6.dpax
+graphics\characters\_common\facial\generated\0018caff.dpax
 graphics\characters\_common\facial\generated\0018cb07.dpax
 graphics\characters\_common\facial\generated\0018cb22.dpax
 graphics\characters\_common\facial\generated\0018cb86.dpax
@@ -16990,6 +17015,7 @@ graphics\characters\_common\facial\generated\0018cca2.dpax
 graphics\characters\_common\facial\generated\0018ccf6.dpax
 graphics\characters\_common\facial\generated\0018cd08.dpax
 graphics\characters\_common\facial\generated\0018cd5b.dpax
+graphics\characters\_common\facial\generated\0018cd64.dpax
 graphics\characters\_common\facial\generated\0018cd77.dpax
 graphics\characters\_common\facial\generated\0018cdd4.dpax
 graphics\characters\_common\facial\generated\0018cde6.dpax
@@ -17010,6 +17036,7 @@ graphics\characters\_common\facial\generated\0018d049.dpax
 graphics\characters\_common\facial\generated\0018d083.dpax
 graphics\characters\_common\facial\generated\0018d0b1.dpax
 graphics\characters\_common\facial\generated\0018d0fa.dpax
+graphics\characters\_common\facial\generated\0018d167.dpax
 graphics\characters\_common\facial\generated\0018d16f.dpax
 graphics\characters\_common\facial\generated\0018d181.dpax
 graphics\characters\_common\facial\generated\0018d196.dpax
@@ -17039,6 +17066,8 @@ graphics\characters\_common\facial\generated\0018d665.dpax
 graphics\characters\_common\facial\generated\0018d68a.dpax
 graphics\characters\_common\facial\generated\0018d69c.dpax
 graphics\characters\_common\facial\generated\0018d6af.dpax
+graphics\characters\_common\facial\generated\0018d6dc.dpax
+graphics\characters\_common\facial\generated\0018d6ef.dpax
 graphics\characters\_common\facial\generated\0018d701.dpax
 graphics\characters\_common\facial\generated\0018d70a.dpax
 graphics\characters\_common\facial\generated\0018d71c.dpax
@@ -17089,6 +17118,7 @@ graphics\characters\_common\facial\generated\0018de2d.dpax
 graphics\characters\_common\facial\generated\0018de48.dpax
 graphics\characters\_common\facial\generated\0018de51.dpax
 graphics\characters\_common\facial\generated\0018ded9.dpax
+graphics\characters\_common\facial\generated\0018def4.dpax
 graphics\characters\_common\facial\generated\0018df22.dpax
 graphics\characters\_common\facial\generated\0018df75.dpax
 graphics\characters\_common\facial\generated\0018df87.dpax
@@ -17127,6 +17157,7 @@ graphics\characters\_common\facial\generated\0018e551.dpax
 graphics\characters\_common\facial\generated\0018e55a.dpax
 graphics\characters\_common\facial\generated\0018e563.dpax
 graphics\characters\_common\facial\generated\0018e587.dpax
+graphics\characters\_common\facial\generated\0018e590.dpax
 graphics\characters\_common\facial\generated\0018e5ac.dpax
 graphics\characters\_common\facial\generated\0018e5be.dpax
 graphics\characters\_common\facial\generated\0018e5d2.dpax
@@ -17201,6 +17232,7 @@ graphics\characters\_common\facial\generated\001925e1.dpax
 graphics\characters\_common\facial\generated\001925ec.dpax
 graphics\characters\_common\facial\generated\0019263b.dpax
 graphics\characters\_common\facial\generated\0019266d.dpax
+graphics\characters\_common\facial\generated\001926b9.dpax
 graphics\characters\_common\facial\generated\001926c3.dpax
 graphics\characters\_common\facial\generated\00192713.dpax
 graphics\characters\_common\facial\generated\00192750.dpax
@@ -17562,6 +17594,7 @@ graphics\characters\_common\facial\generated\00199f18.dpax
 graphics\characters\_common\facial\generated\00199f3e.dpax
 graphics\characters\_common\facial\generated\00199f48.dpax
 graphics\characters\_common\facial\generated\00199f51.dpax
+graphics\characters\_common\facial\generated\00199fd3.dpax
 graphics\characters\_common\facial\generated\00199ffd.dpax
 graphics\characters\_common\facial\generated\0019a01f.dpax
 graphics\characters\_common\facial\generated\0019a02c.dpax
@@ -17571,6 +17604,7 @@ graphics\characters\_common\facial\generated\0019a0be.dpax
 graphics\characters\_common\facial\generated\0019a0ce.dpax
 graphics\characters\_common\facial\generated\0019a0f6.dpax
 graphics\characters\_common\facial\generated\0019a278.dpax
+graphics\characters\_common\facial\generated\0019a300.dpax
 graphics\characters\_common\facial\generated\0019a5f4.dpax
 graphics\characters\_common\facial\generated\0019a6b5.dpax
 graphics\characters\_common\facial\generated\0019a826.dpax
@@ -17974,6 +18008,7 @@ graphics\characters\_common\facial\generated\001a83b9.dpax
 graphics\characters\_common\facial\generated\001a83ec.dpax
 graphics\characters\_common\facial\generated\001a83f9.dpax
 graphics\characters\_common\facial\generated\001a840b.dpax
+graphics\characters\_common\facial\generated\001a841d.dpax
 graphics\characters\_common\facial\generated\001a8426.dpax
 graphics\characters\_common\facial\generated\001a8441.dpax
 graphics\characters\_common\facial\generated\001a8454.dpax
@@ -17993,7 +18028,9 @@ graphics\characters\_common\facial\generated\001a8c1a.dpax
 graphics\characters\_common\facial\generated\001a8c7c.dpax
 graphics\characters\_common\facial\generated\001a903b.dpax
 graphics\characters\_common\facial\generated\001a9073.dpax
+graphics\characters\_common\facial\generated\001a92b5.dpax
 graphics\characters\_common\facial\generated\001a934f.dpax
+graphics\characters\_common\facial\generated\001a938e.dpax
 graphics\characters\_common\facial\generated\001a9452.dpax
 graphics\characters\_common\facial\generated\001a950f.dpax
 graphics\characters\_common\facial\generated\001a9520.dpax
@@ -18004,6 +18041,7 @@ graphics\characters\_common\facial\generated\001a9649.dpax
 graphics\characters\_common\facial\generated\001a9681.dpax
 graphics\characters\_common\facial\generated\001a9691.dpax
 graphics\characters\_common\facial\generated\001a96a9.dpax
+graphics\characters\_common\facial\generated\001a96d1.dpax
 graphics\characters\_common\facial\generated\001a977d.dpax
 graphics\characters\_common\facial\generated\001a97fc.dpax
 graphics\characters\_common\facial\generated\001a9831.dpax
@@ -18040,6 +18078,7 @@ graphics\characters\_common\facial\generated\001aa08f.dpax
 graphics\characters\_common\facial\generated\001aa09a.dpax
 graphics\characters\_common\facial\generated\001aa0b0.dpax
 graphics\characters\_common\facial\generated\001aa0b9.dpax
+graphics\characters\_common\facial\generated\001aa0fc.dpax
 graphics\characters\_common\facial\generated\001aa11e.dpax
 graphics\characters\_common\facial\generated\001aa127.dpax
 graphics\characters\_common\facial\generated\001aa135.dpax
@@ -18077,6 +18116,7 @@ graphics\characters\_common\facial\generated\001aa33c.dpax
 graphics\characters\_common\facial\generated\001aa34a.dpax
 graphics\characters\_common\facial\generated\001aa35d.dpax
 graphics\characters\_common\facial\generated\001aa370.dpax
+graphics\characters\_common\facial\generated\001aa385.dpax
 graphics\characters\_common\facial\generated\001aa38d.dpax
 graphics\characters\_common\facial\generated\001aa39d.dpax
 graphics\characters\_common\facial\generated\001aa3a5.dpax
@@ -18088,6 +18128,7 @@ graphics\characters\_common\facial\generated\001aa3df.dpax
 graphics\characters\_common\facial\generated\001ab28d.dpax
 graphics\characters\_common\facial\generated\001ab339.dpax
 graphics\characters\_common\facial\generated\001ab37e.dpax
+graphics\characters\_common\facial\generated\001ab3d5.dpax
 graphics\characters\_common\facial\generated\001ab3f4.dpax
 graphics\characters\_common\facial\generated\001ab45f.dpax
 graphics\characters\_common\facial\generated\001ab471.dpax
@@ -18099,8 +18140,10 @@ graphics\characters\_common\facial\generated\001ab6b9.dpax
 graphics\characters\_common\facial\generated\001ab6d1.dpax
 graphics\characters\_common\facial\generated\001ab6df.dpax
 graphics\characters\_common\facial\generated\001ab726.dpax
+graphics\characters\_common\facial\generated\001ab72e.dpax
 graphics\characters\_common\facial\generated\001ab737.dpax
 graphics\characters\_common\facial\generated\001ab7cb.dpax
+graphics\characters\_common\facial\generated\001ab86b.dpax
 graphics\characters\_common\facial\generated\001ab90f.dpax
 graphics\characters\_common\facial\generated\001ab96e.dpax
 graphics\characters\_common\facial\generated\001abb3a.dpax
@@ -18112,7 +18155,9 @@ graphics\characters\_common\facial\generated\001abbec.dpax
 graphics\characters\_common\facial\generated\001abc13.dpax
 graphics\characters\_common\facial\generated\001abc84.dpax
 graphics\characters\_common\facial\generated\001abc98.dpax
+graphics\characters\_common\facial\generated\001abce8.dpax
 graphics\characters\_common\facial\generated\001abd15.dpax
+graphics\characters\_common\facial\generated\001abdd0.dpax
 graphics\characters\_common\facial\generated\001abee9.dpax
 graphics\characters\_common\facial\generated\001abf13.dpax
 graphics\characters\_common\facial\generated\001abf78.dpax
@@ -18195,6 +18240,7 @@ graphics\characters\_common\facial\generated\001ad1e5.dpax
 graphics\characters\_common\facial\generated\001ad1f0.dpax
 graphics\characters\_common\facial\generated\001ad215.dpax
 graphics\characters\_common\facial\generated\001ad249.dpax
+graphics\characters\_common\facial\generated\001ad2b0.dpax
 graphics\characters\_common\facial\generated\001ad2cd.dpax
 graphics\characters\_common\facial\generated\001ad2db.dpax
 graphics\characters\_common\facial\generated\001ad31f.dpax
@@ -18472,6 +18518,7 @@ graphics\characters\_common\facial\generated\001b8a07.dpax
 graphics\characters\_common\facial\generated\001b8a27.dpax
 graphics\characters\_common\facial\generated\001b8a3a.dpax
 graphics\characters\_common\facial\generated\001b8ab9.dpax
+graphics\characters\_common\facial\generated\001b91cf.dpax
 graphics\characters\_common\facial\generated\001b91f3.dpax
 graphics\characters\_common\facial\generated\001b9259.dpax
 graphics\characters\_common\facial\generated\001b9288.dpax
@@ -18482,10 +18529,13 @@ graphics\characters\_common\facial\generated\001b92c7.dpax
 graphics\characters\_common\facial\generated\001b92ef.dpax
 graphics\characters\_common\facial\generated\001b9318.dpax
 graphics\characters\_common\facial\generated\001b933c.dpax
+graphics\characters\_common\facial\generated\001b939e.dpax
 graphics\characters\_common\facial\generated\001b93a9.dpax
 graphics\characters\_common\facial\generated\001b940b.dpax
+graphics\characters\_common\facial\generated\001b9414.dpax
 graphics\characters\_common\facial\generated\001b9472.dpax
 graphics\characters\_common\facial\generated\001b94b1.dpax
+graphics\characters\_common\facial\generated\001b9522.dpax
 graphics\characters\_common\facial\generated\001b955c.dpax
 graphics\characters\_common\facial\generated\001b9573.dpax
 graphics\characters\_common\facial\generated\001b95c0.dpax
@@ -18538,6 +18588,7 @@ graphics\characters\_common\facial\generated\001b9b0f.dpax
 graphics\characters\_common\facial\generated\001b9b27.dpax
 graphics\characters\_common\facial\generated\001b9b3a.dpax
 graphics\characters\_common\facial\generated\001b9b44.dpax
+graphics\characters\_common\facial\generated\001b9b4f.dpax
 graphics\characters\_common\facial\generated\001b9b66.dpax
 graphics\characters\_common\facial\generated\001b9b7b.dpax
 graphics\characters\_common\facial\generated\001b9b87.dpax
@@ -18651,6 +18702,7 @@ graphics\characters\_common\facial\generated\001bcbea.dpax
 graphics\characters\_common\facial\generated\001bcc07.dpax
 graphics\characters\_common\facial\generated\001bcc17.dpax
 graphics\characters\_common\facial\generated\001bcc32.dpax
+graphics\characters\_common\facial\generated\001bcc40.dpax
 graphics\characters\_common\facial\generated\001bcc49.dpax
 graphics\characters\_common\facial\generated\001bcc53.dpax
 graphics\characters\_common\facial\generated\001bcc5d.dpax
@@ -18674,6 +18726,7 @@ graphics\characters\_common\facial\generated\001bcd50.dpax
 graphics\characters\_common\facial\generated\001bcd59.dpax
 graphics\characters\_common\facial\generated\001bcd66.dpax
 graphics\characters\_common\facial\generated\001bcd79.dpax
+graphics\characters\_common\facial\generated\001bcd8c.dpax
 graphics\characters\_common\facial\generated\001bcdb1.dpax
 graphics\characters\_common\facial\generated\001bcdca.dpax
 graphics\characters\_common\facial\generated\001bcdd3.dpax
@@ -18765,6 +18818,7 @@ graphics\characters\_common\facial\generated\001bd438.dpax
 graphics\characters\_common\facial\generated\001bd44a.dpax
 graphics\characters\_common\facial\generated\001bd465.dpax
 graphics\characters\_common\facial\generated\001bd477.dpax
+graphics\characters\_common\facial\generated\001bd485.dpax
 graphics\characters\_common\facial\generated\001bd48e.dpax
 graphics\characters\_common\facial\generated\001bd4a1.dpax
 graphics\characters\_common\facial\generated\001bd4b3.dpax

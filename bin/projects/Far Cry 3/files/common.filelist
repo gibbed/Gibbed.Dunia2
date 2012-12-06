@@ -1,4 +1,4 @@
-; 2861/3061 (93%)
+; 2862/3061 (93%)
 actionmaps\inputactionmapbenchmark.xml
 actionmaps\inputactionmapchat.xml
 actionmaps\inputactionmapcommon.xml
@@ -8,6 +8,7 @@ actionmaps\inputactionmapige.xml
 actionmaps\inputactionmapmulti.xml
 actionmaps\inputactionmapsingle.xml
 actionmaps\presets\pc\default.xml
+credits.xml
 dialog\dialogmanagerindices.dat
 dialog\mpbarkdata.bark.xml
 dialog\mpbarkmanager.xml

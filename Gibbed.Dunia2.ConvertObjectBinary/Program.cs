@@ -221,9 +221,9 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             {
                 writer.WriteAttributeString("type", classDef.Name);
             }
-            else if (objectDef != null && objectDef.Name != null && objectDef.Hash == node.TypeHash)
+            else if (objectDef != null && objectDef.Type != null && objectDef.Hash == node.TypeHash)
             {
-                writer.WriteAttributeString("type", objectDef.Name);
+                writer.WriteAttributeString("type", objectDef.Type);
             }
             else
             {

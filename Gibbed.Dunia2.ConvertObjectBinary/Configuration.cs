@@ -77,7 +77,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             foreach (var rawClassDef in rawClassDefs)
             {
                 var classDef = LoadClassDefinition(rawClassDefs, rawClassDef);
-                if (this._ClassDefinitions.Any(cd => cd.Name == classDef.Name) == true)
+                if (this._ClassDefinitions.Any(cd => cd.Name == classDef.Name ||
+                                                     cd.Hash == classDef.Hash) == true)
                 {
                     throw new InvalidOperationException();
                 }
@@ -383,12 +384,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
         private ObjectFileDefinition LoadObjectFileDefinition(RawObjectFileDefinition rawObjectFileDef)
         {
-            if (string.IsNullOrEmpty(rawObjectFileDef.Name) == true)
+            if (string.IsNullOrEmpty(rawObjectFileDef.Type) == true)
             {
                 throw new InvalidOperationException();
             }
 
-            var name = rawObjectFileDef.Name;
+            var name = rawObjectFileDef.Type;
             var objectDef = rawObjectFileDef.ObjectDefinition != null
                                 ? this.LoadObjectDefinition(rawObjectFileDef.ObjectDefinition)
                                 : null;
@@ -443,14 +444,14 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
         public class ObjectDefinition
         {
-            public string Name { get; private set; }
+            public string Type { get; private set; }
             public uint Hash { get; private set; }
             public ClassDefinition ClassDefinition { get; private set; }
             public ReadOnlyCollection<ObjectDefinition> ObjectDefinitions { get; private set; }
 
-            public ObjectDefinition(string name, uint hash, ClassDefinition classDef, IList<ObjectDefinition> objectDefs)
+            public ObjectDefinition(string type, uint hash, ClassDefinition classDef, IList<ObjectDefinition> objectDefs)
             {
-                this.Name = name;
+                this.Type = type;
                 this.Hash = hash;
                 this.ClassDefinition = classDef;
                 this.ObjectDefinitions = new ReadOnlyCollection<ObjectDefinition>(objectDefs ?? new ObjectDefinition[0]);
@@ -471,7 +472,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         public class RawObjectFileDefinition
         {
             private string _Path;
-            private string _Name;
+            private string _Type;
             private RawObjectDefinition _ObjectDefinition;
 
             [XmlIgnore]
@@ -481,11 +482,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 set { this._Path = value; }
             }
 
-            [XmlAttribute("name")]
-            public string Name
+            [XmlAttribute("type")]
+            public string Type
             {
-                get { return this._Name; }
-                set { this._Name = value; }
+                get { return this._Type; }
+                set { this._Type = value; }
             }
 
             [XmlElement("object")]

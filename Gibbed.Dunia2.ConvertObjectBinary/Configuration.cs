@@ -384,12 +384,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
         private ObjectFileDefinition LoadObjectFileDefinition(RawObjectFileDefinition rawObjectFileDef)
         {
-            if (string.IsNullOrEmpty(rawObjectFileDef.Type) == true)
+            if (string.IsNullOrEmpty(rawObjectFileDef.Name) == true)
             {
                 throw new InvalidOperationException();
             }
 
-            var name = rawObjectFileDef.Type;
+            var name = rawObjectFileDef.Name;
             var objectDef = rawObjectFileDef.ObjectDefinition != null
                                 ? this.LoadObjectDefinition(rawObjectFileDef.ObjectDefinition)
                                 : null;
@@ -444,14 +444,14 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
         public class ObjectDefinition
         {
-            public string Type { get; private set; }
+            public string Name { get; private set; }
             public uint Hash { get; private set; }
             public ClassDefinition ClassDefinition { get; private set; }
             public ReadOnlyCollection<ObjectDefinition> ObjectDefinitions { get; private set; }
 
-            public ObjectDefinition(string type, uint hash, ClassDefinition classDef, IList<ObjectDefinition> objectDefs)
+            public ObjectDefinition(string name, uint hash, ClassDefinition classDef, IList<ObjectDefinition> objectDefs)
             {
-                this.Type = type;
+                this.Name = name;
                 this.Hash = hash;
                 this.ClassDefinition = classDef;
                 this.ObjectDefinitions = new ReadOnlyCollection<ObjectDefinition>(objectDefs ?? new ObjectDefinition[0]);
@@ -472,7 +472,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         public class RawObjectFileDefinition
         {
             private string _Path;
-            private string _Type;
+            private string _Name;
             private RawObjectDefinition _ObjectDefinition;
 
             [XmlIgnore]
@@ -482,11 +482,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 set { this._Path = value; }
             }
 
-            [XmlAttribute("type")]
-            public string Type
+            [XmlAttribute("name")]
+            public string Name
             {
-                get { return this._Type; }
-                set { this._Type = value; }
+                get { return this._Name; }
+                set { this._Name = value; }
             }
 
             [XmlElement("object")]

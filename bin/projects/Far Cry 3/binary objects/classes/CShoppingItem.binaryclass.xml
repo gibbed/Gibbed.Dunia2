@@ -1,0 +1,55 @@
+<class name="CShoppingItem" inherit="#11E15A48">
+	<field name="locidItemNameId" type="Int32" />
+	<field name="shpcatCategory" />
+	<field name="shpscataSubCategory1" />
+	<field name="shpscatbSubCategory2" />
+	<field name="shpitpeItemType" />
+	<field name="shpisubtpeItemSubType" />
+	<field name="locidDescriptionId" />
+	<field name="selAttachmentType" />
+	<field name="enumAttachmentType" />
+	<field hash="AB258E09" type="String" />
+	<field name="ammoAmmoType" />
+	<field name="iAmmoAmount" />
+	<field name="selGadgetType" />
+	<field name="enumGadgetType" />
+	<field name="arkArchetype" />
+	<field name="arkDisplayArchetype" />
+	<field name="fRotationSpeed" type="Float32" />
+	<field name="fRotationAmplitude" type="Float32" />
+	<field hash="F1B1D97B" type="String" />
+	<field name="sName" />
+	<field name="iCost" />
+	<field name="fRefillAllAmmoCostMultiplier" description="Cost multiplier when you use 'Refill All Ammo'" type="Float32" />
+	<field name="iXPOnLoot" type="Int32" />
+	<field name="iSortId" type="Int32" />
+	<field name="UnlockOnMissionComplete" type="String" />
+	<field name="UnlockFromScript" type="String" />
+	<field name="bVisibleInInventory" type="Boolean" />
+	<field name="bShowCurrentCount" type="Boolean" />
+	<field name="sIconName" type="String" />
+	<field name="sShopIconName" type="String" />
+	<field name="sHudIconName" type="String" />
+	<field name="bIsLootItem" description="Is this considered as a loot item and included in the loot inventory?" type="Boolean" />
+	<field name="bIsTreasureMap" description="If this is a TreasureMap" type="Boolean" />
+	<field name="bIsRareItem" description="Is this a rare item (cannot discard or sell, special display) ?" type="Boolean" />
+	<field name="TreasureMap" />
+	<field name="RadioTowerEntityId" />
+	<!-- RevealInfos -->
+	<field name="selCollectibleType" />
+	<field name="enumCollectibleType" />
+	<field name="bIsWeaponStatistics" description="Is this a weapon" />
+	<!-- WeaponStatistics -->
+	<field name="sULC_Name" description="The name of the unlockable contant if relevant, e.g. Hunting_Skins_1" />
+	<field name="vectorDisplayDefaultPosition" />
+	<field name="DisplayDefaultAngles" />
+	<field name="vectorDisplayDefaultPositionWithSilencer" />
+	<field name="DisplayDefaultAnglesWithSilencer" />
+	<field name="bDisplayAsDefaultItem" type="Boolean" />
+	<field name="vectorDisplayDefaultCategoryPosition" />
+	<field name="DisplayDefaultCategoryAngles" />
+	<!-- DefaultAttachmentsNames -->
+	<field name="FullscreenpAngles" />
+	<field name="vectorFullscreenCenterOffset" />
+	<field name="wikiItemId" description="Does this unlock a wiki entry?" />
+</class>

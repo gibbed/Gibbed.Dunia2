@@ -1,0 +1,4 @@
+<class name="CFCXWeapon" inherit="CWeapon">
+	<field name="bUseHiResScope" type="Boolean" />
+	<field name="fHiResLowResScopeSwitchTransitionPoint" type="Float32" />
+</class>

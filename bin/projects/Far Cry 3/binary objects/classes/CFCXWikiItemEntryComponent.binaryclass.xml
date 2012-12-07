@@ -1,0 +1,4 @@
+<class name="CFCXWikiItemEntryComponent" inherit="#11DFB608">
+	<field name="wikiItemId" />
+	<field name="bShouldNotifyHud" type="Boolean" />
+</class>

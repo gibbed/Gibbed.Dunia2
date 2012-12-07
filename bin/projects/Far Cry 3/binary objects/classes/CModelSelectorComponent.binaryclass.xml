@@ -1,0 +1,16 @@
+<class name="CModelSelectorComponent" inherit="#11DFB608">
+	<field name="DefaultModel" />
+	<field name="hidHighResModelInfo" />
+	<object name="Models">
+		<object name="Model">
+		</object>
+	</object>
+	<object name="hidInfos">
+		<object name="ModelInfo">
+		</object>
+	</object>
+	<object name="FirstPersonModelSkinList">
+		<object name="Skin">
+		</object>
+	</object>
+</class>

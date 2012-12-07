@@ -1,0 +1,9 @@
+<class name="CSimpleAnimationComponent" inherit="CBaseAnimationComponent">
+	<field name="sPartName" />
+	<field name="Enable" />
+	<field name="bEnableEvents" />
+	<field name="bRandomStart" />
+	<field hash="FCAC35BB" type="String" />
+	<field name="Animation" />
+	<field name="RootTransform" />
+</class>

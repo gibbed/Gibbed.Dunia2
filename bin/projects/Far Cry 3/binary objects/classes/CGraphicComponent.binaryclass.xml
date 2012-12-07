@@ -1,0 +1,10 @@
+<class name="CGraphicComponent" inherit="CBaseGraphicComponent">
+	<field name="bAllowCullBySize" type="Boolean" />
+	<field name="bMotionBlurExclusion" type="Boolean" />
+	<field name="bOverrideLODSphere" />
+	<field name="fLODSphereRadius" />
+	<field name="vectorAdditionalAABBDimensionForSkin" description="Additional AABB size added in negative to aabb min and in positive for aabb max, ONLY for skinned mesh" />
+	<field name="HasNotGraphicKit" />
+	<!-- MaterialOverrides -->
+	<!-- SkinList Skin -->
+</class>

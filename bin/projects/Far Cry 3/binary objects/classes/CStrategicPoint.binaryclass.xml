@@ -1,0 +1,8 @@
+<class name="CStrategicPoint" inherit="CTagPoint">
+	<field name="fRadius" type="Float32" />
+	<field name="fMovementRadius" type="Float32" />
+	<field name="selStrategyType" /><!-- enumStrategyType -->
+	<field name="selArmy" /><!-- enumArmy -->
+	<field name="nMaxDefensive" />
+	<field name="nCurrentDefensiveCount" />
+</class>

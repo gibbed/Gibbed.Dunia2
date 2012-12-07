@@ -1,0 +1,3 @@
+<class name="CTagPoint" inherit="CEntity">
+	<field name="Action" type="String" />
+</class>

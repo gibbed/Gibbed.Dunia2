@@ -193,14 +193,70 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 settings.CheckCharacters = false;
                 settings.OmitXmlDeclaration = false;
 
-                var objectFileDef = config.GetObjectFileDefinition(baseName);
-                var objectDef = objectFileDef != null ? objectFileDef.ObjectDefinition : null;
-
-                using (var writer = XmlWriter.Create(outputPath, settings))
+                if (bof.Root.Values.Count == 0 &&
+                    bof.Root.TypeHash == 0xBCDD10B4 &&
+                    bof.Root.Children.Any(c => c.TypeHash != 0xE0BDB3DB) == false)
                 {
-                    writer.WriteStartDocument();
-                    WriteNode(writer, bof.Root, objectDef);
-                    writer.WriteEndDocument();
+                    var objectFileDef = config.GetObjectFileDefinition(baseName);
+                    var objectDef = objectFileDef != null ? objectFileDef.ObjectDefinition : null;
+
+                    using (var writer = XmlWriter.Create(outputPath, settings))
+                    {
+                        writer.WriteStartDocument();
+
+                        var root = bof.Root;
+                        {
+                            writer.WriteStartElement("object");
+
+                            writer.WriteAttributeString("hash", root.TypeHash.ToString("X8"));
+
+                            int counter = 0;
+                            int padLength = root.Children.Count.ToString(CultureInfo.InvariantCulture).Length;
+                            foreach (var child in root.Children)
+                            {
+                                counter++;
+
+                                string childName = counter.ToString(CultureInfo.InvariantCulture).PadLeft(padLength, '0');
+
+                                // name
+                                if (child.Values.ContainsKey(0xFE11D138) == true)
+                                {
+                                    var value = child.Values[0xFE11D138];
+                                    childName += "_" + Encoding.UTF8.GetString(value, 0, value.Length - 1);
+                                }
+
+                                Directory.CreateDirectory(basePath);
+
+                                var childPath = Path.Combine(basePath, childName + ".xml");
+                                using (var childWriter = XmlWriter.Create(childPath, settings))
+                                {
+                                    childWriter.WriteStartDocument();
+                                    WriteNode(config, childWriter, child, objectDef != null ? objectDef.GetNestedObjectDefinition(child.TypeHash) : null);
+                                    childWriter.WriteEndDocument();
+                                }
+
+                                writer.WriteStartElement("object");
+                                writer.WriteAttributeString("external", Path.GetFileName(childPath));
+                                writer.WriteEndElement();
+                            }
+
+                            writer.WriteEndElement();
+                        }
+
+                        writer.WriteEndDocument();
+                    }
+                }
+                else
+                {
+                    var objectFileDef = config.GetObjectFileDefinition(baseName);
+                    var objectDef = objectFileDef != null ? objectFileDef.ObjectDefinition : null;
+
+                    using (var writer = XmlWriter.Create(outputPath, settings))
+                    {
+                        writer.WriteStartDocument();
+                        WriteNode(config, writer, bof.Root, objectDef);
+                        writer.WriteEndDocument();
+                    }
                 }
             }
             else
@@ -209,11 +265,35 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
         }
 
-        private static void WriteNode(XmlWriter writer,
+        private static void WriteNode(Configuration config,
+                                      XmlWriter writer,
                                       BinaryObject node,
                                       Configuration.ObjectDefinition objectDef)
         {
-            var classDef = objectDef != null ? objectDef.ClassDefinition : null;
+            Configuration.ClassDefinition classDef = null;
+
+            if (objectDef != null &&
+                objectDef.ClassFieldHash.HasValue == true)
+            {
+                if (node.Values.ContainsKey(objectDef.ClassFieldHash.Value) == true)
+                {
+                    var bytes = node.Values[objectDef.ClassFieldHash.Value];
+                    var hash = BitConverter.ToUInt32(bytes, 0);
+                    classDef = config.GetClassDefinition(hash);
+
+                    /*
+                    if (classDef == null)
+                    {
+                        Console.WriteLine("Wanted a dynamic class with has {0:X8}", hash);
+                    }
+                    */
+                }
+            }
+
+            if (classDef == null && objectDef != null)
+            {
+                classDef = objectDef.ClassDefinition;
+            }
 
             writer.WriteStartElement("object");
 
@@ -429,28 +509,57 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
             if (node.Children.Count > 0)
             {
-                foreach (var child in node.Children)
+                if (classDef == null || classDef.DynamicNestedClasses == false)
                 {
-                    Configuration.ObjectDefinition childObjectDef = null;
-
-                    if (classDef != null)
+                    foreach (var child in node.Children)
                     {
-                        var nestedClassDef = classDef.GetNestedClassDefinition(child.TypeHash);
+                        Configuration.ObjectDefinition childObjectDef = null;
+
+                        if (classDef != null)
+                        {
+                            var nestedClassDef = classDef.GetNestedClassDefinition(child.TypeHash);
+                            if (nestedClassDef != null)
+                            {
+                                childObjectDef = new Configuration.ObjectDefinition(nestedClassDef.Name,
+                                                                                    nestedClassDef.Hash,
+                                                                                    nestedClassDef,
+                                                                                    null,
+                                                                                    null,
+                                                                                    null);
+                            }
+                        }
+
+                        if (childObjectDef == null && objectDef != null)
+                        {
+                            childObjectDef = objectDef.GetNestedObjectDefinition(child.TypeHash);
+                        }
+
+                        WriteNode(config, writer, child, childObjectDef);
+                    }
+                }
+                else if (classDef.DynamicNestedClasses == true)
+                {
+                    foreach (var child in node.Children)
+                    {
+                        Configuration.ObjectDefinition childObjectDef = null;
+
+                        var nestedClassDef = config.GetClassDefinition(child.TypeHash);
                         if (nestedClassDef != null)
                         {
                             childObjectDef = new Configuration.ObjectDefinition(nestedClassDef.Name,
                                                                                 nestedClassDef.Hash,
                                                                                 nestedClassDef,
+                                                                                null,
+                                                                                null,
                                                                                 null);
                         }
-                    }
+                        else
+                        {
+                            Console.WriteLine("Wanted a dynamic class with has {0:X8}", child.TypeHash);
+                        }
 
-                    if (childObjectDef == null && objectDef != null)
-                    {
-                        childObjectDef = objectDef.GetNestedObjectDefinition(child.TypeHash);
+                        WriteNode(config, writer, child, childObjectDef);
                     }
-
-                    WriteNode(writer, child, childObjectDef);
                 }
             }
 

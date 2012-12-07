@@ -1,0 +1,7 @@
+<class name="CBeautifierRepository" inherit="#11DFB608">
+	<object name="BeautifierAssociations">
+		<object name="Beautifier">
+			<field hash="45BD3151" type="String" />
+		</object>
+	</object>
+</class>

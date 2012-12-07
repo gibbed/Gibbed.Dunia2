@@ -44,6 +44,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             return this._ClassDefinitions.SingleOrDefault(cd => cd.Name == name);
         }
 
+        public ClassDefinition GetClassDefinition(uint hash)
+        {
+            return this._ClassDefinitions.SingleOrDefault(cd => cd.Hash == hash);
+        }
+
         public ObjectFileDefinition GetObjectFileDefinition(string name)
         {
             return
@@ -98,6 +103,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             var hash = rawClassDef.Hash;
             var fieldDefs = new List<FieldDefinition>();
             var nestedClassDefs = new List<ClassDefinition>();
+            var dynamicNestedClasses = rawClassDef.DynamicNestedClasses;
             do
             {
                 foreach (var rawFieldDef in rawClassDef.FieldDefinitions)
@@ -135,7 +141,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
             while (rawClassDef != null);
 
-            return new ClassDefinition(name, hash, fieldDefs, nestedClassDefs);
+            return new ClassDefinition(name, hash, fieldDefs, nestedClassDefs, dynamicNestedClasses);
         }
 
         private FieldDefinition LoadFieldDefinition(RawFieldDefinition rawFieldDef)
@@ -154,16 +160,19 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             public uint Hash { get; private set; }
             public ReadOnlyCollection<FieldDefinition> FieldDefinitions { get; private set; }
             public ReadOnlyCollection<ClassDefinition> NestedClassDefinitions { get; private set; }
+            public bool DynamicNestedClasses { get; private set; }
 
             public ClassDefinition(string name,
                                    uint hash,
                                    IList<FieldDefinition> fieldDefs,
-                                   IList<ClassDefinition> nestedClassDefs)
+                                   IList<ClassDefinition> nestedClassDefs,
+                                   bool dynamicNestedClasses)
             {
                 this.Name = name;
                 this.Hash = hash;
                 this.FieldDefinitions = new ReadOnlyCollection<FieldDefinition>(fieldDefs);
                 this.NestedClassDefinitions = new ReadOnlyCollection<ClassDefinition>(nestedClassDefs);
+                this.DynamicNestedClasses = dynamicNestedClasses;
             }
 
             public FieldDefinition GetFieldDefinition(string name)
@@ -210,6 +219,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             private string _Inherit;
             private List<RawFieldDefinition> _FieldDefinitions = new List<RawFieldDefinition>();
             private List<RawClassDefinition> _NestedClassDefinitions = new List<RawClassDefinition>();
+            private bool _DynamicNestedClasses;
 
             [XmlIgnore]
             public string Path
@@ -283,6 +293,13 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             {
                 get { return this._NestedClassDefinitions; }
                 set { this._NestedClassDefinitions = value; }
+            }
+
+            [XmlAttribute("dynamic_nested_classes")]
+            public bool DynamicNestedClasses
+            {
+                get { return this._DynamicNestedClasses; }
+                set { this._DynamicNestedClasses = value; }
             }
         }
 
@@ -401,6 +418,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             var name = rawObjectDef.Name;
             var hash = rawObjectDef.Hash;
             ClassDefinition classDef = null;
+            var classFieldName = rawObjectDef.ClassFieldName;
+            var classFieldHash = rawObjectDef.ClassFieldHash;
 
             var className = rawObjectDef.ClassDefinition;
             if (string.IsNullOrEmpty(className) == false)
@@ -422,7 +441,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 }
                 objectDefs.Add(childDef);
             }
-            return new ObjectDefinition(name, hash, classDef, objectDefs);
+            return new ObjectDefinition(name, hash, classDef, classFieldName, classFieldHash, objectDefs);
         }
 
         private static string[] GetObjectFilePaths(ProjectData.Project project)
@@ -447,13 +466,22 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             public string Name { get; private set; }
             public uint Hash { get; private set; }
             public ClassDefinition ClassDefinition { get; private set; }
+            public string ClassFieldName;
+            public uint? ClassFieldHash;
             public ReadOnlyCollection<ObjectDefinition> ObjectDefinitions { get; private set; }
 
-            public ObjectDefinition(string name, uint hash, ClassDefinition classDef, IList<ObjectDefinition> objectDefs)
+            public ObjectDefinition(string name,
+                                    uint hash,
+                                    ClassDefinition classDef,
+                                    string classFieldName,
+                                    uint? classFieldHash,
+                                    IList<ObjectDefinition> objectDefs)
             {
                 this.Name = name;
                 this.Hash = hash;
                 this.ClassDefinition = classDef;
+                this.ClassFieldName = classFieldName;
+                this.ClassFieldHash = classFieldHash;
                 this.ObjectDefinitions = new ReadOnlyCollection<ObjectDefinition>(objectDefs ?? new ObjectDefinition[0]);
             }
 
@@ -502,6 +530,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             private string _Name;
             private uint? _Hash;
             private string _ClassDefinition;
+            private string _ClassFieldName;
+            private uint? _ClassFieldHash;
             private List<RawObjectDefinition> _ObjectDefinitions = new List<RawObjectDefinition>();
 
             [XmlAttribute("name")]
@@ -564,6 +594,60 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             {
                 get { return this._ClassDefinition; }
                 set { this._ClassDefinition = value; }
+            }
+
+            [XmlIgnore]
+            public uint? ClassFieldHash
+            {
+                get
+                {
+                    if (this._ClassFieldHash.HasValue == true)
+                    {
+                        return this._ClassFieldHash.Value;
+                    }
+
+                    if (this._ClassFieldName != null)
+                    {
+                        var hash = FileFormats.CRC32.Hash(this._ClassFieldName);
+                        this._ClassFieldHash = hash;
+                        return hash;
+                    }
+
+                    return null;
+                }
+
+                set
+                {
+                    if (this._ClassFieldName != null &&
+                        FileFormats.CRC32.Hash(this._ClassFieldName) != value)
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    this._ClassFieldHash = value;
+                }
+            }
+
+            [XmlAttribute("class_field_hash")]
+            public string ClassFieldHashString
+            {
+                set { this.ClassFieldHash = uint.Parse(value, NumberStyles.AllowHexSpecifier); }
+            }
+
+            [XmlAttribute("class_field_name")]
+            public string ClassFieldName
+            {
+                get { return this._ClassFieldName; }
+                set
+                {
+                    if (this._ClassFieldHash.HasValue == true &&
+                        FileFormats.CRC32.Hash(value) != this._ClassFieldHash.Value)
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    this._ClassFieldName = value;
+                }
             }
 
             [XmlElement("object")]

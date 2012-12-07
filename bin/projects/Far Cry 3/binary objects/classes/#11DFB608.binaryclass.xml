@@ -1,0 +1,4 @@
+<class name="#11DFB608" inherit="#11E152E0">
+	<field name="hidHasAliasName" type="Boolean" />
+	<field name="hidComponentClassName" />
+</class>

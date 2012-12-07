@@ -1,0 +1,15 @@
+<class name="CEntity" inherit="CBaseEntity">
+	<!-- SerializationEvent -->
+	<field name="hidResourceCount" />
+	<field name="hidPos" />
+	<field name="hidAngles" />
+	<field name="hidPos_precise" />
+	<field name="hidConstEntity" type="Boolean" />
+	<!-- ConstEntity -->
+	<field name="hidIsLargeEntity" type="Boolean" />
+	<!-- SerializationEvent -->
+	<field name="WorldMatrix" />
+	<object name="Components" dynamic_nested_classes="true" />
+	<!-- SerializationEvent -->
+	<!-- isFromArchetype -->
+</class>

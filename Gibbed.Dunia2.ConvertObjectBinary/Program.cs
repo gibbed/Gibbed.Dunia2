@@ -194,10 +194,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 settings.OmitXmlDeclaration = false;
 
                 var objectFileDef = config.GetObjectFileDefinition(baseName);
+                var objectDef = objectFileDef != null ? objectFileDef.ObjectDefinition : null;
+
                 using (var writer = XmlWriter.Create(outputPath, settings))
                 {
                     writer.WriteStartDocument();
-                    WriteNode(writer, bof.Root, objectFileDef != null ? objectFileDef.ObjectDefinitions : null);
+                    WriteNode(writer, bof.Root, objectDef);
                     writer.WriteEndDocument();
                 }
             }
@@ -209,14 +211,17 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
         private static void WriteNode(XmlWriter writer,
                                       BinaryObject node,
-                                      IEnumerable<Configuration.ObjectDefinition> objectDefs)
+                                      Configuration.ObjectDefinition objectDef)
         {
-            var objectDef = objectDefs != null ? objectDefs.SingleOrDefault(d => d.Hash == node.TypeHash) : null;
             var classDef = objectDef != null ? objectDef.ClassDefinition : null;
 
             writer.WriteStartElement("object");
 
-            if (objectDef != null && objectDef.Name != null)
+            if (classDef != null && classDef.Name != null && classDef.Hash == node.TypeHash)
+            {
+                writer.WriteAttributeString("type", classDef.Name);
+            }
+            else if (objectDef != null && objectDef.Name != null && objectDef.Hash == node.TypeHash)
             {
                 writer.WriteAttributeString("type", objectDef.Name);
             }
@@ -232,7 +237,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 {
                     writer.WriteStartElement("field");
 
-                    var fieldDef = classDef != null ? classDef[kv.Key] : null;
+                    var fieldDef = classDef != null ? classDef.GetFieldDefinition(kv.Key) : null;
 
                     if (fieldDef != null && fieldDef.Name != null)
                     {
@@ -426,7 +431,26 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             {
                 foreach (var child in node.Children)
                 {
-                    WriteNode(writer, child, objectDef != null ? objectDef.ObjectDefinitions : null);
+                    Configuration.ObjectDefinition childObjectDef = null;
+
+                    if (classDef != null)
+                    {
+                        var nestedClassDef = classDef.GetNestedClassDefinition(child.TypeHash);
+                        if (nestedClassDef != null)
+                        {
+                            childObjectDef = new Configuration.ObjectDefinition(nestedClassDef.Name,
+                                                                                nestedClassDef.Hash,
+                                                                                nestedClassDef,
+                                                                                null);
+                        }
+                    }
+
+                    if (childObjectDef == null && objectDef != null)
+                    {
+                        childObjectDef = objectDef.GetNestedObjectDefinition(child.TypeHash);
+                    }
+
+                    WriteNode(writer, child, childObjectDef);
                 }
             }
 

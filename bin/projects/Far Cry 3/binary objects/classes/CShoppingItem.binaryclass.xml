@@ -38,18 +38,29 @@
 	<!-- RevealInfos -->
 	<field name="selCollectibleType" />
 	<field name="enumCollectibleType" />
-	<field name="bIsWeaponStatistics" description="Is this a weapon" />
+	<field name="bIsWeaponStatistics" description="Is this a weapon" type="Boolean" />
 	<!-- WeaponStatistics -->
-	<field name="sULC_Name" description="The name of the unlockable contant if relevant, e.g. Hunting_Skins_1" />
-	<field name="vectorDisplayDefaultPosition" />
-	<field name="DisplayDefaultAngles" />
-	<field name="vectorDisplayDefaultPositionWithSilencer" />
-	<field name="DisplayDefaultAnglesWithSilencer" />
-	<field name="bDisplayAsDefaultItem" type="Boolean" />
-	<field name="vectorDisplayDefaultCategoryPosition" />
-	<field name="DisplayDefaultCategoryAngles" />
-	<!-- DefaultAttachmentsNames -->
-	<field name="FullscreenpAngles" />
-	<field name="vectorFullscreenCenterOffset" />
+	<field name="sULC_Name" description="The name of the unlockable contant if relevant, e.g. Hunting_Skins_1" type="String" />
+	<object name="DefaultPositionOnScreen">
+		<field name="vectorDisplayDefaultPosition" />
+		<field name="DisplayDefaultAngles" />
+		<field name="vectorDisplayDefaultPositionWithSilencer" />
+		<field name="DisplayDefaultAnglesWithSilencer" />
+	</object>
+	<object name="CategoryPositionOnScreen">
+		<field name="bDisplayAsDefaultItem" type="Boolean" />
+		<field name="vectorDisplayDefaultCategoryPosition" />
+		<field name="DisplayDefaultCategoryAngles" />
+		<object name="DefaultAttachmentsNames">
+			<object name="DefaultAttachmentName">
+				<field hash="F96FAF0D" type="String" />
+				<field name="Name" />
+			</object>
+		</object>
+	</object>
+	<object name="PositionOnFullScreen">
+		<field name="FullscreenpAngles" />
+		<field name="vectorFullscreenCenterOffset" />
+	</object>
 	<field name="wikiItemId" description="Does this unlock a wiki entry?" />
 </class>

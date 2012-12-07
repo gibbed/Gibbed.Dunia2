@@ -94,10 +94,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
 
             var name = rawClassDef.Name;
+            var hash = rawClassDef.Hash;
             var fieldDefs = new List<FieldDefinition>();
+            var nestedClassDefs = new List<ClassDefinition>();
             do
             {
-                foreach (var rawFieldDef in rawClassDef.Fields)
+                foreach (var rawFieldDef in rawClassDef.FieldDefinitions)
                 {
                     var fieldDef = LoadFieldDefinition(rawFieldDef);
                     if (fieldDefs.Any(fd => fd.Hash == fieldDef.Hash))
@@ -105,6 +107,16 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new InvalidOperationException();
                     }
                     fieldDefs.Add(fieldDef);
+                }
+
+                foreach (var rawNestedClassDef in rawClassDef.NestedClassDefinitions)
+                {
+                    var objectDef = this.LoadClassDefinition(rawClassDefs, rawNestedClassDef);
+                    if (nestedClassDefs.Any(fd => fd.Hash == objectDef.Hash))
+                    {
+                        throw new InvalidOperationException();
+                    }
+                    nestedClassDefs.Add(objectDef);
                 }
 
                 if (string.IsNullOrEmpty(rawClassDef.Inherit) == false)
@@ -122,7 +134,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
             while (rawClassDef != null);
 
-            return new ClassDefinition(name, fieldDefs);
+            return new ClassDefinition(name, hash, fieldDefs, nestedClassDefs);
         }
 
         private FieldDefinition LoadFieldDefinition(RawFieldDefinition rawFieldDef)
@@ -138,22 +150,39 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         public class ClassDefinition
         {
             public string Name { get; private set; }
-            public ReadOnlyCollection<FieldDefinition> Fields { get; private set; }
+            public uint Hash { get; private set; }
+            public ReadOnlyCollection<FieldDefinition> FieldDefinitions { get; private set; }
+            public ReadOnlyCollection<ClassDefinition> NestedClassDefinitions { get; private set; }
 
-            public ClassDefinition(string name, IList<FieldDefinition> fieldDefs)
+            public ClassDefinition(string name,
+                                   uint hash,
+                                   IList<FieldDefinition> fieldDefs,
+                                   IList<ClassDefinition> nestedClassDefs)
             {
                 this.Name = name;
-                this.Fields = new ReadOnlyCollection<FieldDefinition>(fieldDefs);
+                this.Hash = hash;
+                this.FieldDefinitions = new ReadOnlyCollection<FieldDefinition>(fieldDefs);
+                this.NestedClassDefinitions = new ReadOnlyCollection<ClassDefinition>(nestedClassDefs);
             }
 
-            public FieldDefinition this[string name]
+            public FieldDefinition GetFieldDefinition(string name)
             {
-                get { return this[FileFormats.CRC32.Hash(name)]; }
+                return this.GetFieldDefinition(FileFormats.CRC32.Hash(name));
             }
 
-            public FieldDefinition this[uint hash]
+            public FieldDefinition GetFieldDefinition(uint hash)
             {
-                get { return this.Fields.FirstOrDefault(fd => fd.Hash == hash); }
+                return this.FieldDefinitions.FirstOrDefault(fd => fd.Hash == hash);
+            }
+
+            public ClassDefinition GetNestedClassDefinition(string name)
+            {
+                return this.GetNestedClassDefinition(FileFormats.CRC32.Hash(name));
+            }
+
+            public ClassDefinition GetNestedClassDefinition(uint hash)
+            {
+                return this.NestedClassDefinitions.FirstOrDefault(fd => fd.Hash == hash);
             }
         }
 
@@ -176,8 +205,10 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         {
             private string _Path;
             private string _Name;
+            private uint? _Hash;
             private string _Inherit;
-            private List<RawFieldDefinition> _Fields = new List<RawFieldDefinition>();
+            private List<RawFieldDefinition> _FieldDefinitions = new List<RawFieldDefinition>();
+            private List<RawClassDefinition> _NestedClassDefinitions = new List<RawClassDefinition>();
 
             [XmlIgnore]
             public string Path
@@ -193,6 +224,45 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 set { this._Name = value; }
             }
 
+            [XmlIgnore]
+            public uint Hash
+            {
+                get
+                {
+                    if (this._Hash.HasValue == true)
+                    {
+                        return this._Hash.Value;
+                    }
+
+                    if (this._Name != null)
+                    {
+                        var hash = FileFormats.CRC32.Hash(this._Name);
+                        this._Hash = hash;
+                        return hash;
+                    }
+
+                    throw new InvalidOperationException();
+                }
+
+                set
+                {
+                    if (this._Name != null &&
+                        FileFormats.CRC32.Hash(this._Name) != value)
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    this._Hash = value;
+                }
+            }
+
+            [XmlAttribute("hash")]
+            public string HashString
+            {
+                get { return this.Hash.ToString("X8"); }
+                set { this.Hash = uint.Parse(value, NumberStyles.AllowHexSpecifier); }
+            }
+
             [XmlAttribute("inherit")]
             public string Inherit
             {
@@ -201,14 +271,20 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
 
             [XmlElement("field")]
-            public List<RawFieldDefinition> Fields
+            public List<RawFieldDefinition> FieldDefinitions
             {
-                get { return this._Fields; }
-                set { this._Fields = value; }
+                get { return this._FieldDefinitions; }
+                set { this._FieldDefinitions = value; }
+            }
+
+            [XmlElement("object")]
+            public List<RawClassDefinition> NestedClassDefinitions
+            {
+                get { return this._NestedClassDefinitions; }
+                set { this._NestedClassDefinitions = value; }
             }
         }
 
-        [XmlRoot("field")]
         public class RawFieldDefinition
         {
             private string _Name;
@@ -313,17 +389,10 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
 
             var name = rawObjectFileDef.Name;
-            var objectDefs = new List<ObjectDefinition>();
-            foreach (var rawObjectDef in rawObjectFileDef.ObjectDefinitions)
-            {
-                var objectDef = LoadObjectDefinition(rawObjectDef);
-                if (objectDefs.Any(fd => fd.Hash == objectDef.Hash))
-                {
-                    throw new InvalidOperationException();
-                }
-                objectDefs.Add(objectDef);
-            }
-            return new ObjectFileDefinition(name, objectDefs);
+            var objectDef = rawObjectFileDef.ObjectDefinition != null
+                                ? this.LoadObjectDefinition(rawObjectFileDef.ObjectDefinition)
+                                : null;
+            return new ObjectFileDefinition(name, objectDef);
         }
 
         private ObjectDefinition LoadObjectDefinition(RawObjectDefinition rawObjectDef)
@@ -363,12 +432,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         public class ObjectFileDefinition
         {
             public string Name { get; private set; }
-            public ReadOnlyCollection<ObjectDefinition> ObjectDefinitions { get; private set; }
+            public ObjectDefinition ObjectDefinition { get; private set; }
 
-            public ObjectFileDefinition(string name, IList<ObjectDefinition> objectDefs)
+            public ObjectFileDefinition(string name, ObjectDefinition objectDef)
             {
                 this.Name = name;
-                this.ObjectDefinitions = new ReadOnlyCollection<ObjectDefinition>(objectDefs);
+                this.ObjectDefinition = objectDef;
             }
         }
 
@@ -384,7 +453,17 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 this.Name = name;
                 this.Hash = hash;
                 this.ClassDefinition = classDef;
-                this.ObjectDefinitions = new ReadOnlyCollection<ObjectDefinition>(objectDefs);
+                this.ObjectDefinitions = new ReadOnlyCollection<ObjectDefinition>(objectDefs ?? new ObjectDefinition[0]);
+            }
+
+            public ObjectDefinition GetNestedObjectDefinition(string name)
+            {
+                return this.GetNestedObjectDefinition(FileFormats.CRC32.Hash(name));
+            }
+
+            public ObjectDefinition GetNestedObjectDefinition(uint hash)
+            {
+                return this.ObjectDefinitions.FirstOrDefault(fd => fd.Hash == hash);
             }
         }
 
@@ -393,7 +472,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         {
             private string _Path;
             private string _Name;
-            private List<RawObjectDefinition> _ObjectDefinitions = new List<RawObjectDefinition>();
+            private RawObjectDefinition _ObjectDefinition;
 
             [XmlIgnore]
             public string Path
@@ -410,10 +489,10 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
 
             [XmlElement("object")]
-            public List<RawObjectDefinition> ObjectDefinitions
+            public RawObjectDefinition ObjectDefinition
             {
-                get { return this._ObjectDefinitions; }
-                set { this._ObjectDefinitions = value; }
+                get { return this._ObjectDefinition; }
+                set { this._ObjectDefinition = value; }
             }
         }
 

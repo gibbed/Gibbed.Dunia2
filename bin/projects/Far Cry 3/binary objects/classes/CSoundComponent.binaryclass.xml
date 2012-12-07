@@ -1,0 +1,5 @@
+<class name="CSoundComponent" inherit="CEntityComponent">
+	<field name="sndptSoundPoint" />
+	<field name="bStopSoundOnStateChange" type="Boolean" />
+	<field name="bAlwaysUpdate" type="Boolean" />
+</class>

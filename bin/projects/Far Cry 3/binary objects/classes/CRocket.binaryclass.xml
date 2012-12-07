@@ -9,12 +9,12 @@
 			<field name="fMalfunctionInAirProbability" type="Float32" />
 		</object>
 		<object name="Fire">
-			<field name="fSpeed" description="Speed at which rocket is fired" type="Float32" />
-			<field name="fGravity" description="Gravity affecting the rocket when fired" type="Float32" />
-			<field name="fHipGravity" description="Gravity affecting the rocket when fired from the hip." type="Float32" />
-			<field name="fHipFireMaxDeviationAngle" description="Max deviation angle(in degrees) when shooting from hip fire" type="Float32" />
-			<field name="fCrouchHipFireMaxDeviationAngle" description="Max deviation angle(in degrees) when crouched and shooting from hip fire" type="Float32" />
-			<field name="fIronSightMaxDeviationAngle" description="Max deviation angle(in degrees) when shooting from ironsight" type="Float32" />
+			<field name="fSpeed" desc="Speed at which rocket is fired" type="Float32" />
+			<field name="fGravity" desc="Gravity affecting the rocket when fired" type="Float32" />
+			<field name="fHipGravity" desc="Gravity affecting the rocket when fired from the hip." type="Float32" />
+			<field name="fHipFireMaxDeviationAngle" desc="Max deviation angle(in degrees) when shooting from hip fire" type="Float32" />
+			<field name="fCrouchHipFireMaxDeviationAngle" desc="Max deviation angle(in degrees) when crouched and shooting from hip fire" type="Float32" />
+			<field name="fIronSightMaxDeviationAngle" desc="Max deviation angle(in degrees) when shooting from ironsight" type="Float32" />
 			<field hash="3BB1654D" type="String" />
 			<field name="psStartPS" />
 			<field hash="BE25F0C9" type="String" />
@@ -28,10 +28,10 @@
 			<field name="sndtpLoopEndSound" />
 		</object>
 		<object name="Ignite">
-			<field name="fImpulse" description="Physics impulse applied on rocket when igniting" type="Float32" />
-			<field name="fTime" description="Delay from launch(in seconds) before rocket ignites" type="Float32" />
-			<field name="fHipFireMaxDeviationSpeed" description="Max deviation angle speed(in degrees per second) when shooting from hip fire" type="Float32" />
-			<field name="fIronSightMaxDeviationSpeed" description="Max deviation angle speed(in degrees per second) when shooting from ironsight" type="Float32" />
+			<field name="fImpulse" desc="Physics impulse applied on rocket when igniting" type="Float32" />
+			<field name="fTime" desc="Delay from launch(in seconds) before rocket ignites" type="Float32" />
+			<field name="fHipFireMaxDeviationSpeed" desc="Max deviation angle speed(in degrees per second) when shooting from hip fire" type="Float32" />
+			<field name="fIronSightMaxDeviationSpeed" desc="Max deviation angle speed(in degrees per second) when shooting from ironsight" type="Float32" />
 			<field hash="3BB1654D" type="String" />
 			<field name="psStartPS" />
 			<field hash="BE25F0C9" type="String" />
@@ -44,9 +44,9 @@
 			<field name="sndtpLoopEndSound" />
 		</object>
 		<object name="Fall">
-			<field name="fTime" description="Delay from launch(in seconds) before rocket starts to fall" type="Float32" />
-			<field name="fGravity" description="Gravity affecting rocket when it is falling" type="Float32" />
-			<field name="fHipGravity" description="Gravity affecting the rocket when falling after being fired from the hip." type="Float32" />
+			<field name="fTime" desc="Delay from launch(in seconds) before rocket starts to fall" type="Float32" />
+			<field name="fGravity" desc="Gravity affecting rocket when it is falling" type="Float32" />
+			<field name="fHipGravity" desc="Gravity affecting the rocket when falling after being fired from the hip." type="Float32" />
 			<field hash="3BB1654D" type="String" />
 			<field name="psStartPS" />
 			<field hash="BE25F0C9" type="String" />
@@ -78,9 +78,9 @@
 			<field name="sndLoopEndSound" type="String" />
 			<field name="sndtpLoopEndSound" />
 		</object>
-		<field name="fGravityScalePlayerPitch" description="Scale gravity based on pitch by this amount. If this value is 0 then ignore." />
-		<field name="fMaxDistance" description="Maximum distance(in meters) to travel before explosion" />
-		<field name="fMaxLifeTime" description="Maximum life time(in seconds) before explosion. WARNING: Delay in the Explosive component also affects this!" />
+		<field name="fGravityScalePlayerPitch" desc="Scale gravity based on pitch by this amount. If this value is 0 then ignore." />
+		<field name="fMaxDistance" desc="Maximum distance(in meters) to travel before explosion" />
+		<field name="fMaxLifeTime" desc="Maximum life time(in seconds) before explosion. WARNING: Delay in the Explosive component also affects this!" />
 	</object>
 	<object name="Active" />
 	<object name="Guided" />

@@ -1,0 +1,133 @@
+<class name="CExplosive" inherit="CGameObject">
+	<field name="sUseString" />
+	<field name="sCategory" />
+	<object name="StimsToExplode">
+		<object name="Stim">
+			<field name="selType" /><!-- enumType -->
+		</object>
+	</object>
+	<object name="Sound">
+		<field name="sndActive" />
+		<field name="sndtpActive" />
+		<object name="PassBy">
+			<field name="fPassByRange" description="Distance from player at which pass by sound will play." />
+			<field name="sndPassBySound" />
+			<field name="sndtpPassBySound" />
+			<field name="fMinPassByVelocity" description="Min velocity (m/s) at which an explosive must be moving while active for the passby sound to trigger. Should be high enough not to trigger when it's rolling on the floor." />
+		</object>
+		<object name="DustBlast">
+			<field name="sndLeftSound" />
+			<field name="sndRightSound" />
+			<field name="sndtpSoundType" />
+			<field name="fDistance" />
+			<field name="fSoundDuration" />
+		</object>
+		<object name="TrailSound">
+			<field name="sndIndicatorStart" />
+			<field name="sndIndicatorStop" />
+			<field name="sndtpIndicatorType" />
+		</object>
+		<object name="ProximitySound">
+			<field name="sndProximitySound" />
+			<field name="sndtpProximitySoundType" />
+		</object>
+		<object name="DelayedActivationSound">
+			<field name="sndDelayedActivationSound" />
+			<field name="sndtpDelayedActivationSoundType" />
+		</object>
+		<object name="ExplosionSound">
+			<field name="sndExplosionSound" />
+			<field name="sndtpExplosionSoundType" />
+			<field name="sndInAirExplosionSound" />
+			<field name="sndtpInAirExplosionSoundType" />
+			<field name="sndWaterSurfaceExplosionSound" />
+			<field name="sndtpWaterSurfaceExplosionSoundType" />
+			<field name="sndLandSoundStart" />
+			<field name="sndLandSoundStop" />
+			<field name="sndtpLandSoundType" />
+			<field name="sndEarsRingingExplosionSound" />
+			<field name="sndtpEarsRingingExplosionSoundType" />
+			<field name="sndvarEarsRingingSoundRTPC" />
+			<field name="mixExplosionPreset" description="Preset that will play if player is close enough to Explosion. WARNING, this preset must stop on it's own." />
+			<field name="fExplosionPresetDistance" description="Distance from player at which explosion preset sound will play." />
+		</object>
+		<field name="matimpExplosionFx" />
+	</object>
+	<field name="selDelayExplodeType" /><!-- enumDelayExplodeType -->
+	<field name="bProximityTriggerOnPlayers" />
+	<field name="fPenetrateDistance" />
+	<field name="fDelayRemoveAfterExplosion" />
+	<field name="fDelaySendStimsRemain" />
+	<field name="bApplyRemainStimsOnlyOnce" />
+	<field name="fTimerSendRemainStims" />
+	<object name="CameraShakeAndRumble">
+		<field name="fNearDistance" description="Explosions That Are Closer than Near Distance will apply NearRumbleModifier to the CamShakeAndRumble, explosions that are between Near and Far Distance will be Linearly interpolated between Near and Far Modifier." />
+		<field name="fNearRumbleMultiplier" description="Explosions That Are Closer than Near Distance will apply NearRumbleModifier to the CamShakeAndRumble, explosions that are between Near and Far Distance will be Linearly interpolated between Near and Far Modifier." />
+		<field name="fFarDistance" description="Explosions That Are Farther than Far Distance will apply No Modifier to the CamShakeAndRumble, explosions that are between Near and Far Distance will be Linearly interpolated between Near and Far Modifier." />
+		<field name="fFarRumbleMultiplier" description="Explosions That Are Farther than Far Distance will apply No Modifier to the CamShakeAndRumble, explosions that are between Near and Far Distance will be Linearly interpolated between Near and Far Modifier." />
+	</object>
+	<field name="bExplodeOnWaterLevel" />
+	<field name="bExplodeWhenShot" />
+	<field name="bExplodeFromNearbyExplosions" />
+	<field name="bDontExplodeFromNearbyExplosionsOfSameCategory" />
+	<field name="ExplodeSendEvent" />
+	<field name="ExplodeStims" />
+	<field name="RemainStims" />
+	<field name="bShouldExplodeUnderwater" />
+	<field name="bUseOriginForUnderwaterCheck" description="If false it will test for being underwater based on the bounding box, which may be much larger." />
+	<field name="bSpawnTrailUnderwater" />
+	<field name="bShotJustMissedIsUsed" />
+	<field name="fShotJustMissedDistance" />
+	<field name="bActivateOnStart" />
+	<field name="bAlignTrailWithDirection" />
+	<object name="Particles">
+		<field name="bSpawnTrailSeparately" description="Spawn trail only when the explosive is properly activated. E.g. when thrown." />
+		<field hash="4C4C6AB9" type="String" />
+		<field name="psIdle" description="Particle activated at the start if spawn trail separately is ticked." />
+		<field hash="F42B64D4" type="String" />
+		<field name="sIdleParticleBone" description="Bone to attach the idle particles to." />
+		<field hash="6D980293" type="String" />
+		<field name="psTrail" />
+		<field hash="38680A74" type="String" />
+		<field name="psLand" />
+		<field hash="8DF2AAC6" type="String" />
+		<field name="psExplosion" />
+		<field hash="8E6613D3" type="String" />
+		<field name="psExplosionUnderwater" />
+		<field hash="4FBACFBE" type="String" />
+		<field name="psExplosionInAir" />
+		<field hash="BC45A121" type="String" />
+		<field name="psRemains" />
+		<object name="Light">
+			<object name="LightExplosion">
+				<field name="bUseLight" />
+				<field name="fRadius" />
+				<field name="fDuration" />
+				<field name="fIntensity" />
+				<field name="clrColor" />
+			</object>
+			<object name="LightRemains">
+				<field name="bUseLight" />
+				<field name="fRadius" />
+				<field name="fDuration" />
+				<field name="fIntensity" />
+				<field name="clrColor" />
+			</object>
+		</object>
+	</object>
+	<field name="bActive" />
+	<field name="bStartedExplosion" />
+	<field name="bFinishedExplosion" />
+	<field name="bRemoveEntityOnFinish" />
+	<field name="Bounced" />
+	<field name="CountFromStart" />
+	<field name="CountFromHit" />
+	<field name="CountSendRemainStims" />
+	<field name="ExplodePosition" />
+	<field name="Shooter" />
+	<field name="LastAIUpdatePos" />
+	<field name="ShootOrigin" />
+	<field name="arkStickyFireFlame" />
+	<field name="sStickyFireWeaponName" description="Weapon name used by sticky fire stim" type="String" />
+	<object name="postFxData" />
+</class>

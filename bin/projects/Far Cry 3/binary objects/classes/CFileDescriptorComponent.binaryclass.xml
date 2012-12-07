@@ -1,4 +1,4 @@
-<class name="CFileDescriptorComponent" inherit="#11DFB608">
+<class name="CFileDescriptorComponent" inherit="CEntityComponent">
 	<field hash="2A7BCA49" type="String" />
 	<field name="fileName" />
 	<field name="hidDescriptor" />

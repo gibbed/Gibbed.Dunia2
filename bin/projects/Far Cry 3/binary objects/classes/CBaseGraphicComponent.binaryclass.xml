@@ -1,4 +1,4 @@
-<class name="CBaseGraphicComponent" inherit="#11DFB608">
+<class name="CBaseGraphicComponent" inherit="CEntityComponent">
 	<field name="bCastShadow" type="Boolean" />
 	<field name="bReceiveShadow" type="Boolean" />
 	<field name="bCastAmbientShadow" type="Boolean" />

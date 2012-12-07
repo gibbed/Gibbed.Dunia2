@@ -1,0 +1,8 @@
+<class name="CPhysComponent" inherit="CEntityComponent">
+	<field hash="527E7674" type="String" />
+	<field name="hidResourceId" />
+	<object name="LogicMaterialOverrides" />
+	<object name="PartType" />
+	<object name="Velocity" />
+	<object name="Enable" />
+</class>

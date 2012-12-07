@@ -1,0 +1,34 @@
+<class name="CObjectSoundAndFXComponent" inherit="CEntityComponent">
+	<object name="Impact">
+		<field name="matimpDropImpact" />
+		<field name="fSpeedForMaxDropImpactVolume" />
+		<field name="fMinimalCollisionSpeed" />
+		<field name="bIsSingleDropImpactObject" />
+		<object name="MovementSound">
+			<field name="sndRollingSound" />
+			<field name="sndRollingSoundEnd" />
+			<field name="sndtpRollingSoundType" />
+			<field name="sndSlidingSound" />
+			<field name="sndSlidingSoundEnd" />
+			<field name="sndtpSlidingSoundType" />
+			<field name="sndmlObjectMovementMultilayer" />
+		</object>
+	</object>
+	<object name="Falling">
+		<field name="bAllowAfterCollision" />
+		<field name="sndFallingSound" />
+		<field name="sndtpFallingType" />
+		<field name="fSpeedToPlayFallingSound" />
+		<field name="FallingSoundTimeTrigger" />
+	</object>
+	<object name="Water">
+		<field name="fZMinSpeedToTriggerSplash" />
+		<field name="fZMaxSpeedToTriggerSplash" />
+		<field name="fZMinSplashScale" />
+		<field name="fZMaxSplashScale" />
+		<field name="fZSpeedForMaxSplashVolume" />
+	</object>
+	<field name="hidCanPlayFallingSound" />
+	<field name="hidLastVelocity" />
+	<field name="hidWaterSplashTimer" />
+</class>

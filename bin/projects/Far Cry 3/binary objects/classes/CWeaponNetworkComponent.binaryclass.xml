@@ -1,1 +1,1 @@
-<class name="CWeaponNetworkComponent" inherit="#11DFB608" />
+<class name="CWeaponNetworkComponent" inherit="CNetworkComponent" />

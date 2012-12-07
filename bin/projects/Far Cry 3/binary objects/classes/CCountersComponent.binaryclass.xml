@@ -1,1 +1,1 @@
-<class name="CCountersComponent" inherit="#11DFB608" />
+<class name="CCountersComponent" inherit="CEntityComponent" />

@@ -1,0 +1,99 @@
+<class name="CRocket" inherit="CProjectile">
+	<field hash="011F98D9" type="String" />
+	<field name="sFXBone" />
+	<object name="Stages">
+		<object name="Malfunction">
+			<field name="fFireSpeed" type="Float32" />
+			<field name="fFireTime" type="Float32" />
+			<field name="fGravity" type="Float32" />
+			<field name="fMalfunctionInAirProbability" type="Float32" />
+		</object>
+		<object name="Fire">
+			<field name="fSpeed" description="Speed at which rocket is fired" type="Float32" />
+			<field name="fGravity" description="Gravity affecting the rocket when fired" type="Float32" />
+			<field name="fHipGravity" description="Gravity affecting the rocket when fired from the hip." type="Float32" />
+			<field name="fHipFireMaxDeviationAngle" description="Max deviation angle(in degrees) when shooting from hip fire" type="Float32" />
+			<field name="fCrouchHipFireMaxDeviationAngle" description="Max deviation angle(in degrees) when crouched and shooting from hip fire" type="Float32" />
+			<field name="fIronSightMaxDeviationAngle" description="Max deviation angle(in degrees) when shooting from ironsight" type="Float32" />
+			<field hash="3BB1654D" type="String" />
+			<field name="psStartPS" />
+			<field hash="BE25F0C9" type="String" />
+			<field name="psLoopPS" />
+			<field name="sndStartSound" type="String" />
+			<field name="sndStopSound" type="String" />
+			<field name="sndtpStartSound" />
+			<field name="sndLoopSound" type="String" />
+			<field name="sndtpLoopSound" />
+			<field name="sndLoopEndSound" type="String" />
+			<field name="sndtpLoopEndSound" />
+		</object>
+		<object name="Ignite">
+			<field name="fImpulse" description="Physics impulse applied on rocket when igniting" type="Float32" />
+			<field name="fTime" description="Delay from launch(in seconds) before rocket ignites" type="Float32" />
+			<field name="fHipFireMaxDeviationSpeed" description="Max deviation angle speed(in degrees per second) when shooting from hip fire" type="Float32" />
+			<field name="fIronSightMaxDeviationSpeed" description="Max deviation angle speed(in degrees per second) when shooting from ironsight" type="Float32" />
+			<field hash="3BB1654D" type="String" />
+			<field name="psStartPS" />
+			<field hash="BE25F0C9" type="String" />
+			<field name="psLoopPS" />
+			<field name="sndStartSound" type="String" />
+			<field name="sndtpStartSound" />
+			<field name="sndLoopSound" type="String" />
+			<field name="sndtpLoopSound" />
+			<field name="sndLoopEndSound" type="String" />
+			<field name="sndtpLoopEndSound" />
+		</object>
+		<object name="Fall">
+			<field name="fTime" description="Delay from launch(in seconds) before rocket starts to fall" type="Float32" />
+			<field name="fGravity" description="Gravity affecting rocket when it is falling" type="Float32" />
+			<field name="fHipGravity" description="Gravity affecting the rocket when falling after being fired from the hip." type="Float32" />
+			<field hash="3BB1654D" type="String" />
+			<field name="psStartPS" />
+			<field hash="BE25F0C9" type="String" />
+			<field name="psLoopPS" />
+			<field name="sndStartSound" type="String" />
+			<field name="sndtpStartSound" />
+			<field name="sndLoopSound" type="String" />
+			<field name="sndtpLoopSound" />
+			<field name="sndLoopEndSound" type="String" />
+			<field name="sndtpLoopEndSound" />
+		</object>
+		<object name="Spin">
+			<field name="fMinTimeSpinning" type="Float32" />
+			<field name="fMaxTimeSpinning" type="Float32" />
+			<field name="fTimeStartSpinOnAir" type="Float32" />
+			<field name="fForce" type="Float32" />
+			<field name="fSpinChangeDestTime" type="Float32" />
+			<field name="vectorPropellerStartPoint" />
+			<field name="vectorPropellerEndPoint" />
+			<field name="fOnAirTurnSpeed" type="Float32" />
+			<field hash="3BB1654D" type="String" />
+			<field name="psStartPS" />
+			<field hash="BE25F0C9" type="String" />
+			<field name="psLoopPS" />
+			<field name="sndStartSound" type="String" />
+			<field name="sndtpStartSound" />
+			<field name="sndLoopSound" type="String" />
+			<field name="sndtpLoopSound" />
+			<field name="sndLoopEndSound" type="String" />
+			<field name="sndtpLoopEndSound" />
+		</object>
+		<field name="fGravityScalePlayerPitch" description="Scale gravity based on pitch by this amount. If this value is 0 then ignore." />
+		<field name="fMaxDistance" description="Maximum distance(in meters) to travel before explosion" />
+		<field name="fMaxLifeTime" description="Maximum life time(in seconds) before explosion. WARNING: Delay in the Explosive component also affects this!" />
+	</object>
+	<object name="Active" />
+	<object name="Guided" />
+	<object name="HasBeenGuided" />
+	<object name="Malfunctioning" />
+	<object name="Step" />
+	<object name="Origin" />
+	<object name="GuidedDest" />
+	<object name="TimeSinceLaunch" />
+	<object name="TimeStartSpin" />
+	<object name="SpinNextDestCounter" />
+	<object name="Shooter" />
+	<object name="PrevRandomDestDir" />
+	<object name="FlightStims" />
+	<object name="FlightCollisionStim" />
+</class>

@@ -1,0 +1,5 @@
+<class name="CParticlePhysComponent" inherit="CPhysComponent">
+	<field name="ParticleParams" />
+	<field name="bDisabledAtStart" />
+	<field name="bSendStimOnWaterCollision" />
+</class>

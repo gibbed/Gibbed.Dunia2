@@ -1,0 +1,8 @@
+<class name="CFCXAIComponent" inherit="CAIComponent">
+	<field name="selCharacterType" /><!-- enumCharacterType -->
+	<field name="selGenderType" /><!-- enumGenderType -->
+	<field name="selMetaCharacterType" /><!-- enumMetaCharacterType -->
+	<field name="arkPistolTakedownArchetype" description="Replaces the default pistol archetype used when performing a pistol takedown on this NPC." />
+	<field name="fMaxLookAngle" description="Max angle at which head look at offsets are applied for this character" />
+	<field name="fMaxAimAngle" description="Max angle at which aim offsets are applied for this character" />
+</class>

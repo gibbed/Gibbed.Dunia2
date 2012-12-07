@@ -1,0 +1,1 @@
+<class name="CProjectile" inherit="CGameObject" />

@@ -1,4 +1,4 @@
-<class name="CBeautifierRepository" inherit="#11DFB608">
+<class name="CBeautifierRepository" inherit="CEntityComponent">
 	<object name="BeautifierAssociations">
 		<object name="Beautifier">
 			<field hash="45BD3151" type="String" />

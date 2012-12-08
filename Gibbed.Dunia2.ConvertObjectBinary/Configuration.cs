@@ -68,11 +68,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         {
             var rawClassDefs = new List<RawClassDefinition>();
 
+            var serializer = new XmlSerializer(typeof(RawClassDefinition), new[] {typeof(RawFieldDefinition)});
             foreach (var inputPath in GetClassDefinitionPaths(project))
             {
                 using (var input = File.OpenRead(inputPath))
                 {
-                    var serializer = new XmlSerializer(typeof(RawClassDefinition), new[] {typeof(RawFieldDefinition)});
                     var rawClassDef = (RawClassDefinition)serializer.Deserialize(input);
                     rawClassDef.Path = inputPath;
                     rawClassDefs.Add(rawClassDef);
@@ -403,12 +403,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         {
             var rawObjectFileDefs = new List<RawObjectFileDefinition>();
 
+            var serializer = new XmlSerializer(typeof(RawObjectFileDefinition),
+                                               new[] {typeof(RawObjectDefinition)});
             foreach (var inputPath in GetObjectFilePaths(project))
             {
                 using (var input = File.OpenRead(inputPath))
                 {
-                    var serializer = new XmlSerializer(typeof(RawObjectFileDefinition),
-                                                       new[] {typeof(RawObjectDefinition)});
                     var rawObjectFileDef = (RawObjectFileDefinition)serializer.Deserialize(input);
                     rawObjectFileDef.Path = inputPath;
                     rawObjectFileDefs.Add(rawObjectFileDef);

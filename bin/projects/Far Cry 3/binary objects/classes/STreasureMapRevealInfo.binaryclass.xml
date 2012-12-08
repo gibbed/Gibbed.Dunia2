@@ -1,0 +1,15 @@
+<class name="STreasureMapRevealInfo">
+	<inherit name="#11E152C8" />
+	<field name="bPlant" type="Boolean" />
+	<field name="bSDCard" type="Boolean" />
+	<field name="bJapLetter" type="Boolean" />
+	<field name="bTribalRelic" type="Boolean" />
+	<field name="bBoarRelic" type="Boolean" />
+	<field name="bSpiderRelic" type="Boolean" />
+	<field name="bSharkRelic" type="Boolean" />
+	<field name="bHeronRelic" type="Boolean" />
+	<field name="bPhoto" type="Boolean" />
+	<field name="bLootWood" type="Boolean" />
+	<field name="bLootMetal" type="Boolean" />
+	<field name="bLootReinforced" type="Boolean" />
+</class>

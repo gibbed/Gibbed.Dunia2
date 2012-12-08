@@ -1,0 +1,6 @@
+<class name="CGameEconomyCategoryBase">
+	<inherit name="#11E15A60" />
+	<field name="locidDescriptionId" type="Int32" />
+	<field name="iSortId" type="Int32" />
+	<field name="sIconName" type="String" />
+</class>

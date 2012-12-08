@@ -1,0 +1,9 @@
+<class name="SWeaponStatistics">
+	<field name="iAccuracy" desc="Accuracy" />
+	<field name="iDammage" desc="Dammage" />
+	<field name="iRange" desc="Range" />
+	<field name="iFireRate" desc="Fire Rate" />
+	<field name="iHandling" desc="Handling" />
+	<field name="iStarRating" desc="Star Rating" />
+	<field name="iStarRatingBonus" desc="Star Rating Bonus" />
+</class>

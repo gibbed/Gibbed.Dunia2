@@ -1,0 +1,5 @@
+<class name="CFCXPlayerAbilitiesService">
+	<inherit name="IGameModeService" />
+	<object name="Single_Player">
+	</object>
+</class>

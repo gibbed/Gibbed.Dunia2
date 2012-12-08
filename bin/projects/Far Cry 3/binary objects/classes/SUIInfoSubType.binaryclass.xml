@@ -1,0 +1,7 @@
+<class name="SUIInfoSubType">
+	<inherit name="#11E152E0" />
+	<field name="sName" desc="Identifier for UI" type="String" />
+	<object name="Attributes" desc="For displaying weapon stat modifiers in UI">
+		<inherit name="SUnlockUIAttributeList" />
+	</object>
+</class>

@@ -1,6 +1,6 @@
 <!-- CNomadDbObject? -->
 <class name="#11E15A10">
 	<inherit name="#11E152E0" />
-	<field name="hidSingleObject" />
+	<field name="hidSingleObject" type="Boolean" />
 	<field name="bCanBeShared" type="Boolean"  />
 </class>

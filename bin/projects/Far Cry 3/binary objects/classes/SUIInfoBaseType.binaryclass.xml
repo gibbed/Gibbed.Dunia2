@@ -1,0 +1,11 @@
+<class name="SUIInfoBaseType">
+	<inherit name="#11E152E0" />
+	<field name="sName" desc="Identifier for UI" type="String" />
+	<field name="bIsMutuallyExclusive" desc="If true, only one unlock of these subtypes can be equipped at once" type="Boolean" />
+	<field name="bIsSecondaryWeapon" desc="Only makes sense on weapons" type="Boolean" />
+	<object name="SubTypes">
+		<object name="SubType">
+			<inherit name="SUIInfoSubType" />
+		</object>
+	</object>
+</class>

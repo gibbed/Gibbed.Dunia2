@@ -1,26 +1,24 @@
 <class name="CShoppingItem">
 	<inherit name="#11E15A48" />
 	<field name="locidItemNameId" type="Int32" />
-	<field name="shpcatCategory" />
-	<field name="shpscataSubCategory1" />
-	<field name="shpscatbSubCategory2" />
-	<field name="shpitpeItemType" />
-	<field name="shpisubtpeItemSubType" />
-	<field name="locidDescriptionId" />
-	<field name="selAttachmentType" />
-	<field name="enumAttachmentType" />
+	<field name="shpcatCategory" type="UInt8" />
+	<field name="shpscataSubCategory1" type="UInt8" />
+	<field name="shpscatbSubCategory2" type="UInt8" />
+	<field name="shpitpeItemType" type="UInt8" />
+	<field name="shpisubtpeItemSubType" type="UInt8" />
+	<field name="locidDescriptionId" type="Int32" />
+	<field name="selAttachmentType" /><!-- enumAttachmentType -->
 	<field hash="AB258E09" type="String" />
 	<field name="ammoAmmoType" type="Hash32" />
-	<field name="iAmmoAmount" />
-	<field name="selGadgetType" />
-	<field name="enumGadgetType" />
-	<field name="arkArchetype" />
-	<field name="arkDisplayArchetype" />
+	<field name="iAmmoAmount" type="Int32" />
+	<field name="selGadgetType" /><!-- enumGadgetType -->
+	<field name="arkArchetype" type="Hash64" />
+	<field name="arkDisplayArchetype" type="Hash64" />
 	<field name="fRotationSpeed" type="Float32" />
 	<field name="fRotationAmplitude" type="Float32" />
 	<field hash="F1B1D97B" type="String" />
-	<field name="sName" />
-	<field name="iCost" />
+	<field name="sName" type="Hash32" />
+	<field name="iCost" type="Int32" />
 	<field name="fRefillAllAmmoCostMultiplier" desc="Cost multiplier when you use 'Refill All Ammo'" type="Float32" />
 	<field name="iXPOnLoot" type="Int32" />
 	<field name="iSortId" type="Int32" />
@@ -36,16 +34,25 @@
 	<field name="bIsRareItem" desc="Is this a rare item (cannot discard or sell, special display) ?" type="Boolean" />
 	<field name="TreasureMap" />
 	<field name="RadioTowerEntityId" />
-	<!-- RevealInfos -->
-	<field name="selCollectibleType" />
-	<field name="enumCollectibleType" />
+	<object name="RevealInfos">
+		<object name="RevealInfo">
+			<!-- should probably go in #11DF949C -->
+			<field name="sMapName" desc="TODO" type="String" />
+			<object name="MarkersRevealed">
+				<inherit name="STreasureMapRevealInfo" />
+			</object>
+		</object>
+	</object>
+	<field name="selCollectibleType" /><!-- enumCollectibleType -->
 	<field name="bIsWeaponStatistics" desc="Is this a weapon" type="Boolean" />
-	<!-- WeaponStatistics -->
+	<object name="WeaponStatistics">
+		<inherit name="SWeaponStatistics" />
+	</object>
 	<field name="sULC_Name" desc="The name of the unlockable contant if relevant, e.g. Hunting_Skins_1" type="String" />
 	<object name="DefaultPositionOnScreen">
-		<field name="vectorDisplayDefaultPosition" />
+		<field name="vectorDisplayDefaultPosition" type="Vector3" />
 		<field name="DisplayDefaultAngles" />
-		<field name="vectorDisplayDefaultPositionWithSilencer" />
+		<field name="vectorDisplayDefaultPositionWithSilencer" type="Vector3" />
 		<field name="DisplayDefaultAnglesWithSilencer" />
 	</object>
 	<object name="CategoryPositionOnScreen">
@@ -63,5 +70,5 @@
 		<field name="FullscreenpAngles" />
 		<field name="vectorFullscreenCenterOffset" />
 	</object>
-	<field name="wikiItemId" desc="Does this unlock a wiki entry?" />
+	<field name="wikiItemId" desc="Does this unlock a wiki entry?" type="Int32" />
 </class>

@@ -1,0 +1,13 @@
+<class name="CGameEconomySubCategory2">
+	<inherit name="CGameEconomyCategoryBase" />
+	<object name="ItemTypeDep">
+		<object name="Link">
+			<field name="disshpitpeId" type="UInt8" />
+		</object>
+	</object>
+	<object name="ItemSubTypeDep">
+		<object name="Link">
+			<field name="disshpisubtpeId" type="UInt8" />
+		</object>
+	</object>
+</class>

@@ -1,0 +1,8 @@
+<class name="SUnlockUIAttributeList">
+	<inherit name="#11E152E0" />
+	<object name="UIAttributes">
+		<object name="UIAttribute">
+			<inherit name="SUnlockUIAttribute" />
+		</object>
+	</object>
+</class>

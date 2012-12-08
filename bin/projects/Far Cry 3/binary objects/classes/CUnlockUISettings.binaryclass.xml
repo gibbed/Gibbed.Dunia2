@@ -1,0 +1,43 @@
+<class name="CUnlockUISettings">
+	<inherit name="CNomadDbObjectNamed" />
+	<object name="Weapons">
+		<object name="BaseType">
+			<inherit name="SUIInfoBaseType" />
+		</object>
+	</object>
+	<object name="WeaponMods">
+		<object name="BaseType">
+			<inherit name="SUIInfoBaseType" />
+		</object>
+	</object>
+	<object name="Upgrades">
+		<object name="BaseType">
+			<inherit name="SUIInfoBaseType" />
+		</object>
+	</object>
+	<object name="Assets">
+		<object name="BaseType">
+			<inherit name="SUIInfoBaseType" />
+		</object>
+	</object>
+	<object name="Skills">
+		<object name="BaseType">
+			<inherit name="SUIInfoBaseType" />
+		</object>
+	</object>
+	<object name="Tactics">
+		<object name="BaseType">
+			<inherit name="SUIInfoBaseType" />
+		</object>
+	</object>
+	<object name="SupportWeapons">
+		<object name="BaseType">
+			<inherit name="SUIInfoBaseType" />
+		</object>
+	</object>
+	<object name="EndOfMatchMovies">
+		<object name="BaseType">
+			<inherit name="SUIInfoBaseType" />
+		</object>
+	</object>
+</class>

@@ -1,7 +1,6 @@
-<!-- CNomadDbObject? -->
-<class name="#11E15A48">
+<class name="#11E15A60">
 	<inherit name="#11E15A10" />
 	<field hash="9D8873F8" type="String" />
 	<field name="hidName" type="Hash32" />
-	<field name="disId" type="Int16" />
+	<field name="disId" type="UInt8" />
 </class>

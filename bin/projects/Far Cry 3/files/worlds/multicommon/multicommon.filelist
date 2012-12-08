@@ -1,4 +1,4 @@
-; 36924/122255 (30%)
+; 36941/122255 (30%)
 dialog\outsider_nh_female_01\outsider_nh_female_01.stimuli.dsc
 dialog\outsider_nh_female_02\outsider_nh_female_02.stimuli.dsc
 dialog\outsider_nh_female_03\outsider_nh_female_03.stimuli.dsc
@@ -9622,6 +9622,10 @@ graphics\characters\_common\animations\multiplayer\rallypoint\sleipnir\mulge_wep
 graphics\characters\_common\animations\multiplayer\rallypoint\sleipnir\mulge_wep_coop_sleipnir_rallypointmine_tisha.mab
 graphics\characters\_common\animations\multiplayer\rallypoint\sleipnir\mulge_wep_coop_sleipnir_rallypointmine_yurij.mab
 graphics\characters\_common\animations\patrolkits\privateer\neutralkit\3rdpriv_fulbst_neutralkit_idlesteady_+000fw_p416.mab
+graphics\characters\_common\animations\smart_terrain_points\fighters\theme_specific\guard_camps\pokergame\3rdge_fulbst_pokergame_guarda_loop_ak74.mab
+graphics\characters\_common\animations\smart_terrain_points\fighters\theme_specific\guard_camps\pokergame\3rdge_fulbst_pokergame_guarda_start_ak74.mab
+graphics\characters\_common\animations\smart_terrain_points\fighters\theme_specific\guard_camps\pokergame\3rdge_fulbst_pokergame_guardb_loop_ak74.mab
+graphics\characters\_common\animations\smart_terrain_points\fighters\theme_specific\guard_camps\pokergame\3rdge_fulbst_pokergame_guardb_start_ak74.mab
 graphics\characters\_common\animations\smart_terrain_points\fighters\theme_specific\pillaging\throwgas\3rdge_fulbst_throwgas_v00_loop_000fw_nowep.mab
 graphics\characters\_common\facial\ai\stp\poses\facial_crying_civf.dpax
 graphics\characters\_common\facial\generated\00046e88.dpax
@@ -15642,6 +15646,7 @@ graphics\characters\_common\facial\generated\0017f0b5.dpax
 graphics\characters\_common\facial\generated\0017f0be.dpax
 graphics\characters\_common\facial\generated\0017f0dc.dpax
 graphics\characters\_common\facial\generated\0017f0f7.dpax
+graphics\characters\_common\facial\generated\0017f100.dpax
 graphics\characters\_common\facial\generated\0017f11c.dpax
 graphics\characters\_common\facial\generated\0017f152.dpax
 graphics\characters\_common\facial\generated\0017f15b.dpax
@@ -15789,6 +15794,7 @@ graphics\characters\_common\facial\generated\0017fecd.dpax
 graphics\characters\_common\facial\generated\0017fed6.dpax
 graphics\characters\_common\facial\generated\0017fee8.dpax
 graphics\characters\_common\facial\generated\0017fef1.dpax
+graphics\characters\_common\facial\generated\0017ff1f.dpax
 graphics\characters\_common\facial\generated\0017ff3a.dpax
 graphics\characters\_common\facial\generated\0017ff4c.dpax
 graphics\characters\_common\facial\generated\0017ff79.dpax
@@ -16584,9 +16590,12 @@ graphics\characters\_common\facial\generated\0018704b.dpax
 graphics\characters\_common\facial\generated\00187050.dpax
 graphics\characters\_common\facial\generated\00187075.dpax
 graphics\characters\_common\facial\generated\001870fd.dpax
+graphics\characters\_common\facial\generated\00187159.dpax
 graphics\characters\_common\facial\generated\00187166.dpax
 graphics\characters\_common\facial\generated\00187183.dpax
 graphics\characters\_common\facial\generated\001871ad.dpax
+graphics\characters\_common\facial\generated\00187211.dpax
+graphics\characters\_common\facial\generated\0018722c.dpax
 graphics\characters\_common\facial\generated\0018726f.dpax
 graphics\characters\_common\facial\generated\00187281.dpax
 graphics\characters\_common\facial\generated\0018736c.dpax
@@ -17514,6 +17523,7 @@ graphics\characters\_common\facial\generated\00197898.dpax
 graphics\characters\_common\facial\generated\00197910.dpax
 graphics\characters\_common\facial\generated\001979ec.dpax
 graphics\characters\_common\facial\generated\00197a25.dpax
+graphics\characters\_common\facial\generated\00197a73.dpax
 graphics\characters\_common\facial\generated\00197a85.dpax
 graphics\characters\_common\facial\generated\00197aef.dpax
 graphics\characters\_common\facial\generated\00197b61.dpax
@@ -17621,6 +17631,7 @@ graphics\characters\_common\facial\generated\001992e3.dpax
 graphics\characters\_common\facial\generated\00199307.dpax
 graphics\characters\_common\facial\generated\00199347.dpax
 graphics\characters\_common\facial\generated\00199350.dpax
+graphics\characters\_common\facial\generated\00199375.dpax
 graphics\characters\_common\facial\generated\0019939f.dpax
 graphics\characters\_common\facial\generated\00199464.dpax
 graphics\characters\_common\facial\generated\001994a8.dpax
@@ -18581,6 +18592,10 @@ graphics\characters\_common\facial\generated\001b61ba.dpax
 graphics\characters\_common\facial\generated\001b6243.dpax
 graphics\characters\_common\facial\generated\001b715e.dpax
 graphics\characters\_common\facial\generated\001b75a1.dpax
+graphics\characters\_common\facial\generated\001b7a8d.dpax
+graphics\characters\_common\facial\generated\001b7aa0.dpax
+graphics\characters\_common\facial\generated\001b7d41.dpax
+graphics\characters\_common\facial\generated\001b7d4e.dpax
 graphics\characters\_common\facial\generated\001b87d5.dpax
 graphics\characters\_common\facial\generated\001b8810.dpax
 graphics\characters\_common\facial\generated\001b884c.dpax
@@ -19477,6 +19492,7 @@ soundbinary\00007878.spk
 soundbinary\000078a7.spk
 soundbinary\00007963.spk
 soundbinary\00007966.spk
+soundbinary\00007b37.spk
 soundbinary\00007cb6.spk
 soundbinary\00007cb7.spk
 soundbinary\0000f6e8.spk
@@ -20253,6 +20269,7 @@ soundbinary\0011348b.spk
 soundbinary\00113572.spk
 soundbinary\00113573.spk
 soundbinary\00113574.spk
+soundbinary\00113575.spk
 soundbinary\001135aa.spk
 soundbinary\001135c4.spk
 soundbinary\001135c9.spk

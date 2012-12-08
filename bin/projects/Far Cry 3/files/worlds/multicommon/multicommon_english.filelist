@@ -1,4 +1,4 @@
-; 9754/14309 (68%)
+; 9793/14309 (68%)
 soundbinary\00025613.spk
 soundbinary\00025807.spk
 soundbinary\00025824.spk
@@ -5734,6 +5734,7 @@ soundbinary\0017d106.spk
 soundbinary\0017d163.spk
 soundbinary\0017d170.spk
 soundbinary\0017d179.spk
+soundbinary\0017d186.spk
 soundbinary\0017d19d.spk
 soundbinary\0017d1a8.spk
 soundbinary\0017d1b2.spk
@@ -5782,6 +5783,7 @@ soundbinary\0017d63d.spk
 soundbinary\0017d64f.spk
 soundbinary\0017d666.spk
 soundbinary\0017d66f.spk
+soundbinary\0017d679.spk
 soundbinary\0017d6c7.spk
 soundbinary\0017d6d0.spk
 soundbinary\0017d6fb.spk
@@ -6022,6 +6024,7 @@ soundbinary\0017ed85.spk
 soundbinary\0017ed8e.spk
 soundbinary\0017ed97.spk
 soundbinary\0017eda9.spk
+soundbinary\0017edbc.spk
 soundbinary\0017edce.spk
 soundbinary\0017edfc.spk
 soundbinary\0017ee10.spk
@@ -6056,6 +6059,7 @@ soundbinary\0017f0b5.spk
 soundbinary\0017f0be.spk
 soundbinary\0017f0dc.spk
 soundbinary\0017f0f7.spk
+soundbinary\0017f100.spk
 soundbinary\0017f11c.spk
 soundbinary\0017f152.spk
 soundbinary\0017f15b.spk
@@ -6132,6 +6136,7 @@ soundbinary\0017f6a1.spk
 soundbinary\0017f6bc.spk
 soundbinary\0017f6da.spk
 soundbinary\0017f6e3.spk
+soundbinary\0017f712.spk
 soundbinary\0017f71b.spk
 soundbinary\0017f72d.spk
 soundbinary\0017f789.spk
@@ -6159,6 +6164,7 @@ soundbinary\0017f948.spk
 soundbinary\0017f97e.spk
 soundbinary\0017fa27.spk
 soundbinary\0017fa79.spk
+soundbinary\0017fa82.spk
 soundbinary\0017fab0.spk
 soundbinary\0017fab9.spk
 soundbinary\0017fad5.spk
@@ -6203,6 +6209,7 @@ soundbinary\0017fecd.spk
 soundbinary\0017fed6.spk
 soundbinary\0017fee8.spk
 soundbinary\0017fef1.spk
+soundbinary\0017ff1f.spk
 soundbinary\0017ff3a.spk
 soundbinary\0017ff4c.spk
 soundbinary\0017ff79.spk
@@ -7013,9 +7020,12 @@ soundbinary\0018704b.spk
 soundbinary\00187050.spk
 soundbinary\00187075.spk
 soundbinary\001870fd.spk
+soundbinary\00187159.spk
 soundbinary\00187166.spk
 soundbinary\00187183.spk
 soundbinary\001871ad.spk
+soundbinary\00187211.spk
+soundbinary\0018722c.spk
 soundbinary\0018726f.spk
 soundbinary\00187281.spk
 soundbinary\0018736c.spk
@@ -7372,6 +7382,8 @@ soundbinary\0018b038.spk
 soundbinary\0018b07b.spk
 soundbinary\0018b085.spk
 soundbinary\0018b0cb.spk
+soundbinary\0018b22e.spk
+soundbinary\0018b31d.spk
 soundbinary\0018b85c.spk
 soundbinary\0018b872.spk
 soundbinary\0018b94d.spk
@@ -7954,6 +7966,7 @@ soundbinary\00197898.spk
 soundbinary\00197910.spk
 soundbinary\001979ec.spk
 soundbinary\00197a25.spk
+soundbinary\00197a73.spk
 soundbinary\00197a85.spk
 soundbinary\00197aef.spk
 soundbinary\00197b61.spk
@@ -8061,6 +8074,7 @@ soundbinary\001992e3.spk
 soundbinary\00199307.spk
 soundbinary\00199347.spk
 soundbinary\00199350.spk
+soundbinary\00199375.spk
 soundbinary\0019939f.spk
 soundbinary\00199464.spk
 soundbinary\001994a8.spk
@@ -8788,6 +8802,7 @@ soundbinary\001ad927.spk
 soundbinary\001ad940.spk
 soundbinary\001adcb3.spk
 soundbinary\001adcc6.spk
+soundbinary\001adcfa.spk
 soundbinary\001add2c.spk
 soundbinary\001ade72.spk
 soundbinary\001ae6b4.spk
@@ -9027,11 +9042,25 @@ soundbinary\001b5d50.spk
 soundbinary\001b5d59.spk
 soundbinary\001b5d62.spk
 soundbinary\001b5d6b.spk
+soundbinary\001b5db1.spk
+soundbinary\001b5db6.spk
+soundbinary\001b5df1.spk
+soundbinary\001b5e55.spk
+soundbinary\001b5eaf.spk
+soundbinary\001b5eb9.spk
+soundbinary\001b5ec3.spk
+soundbinary\001b5ecd.spk
+soundbinary\001b5ed2.spk
+soundbinary\001b5ee1.spk
 soundbinary\001b6047.spk
 soundbinary\001b61ba.spk
 soundbinary\001b6243.spk
 soundbinary\001b715e.spk
 soundbinary\001b75a1.spk
+soundbinary\001b7a8d.spk
+soundbinary\001b7aa0.spk
+soundbinary\001b7d41.spk
+soundbinary\001b7d4e.spk
 soundbinary\001b836e.spk
 soundbinary\001b87d5.spk
 soundbinary\001b8810.spk
@@ -9045,6 +9074,8 @@ soundbinary\001b8a07.spk
 soundbinary\001b8a27.spk
 soundbinary\001b8a3a.spk
 soundbinary\001b8ab9.spk
+soundbinary\001b8ec0.spk
+soundbinary\001b8fc9.spk
 soundbinary\001b91cf.spk
 soundbinary\001b91f3.spk
 soundbinary\001b9259.spk
@@ -9104,6 +9135,7 @@ soundbinary\001b9903.spk
 soundbinary\001b9a33.spk
 soundbinary\001b9a3e.spk
 soundbinary\001b9a70.spk
+soundbinary\001b9a7f.spk
 soundbinary\001b9a8a.spk
 soundbinary\001b9aac.spk
 soundbinary\001b9ac3.spk
@@ -9547,6 +9579,7 @@ soundbinary\001c0d83.spk
 soundbinary\001c0d96.spk
 soundbinary\001c0df4.spk
 soundbinary\001c0e06.spk
+soundbinary\001c0fea.spk
 soundbinary\001c1099.spk
 soundbinary\001c10a7.spk
 soundbinary\001c10ce.spk
@@ -9701,6 +9734,12 @@ soundbinary\001c19db.spk
 soundbinary\001c30cd.spk
 soundbinary\001c30d7.spk
 soundbinary\001c320e.spk
+soundbinary\001c3227.spk
+soundbinary\001c322c.spk
+soundbinary\001c4a1d.spk
+soundbinary\001c4a40.spk
+soundbinary\001c4a90.spk
+soundbinary\001c4a9a.spk
 soundbinary\001c55b0.spk
 soundbinary\001c55b5.spk
 soundbinary\001c59d6.spk

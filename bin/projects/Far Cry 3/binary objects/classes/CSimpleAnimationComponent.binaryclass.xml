@@ -1,4 +1,5 @@
-<class name="CSimpleAnimationComponent" inherit="CBaseAnimationComponent">
+<class name="CSimpleAnimationComponent">
+	<inherit name="CBaseAnimationComponent" />
 	<field name="sPartName" />
 	<field name="Enable" />
 	<field name="bEnableEvents" />

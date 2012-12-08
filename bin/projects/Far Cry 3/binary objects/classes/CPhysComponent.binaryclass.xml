@@ -1,4 +1,5 @@
-<class name="CPhysComponent" inherit="CEntityComponent">
+<class name="CPhysComponent">
+	<inherit name="CEntityComponent" />
 	<field hash="527E7674" type="String" />
 	<field name="hidResourceId" />
 	<object name="LogicMaterialOverrides" />

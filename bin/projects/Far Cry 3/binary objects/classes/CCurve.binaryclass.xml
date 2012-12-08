@@ -1,3 +1,4 @@
-<class name="CCurve" inherit="CBaseEntity">
+<class name="CCurve">
+	<inherit name="CBaseEntity" />
 	<object name="curveCurve" />
 </class>

@@ -1,0 +1,10 @@
+<class name="SMultiplayerHitLocationMultipliers">
+	<inherit name="#11E152C8" />
+	<field name="fHeadDamageMultiplier" desc="Damage multiplier for hit to head" type="Float32" />
+	<field name="fNeckDamageMultiplier" desc="Damage multiplier for hit to neck" type="Float32" />
+	<field name="fChestDamageMultiplier" desc="Damage multiplier for hit to chest" type="Float32" />
+	<field name="fAbdomenDamageMultiplier" desc="Damage multiplier for hit to abdomen" type="Float32" />
+	<field name="fArmDamageMultiplier" desc="Damage multiplier for hit to arms" type="Float32" />
+	<field name="fHandDamageMultiplier" desc="Damage multiplier for hit to hands" type="Float32" />
+	<field name="fLegsDamageMultiplier" desc="Damage multiplier for hit to legs" type="Float32" />
+</class>

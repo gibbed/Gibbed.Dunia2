@@ -1,0 +1,5 @@
+<class name="SOffscreenRenderParams">
+	<inherit name="#11E152C8" />
+	<field name="vectorPos" type="Vector3" />
+	<field name="vectorAngles" type="Vector3" />
+</class>

@@ -1,0 +1,5 @@
+<class name="CBaseEvent">
+	<inherit name="#11E152E0" />
+	<field name="hidEventName" type="String" />
+	<field name="bSupportForDualComponent" desc="Determines if the event is supported for dual component" type="Boolean" />
+</class>

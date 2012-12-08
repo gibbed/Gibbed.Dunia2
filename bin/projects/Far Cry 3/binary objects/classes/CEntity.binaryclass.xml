@@ -1,9 +1,10 @@
-<class name="CEntity" inherit="CBaseEntity">
+<class name="CEntity">
+	<inherit name="CBaseEntity" />
 	<!-- SerializationEvent -->
-	<field name="hidResourceCount" />
-	<field name="hidPos" />
-	<field name="hidAngles" />
-	<field name="hidPos_precise" />
+	<field name="hidResourceCount" type="Int32" />
+	<field name="hidPos" type="Vector3" />
+	<field name="hidAngles" type="Vector3" />
+	<field name="hidPos_precise" type="Vector3" />
 	<field name="hidConstEntity" type="Boolean" />
 	<!-- ConstEntity -->
 	<field name="hidIsLargeEntity" type="Boolean" />

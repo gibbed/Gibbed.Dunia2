@@ -1,4 +1,5 @@
-<class name="CAIComponent" inherit="CEntityComponent">
+<class name="CAIComponent">
+	<inherit name="CEntityComponent" />
 	<field hash="2B928622" type="String" />
 	<field name="Type" />
 	<object name="AIObject" />

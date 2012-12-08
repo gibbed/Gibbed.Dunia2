@@ -1,6 +1,12 @@
-<class name="CWeaponProperties" inherit="CEntityComponent">
-	<object name="CommonProperties" inherit="CWeaponPropertiesCommon" />
-	<object name="WeaponMeleeProperties" inherit="CWeaponMeleeProperties" />
+<class name="CWeaponProperties">
+	<inherit name="CEntityComponent" />
+	<object name="CommonProperties">
+		<inherit name="CWeaponPropertiesCommon" />
+	</object>
+	<object name="WeaponMeleeProperties">
+		<inherit name="CWeaponMeleeProperties" />
+	</object>
 	<object name="FireStrategyProperties">
+		<inherit name="CWeaponFireBulletProperties" />
 	</object>
 </class>

@@ -1,0 +1,12 @@
+<class name="CDiceRoll">
+	<inherit name="#11E152E0" />
+	<object name="DiceRolledLevels">
+		<object name="DiceRolledLevel">
+		</object>
+	</object>
+	<object name="DiceRolls">
+		<object name="Dice">
+			<inherit name="CDiceRoll_Dice" />
+		</object>
+	</object>
+</class>

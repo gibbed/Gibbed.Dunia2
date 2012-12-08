@@ -231,7 +231,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                                 using (var childWriter = XmlWriter.Create(childPath, settings))
                                 {
                                     childWriter.WriteStartDocument();
-                                    WriteNode(config, childWriter, child, objectDef != null ? objectDef.GetNestedObjectDefinition(child.TypeHash) : null);
+                                    WriteNode(config,
+                                              childWriter,
+                                              child,
+                                              objectDef != null
+                                                  ? objectDef.GetNestedObjectDefinition(child.TypeHash)
+                                                  : null);
                                     childWriter.WriteEndDocument();
                                 }
 
@@ -403,7 +408,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                                     throw new FormatException();
                                 }
 
-                                writer.WriteValue(
+                                writer.WriteString(
                                     BitConverter.ToInt16(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
                                 break;
                             }
@@ -427,7 +432,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                                     throw new FormatException();
                                 }
 
-                                writer.WriteValue(
+                                writer.WriteString(
                                     BitConverter.ToInt32(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
                                 break;
                             }
@@ -451,7 +456,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                                     throw new FormatException();
                                 }
 
-                                writer.WriteValue(
+                                writer.WriteString(
                                     BitConverter.ToInt64(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
                                 break;
                             }
@@ -463,7 +468,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                                     throw new FormatException();
                                 }
 
-                                writer.WriteValue(
+                                writer.WriteString(
                                     BitConverter.ToSingle(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
                                 break;
                             }
@@ -475,8 +480,62 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                                     throw new FormatException();
                                 }
 
-                                writer.WriteValue(
+                                writer.WriteString(
                                     BitConverter.ToDouble(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
+                                break;
+                            }
+
+                            case FieldType.Vector2:
+                            {
+                                if (kv.Value.Length != 8)
+                                {
+                                    throw new FormatException();
+                                }
+
+                                var x = BitConverter.ToSingle(kv.Value, 0);
+                                var y = BitConverter.ToSingle(kv.Value, 4);
+
+                                writer.WriteString(string.Format("{0},{1}",
+                                                                 x.ToString(CultureInfo.InvariantCulture),
+                                                                 y.ToString(CultureInfo.InvariantCulture)));
+                                break;
+                            }
+
+                            case FieldType.Vector3:
+                            {
+                                if (kv.Value.Length != 12)
+                                {
+                                    throw new FormatException();
+                                }
+
+                                var x = BitConverter.ToSingle(kv.Value, 0);
+                                var y = BitConverter.ToSingle(kv.Value, 4);
+                                var z = BitConverter.ToSingle(kv.Value, 8);
+
+                                writer.WriteString(string.Format("{0},{1},{2}",
+                                                                 x.ToString(CultureInfo.InvariantCulture),
+                                                                 y.ToString(CultureInfo.InvariantCulture),
+                                                                 z.ToString(CultureInfo.InvariantCulture)));
+                                break;
+                            }
+
+                            case FieldType.Vector4:
+                            {
+                                if (kv.Value.Length != 16)
+                                {
+                                    throw new FormatException();
+                                }
+
+                                var x = BitConverter.ToSingle(kv.Value, 0);
+                                var y = BitConverter.ToSingle(kv.Value, 4);
+                                var z = BitConverter.ToSingle(kv.Value, 8);
+                                var w = BitConverter.ToSingle(kv.Value, 12);
+
+                                writer.WriteString(string.Format("{0},{1},{2},{3}",
+                                                                 x.ToString(CultureInfo.InvariantCulture),
+                                                                 y.ToString(CultureInfo.InvariantCulture),
+                                                                 z.ToString(CultureInfo.InvariantCulture),
+                                                                 w.ToString(CultureInfo.InvariantCulture)));
                                 break;
                             }
 
@@ -493,6 +552,30 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                                 }
 
                                 writer.WriteString(Encoding.UTF8.GetString(kv.Value, 0, kv.Value.Length - 1));
+                                break;
+                            }
+
+                            case FieldType.Hash32:
+                            {
+                                if (kv.Value.Length != 4)
+                                {
+                                    throw new FormatException();
+                                }
+
+                                writer.WriteString(
+                                    BitConverter.ToUInt32(kv.Value, 0).ToString("X8", CultureInfo.InvariantCulture));
+                                break;
+                            }
+
+                            case FieldType.Hash64:
+                            {
+                                if (kv.Value.Length != 8)
+                                {
+                                    throw new FormatException();
+                                }
+
+                                writer.WriteString(
+                                    BitConverter.ToUInt64(kv.Value, 0).ToString("X16", CultureInfo.InvariantCulture));
                                 break;
                             }
 

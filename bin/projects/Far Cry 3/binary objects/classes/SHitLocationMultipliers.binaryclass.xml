@@ -1,0 +1,6 @@
+<class name="SHitLocationMultipliers">
+	<inherit name="#11E152C8" />
+	<field name="fHeadDamageMultiplier" desc="Damage Multiplier for Hit to Head" type="Float32" />
+	<field name="fTorsoDamageMultiplier" desc="Damage Multiplier for Hit to Torso" type="Float32" />
+	<field name="fLegsDamageMultiplier" desc="Damage Multiplier for Hit to Legs" type="Float32" />
+</class>

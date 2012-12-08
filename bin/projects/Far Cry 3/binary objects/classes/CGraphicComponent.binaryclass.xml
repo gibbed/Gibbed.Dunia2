@@ -1,4 +1,5 @@
-<class name="CGraphicComponent" inherit="CBaseGraphicComponent">
+<class name="CGraphicComponent">
+	<inherit name="CBaseGraphicComponent" />
 	<field name="bAllowCullBySize" type="Boolean" />
 	<field name="bMotionBlurExclusion" type="Boolean" />
 	<field name="bOverrideLODSphere" />

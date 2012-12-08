@@ -1,0 +1,6 @@
+<class name="CPhysBulletHitStim">
+	<inherit name="#11E13A2C" />
+	<field name="fPhysImpulse" desc="Use for non-Pawn hit object; result impulse is PhysImpulse multiplied by the hit object mass" type="Float32" />
+	<field name="fPhysImpulseNPC" desc="Use for Pawn hit object; result impulse is PhysImpulse multiplied by the hit object mass" type="Float32" />
+	<field name="fMaxMassModifier" desc="If the mass of the hit object is higher than MaxMassModifier, MaxMassModifier will be use instead of the hit object mass" type="Float32" />
+</class>

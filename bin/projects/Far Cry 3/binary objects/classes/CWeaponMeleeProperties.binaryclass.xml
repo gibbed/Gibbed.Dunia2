@@ -1,14 +1,16 @@
-<class name="CWeaponMeleeProperties" inherit="#11E152E0">
-	<field name="fMeleeDamageLevel" desc="How much damage will victim during melee attack" />
-	<field name="fMeleeImpulseStrength" desc="The impulse multiplier which will be applied to the target pawn during melee" />
+<class name="CWeaponMeleeProperties">
+	<inherit name="#11E152E0" />
+	<field name="fMeleeDamageLevel" desc="How much damage will victim during melee attack" type="Float32" />
+	<field name="fMeleeImpulseStrength" desc="The impulse multiplier which will be applied to the target pawn during melee" type="Float32" />
 	<field name="selMeleeStimType" /><!-- enumMeleeStimType -->
 	<object name="MeleeObjectsStims" desc="The list of stims that weapon produces for objects hit by melee attack">
+		<inherit name="CPhysBulletHitStim" />
 	</object>
-	<field name="fPlannedAttackHeight" desc="The max allowed height difference between player and victim to allow a melee." />
-	<field name="fGenericAttackDistance" desc="The maximum distance targets that recieve stims can be when you do a melee without a target." />
-	<field name="fGenericAttackHeight" desc="The max allowed height difference between player and target when meleeing without a target." />
-	<field name="fAlertSoundRadHit" desc="Alerting sound radius when melee swing hit something" />
-	<field name="fAlertSoundRadNoHit" desc="Alerting sound radius when melee swing hit nothing" />
-	<field name="matimpMeleeImpactFx" desc="Name of the material for the melee slash FX" />
-	<field name="arkMeleeProp" />
+	<field name="fPlannedAttackHeight" desc="The max allowed height difference between player and victim to allow a melee." type="Float32" />
+	<field name="fGenericAttackDistance" desc="The maximum distance targets that recieve stims can be when you do a melee without a target." type="Float32" />
+	<field name="fGenericAttackHeight" desc="The max allowed height difference between player and target when meleeing without a target." type="Float32" />
+	<field name="fAlertSoundRadHit" desc="Alerting sound radius when melee swing hit something" type="Float32" />
+	<field name="fAlertSoundRadNoHit" desc="Alerting sound radius when melee swing hit nothing" type="Float32" />
+	<field name="matimpMeleeImpactFx" desc="Name of the material for the melee slash FX" type="Hash64" />
+	<field name="arkMeleeProp" type="Hash64" />
 </class>

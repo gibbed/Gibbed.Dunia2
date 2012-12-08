@@ -1,1 +1,3 @@
-<class name="CGameObject" inherit="CEntityComponent" />
+<class name="CGameObject">
+	<inherit name="CEntityComponent" />
+</class>

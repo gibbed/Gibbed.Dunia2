@@ -1,0 +1,7 @@
+<class name="SWeaponDof">
+	<inherit name="#11E152C8" />
+	<field name="fBlur" desc="The blur amount for DOF (increase to shorten distance from focal plane to full blur)." type="Float32" />
+	<field name="fBlurFactor" desc="The blur factor for DOF (increases blur kernel size)." type="Float32" />
+	<field name="fFocusDistance" desc="The focus distance for DOF." type="Float32" />
+	<field name="fAlphaRamp" desc="The alpha ramp for DOF (increase to thicken blend edges)." type="Float32" />
+</class>

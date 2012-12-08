@@ -1,4 +1,5 @@
-<class name="CBaseAnimationComponent" inherit="CEntityComponent">
+<class name="CBaseAnimationComponent">
+	<inherit name="CEntityComponent" />
 	<field hash="F9F2D5F4" type="String" />
 	<field name="fileSkeleton" />
 	<field hash="7D06447F" type="String" />

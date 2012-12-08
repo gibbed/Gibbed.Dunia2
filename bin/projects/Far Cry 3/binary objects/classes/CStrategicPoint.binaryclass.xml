@@ -1,4 +1,5 @@
-<class name="CStrategicPoint" inherit="CTagPoint">
+<class name="CStrategicPoint">
+	<inherit name="CTagPoint" />
 	<field name="fRadius" type="Float32" />
 	<field name="fMovementRadius" type="Float32" />
 	<field name="selStrategyType" /><!-- enumStrategyType -->

@@ -1,4 +1,5 @@
-<class name="CShoppingItem" inherit="#11E15A48">
+<class name="CShoppingItem">
+	<inherit name="#11E15A48" />
 	<field name="locidItemNameId" type="Int32" />
 	<field name="shpcatCategory" />
 	<field name="shpscataSubCategory1" />
@@ -9,7 +10,7 @@
 	<field name="selAttachmentType" />
 	<field name="enumAttachmentType" />
 	<field hash="AB258E09" type="String" />
-	<field name="ammoAmmoType" />
+	<field name="ammoAmmoType" type="Hash32" />
 	<field name="iAmmoAmount" />
 	<field name="selGadgetType" />
 	<field name="enumGadgetType" />

@@ -1,4 +1,5 @@
-<class name="CObjectSoundAndFXComponent" inherit="CEntityComponent">
+<class name="CObjectSoundAndFXComponent">
+	<inherit name="CEntityComponent" />
 	<object name="Impact">
 		<field name="matimpDropImpact" />
 		<field name="fSpeedForMaxDropImpactVolume" />

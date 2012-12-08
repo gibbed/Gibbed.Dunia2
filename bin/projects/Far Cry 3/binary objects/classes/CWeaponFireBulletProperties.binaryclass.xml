@@ -1,0 +1,215 @@
+<class name="CWeaponFireBulletProperties">
+	<inherit name="CWeaponFireProperties" />
+	<object name="Stim_ImpactDamage" desc="Stim params for bullet that does damage to the target (the main 'bullet' for a  shotgun). It?s generated at the center of a shot" />
+	<field name="fPiercingMultiplier" desc="Multiplies the pierce resistance of any material a bullet collides with. A value lower than 1 means the weapon will penetrate more effectively" type="Float32" />
+	<field name="fPiercingMultiplierMP" desc="Multiplayer specific version of the piercing multiplier" type="Float32" />
+	<object name="BaseDamage" desc="Stim params for bullet that does damage to the target (the main 'bullet' for a  shotgun). It's generated at the center of a shot">
+		<inherit name="CPhysBulletHitStim" />
+	</object>
+	<object name="MuzzleStims" desc="The list of Stims that a weapon produces when it is fired (Ex: Sound steam)">
+		<inherit name="CStimArrayBase" />
+	</object>
+	<object name="ImpactStims" desc="The list of primary stims that the weapon produces at the point of impact (inflicts damage from the gun).">
+		<inherit name="CStimArrayBase" />
+	</object>
+	<object name="VictimStims" desc="The list of stims that weapon produces for the victim These are additional stims that can be called when the weapon hits a target. USE WITH CAUTION!">
+		<inherit name="CStimArrayBase" />
+	</object>
+	<field name="BulletWhizRadius" desc="The radius of the bullet whiz sound around the weapon line of fire that causes the AI to react." type="Float32" />
+	<object name="RangeMultipliers">
+		<object name="RangeMultiplierCasual" desc="RangeMultiplier list for casual difficulty level">
+			<inherit name="SRangeMultiplierDifficulty" />
+		</object>
+		<object name="RangeMultiplierExperimented" desc="RangeMultiplier list for Experimented difficulty level">
+			<inherit name="SRangeMultiplierDifficulty" />
+		</object>
+		<object name="RangeMultiplierHardcore" desc="RangeMultiplier list for Hardcore difficulty level">
+			<inherit name="SRangeMultiplierDifficulty" />
+		</object>
+		<object name="RangeMultiplierInfamous" desc="RangeMultiplier list for Infamous difficulty level">
+			<inherit name="SRangeMultiplierDifficulty" />
+		</object>
+	</object>
+	<field name="bUseAngleSpread" desc="Determines if the weapon should use a bullet spread like a shotgun. USE WITH CAUTION!" type="Boolean" />
+	<field name="iBulletsShot" desc="How many bullets used per shot, most weapons use 1 but others like shotguns use more. The limiting factor is performance" type="Int32" />
+	<field name="iBurstLength" desc="For FullAuto fireRateMode. Determines length of the bullet queue. If more than 0 ? burst mode enabled (M16 style)" type="Int32" />
+	<field name="fAngleYawBulletSpread" desc="Controls the horizontal deviation of the primary shot from a shotgun. USE WITH CAUTION!" type="Float32" />
+	<field name="fAnglePitchBulletSpread" desc="Controls the vertical deviation of the primary shot from a shotgun. USE WITH CAUTION!" type="Float32" />
+	<field name="bHasMuzzleLight" desc="Determines whether or not muzzle lights are rendered . - DEPRECATED" type="Boolean" />
+	<field name="fGroupingFactor" desc="Affects how the spread tends to be grouped together. The higher this number the more grouped the bullets will be. It's basically an exponential factor over the resulting angle spread (how many times it is multiplied by itself). The more you multiply the spread with itself (0 to 1 probability) the more it will tend towards (center) and thus be more grouped towards the center." type="Float32" />
+	<object name="Stim_ImpactDamageSecondary" desc="This variable determines how much damage the secondary stims in shotgun spreads will do individually. The secondary stims are generated in a circle around the center impule, randomly spread out" />
+	<object name="BaseDamageSecondary" desc="This variable determines how much damage the secondary stims in shotgun spreads will do individually. The secondary stims are generated in a circle around the center impule, randomly spread out" />
+	<object name="SecondaryImpactStims" desc="List of secondary impact stims that are also affected by the range multipliers.." />
+	<field name="fSecondaryAngleYawBulletSpread" desc="Controls the horizontal deviation of the secondary shots from a shotgun. USE WITH CAUTION!" type="Float32" />
+	<field name="fSecondaryAnglePitchBulletSpread" desc="Controls the vertical deviation of the secondary shots from a shotgun. USE WITH CAUTION!" type="Float32" />
+	<field name="fSecondaryGroupingFactor" desc="Affects how the spread tends to be grouped together. The higher this number the more grouped the bullets will be. It's basically an exponential factor over the resulting angle spread (how many times it is multiplied by itself). The more you multiply the spread with itself (0 to 1 probability) the more it will tend towards (center) and thus be more grouped towards the center." type="Float32" />
+	<object name="SecondaryRangeMultipliers">
+		<object name="RangeMultiplierCasual" desc="RangeMultiplier list for casual difficulty level">
+			<inherit name="SRangeMultiplierDifficulty" />
+		</object>
+		<object name="RangeMultiplierExperimented" desc="RangeMultiplier list for Experimented difficulty level">
+			<inherit name="SRangeMultiplierDifficulty" />
+		</object>
+		<object name="RangeMultiplierHardcore" desc="RangeMultiplier list for Hardcore difficulty level">
+			<inherit name="SRangeMultiplierDifficulty" />
+		</object>
+		<object name="RangeMultiplierInfamous" desc="RangeMultiplier list for Infamous difficulty level">
+			<inherit name="SRangeMultiplierDifficulty" />
+		</object>
+	</object>
+	<object name="Sounds">
+		<field name="sndEmptyWeapon" desc="Parameter for First Person: Sound triggered when weapon is empty" />
+		<field name="sndtpEmptyWeaponType" desc="Parameter for First Person: Type of Sound to be triggered when weapon is empty" />
+		<field name="sndPassByWizz" />
+		<field name="fPassByWizzTiming" />
+		<field name="sndDudBullet" desc="Parameter for First Person: Sound triggered when weapon fires a dud bullet" />
+		<field name="sndtpDudBulletType" desc="Parameter for First Person: Type of Sound to be triggered when weapon fires a dud bullet" />
+		<field name="sndMalfunctionSingleBulletShot" desc="Parameter for First Person: (Single shot) Sound to be triggered when weapon has already fired a dud bullet and is in malfunction state" />
+		<field name="sndtpMalfunctionSingleBulletShotType" desc="Parameter for First Person: (Single shot) Type of Sound to be triggered when weapon has already fired a dud bullet and is in malfunction state" />
+		<field name="sndHitPlayerSound" desc="Sound played for 1st person players when a hit is successful" />
+		<field name="sndtpHitPlayerSoundType" />
+		<field name="sndHitPlayerHeadSound" desc="Sound played for 1st person players when a hit to the head is done" />
+		<field name="sndtpHitPlayerHeadSoundType" />
+		<field name="sndmlDistanceFromShootingSoundToPlayerMultilayer" desc="Parameter for First Person: Distance from shooting sound to player. Player obtained from the first terminal" />
+		<field name="sndSingleBulletShot" desc="Parameter for First Person: Single shot sound id" />
+		<field name="sndSingleBulletShotEcho" />
+		<field name="sndtpSingleBulletShotType" />
+		<object name="IronSightSound">
+			<field name="sndIronSightShotSound" />
+			<field name="sndtpIronSightShotSoundType" />
+			<field name="sndSingleBulletShot" desc="Parameter for IronSight: Single shot sound id" />
+			<field name="sndtpSingleBulletShotType" />
+			<field name="sndStartAutoBulletShot" />
+			<field name="sndStopAutoBulletShot" />
+			<field name="sndtpAutoBulletShotType" />
+			<field name="mixIronsightPreset" />
+			<field name="sndIronSightEnterSound" />
+			<field name="sndtpIronSightEnterSoundType" />
+			<field name="sndIronSightExitSound" />
+			<field name="sndtpIronSightExitSoundType" />
+			<field name="sndtpIronSightExitSound" />
+		</object>
+		<object name="ShotSound">
+			<field name="iLastFewShotNumber" desc="Determine the number of last shot the FewShotSound will be triggered" />
+			<field name="sndLastFewShotSound" />
+			<field name="sndtpLastFewShotSoundType" />
+			<field name="sndLastShotSound" />
+			<field name="sndtpLastShotSoundType" />
+		</object>
+		<object name="FullAutoSounds">
+			<field name="sndStartAutoBulletShot" />
+			<field name="sndStopAutoBulletShot" />
+			<field name="sndStartAutoBulletShotEcho" />
+			<field name="sndStopAutoBulletShotEcho" />
+			<field name="sndtpAutoBulletShotType" />
+			<field name="sndMalfunctionStartAutoBulletShot" desc="Parameter for First Person: (Auto shot) Sound to be started when weapon has already fired a dud bullet and is in malfunction state" />
+			<field name="sndMalfunctionStopAutoBulletShot" desc="Parameter for First Person: (Auto shot) Sound to be stopped when weapon has already fired a dud bullet and is in malfunction state" />
+			<field name="sndtpMalfunctionAutoBulletShotType" desc="Parameter for First Person: (Auto shot) Type of Sound to be triggered when weapon has already fired a dud bullet and is in malfunction state" />
+			<field name="fAutoBulletShotFadeOutMultiplier" desc="Parameter for First Person: Coefficient for fade time calculation" />
+			<field name="fAutoBulletShotMinFadeOut" desc="Parameter for First Person: The lowest limit for fading time" />
+			<field name="sndAutomaticFireRateSound" desc="Automatic Fire Rate Sound id" />
+			<field name="sndtpAutomaticFireRateSoundType" desc="Automatic Fire Rate Sound type" />
+		</object>
+		<object name="ThirdPerson">
+			<field name="sndSingleBulletShot" desc="Parameter for Third Person: Single shot sound id" />
+			<field name="sndtpSingleBulletShotType" desc="Parameter for Third Person: Single shot sound type" />
+			<field name="sndStartAutoBulletShot" desc="Parameter for Third Person: Auto shot start sound id" />
+			<field name="sndStopAutoBulletShot" desc="Parameter for Third Person: Auto shot stop sound id" />
+			<field name="sndtpAutoBulletShotType" desc="Parameter for Third Person: Auto shot sound type" />
+			<object name="ThirdPersonShootingSoundsArray">
+				<object name="ShootingSounds" />
+			</object>
+		</object>
+		<object name="DistanceSwitchParameters">
+			<field name="sndswtpCloseFarSoundSwitchType" desc="Close-Far sound switch type" />
+			<field name="sndswvlCloseSoundSwitchValue" desc="Close sound switch value" />
+			<field name="sndswvlFarSoundSwitchValue" desc="Far sound switch value" />
+			<field name="fCloseFarSoundSwitchDistanceThreshold" desc="Close-Far sound switch distance threshold" />
+		</object>
+	</object>
+	<object name="Particles">
+		<field name="psMuzzleParticlesId" desc="FX for muzzle flash in first person" />
+		<field name="psMuzzleParticlesId_IronSight" desc="FX for muzzle flash in first person Ironsight" />
+		<field name="psMuzzleParticlesId_3rd" desc="FX for muzzle flash in third person" />
+		<field name="psMuzzleParticlesDudId" desc="FX for muzzle flash when weapon has fired dud bullet in first person" />
+		<field name="psMuzzleParticlesDudId_3rd" desc="FX for muzzle flash when weapon has fired dud bullet in third person" />
+		<field name="psMuzzleParticlesMalfunctionId" desc="FX for the muzzle flash when a weapon is malfunctioning in first person" />
+		<field name="psMuzzleParticlesMalfunctionId_3rd" desc="FX for the muzzle flash when a weapon is malfunctioning in third person" />
+		<field name="psBarrelSmokeMuzzleParticlesId" desc="FX for barrel smoke post muzzle flash" />
+		<field name="fMuzzleScaleIronsight" desc="Scale of the muzzle particles when in ironsight." />
+		<field name="fMuzzleScaleFar" desc="Scale of the muzzle particles when in ironsight." />
+		<field name="fMuzzleNearDistanceTP" desc="Scale of the muzzle particles when in ironsight." />
+		<field name="fMuzzleFarDistanceTP" desc="Scale of the muzzle particles when in ironsight." />
+		<field name="MuzzleBone" desc="Name of the muzzle bone for FX to attach to on the weapon mesh" />
+		<field name="LaserScopeBone" desc="Name of the laser scope bone for FX to attach to on the weapon mesh" />
+		<field name="psBulletCaseParticleId" desc="Bullet particle FX" />
+		<field name="BulletCaseBone" desc="Name of the the bullet casing bone for FX to attach to on the weapon mesh" />
+		<field name="psShineParticleId" desc="Sniper Shine FX " />
+		<object name="UnderwaterBullet">
+			<field hash="27A99E19" type="String" />
+			<field name="psUnderwaterBulletParticleId" desc="Underwater Bullet FX " />
+			<field name="fUnderwaterBulletMinAngle" desc="Minimum angle between water normal and bullet dir for Underwater FX to appear" />
+			<field name="fUnderwaterBulletMinDistSquared" desc="Minimum distance between water surface and bullet hit pos for Underwater FX to appear" />
+		</object>
+	</object>
+	<object name="FirstPerson">
+		<object name="BulletSpread" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired. Note this value is a set amount, it is not additive, so the spread pops to this amount immediately" />
+		<object name="BulletSpread_ironSight" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired from standing Ironsights. Note this value is a set amount, it is not additive, so the spread pops to this amount immediately." />
+		<object name="BulletSpread_crouch" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired from a crouch. Note this value is a set amount, it is not additive, so the spread pops to this amount immediately." />
+		<object name="BulletSpread_crouch_ironSight" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired from crouching Ironsights. Note this value is a set amount, it is not additive, so the spread pops to this amount immediately." />
+		<field name="fBase_spread_transition_time" desc="Time it takes for spread transition while base spread changed. Ex: from crouch to stand" />
+		<field name="fMax_spread_bullet_number" desc="Noise spread is used if useAngleSpread is false. Spread will be increased by each bullet and achieve maximum spread while given bullet will be shot." />
+		<field name="iReticleFadeOutMaxBulletNumber" desc="Max bullet number before the reticle fades out." />
+		<field name="fShooting_expansion_speed" desc="Controls how fast the reticle expands after each bullet. WARNING ? THERE IS NO EXTERNAL FEEDBACK FOR THIS VALUE, AND IT CAN RADICALLY AFFECT THE AIMING BEHAVIOR OF WEAPONS." />
+		<field name="fShooting_contraction_speed" desc="Controls how fast the reticle contracts after shooting. WARNING ? THERE IS NO EXTERNAL FEEDBACK FOR THIS VALUE, AND IT CAN RADICALLY AFFECT THE AIMING BEHAVIOR OF WEAPONS." />
+		<field name="fBulletSpread_jump" desc="Noise spread is used if useAngleSpread is false. Controls how much the targeting reticle spreads when the player jumps. Note that the player can?t fire while jumping, but the reticle behaviour is very evident to the player." />
+		<field name="fBulletSpread_jump_modifier" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired while the Player is jumping" />
+		<field name="fBulletSpread_jump_stabilization_time" desc="Controls how long it takes to reset back to perfect aim in-between shots. WARNING ? THERE IS NO EXTERNAL FEEDBACK FOR THIS VALUE, AND IT CAN RADICALLY AFFECT THE AIMING BEHAVIOR OF WEAPONS." />
+		<field name="fBulletSpread_movement_modifier" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired while the Player is moving" />
+		<field name="fBulletSpread_movement_stabilization_time" desc="Controls how long it takes to reset back to perfect aim in-between shots. WARNING ? THERE IS NO EXTERNAL FEEDBACK FOR THIS VALUE, AND IT CAN RADICALLY AFFECT THE AIMING BEHAVIOR OF WEAPONS." />
+		<field name="fBulletSpread_turn_modifier" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired while the Player is turning" />
+		<field name="bBulletSpread_clamp_spread" desc="Whether the weapon should clamp the spread value to the max spread allowed during the current state (jumping, crouch etc.). If false, all spread actions add up and can go beyond the max spread (ex.: shooting while moving)." />
+		<field hash="7DC27A84" type="String" />
+		<field name="sShootRumbleEffect" desc="The name of the effect in the player cameraShakeAndRumble list used when shooting." />
+		<object name="ReflexFire">
+			<field name="bReflexFire_enabled" desc="If true this turns on aim assist when shooting from the hip. Bones will be targeted on NPCs when they fall within the reticule." />
+			<field name="bReflexFireOnlyOnSecondary" desc="Tick to only apply on secondary bullets instead of primary bullets." />
+			<field name="fReflexFireMinLookSpeedToActivate" desc="The minimum speed the camera must be turning at to enable the reflex fire." />
+			<field name="fReflexFireMinMoveSpeedToActivate" desc="The minimum speed the player must be moving at to enable the reflex fire." />
+			<field name="fReflexFire_spread_factor" desc="This scales the spread of the aim assist targeting as a factor of the current spread, which in itself is used for the reticule." />
+			<field name="fReflexFireDamageLevelMultiplier" desc="Scale the damage level for reflex fire shots." />
+			<field name="fReflexFireZiplineSpreadFactor" desc="This scales the spread of the aim assist targeting as a factor of the current spread on a zipline, which in itself is used for the reticule." />
+			<field name="fReflexFireJumpSpreadFactor" desc="This scales the spread of the aim assist targeting as a factor of the current spread when jumping, which in itself is used for the reticule." />
+			<field name="fReflexFireMouseSpreadFactor" desc="This scales the spread of the aim assist targeting as a factor of the current spread when using a mouse. Multiplied by all existing spread factors." />
+			<field name="fReflexFireZiplineDamageLevelMultiplier" desc="Scale the damage level for reflex fire shots on a zipline." />
+			<object name="settingsNear" />
+			<object name="settingsFar" />
+			<object name="ziplineSettingsNear" />
+			<object name="ziplineSettingsFar" />
+			<object name="animalSettingsNear" />
+			<object name="animalSettingsFar" />
+		</object>
+	</object>
+	<object name="BulletTracer">
+		<object name="FirstPerson" desc="First person bullet tracers" />
+		<object name="Friendly" desc="Bullet tracers output by friendlies" />
+		<object name="Enemy" desc="Bullet tracers output by enemies" />
+	</object>
+	<field name="matimpShellImpactFx" desc="FX for shell in the point of impact" type="Hash64" />
+	<field name="matimpBulletImpactFx" desc="FX for the bullet in the point of impact" type="Hash64" />
+	<field name="matimpSecondaryBulletImpactFx" desc="FX for the shotgun-like point of impact" type="Hash64" />
+	<field name="matimpBloodBulletImpactFx" desc="FX for the bullet in the point of impact when it has caused a hit on someone it passed through before." type="Hash64" />
+	<field name="matimpDeathBulletImpactFx" desc="FX for the bullet in the point of impact when it has killed the target or someone it passed through before." type="Hash64" />
+	<field name="fBloodBulletMaxDist" desc="Max distance a bullet can carry a blood effect with it." type="Float32" />
+	<object name="BulletImpactScale">
+		<field name="fOverallMinParticleScale" desc="Minimum Bullet Impact Overall Particles Scale " />
+		<field name="fOverallMaxParticleScale" desc="Maximum Bullet Impact Overall Particles Scale " />
+		<field name="fOverallDecalScale" desc="Bullet Impact Decals Scale" />
+		<field name="fBulletImpactScaleSmallDistance" desc="Distance (Between Player and Impact) at which the Bullet Impact will get the Small Scale Multiplier." />
+		<field name="fBulletImpactScaleMediumDistance" desc="Distance (Between Player and Impact) at which the Bullet Impact will get the Medium Scale Multiplier." />
+		<field name="fBulletImpactScaleLargeDistance" desc="Distance (Between Player and Impact) at which the Bullet Impact will get the Large Scale Multiplier." />
+		<field name="fSmallBulletImpactScaleFactor" desc="Bullet Impact Scale Factor for Small Range." />
+		<field name="fMediumBulletImpactScaleFactor" desc="Bullet Impact Scale Factor for Medium Range." />
+		<field name="fLargeBulletImpactScaleFactor" desc="Bullet Impact Scale Factor for Large Range " />
+	</object>
+</class>

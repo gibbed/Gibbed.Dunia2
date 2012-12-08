@@ -1,0 +1,6 @@
+<class name="SShootCorrectionHelper">
+	<inherit name="#11E152C8" />
+	<field name="fShootCorrectionStrength" desc="Strength of Shoot Correction." type="Float32" />
+	<field name="fShootCorrectionCylinderFactor" desc="Factor multiplied by current snap aim cylinder radius to determine whether the helper will be applied." type="Float32" />
+	<field name="fShootCorrectionHelperMaxDistance" desc="Max range of player to enemy to trigger helper. Effect reduces as you get further away." type="Float32" />
+</class>

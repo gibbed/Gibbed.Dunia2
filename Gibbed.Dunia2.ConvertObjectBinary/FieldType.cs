@@ -37,6 +37,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         Int64,
         Float32,
         Float64,
+        Vector2,
+        Vector3,
+        Vector4,
         String,
+        Hash32,
+        Hash64,
     }
 }

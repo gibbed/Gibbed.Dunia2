@@ -1,0 +1,9 @@
+<class name="CWeaponOffsetSettings">
+	<inherit name="#11E152C8" />
+	<field name="fMaxYaw" desc="The max amount of yaw the bone will rotate." type="Float32" />
+	<field name="fMaxPitch" desc="The max amount of pitch the bone will rotate." type="Float32" />
+	<field name="fMaxRoll" desc="The max amount of roll the bone will rotate." type="Float32" />
+	<field name="fMaxX" desc="The max amount of X translation." type="Float32" />
+	<field name="fMaxY" desc="For max amount of Y translation." type="Float32" />
+	<field name="fMaxZ" desc="The max amount of Z translation." type="Float32" />
+</class>

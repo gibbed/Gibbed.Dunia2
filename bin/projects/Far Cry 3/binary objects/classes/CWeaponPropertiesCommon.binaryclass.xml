@@ -1,9 +1,10 @@
-<class name="CWeaponPropertiesCommon" inherit="#11E152E0">
-	<field name="sName" desc="The name of the weapon. This is a unique identifier" />
-	<field name="sIconName" desc="Icon name - UI" />
-	<field name="locidDisplayName" desc="Localized 'Human' name of the weapon" />
+<class name="CWeaponPropertiesCommon">
+	<inherit name="#11E152E0" />
+	<field name="sName" desc="The name of the weapon. This is a unique identifier" type="String" />
+	<field name="sIconName" desc="Icon name - UI"  type="String" />
+	<field name="locidDisplayName" desc="Localized 'Human' name of the weapon" type="Int32" />
 	<field hash="41C3276B" type="String" />
-	<field name="sUniquePickupName" desc="Unique name used to prevent picking up of any other weapons with the same name as one you already carry." />
+	<field name="sUniquePickupName" desc="Unique name used to prevent picking up of any other weapons with the same name as one you already carry." type="Hash32" />
 	<object name="Reloading">
 		<field name="fReloadTimeNormal" desc="Time of the reloading process, playing animation is scaled on defined time when m_reloadTime is not equal to 0" type="Float32" />
 		<field name="fReloadTimeForced" desc="Time when forced to reload because ammo is empty, playing animation is scaled on defined time when m_reloadTime is not equal to 0" type="Float32" />
@@ -15,37 +16,53 @@
 	<object name="DOF">
 		<field name="fDofBlendRate" desc="The rate of blend from one dof to another." type="Float32" />
 		<field name="fDofMaxMoveSpeed" desc="The max speed the player moves at to get the max moving dof values." type="Float32" />
-		<object name="hipDof" />
-		<object name="movingDof" />
-		<object name="shootingDof" />
-		<object name="coverDof" />
-		<object name="blindfireDof" />
-		<object name="crouchSlideDof" />
-		<object name="meleeDof" />
+		<object name="hipDof">
+			<inherit name="SWeaponDof" />
+		</object>
+		<object name="movingDof">
+			<inherit name="SWeaponDof" />
+		</object>
+		<object name="shootingDof">
+			<inherit name="SWeaponDof" />
+		</object>
+		<object name="coverDof">
+			<inherit name="SWeaponDof" />
+		</object>
+		<object name="blindfireDof">
+			<inherit name="SWeaponDof" />
+		</object>
+		<object name="crouchSlideDof">
+			<inherit name="SWeaponDof" />
+		</object>
+		<object name="meleeDof">
+			<inherit name="SWeaponDof" />
+		</object>
 	</object>
 	<object name="OffscreenRenderPropoerties">
-		<object name="OffScreenRenderParams" />
+		<object name="OffScreenRenderParams">
+			<inherit name="SOffscreenRenderParams" />
+		</object>
 		<field name="fMinFullScreenZoom" type="Float32" />
 		<field name="fMaxFullScreenZoom" type="Float32" />
 		<field name="fDefaultFullScreenZoom" type="Float32" />
 	</object>
-	<field name="bPlayAllAnimLayersInReload" desc="Play all anim layers in ironsight during prepare and reload." />
-	<field name="fSprintToFireTime" desc="Time (if non zero) to go from sprint to shoot anim." />
-	<field name="fSprintToIronSightTime" desc="Time (if non zero) to go from sprint to ironsight transition anim." />
-	<field name="fDrawTime" desc="Time of the weapon drawing process, playing animation is scaled on defined time when m_drawTime is not equal to 0" />
-	<field name="fHolsterTime" desc="Time of the holstering process, playing animation is scaled on defined time when m_holsterTime is not equal to 0" />
-	<field name="fThrowableHolsterTime" desc="Time of the holstering when throwing something (grenade, rock..), playing animation is scaled on defined time when m_throwableHolsterTime is not equal to 0" />
-	<field name="fHolsterTakedownAboveTime" desc="Time of the holstering process when about to do the above takedown manoeuvre." />
-	<field name="fSwitchToMacheteTime" desc="Time to holster weapon and draw machete, playing animation is scaled on defined time when m_drawTime is not equal to 0" />
-	<field name="bAutoReload" desc="Boolean variable which indicates if weapon should automatically reload if current clip is empty" />
-	<field name="bAutoReloadInIronsight" desc="If auto reload is enabled then this determines if you can perform it in ironsight." />
-	<field name="bIsSilent" desc="Indicating that target will be killed silently or with silent weapon" />
-	<field name="bVisibleHolstered" desc="Visible or not in first person view" />
-	<field name="bEmitLight" desc="Identifies if the shot fired emitted a flash" />
-	<field name="fFireTriggerPressThreshold" desc="Amount required to press the trigger to fire the weapon." />
-	<field name="fNearFovDegrees" desc="Near FOV for weapon in degrees." />
-	<field name="fNearFovDegreesSplitscreen" desc="Near FOV override for weapon in degrees, 0 means use same as Near FOV." />
-	<field name="bIsScopeAttached" desc="Is this weapon a scoped weapon (without requiring attachments)" />
+	<field name="bPlayAllAnimLayersInReload" desc="Play all anim layers in ironsight during prepare and reload." type="Boolean" />
+	<field name="fSprintToFireTime" desc="Time (if non zero) to go from sprint to shoot anim." type="Float32" />
+	<field name="fSprintToIronSightTime" desc="Time (if non zero) to go from sprint to ironsight transition anim." type="Float32" />
+	<field name="fDrawTime" desc="Time of the weapon drawing process, playing animation is scaled on defined time when m_drawTime is not equal to 0" type="Float32" />
+	<field name="fHolsterTime" desc="Time of the holstering process, playing animation is scaled on defined time when m_holsterTime is not equal to 0" type="Float32" />
+	<field name="fThrowableHolsterTime" desc="Time of the holstering when throwing something (grenade, rock..), playing animation is scaled on defined time when m_throwableHolsterTime is not equal to 0" type="Float32" />
+	<field name="fHolsterTakedownAboveTime" desc="Time of the holstering process when about to do the above takedown manoeuvre." type="Float32" />
+	<field name="fSwitchToMacheteTime" desc="Time to holster weapon and draw machete, playing animation is scaled on defined time when m_drawTime is not equal to 0" type="Float32" />
+	<field name="bAutoReload" desc="Boolean variable which indicates if weapon should automatically reload if current clip is empty" type="Boolean" />
+	<field name="bAutoReloadInIronsight" desc="If auto reload is enabled then this determines if you can perform it in ironsight." type="Boolean" />
+	<field name="bIsSilent" desc="Indicating that target will be killed silently or with silent weapon" type="Boolean" />
+	<field name="bVisibleHolstered" desc="Visible or not in first person view" type="Boolean" />
+	<field name="bEmitLight" desc="Identifies if the shot fired emitted a flash" type="Boolean" />
+	<field name="fFireTriggerPressThreshold" desc="Amount required to press the trigger to fire the weapon." type="Float32" />
+	<field name="fNearFovDegrees" desc="Near FOV for weapon in degrees." type="Float32" />
+	<field name="fNearFovDegreesSplitscreen" desc="Near FOV override for weapon in degrees, 0 means use same as Near FOV." type="Float32" />
+	<field name="bIsScopeAttached" desc="Is this weapon a scoped weapon (without requiring attachments)" type="Boolean" />
 	<field name="selReloadType" /><!-- enumReloadType -->
 	<field name="selWeaponClass" /><!-- enumWeaponClass -->
 	<field name="selFireStrategy" /><!-- enumFireStrategy -->
@@ -60,7 +77,7 @@
 	</object>
 	<object name="Ammo">
 		<field hash="AB258E09" type="String" />
-		<field name="ammoAmmoType" desc="Unique id of the ammo type. To add an ammo type, edit the file in /data/editor/WeaponsTemplates.xml" />
+		<field name="ammoAmmoType" desc="Unique id of the ammo type. To add an ammo type, edit the file in /data/editor/WeaponsTemplates.xml" type="Hash32" />
 		<field name="iAmmoInClip" desc="How many bullets does the clip contain. Every time the player hits Reload, the clip will be reset to this amount, if there are enough bullets left" type="Int32" />
 		<field name="bUsesClips" desc="If the weapon doesn't use clips, always fetch the bullets from the pouch" type="Boolean" />
 		<field name="bIsAmmoVisible" desc="Visible or not in first person view" type="Boolean" />
@@ -68,63 +85,79 @@
 		<field name="iShopAmmoOverride" type="Int32" />
 	</object>
 	<object name="Recoil">
-		<field name="fRecoilRecoveryTime" desc="The speed at which the weapon recovers from recoil" />
-		<field name="fRecoilAchieveTime" desc="Time to achieve the recoil" />
-		<field name="fRecoilAnimationWeight" desc="Value for the eMValueID_WEAPONRECOILANIMWEIGHT move state in animation component" />
-		<field name="fRecoilMaxPitch" desc="Max pitch of recoil. Used to calculate deflection based on recoil m_recoilAchieveTime" />
-		<field name="fRecoilMaxYaw" desc="Max degrees the gun can recoil horizontally from the camera." />
-		<field name="fRecoilWeaponOffsetYawBlend" desc="Percent amount (0-1) the weapon offsets will include the horizontal recoil. Can be &lt; 0 or &gt; 1" />
-		<field name="fRecoilWeaponOffsetPitchBlend" desc="Percent amount (0-1) the weapon offsets will include the vertical recoil. Can be &lt; 0 or &gt; 1" />
-		<field name="fLeftRecoilPerShot" />
-		<field name="fRightRecoilPerShot" />
-		<field name="fVerticalRecoilPerShot" />
-		<field name="fLeftRollPerShot" />
-		<field name="fRightRollPerShot" />
-		<field name="arkRollCurve" desc="The curve that the roll value will map onto. X is Scaled by roll duration. Y is scaled by the roll applied. X is cut off after 1 on initial unscaled curve." />
-		<field name="arkAchieveCurve" desc="The curve (x from 0 to 1) that controls the amount of recoil over the achieve time." />
-		<field name="arkRecoveryCurve" desc="The curve( x from 0 to 1) that controls the amount of recoil over the recovery time." />
-		<field name="fRollCurveDuration" />
-		<field name="fMaxYOffset" desc="Max amount of Y the gun can translate back by." />
-		<field name="fYOffsetPerShot" desc="Amount of y moved back on the weapon per shot." />
-		<field name="fIronsightMaxYOffset" desc="Max amount of Y the gun can translate back by." />
-		<field name="fIronsightYOffsetPerShot" desc="Amount of y moved back on the weapon per shot." />
-		<field name="fRecoilYOffsetRecoveryTime" desc="The speed at which the weapon recovers from recoil" />
-		<field name="arkYOffsetRecoveryCurve" desc="The curve( x from 0 to 1) that controls the amount of recoil over the recovery time." />
+		<field name="fRecoilRecoveryTime" desc="The speed at which the weapon recovers from recoil" type="Float32" />
+		<field name="fRecoilAchieveTime" desc="Time to achieve the recoil" type="Float32" />
+		<field name="fRecoilAnimationWeight" desc="Value for the eMValueID_WEAPONRECOILANIMWEIGHT move state in animation component" type="Float32" />
+		<field name="fRecoilMaxPitch" desc="Max pitch of recoil. Used to calculate deflection based on recoil m_recoilAchieveTime" type="Float32" />
+		<field name="fRecoilMaxYaw" desc="Max degrees the gun can recoil horizontally from the camera." type="Float32" />
+		<field name="fRecoilWeaponOffsetYawBlend" desc="Percent amount (0-1) the weapon offsets will include the horizontal recoil. Can be &lt; 0 or &gt; 1" type="Float32" />
+		<field name="fRecoilWeaponOffsetPitchBlend" desc="Percent amount (0-1) the weapon offsets will include the vertical recoil. Can be &lt; 0 or &gt; 1" type="Float32" />
+		<field name="fLeftRecoilPerShot" type="Float32" />
+		<field name="fRightRecoilPerShot" type="Float32" />
+		<field name="fVerticalRecoilPerShot" type="Float32" />
+		<field name="fLeftRollPerShot" type="Float32" />
+		<field name="fRightRollPerShot" type="Float32" />
+		<field name="arkRollCurve" desc="The curve that the roll value will map onto. X is Scaled by roll duration. Y is scaled by the roll applied. X is cut off after 1 on initial unscaled curve." type="Hash64" />
+		<field name="arkAchieveCurve" desc="The curve (x from 0 to 1) that controls the amount of recoil over the achieve time." type="Hash64" />
+		<field name="arkRecoveryCurve" desc="The curve( x from 0 to 1) that controls the amount of recoil over the recovery time." type="Hash64" />
+		<field name="fRollCurveDuration" type="Float32" />
+		<field name="fMaxYOffset" desc="Max amount of Y the gun can translate back by." type="Float32" />
+		<field name="fYOffsetPerShot" desc="Amount of y moved back on the weapon per shot." type="Float32" />
+		<field name="fIronsightMaxYOffset" desc="Max amount of Y the gun can translate back by." type="Float32" />
+		<field name="fIronsightYOffsetPerShot" desc="Amount of y moved back on the weapon per shot." type="Float32" />
+		<field name="fRecoilYOffsetRecoveryTime" desc="The speed at which the weapon recovers from recoil" type="Float32" />
+		<field name="arkYOffsetRecoveryCurve" desc="The curve( x from 0 to 1) that controls the amount of recoil over the recovery time." type="Hash64" />
 		<object name="RecoilIK">
-			<field name="fIKRecoilBurstSpeedIn" desc="Used for RecoilWeight calculation only when WeaponFireStrategy is being used, affects the 3rd person characters" />
-			<field name="fIKRecoilBurstPitchRandom" desc="If not equal zero, used as a coefficient for random generator" />
-			<field name="fIKRecoilBurstSpeedOut" desc="for RecoilWeight calculation only when WeaponFireStrategy is not being used" />
-			<field name="fIKRecoilBurstPitchRate" desc="Used for actual pitch recoil rotation calculation. Depends on fDeltaTime and RecoilPitchRotDest" />
-			<field name="vIKRecoilBurstOffset" desc="Param for the rotate vector calculation by formula: vDir = RotateVector(- RecoilBurstOffset * RecoilWeight)" />
+			<field name="fIKRecoilBurstSpeedIn" desc="Used for RecoilWeight calculation only when WeaponFireStrategy is being used, affects the 3rd person characters" type="Float32" />
+			<field name="fIKRecoilBurstPitchRandom" desc="If not equal zero, used as a coefficient for random generator" type="Float32" />
+			<field name="fIKRecoilBurstSpeedOut" desc="for RecoilWeight calculation only when WeaponFireStrategy is not being used" type="Float32" />
+			<field name="fIKRecoilBurstPitchRate" desc="Used for actual pitch recoil rotation calculation. Depends on fDeltaTime and RecoilPitchRotDest" type="Float32" />
+			<field name="vIKRecoilBurstOffset" desc="Param for the rotate vector calculation by formula: vDir = RotateVector(- RecoilBurstOffset * RecoilWeight)" type="Vector3" />
 		</object>
 	</object>
 	<object name="Sway">
-		<field name="fSway_data_blendTime" desc="Blend time from one set of sway values to another." />
-		<field name="bIsCameraBoneUsedFromSway" desc="Camera sways together with reticule. Sniper behavior. Note: Weapon animation should use camera bone for this effect" />
-		<field name="bCanHoldBreath" desc="Can the player use the hold breath ability while this weapon is equipped?" />
-		<field name="fSwayReductionModifier" desc="Modifier to sway when user has unlocked the sway reduction ability" />
-		<field name="fWeaponSwayCoverMultiplier" desc="The multiplier by which all other sway multipliers are multiplied when the player is in cover" />
-		<field name="bUseAngularSpeedSwayReduction" desc="If set then uses the maxAngularSpeedForSwayReduction values to reduce sway when you rotate the camera aim." />
-		<object name="Sway_default" desc="Camera sways together with reticule. Sniper behavior. Note: Weapon animation should use camera bone for this effect" />
-		<object name="Sway_crouch" />
-		<object name="Sway_ironSight" />
-		<object name="Sway_crouchIronSight" />
-		<object name="Sway_crouchMovingIronSight" />
-		<object name="Sway_jump" />
-		<object name="Sway_moving" />
-		<object name="Sway_movingIronSight" />
-		<field name="FlickSwayCalmTime" />
-		<field name="FlickSwayGoingOutTime" />
-		<field name="arkSwayHorizCurve" />
-		<field name="arkSwayVertCurve" />
-		<field name="arkSwayMovingHorizCurve" />
-		<field name="arkSwayMovingVertCurve" />
-		<field name="fSwayCurveBlendRate" desc="Rate at which we blend when going between the sway curves and the sway moving curves. Increase to speed up." />
+		<field name="fSway_data_blendTime" desc="Blend time from one set of sway values to another." type="Float32" />
+		<field name="bIsCameraBoneUsedFromSway" desc="Camera sways together with reticule. Sniper behavior. Note: Weapon animation should use camera bone for this effect" type="Boolean" />
+		<field name="bCanHoldBreath" desc="Can the player use the hold breath ability while this weapon is equipped?" type="Boolean" />
+		<field name="fSwayReductionModifier" desc="Modifier to sway when user has unlocked the sway reduction ability" type="Float32" />
+		<field name="fWeaponSwayCoverMultiplier" desc="The multiplier by which all other sway multipliers are multiplied when the player is in cover" type="Float32" />
+		<field name="bUseAngularSpeedSwayReduction" desc="If set then uses the maxAngularSpeedForSwayReduction values to reduce sway when you rotate the camera aim." type="Boolean" />
+		<object name="Sway_default" desc="Camera sways together with reticule. Sniper behavior. Note: Weapon animation should use camera bone for this effect">
+			<inherit name="CSwayData" />
+		</object>
+		<object name="Sway_crouch">
+			<inherit name="CSwayData" />
+		</object>
+		<object name="Sway_ironSight">
+			<inherit name="CSwayData" />
+		</object>
+		<object name="Sway_crouchIronSight">
+			<inherit name="CSwayData" />
+		</object>
+		<object name="Sway_crouchMovingIronSight">
+			<inherit name="CSwayData" />
+		</object>
+		<object name="Sway_jump">
+			<inherit name="CSwayData" />
+		</object>
+		<object name="Sway_moving">
+			<inherit name="CSwayData" />
+		</object>
+		<object name="Sway_movingIronSight">
+			<inherit name="CSwayData" />
+		</object>
+		<field name="FlickSwayCalmTime" type="Float32" />
+		<field name="FlickSwayGoingOutTime" type="Float32" />
+		<field name="arkSwayHorizCurve" type="Hash64" />
+		<field name="arkSwayVertCurve" type="Hash64" />
+		<field name="arkSwayMovingHorizCurve" type="Hash64" />
+		<field name="arkSwayMovingVertCurve" type="Hash64" />
+		<field name="fSwayCurveBlendRate" desc="Rate at which we blend when going between the sway curves and the sway moving curves. Increase to speed up." type="Float32" />
 	</object>
 	<object name="WeaponOffset">
 		<field name="bIsRightHanded" desc="Are the bones used calculated from the right hand or the left hand? This also applies to the procedural sway." type="Boolean" />
 		<field name="fBlendRate" desc="Rate of change from one set of offset data to another." type="Float32" />
-		<field name="arkWeaponOffsetBlendingCurve" desc="A curve that takes the difference in speed values for each axis of input movement (0-1) and generates a multiplier on the blend rate." />
+		<field name="arkWeaponOffsetBlendingCurve" desc="A curve that takes the difference in speed values for each axis of input movement (0-1) and generates a multiplier on the blend rate." type="Hash64" />
 		<field name="fStrafeBlendRate" desc="Rate of change between amounts of strafe-ing." type="Float32" />
 		<field name="fPitchBlendRate" desc="Rate of change between amounts of pitch offset." type="Float32" />
 		<field name="fYawBlendRate" desc="Rate of change between amounts of yaw offset." type="Float32" />
@@ -142,38 +175,52 @@
 		<field name="bVertOffsetsMirrorZ" desc="If ticked then the output will always be the same size of zero whether the input is +ive or -ive." type="Boolean" />
 		<field name="bStrafeOffsetsMirrorY" desc="If ticked then the output will always be the same size of zero whether the input is +ive or -ive." type="Boolean" />
 		<field name="bStrafeOffsetsMirrorZ" desc="If ticked then the output will always be the same size of zero whether the input is +ive or -ive." type="Boolean" />
-		<object name="default" />
-		<object name="crouched" />
-		<object name="sprinting" />
-		<object name="ironsight" />
-		<object name="marksman" />
-		<object name="freeReticle" desc="Exotic gameplay used in Chopper Sequence for E3,... and maybe others in a near future." />
+		<object name="default">
+			<inherit name="CWeaponOffsetData" />
+		</object>
+		<object name="crouched">
+			<inherit name="CWeaponOffsetData" />
+		</object>
+		<object name="sprinting">
+			<inherit name="CWeaponOffsetData" />
+		</object>
+		<object name="ironsight">
+			<inherit name="CWeaponOffsetData" />
+		</object>
+		<object name="marksman">
+			<inherit name="CWeaponOffsetData" />
+		</object>
+		<object name="freeReticle" desc="Exotic gameplay used in Chopper Sequence for E3,... and maybe others in a near future.">
+			<inherit name="CWeaponOffsetData" />
+		</object>
 	</object>
 	<object name="Cover">
-		<field name="fCover_PeekOut_Transition_Time" desc="Time it takes To go from Behind Cover to Out of Cover." />
-		<field name="fAfterShotOutOfCoverTime" desc="Amount of time player will stay out of cover after a he shot." />
-		<object name="CoverGenericRumble" />
+		<field name="fCover_PeekOut_Transition_Time" desc="Time it takes To go from Behind Cover to Out of Cover." type="Float32" />
+		<field name="fAfterShotOutOfCoverTime" desc="Amount of time player will stay out of cover after a he shot." type="Float32" />
+		<object name="CoverGenericRumble">
+			<inherit name="CCameraShakeAndPadRumbleEvent" />
+		</object>
 	</object>
 	<object name="Ziplines">
 		<field name="bUsableInSinglePlayer" desc="Can we use this weapon on ziplines in Single Player?" type="Boolean" />
 		<field name="bUsableInMultiPlayer" desc="Can we use this weapon on ziplines in Multi Player?" type="Boolean" />
 	</object>
 	<object name="Melee">
-		<field name="bMeleeInterruptsSprint" desc="Melee interrupts sprinting." />
-		<field name="bMeleeUsingWeapon" desc="Whether weapon can or not perform melee attack" />
-		<field name="bStealthTakedownUsingWeapon" desc="Whether weapon can perform stealth takedown attack" />
-		<field name="bMeleeUsingMachete" desc="Use machete to perform melee attack" />
-		<field name="sndtpMeleeHitSoundType" />
-		<field name="sndMeleeHitSoundID" />
+		<field name="bMeleeInterruptsSprint" desc="Melee interrupts sprinting." type="Boolean" />
+		<field name="bMeleeUsingWeapon" desc="Whether weapon can or not perform melee attack" type="Boolean" />
+		<field name="bStealthTakedownUsingWeapon" desc="Whether weapon can perform stealth takedown attack" type="Boolean" />
+		<field name="bMeleeUsingMachete" desc="Use machete to perform melee attack" type="Boolean" />
+		<field name="sndtpMeleeHitSoundType" type="Hash32" />
+		<field name="sndMeleeHitSoundID" type="String" />
 	</object>
 	<object name="Running">
-		<field name="bCanUseWhenRunning" desc="Wether this weapon can be used or not when running" />
+		<field name="bCanUseWhenRunning" desc="Wether this weapon can be used or not when running" type="Boolean" />
 	</object>
 	<object name="Attachments">
 		<field name="iMaxNumAttachments" desc="MAximum number of weapon attachments on this weapon." type="Int32" />
 		<object name="ModelsForLoad" desc="list of weapons attachments to mount">
 			<object name="Attachments">
-				<field name="Part" />
+				<inherit name="CWeaponPropertiesCommon_Attachment" />
 			</object>
 		</object>
 	</object>
@@ -186,18 +233,22 @@
 		</object>
 	</object>
 	<object name="ShootCorrectionHelpers">
-		<object name="ShootCorrectionHelper" />
-		<object name="ShootCorrectionHelperIronsight" />
+		<object name="ShootCorrectionHelper">
+			<inherit name="SShootCorrectionHelper" />
+		</object>
+		<object name="ShootCorrectionHelperIronsight">
+			<inherit name="SShootCorrectionHelper" />
+		</object>
 	</object>
 	<object name="Marksman">
-		<field name="bCanFlickFire" desc="Specifies whether Flick Fire is possible for this weapon." />
-		<field name="bCanQuickFire" desc="Specifies whether you can double tap with this weapon." />
-		<field name="fNearFovDegrees" desc="Near FOV for weapon in degrees when in marksman mode." />
-		<field name="fFovDegrees" desc="Main FOV for weapon in degrees when in marksman mode." />
+		<field name="bCanFlickFire" desc="Specifies whether Flick Fire is possible for this weapon." type="Boolean" />
+		<field name="bCanQuickFire" desc="Specifies whether you can double tap with this weapon." type="Boolean" />
+		<field name="fNearFovDegrees" desc="Near FOV for weapon in degrees when in marksman mode." type="Float32" />
+		<field name="fFovDegrees" desc="Main FOV for weapon in degrees when in marksman mode." type="Float32" />
 	</object>
 	<object name="IronSight">
 		<field hash="C6FC0C7A" type="String" />
-		<field name="ScopeCenterBone" desc="Bone on the weapon or the scope attachement to look through when aiming in ironsights." />
+		<field name="ScopeCenterBone" desc="Bone on the weapon or the scope attachement to look through when aiming in ironsights." type="Hash32" />
 		<field name="fMoveSpeedFactor" desc= "The move sensitivity factor to apply from the weapon in ironsight" type="Float32" />
 		<field name="bCanIronsight" desc="Identifies whether the pawn can go in iron sight mode using this weapon" type="Boolean" />
 		<field name="fLookSensitivityFactor" desc="look sensitivity factor to apply from the weapon in ironsight" type="Float32" />
@@ -209,16 +260,19 @@
 		<field name="fIronsightNearFOVDegrees" desc="Field of View for ironsight in near Z (in degrees)" type="Float32" />
 		<field name="fIronsightTransitionTime" desc="The time the ironsight transition must take" type="Float32" />
 		<field name="fIronsightTransitionTimeFromSprint" desc="The time the ironsight transition must take from sprinting" type="Float32" />
-		<object name="ironsightDof" />
+		<object name="ironsightDof">
+			<inherit name="SWeaponDof" />
+		</object>
 		<field name="fSnapAimCylinderFactor" desc="Factor applied to scale the radius over distance" type="Float32" />
 		<field name="fIronsightRecoilFactor" desc="A multiplier to be applied to the weapon's recoil when in ironsight" type="Float32" />
 		<field name="fIronsightPrepareDelay" desc="The delay for preparing the gun when using ironsights" type="Float32" />
 		<field name="bIronsightCanPrepare" desc="Triggers a different set of anims/behavior when the weapon needs to prepare while in ironsight. Otherwise the weapon goes out of ironsight first." type="Boolean" />
 		<field name="bStayInIronsightWhenPrepare" desc="If the weapon can be prepared in iron sight and this is true, will force the weapon to stay in ironsight." type="Boolean" />
 		<field name="bAlwaysIronsightReload" desc="Always stay in ironsight when reloading." type="Boolean" />
-		<field name="arkTransitionCurve" desc="The name of the curve for ironsight transition" />
-		<field name="arkAnimPlaybackCurve" desc="The name of the curve ironshight animation playback" />
-		<object name="IronsightFX" />
+		<field name="arkTransitionCurve" desc="The name of the curve for ironsight transition" type="Hash64" />
+		<field name="arkAnimPlaybackCurve" desc="The name of the curve ironshight animation playback" type="Hash64" />
+		<field hash="D553AED0" type="String" />
+		<field name="IronsightFX" type="Hash32" />
 		<field name="bCanShootDuringIronsightTransition" desc="Allow firing during ironsight transition. ***WARNING*** Animation move states need to be set up specially for this to work." type="Boolean" />
 		<field name="bCanIronsightTransitionWhileShooting" desc="Allow transitioning between ironsight while shooting." type="Boolean" />
 		<field name="bCanShootDuringIronsightTransitionInCover" desc="Allow firing during ironsight transition while Player is in Cover. ***WARNING*** Animation move states need to be set up specially for this to work." type="Boolean" />
@@ -231,98 +285,104 @@
 		<field name="fAimingHelperFadeOutStopDistance" desc="The distance at which snap-aim stops entirely." type="Float32" />
 		<field name="fAimingHelperLockOnSpeed" desc="Speed at which weapon will lock on target." type="Float32" />
 		<object name="FocusFire">
-			<field name="bCanFlickFire" desc="Specifies whether Flick Fire is possible for this weapon." />
-			<field name="bCanQuickFire" desc="Specifies whether you can double tap with this weapon." />
+			<field name="bCanFlickFire" desc="Specifies whether Flick Fire is possible for this weapon." type="Boolean" />
+			<field name="bCanQuickFire" desc="Specifies whether you can double tap with this weapon." type="Boolean" />
 		</object>
 	</object>
-	<field name="drivingAndShootingFOVDegrees" desc="The FOV when driving and shooting with this weapon." />
-	<field name="crosshairMagmaAreaName" desc="The name of the Magma area that represents the crosshair for this weapon" />
-	<field name="fRange" desc="Any projectile  that goes beyond that range it simply forgotten (in meters)" />
-	<field name="vectorEffectiveRange" desc="for weapon. Params multiplied on basic range. 0.15 and 0.20 by default. Influences aiming helpers for feedback about the weaponn++s effectiveness" />
-	<field name="vectorEffectiveRangeIS" desc="Effective range for Iron Sight. Params multiplied on basic range. 0.20 and 0.25 by default. Influences aiming helpers for feedback about the weaponn++s effectiveness" />
-	<field name="fMinReticleTargettingRange" desc="Min Range enemies must be from player for reticle to go red." />
-	<field name="fMaxReticleTargettingRange" desc="Max Range enemies must be from player for reticle to go red." />
-	<field name="fTagRange" desc="the max distance to tag ennemies in iron sight." />
-	<field name="fTagTime" desc="the time needed to tag ennemies in iron sight." />
-	<field name="fUnjamTime" desc="The time it takes to unjam" />
+	<field name="drivingAndShootingFOVDegrees" desc="The FOV when driving and shooting with this weapon." type="Float32" />
+	<field name="crosshairMagmaAreaName" desc="The name of the Magma area that represents the crosshair for this weapon" type="String" />
+	<field name="fRange" desc="Any projectile  that goes beyond that range it simply forgotten (in meters)" type="Float32" />
+	<field name="vectorEffectiveRange" desc="for weapon. Params multiplied on basic range. 0.15 and 0.20 by default. Influences aiming helpers for feedback about the weaponn++s effectiveness" type="Vector2" />
+	<field name="vectorEffectiveRangeIS" desc="Effective range for Iron Sight. Params multiplied on basic range. 0.20 and 0.25 by default. Influences aiming helpers for feedback about the weaponn++s effectiveness" type="Vector2" />
+	<field name="fMinReticleTargettingRange" desc="Min Range enemies must be from player for reticle to go red." type="Float32" />
+	<field name="fMaxReticleTargettingRange" desc="Max Range enemies must be from player for reticle to go red." type="Float32" />
+	<field name="fTagRange" desc="the max distance to tag ennemies in iron sight." type="Float32" />
+	<field name="fTagTime" desc="the time needed to tag ennemies in iron sight." type="Float32" />
+	<field name="fUnjamTime" desc="The time it takes to unjam" type="Float32" />
 	<field name="selJamType" /><!-- enumJamType -->
-	<field name="iClipsForSelfDestruct" desc="Part of the weapon degradation system. Used computing self damage per shot method" />
-	<field name="bIsIndestructible" desc="Weapon cannot jam and have it's reliability go down" />
-	<field name="bIsBreakable" desc="Weapon can jam and have it's reliability go down but cannot break" />
-	<field name="fLookSensitivityFactor" desc="The look sensitivity factor to apply from the weapon" />
-	<field name="fMouseLookSensitivityMultiplier" desc="Extra look sensitivity applied when using a mouse." />
-	<field name="fMoveSpeedFactor" desc="The move sensitivity factor to apply from the weapon" />
-	<field name="fMoveSpeedFactorShooting" desc="The move sensitivity factor to apply from the weapon when shooting" />
-	<field name="fCoverMoveSpeedMultiplier" desc="The move sensitivity multiplier for the weapon when in cover" />
-	<field name="fCoverLookSpeedMultiplier" desc="The look sensitivity multiplier for the weapon while in cover" />
-	<field name="fForcedReliability" desc="Broken weapons can't be unjammed. If reliability less then zero, weapon is broken" />
-	<field name="fInitialJamCounter" desc= "Used to initialize Weapon Jam Counter. If JamCounter > 0, weapon is jammed" />
-	<field name="iJamBulletThreshold" desc="After which bullet a jam can occur in the clip. Ex: threshold = 10, a jam will possibly occur after bullet 10" />
-	<field name="iDudBulletThreshold" desc="Before which bullet a dud will occur in the clip if there is a jam bullet present. Ex: threshold = 10, a dud bullet will occur before bullet 10" />
-	<field name="iSafeClipsAfterUnjam" desc="Number of clips that will never jam after clearing or unjamming the weapon" />
-	<field name="arkPickupArchetype" desc="The name of the pickup archetype, creates this entity when the weapon is dropped" />
-	<field name="fShootingAngle" desc="Shooting angle in normal mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." />
-	<field name="fShootingIronsightAngle" desc="Shooting angle in Iron Sight mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." />
+	<field name="iClipsForSelfDestruct" desc="Part of the weapon degradation system. Used computing self damage per shot method" type="Int32" />
+	<field name="bIsIndestructible" desc="Weapon cannot jam and have it's reliability go down" type="Boolean" />
+	<field name="bIsBreakable" desc="Weapon can jam and have it's reliability go down but cannot break" type="Boolean" />
+	<field name="fLookSensitivityFactor" desc="The look sensitivity factor to apply from the weapon" type="Float32" />
+	<field name="fMouseLookSensitivityMultiplier" desc="Extra look sensitivity applied when using a mouse." type="Float32" />
+	<field name="fMoveSpeedFactor" desc="The move sensitivity factor to apply from the weapon" type="Float32" />
+	<field name="fMoveSpeedFactorShooting" desc="The move sensitivity factor to apply from the weapon when shooting" type="Float32" />
+	<field name="fCoverMoveSpeedMultiplier" desc="The move sensitivity multiplier for the weapon when in cover" type="Float32" />
+	<field name="fCoverLookSpeedMultiplier" desc="The look sensitivity multiplier for the weapon while in cover" type="Float32" />
+	<field name="fForcedReliability" desc="Broken weapons can't be unjammed. If reliability less then zero, weapon is broken" type="Float32" />
+	<field name="fInitialJamCounter" desc= "Used to initialize Weapon Jam Counter. If JamCounter > 0, weapon is jammed" type="Float32" />
+	<field name="iJamBulletThreshold" desc="After which bullet a jam can occur in the clip. Ex: threshold = 10, a jam will possibly occur after bullet 10" type="Int32" />
+	<field name="iDudBulletThreshold" desc="Before which bullet a dud will occur in the clip if there is a jam bullet present. Ex: threshold = 10, a dud bullet will occur before bullet 10" type="Int32" />
+	<field name="iSafeClipsAfterUnjam" desc="Number of clips that will never jam after clearing or unjamming the weapon" type="Int32" />
+	<field name="arkPickupArchetype" desc="The name of the pickup archetype, creates this entity when the weapon is dropped" type="Hash64" />
+	<field name="fShootingAngle" desc="Shooting angle in normal mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." type="Float32" />
+	<field name="fShootingIronsightAngle" desc="Shooting angle in Iron Sight mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." type="Float32" />
 	<field name="selCategory" /><!-- enumCategory -->
 	<field hash="E0FF29E0" type="String" />
-	<field name="HolsterHandle" desc="Holster Handle String ID" />
+	<field name="HolsterHandle" desc="Holster Handle String ID" type="Hash32" />
 	<field hash="18780E07" type="String" />
-	<field name="RightHandHandle" desc="Equip Handle String ID" />
-	<field name="fRumbleMultiplier" desc="Multiplier for pad vibration when shooting." />
-	<field name="fRumbleMultiplierIronsight" desc="Multiplier for pad vibration when shooting in ironsight." />
+	<field name="RightHandHandle" desc="Equip Handle String ID" type="Hash32" />
+	<field name="fRumbleMultiplier" desc="Multiplier for pad vibration when shooting." type="Float32" />
+	<field name="fRumbleMultiplierIronsight" desc="Multiplier for pad vibration when shooting in ironsight." type="Float32" />
 	<object name="ActiveReloadSystem">
-		<field name="iStartPosinPercent" />
-		<field name="iEndPosinPercent" />
-		<field name="iDeltaTime" />
-		<field name="iAccTime" />
-		<field name="iWeaponDamage" />
-		<field name="iLimitDeltaTime" />
-		<field name="fFadeTimer" />
+		<field name="iStartPosinPercent" type="Int32" />
+		<field name="iEndPosinPercent" type="Int32" />
+		<field name="iDeltaTime" type="Int32" />
+		<field name="iAccTime" type="Int32" />
+		<field name="iWeaponDamage" type="Int32" />
+		<field name="iLimitDeltaTime" type="Int32" />
+		<field name="fFadeTimer" type="Float32" />
 	</object>
 	<object name="HitAimReticule">
-		<field name="fHitAimDuration" />
-		<field name="fHitReticuleDuration" />
+		<field name="fHitAimDuration" type="Float32" />
+		<field name="fHitReticuleDuration" type="Float32" />
 	</object>
 	<object name="FollowHelper">
-		<field name="bUseWeaponFollowVars" desc="if the follow helper values should be taken from this weapon or the player" />
+		<field name="bUseWeaponFollowVars" desc="if the follow helper values should be taken from this weapon or the player" type="Boolean" />
 		<object name="HipFire">
-			<field name="fMinDistForInfluence" desc= "Minimum distance to enemy for influence to be applied." />
-			<field name="fMinDistForMaxInfluence" desc="Minimum distance to enemy for max influence to be applied." />
-			<field name="fMaxDistForMaxInfluence" desc="Maximum distance to enemy for max influence to be applied." />
-			<field name="fMaxDistForInfluence" desc="Maximum distance to enemy for min influence to be applied." />
+			<field name="fMinDistForInfluence" desc= "Minimum distance to enemy for influence to be applied." type="Float32" />
+			<field name="fMinDistForMaxInfluence" desc="Minimum distance to enemy for max influence to be applied." type="Float32" />
+			<field name="fMaxDistForMaxInfluence" desc="Maximum distance to enemy for max influence to be applied." type="Float32" />
+			<field name="fMaxDistForInfluence" desc="Maximum distance to enemy for min influence to be applied." type="Float32" />
 		</object>
 		<object name="IronSight">
-			<field name="fMinDistForInfluence" desc= "Minimum distance to enemy for influence to be applied." />
-			<field name="fMinDistForMaxInfluence" desc="Minimum distance to enemy for max influence to be applied." />
-			<field name="fMaxDistForMaxInfluence" desc="Maximum distance to enemy for max influence to be applied." />
-			<field name="fMaxDistForInfluence" desc="Maximum distance to enemy for min influence to be applied." />
-			<field name="fMaxDistForRightStickAssist" desc="Max dist to enemy for right stick assist." />
+			<field name="fMinDistForInfluence" desc= "Minimum distance to enemy for influence to be applied." type="Float32" />
+			<field name="fMinDistForMaxInfluence" desc="Minimum distance to enemy for max influence to be applied." type="Float32" />
+			<field name="fMaxDistForMaxInfluence" desc="Maximum distance to enemy for max influence to be applied." type="Float32" />
+			<field name="fMaxDistForInfluence" desc="Maximum distance to enemy for min influence to be applied." type="Float32" />
 		</object>
+		<field name="fMaxDistForRightStickAssist" desc="Max dist to enemy for right stick assist." type="Float32" />
 	</object>
-	<field name="muzzleFlashColor" desc="Color of the muzzle flash." />
-	<field name="fMuzzleFlashIntensity" desc="Intensity of the muzzle flash." />
+	<field name="muzzleFlashColor" desc="Color of the muzzle flash." type="Vector3" />
+	<field name="fMuzzleFlashIntensity" desc="Intensity of the muzzle flash." type="Float32" />
 	<object name="Reliability">
-		<field name="fJamProbabilityPerReload" />
-		<field name="fMaxReliability" />
+		<field name="fJamProbabilityPerReload" type="Float32" />
+		<field name="fMaxReliability" type="Float32" />
 	</object>
 	<object name="Damage">
-		<object name="HitLocationMultiplier" />
-		<object name="MultiplayerHitLocationMultiplier" />
+		<object name="HitLocationMultiplier">
+			<inherit name="SHitLocationMultipliers" />
+		</object>
+		<object name="MultiplayerHitLocationMultiplier">
+			<inherit name="SMultiplayerHitLocationMultipliers" />
+		</object>
 	</object>
 	<field hash="38900205" type="String" />
-	<field name="GraphicKitHolsterTag" desc="Graphic Kit part tag for holster" />
+	<field name="GraphicKitHolsterTag" desc="Graphic Kit part tag for holster" type="Hash32" />
 	<field hash="31D4AC92" type="String" />
-	<field name="MeshToHide" desc="Name of mesh (if any) to hide for this weapon." />
-	<field name="bIsMountedWeapon" desc="Is this a mounted weapon?" />
+	<field name="MeshToHide" desc="Name of mesh (if any) to hide for this weapon." type="Hash32" />
+	<field name="bIsMountedWeapon" desc="Is this a mounted weapon?" type="Boolean" />
 	<object name="StatisticsAndProgressionWiki">
-		<object name="StatisticUsageCount" />
+		<object name="StatisticUsageCount">
+			<inherit name="CStatisticSPData" />
+		</object>
 	</object>
 	<object name="Sounds">
-		<field name="sndtpFirstUsageSoundType" />
-		<field name="sndFirstUsageSoundID" />
+		<field name="sndtpFirstUsageSoundType" type="Hash32" />
+		<field name="sndFirstUsageSoundID" type="String" />
 	</object>
 	<object name="IKOffsets">
-		<field name="LeftHandIKTranslationOffset" />
-		<field name="LeftHandIKRotationOffset" />
+		<field name="LeftHandIKTranslationOffset" type="Vector3" />
+		<field name="LeftHandIKRotationOffset" type="Vector3" />
 	</object>
 </class>

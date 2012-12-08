@@ -1,1 +1,3 @@
-<class name="CProjectileNetworkComponent" inherit="CReplicatedProjectileNetworkComponent" />
+<class name="CProjectileNetworkComponent">
+	<inherit name="CReplicatedProjectileNetworkComponent" />
+</class>

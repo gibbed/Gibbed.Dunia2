@@ -1,0 +1,7 @@
+<class name="CDiceRoll_Dice">
+	<inherit name="#11E152C8" />
+	<field name="fMinValue" type="Float32" />
+	<field name="fMaxValue" type="Float32" />
+	<field name="fStepSize" type="Float32" />
+	<field name="nNbRolls" type="Int32" />
+</class>

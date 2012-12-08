@@ -1,3 +1,4 @@
-<class name="CWeapon" inherit="CEquipmentBase">
+<class name="CWeapon">
+	<inherit name="CEquipmentBase" />
 	<object name="Implementation" />
 </class>

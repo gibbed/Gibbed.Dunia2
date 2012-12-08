@@ -1,1 +1,3 @@
-<class name="CProjectile" inherit="CGameObject" />
+<class name="CProjectile">
+	<inherit name="CGameObject" />
+</class>

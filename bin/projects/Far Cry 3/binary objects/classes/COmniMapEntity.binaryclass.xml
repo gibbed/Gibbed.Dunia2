@@ -1,1 +1,3 @@
-<class name="COmniMapEntity" inherit="CEntity" />
+<class name="COmniMapEntity">
+	<inherit name="CEntity" />
+</class>

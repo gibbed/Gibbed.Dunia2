@@ -1,4 +1,5 @@
-<class name="CRocket" inherit="CProjectile">
+<class name="CRocket">
+	<inherit name="CProjectile" />
 	<field hash="011F98D9" type="String" />
 	<field name="sFXBone" />
 	<object name="Stages">

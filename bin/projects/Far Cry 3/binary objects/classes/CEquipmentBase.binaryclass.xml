@@ -1,4 +1,5 @@
-<class name="CEquipmentBase" inherit="CGameObject">
+<class name="CEquipmentBase">
+	<inherit name="CGameObject" />
 	<field name="OwnerId" />
 	<field name="WielderID" />
 	<field name="iAnimationValue" type="Int32" />

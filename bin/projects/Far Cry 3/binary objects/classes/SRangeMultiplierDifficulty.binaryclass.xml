@@ -1,0 +1,6 @@
+<class name="SRangeMultiplierDifficulty">
+	<inherit name="#11E152C8" />
+	<object name="RangeMultiplierDifficulty">
+		<object name="RangeMultiplier" />
+	</object>
+</class>

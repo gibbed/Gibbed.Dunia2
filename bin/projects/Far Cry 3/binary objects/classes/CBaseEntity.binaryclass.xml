@@ -1,6 +1,7 @@
-<class name="CBaseEntity" inherit="#11E152E0">
+<class name="CBaseEntity">
+	<inherit name="#11E152E0" />
 	<field name="hidName" type="String" />
-	<field name="disEntityId" />
+	<field name="disEntityId" type="Int64" />
 	<field hash="D2B3429E" type="String" />
-	<field name="hidEntityClass" />
+	<field name="hidEntityClass" type="Hash32" />
 </class>

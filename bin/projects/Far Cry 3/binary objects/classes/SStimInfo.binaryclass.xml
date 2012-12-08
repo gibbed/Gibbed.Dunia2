@@ -1,0 +1,7 @@
+<!--<class name="SStimInfo" inherit="#11E152C8">-->
+<class name="SStimInfo">
+	<inherit name="#11E152C8" />
+	<field name="selStimType" /><!-- enumStimType -->
+	<merge name="CPhysBulletHitStim" />
+	<field name="bAppliesRangeMultipliers" type="Boolean" />
+</class>

@@ -1,4 +1,5 @@
-<class name="CFCXAIComponent" inherit="CAIComponent">
+<class name="CFCXAIComponent">
+	<inherit name="CAIComponent" />
 	<field name="selCharacterType" /><!-- enumCharacterType -->
 	<field name="selGenderType" /><!-- enumGenderType -->
 	<field name="selMetaCharacterType" /><!-- enumMetaCharacterType -->

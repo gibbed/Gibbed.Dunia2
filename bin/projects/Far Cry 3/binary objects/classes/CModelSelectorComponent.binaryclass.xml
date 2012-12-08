@@ -1,4 +1,5 @@
-<class name="CModelSelectorComponent" inherit="CEntityComponent">
+<class name="CModelSelectorComponent">
+	<inherit name="CEntityComponent" />
 	<field name="DefaultModel" />
 	<field name="hidHighResModelInfo" />
 	<object name="Models">

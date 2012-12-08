@@ -1,0 +1,45 @@
+<class name="CWeaponPropertiesCommon_Attachment">
+	<inherit name="#11E152C8" />
+	<field name="arkAttachmentArchetypeName" desc="Name of the archetype to use as an attachment" type="Hash64" />
+	<field name="bIsIlluminatedSight" desc="This is an illuminated sight. No archetype is required." type="Boolean" />
+	<object name="NonAttachments">
+		<field name="colorIlluminatedSightsColour" desc="The colour of the illuminated sights." type="Vector3" />
+		<object name="IlluminatedMaterialNames">
+			<object name="MaterialNames">
+				<field hash="F96FAF0D" type="String" />
+				<field name="Name" type="Hash32" />
+			</object>
+		</object>
+	</object>
+	<field hash="F2E588CD" type="String" />
+	<field name="attachmentAttachmentType" desc="Unique Id of attachment type. Add entries in /data/editor/WeaponsTemplates.xml" type="Hash32" />
+	<field name="UIIconName" desc="Icon name in the UI" type="String" />
+	<field hash="F1B1D97B" type="String" />
+	<field name="sName" type="Hash32" />
+	<field name="locAttachmentNameId" type="Int32" />
+	<field name="bAttachAtStart" desc="Is the attachment already attached to this weapon." type="Boolean" />
+	<field name="bHasWeaponOffset" desc="Tick this to allow weapon offsets to be applied on the parent weapon." type="Boolean" />
+	<field name="bWeaponOffsetOnlyInIronsight" desc="Only allow weapon offsets in ironsight." type="Boolean" />
+	<object name="weaponOffset">
+		<inherit name="CWeaponOffsetSettings" />
+	</object>
+	<field name="arkIronsightOffsetCurve" desc="The curve that maps the current ironsight transition value (x axis 0-1) onto the amount of the offset applied (y axis 0-1)" type="Hash64" />
+	<field name="bTriggersFoldingSights" desc="Set this to allow folding sights to trigger. Set the data for the transform under Folding Sights in the weapon xml" type="Boolean" />
+	<field name="bRevealsHiddenMesh" desc="Set this to make any mesh that's hidden by the meshToHide property in the weapon properties visible again." type="Boolean" />
+	<field name="magazineUpgradeReplacement" desc="Replaces the max ammo in clip." type="Int32" />
+	<field name="bNotAnAttachment" desc="Ignore this in the attachment count." type="Boolean" />
+	<object name="sounds">
+		<inherit name="SSounds" />
+	</object>
+	<object name="entity" />
+	<field name="fReticleParticleScale" desc="This modifies the reticle particle scale if this attachment has a reticle particle." type="Float32" />
+	<object name="OffscreenRenderPropoerties">
+		<object name="OffScreenRenderParams">
+			<inherit name="SOffscreenRenderParams" />
+		</object>
+	</object>
+	<object name="UIProperties">
+		<field name="fAttchamentPosX" desc="UI position X on screen (related to the weapon)" type="Float32" />
+		<field name="fAttchamentPosY" desc="UI position Y on screen (related to the weapon)" type="Float32" />
+	</object>
+</class>

@@ -1,0 +1,10 @@
+<class name="CCameraShakeAndPadRumbleEvent">
+	<inherit name="CEntityEvent" />
+	<field hash="D986CE26" type="String" />
+	<field name="sEffectName" type="Hash32" />
+	<field name="fStartDelay" type="Float32" />
+	<field name="fIntensityModifierLow" type="Float32" />
+	<field name="fIntensityModifierHigh" type="Float32" />
+	<field name="fIntensityModifierCam" type="Float32" />
+	<field name="bCanQueueWhenEventPlaying" type="Boolean" />
+</class>

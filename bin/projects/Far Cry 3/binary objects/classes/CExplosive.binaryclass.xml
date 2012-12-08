@@ -1,4 +1,5 @@
-<class name="CExplosive" inherit="CGameObject">
+<class name="CExplosive">
+	<inherit name="CGameObject" />
 	<field name="sUseString" />
 	<field name="sCategory" />
 	<object name="StimsToExplode">

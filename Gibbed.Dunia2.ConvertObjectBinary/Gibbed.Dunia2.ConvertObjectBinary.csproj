@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="FieldType.cs" />
+    <Compile Include="FieldTypeDeserializers.cs" />
+    <Compile Include="FieldTypeSerializers.cs" />
     <Compile Include="Mode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

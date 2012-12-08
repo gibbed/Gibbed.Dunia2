@@ -27,6 +27,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Xml.XPath;
 using Gibbed.Dunia2.FileFormats;
 using NDesk.Options;
 
@@ -59,7 +60,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     v => mode = v != null ? Mode.ToXml : mode
                     },
                 {
-                    "b|base-name",
+                    "b|base-name=",
                     "when converting FCB to XML, use specified base name instead of file name",
                     v => baseName = v
                     },
@@ -139,7 +140,61 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
             if (mode == Mode.ToFcb)
             {
-                throw new NotImplementedException();
+                string inputPath = extras[0];
+                string outputPath;
+                string basePath;
+
+                if (extras.Count > 1)
+                {
+                    outputPath = extras[1];
+                }
+                else
+                {
+                    outputPath = Path.ChangeExtension(inputPath, null);
+                    outputPath += "_converted.fcb";
+                }
+
+                basePath = Path.ChangeExtension(inputPath, null);
+
+                inputPath = Path.GetFullPath(inputPath);
+                outputPath = Path.GetFullPath(outputPath);
+                basePath = Path.GetFullPath(basePath);
+
+                var bof = new BinaryObjectFile();
+
+                using (var input = File.OpenRead(inputPath))
+                {
+                    if (verbose == true)
+                    {
+                        Console.WriteLine("Loading XML...");
+                    }
+
+                    var doc = new XPathDocument(input);
+                    var nav = doc.CreateNavigator();
+
+                    var root = nav.SelectSingleNode("/object");
+                    if (root == null)
+                    {
+                        throw new FormatException();
+                    }
+
+                    if (verbose == true)
+                    {
+                        Console.WriteLine("Reading XML...");
+                    }
+
+                    bof.Root = ReadNode(basePath, root);
+                }
+
+                if (verbose == true)
+                {
+                    Console.WriteLine("Writing FCB...");
+                }
+
+                using (var output = File.Create(outputPath))
+                {
+                    bof.Serialize(output);
+                }
             }
             else if (mode == Mode.ToXml)
             {
@@ -270,6 +325,90 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
         }
 
+        public static void LoadNameAndHash(XPathNavigator node, out string name, out uint hash)
+        {
+            var _name = node.GetAttribute("name", "");
+            var _hash = node.GetAttribute("hash", "");
+
+            if (string.IsNullOrWhiteSpace(_name) == true &&
+                string.IsNullOrWhiteSpace(_hash) == true)
+            {
+                throw new FormatException();
+            }
+
+            name = string.IsNullOrWhiteSpace(_name) == false ? _name : null;
+            hash = name != null ? CRC32.Hash(name) : uint.Parse(_hash, NumberStyles.AllowHexSpecifier);
+        }
+
+        private static BinaryObject ReadNode(string basePath, XPathNavigator node)
+        {
+            string className;
+            uint classNameHash;
+
+            LoadNameAndHash(node, out className, out classNameHash);
+
+            var parent = new BinaryObject();
+            parent.TypeHash = classNameHash;
+
+            var fields = node.Select("field");
+            while (fields.MoveNext() == true)
+            {
+                if (fields.Current == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                string fieldName;
+                uint fieldNameHash;
+
+                LoadNameAndHash(fields.Current, out fieldName, out fieldNameHash);
+
+                FieldType fieldType;
+                var fieldTypeName = fields.Current.GetAttribute("type", "");
+                if (Enum.TryParse(fieldTypeName, true, out fieldType) == false)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                byte[] data = FieldTypeSerializers.Serialize(fieldType, fields.Current);
+                parent.Values.Add(fieldNameHash, data);
+            }
+
+            var children = node.Select("object");
+            while (children.MoveNext() == true)
+            {
+                parent.Children.Add(LoadNode(basePath, children.Current));
+            }
+
+            return parent;
+        }
+
+        private static BinaryObject LoadNode(string basePath, XPathNavigator node)
+        {
+            string external = node.GetAttribute("external", "");
+            if (string.IsNullOrWhiteSpace(external) == true)
+            {
+                return ReadNode(basePath, node);
+            }
+
+            var inputPath = Path.Combine(basePath, external);
+
+            using (var input = File.OpenRead(inputPath))
+            {
+                Console.WriteLine("Loading object from '{0}'...", Path.GetFileName(inputPath));
+                var doc = new XPathDocument(input);
+                var nav = doc.CreateNavigator();
+
+                var root = nav.SelectSingleNode("/object");
+                if (root == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                return LoadNode(Path.ChangeExtension(inputPath, null), root);
+            }
+        }
+
         private static void WriteNode(Configuration config,
                                       XmlWriter writer,
                                       BinaryObject node,
@@ -341,249 +480,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     else
                     {
                         writer.WriteAttributeString("type", fieldDef.Type.ToString());
-
-                        switch (fieldDef.Type)
-                        {
-                            case FieldType.BinHex:
-                            {
-                                writer.WriteBinHex(kv.Value, 0, kv.Value.Length);
-                                break;
-                            }
-
-                            case FieldType.Boolean:
-                            {
-                                if (kv.Value.Length != 1)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                if (kv.Value[0] != 0 &&
-                                    kv.Value[0] != 1)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString((kv.Value[0] != 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.UInt8:
-                            {
-                                if (kv.Value.Length != 1)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(kv.Value[0].ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.Int8:
-                            {
-                                if (kv.Value.Length != 1)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(((sbyte)kv.Value[0]).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.UInt16:
-                            {
-                                if (kv.Value.Length != 2)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToUInt16(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.Int16:
-                            {
-                                if (kv.Value.Length != 2)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToInt16(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.UInt32:
-                            {
-                                if (kv.Value.Length != 4)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToUInt32(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.Int32:
-                            {
-                                if (kv.Value.Length != 4)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToInt32(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.UInt64:
-                            {
-                                if (kv.Value.Length != 8)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToUInt64(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.Int64:
-                            {
-                                if (kv.Value.Length != 8)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToInt64(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.Float32:
-                            {
-                                if (kv.Value.Length != 4)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToSingle(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.Float64:
-                            {
-                                if (kv.Value.Length != 8)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToDouble(kv.Value, 0).ToString(CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.Vector2:
-                            {
-                                if (kv.Value.Length != 8)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                var x = BitConverter.ToSingle(kv.Value, 0);
-                                var y = BitConverter.ToSingle(kv.Value, 4);
-
-                                writer.WriteString(string.Format("{0},{1}",
-                                                                 x.ToString(CultureInfo.InvariantCulture),
-                                                                 y.ToString(CultureInfo.InvariantCulture)));
-                                break;
-                            }
-
-                            case FieldType.Vector3:
-                            {
-                                if (kv.Value.Length != 12)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                var x = BitConverter.ToSingle(kv.Value, 0);
-                                var y = BitConverter.ToSingle(kv.Value, 4);
-                                var z = BitConverter.ToSingle(kv.Value, 8);
-
-                                writer.WriteString(string.Format("{0},{1},{2}",
-                                                                 x.ToString(CultureInfo.InvariantCulture),
-                                                                 y.ToString(CultureInfo.InvariantCulture),
-                                                                 z.ToString(CultureInfo.InvariantCulture)));
-                                break;
-                            }
-
-                            case FieldType.Vector4:
-                            {
-                                if (kv.Value.Length != 16)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                var x = BitConverter.ToSingle(kv.Value, 0);
-                                var y = BitConverter.ToSingle(kv.Value, 4);
-                                var z = BitConverter.ToSingle(kv.Value, 8);
-                                var w = BitConverter.ToSingle(kv.Value, 12);
-
-                                writer.WriteString(string.Format("{0},{1},{2},{3}",
-                                                                 x.ToString(CultureInfo.InvariantCulture),
-                                                                 y.ToString(CultureInfo.InvariantCulture),
-                                                                 z.ToString(CultureInfo.InvariantCulture),
-                                                                 w.ToString(CultureInfo.InvariantCulture)));
-                                break;
-                            }
-
-                            case FieldType.String:
-                            {
-                                if (kv.Value.Length < 1)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                if (kv.Value[kv.Value.Length - 1] != 0)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(Encoding.UTF8.GetString(kv.Value, 0, kv.Value.Length - 1));
-                                break;
-                            }
-
-                            case FieldType.Hash32:
-                            {
-                                if (kv.Value.Length != 4)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToUInt32(kv.Value, 0).ToString("X8", CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            case FieldType.Hash64:
-                            {
-                                if (kv.Value.Length != 8)
-                                {
-                                    throw new FormatException();
-                                }
-
-                                writer.WriteString(
-                                    BitConverter.ToUInt64(kv.Value, 0).ToString("X16", CultureInfo.InvariantCulture));
-                                break;
-                            }
-
-                            default:
-                            {
-                                throw new NotSupportedException();
-                            }
-                        }
+                        FieldTypeDeserializers.Deserialize(writer, fieldDef, kv.Value);
                     }
 
                     writer.WriteEndElement();
@@ -638,7 +535,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         }
                         else
                         {
-                            Console.WriteLine("Wanted a dynamic class with has {0:X8}", child.TypeHash);
+                            //Console.WriteLine("Wanted a dynamic class with has {0:X8}", child.TypeHash);
                         }
 
                         WriteNode(config, writer, child, childObjectDef);

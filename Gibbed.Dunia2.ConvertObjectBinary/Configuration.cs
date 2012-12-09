@@ -145,7 +145,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 var inheritRawClassDef = rawClassDefs.FirstOrDefault(rcd => rcd.Name == inherit.Name);
                 if (inheritRawClassDef == null)
                 {
-                    throw new InvalidOperationException();
+                    throw new InvalidOperationException(string.Format("could not find definition for binary class '{0}'", inherit.Name));
                 }
 
                 MergeClassDefinition(rawClassDefs, inheritRawClassDef, fieldDefs, nestedClassDefs);

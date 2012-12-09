@@ -43,5 +43,6 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         String,
         Hash32,
         Hash64,
+        ArchetypeId,
     }
 }

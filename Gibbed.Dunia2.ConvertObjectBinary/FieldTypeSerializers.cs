@@ -285,6 +285,16 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     }
                     return BitConverter.GetBytes(value);
                 }
+
+                case FieldType.ArchetypeId:
+                {
+                    ulong value;
+                    if (TryParseUInt64(nav.Value, out value) == false)
+                    {
+                        throw new FormatException();
+                    }
+                    return BitConverter.GetBytes(value);
+                }
             }
 
             throw new NotSupportedException("unsupported field type");

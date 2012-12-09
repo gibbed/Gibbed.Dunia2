@@ -289,6 +289,19 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     break;
                 }
 
+                case FieldType.ArchetypeId:
+                {
+                    if (data == null ||
+                        data.Length != 8)
+                    {
+                        throw new FormatException("field type ArchetypeId requires 8 bytes");
+                    }
+
+                    var value = BitConverter.ToUInt64(data, 0);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
                 default:
                 {
                     throw new NotSupportedException("unsupported field type");

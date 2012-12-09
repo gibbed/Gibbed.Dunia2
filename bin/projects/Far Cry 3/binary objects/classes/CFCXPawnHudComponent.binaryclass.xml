@@ -1,0 +1,53 @@
+<class name="CFCXPawnHudComponent">
+	<inherit name="CHudComponent" />
+	<object name="MiniMap">
+		<object name="SinglePlayer">
+			<field name="fDefaultRadiusDistance" desc="The default minimap radius distance in meters." type="Float32" />
+			<field name="fCombatRadiusDistance" desc="The combat minimap radius distance in meters." type="Float32" />
+			<field name="fSafeZoneRadiusDistance" desc="The safe zone minimap radius distance in meters." type="Float32" />
+			<object name="VehicleScale">
+				<object name="LandOrWaterVehicle">
+					<field name="fVehicleRadiusDistance" desc="The vehicle minimap radius distance in meters." type="Float32" />
+					<field name="fVehicleMinSpeed" desc="The vehicle minimum speed where we start to zoom out." type="Float32" />
+					<field name="fVehicleMaxSpeed" desc="The vehicle maximum speed where we reach the vehicle radius distance." type="Float32" />
+				</object>
+				<object name="GliderVehicle">
+					<field name="fGliderRadiusDistance" desc="The glider radius distance in meters." type="Float32" />
+					<field name="fGliderZoomDelay" desc="The glider zoom delay before we start to zoom out." type="Float32" />
+				</object>
+			</object>
+			<object name="Encounter">
+				<field name="fEncounterDisplayRadius" desc="Encounter radius where we display an icon" type="Float32" />
+			</object>
+			<object name="Pickable">
+				<field name="fCollectibleDisplayRadius" desc="Collectible radius where we display its icon" type="Float32" />
+			</object>
+		</object>
+		<object name="MultiPlayer">
+			<field name="fTimeToDisplayShootingEnemy" desc="How many seconds the enemy icon should be shown when he is shooting outside LOS." type="Float32" />
+		</object>
+	</object>
+	<object name="Reticle">
+		<field name="fReticleAlpha" desc="Player's reticle alpha." type="Float32" />
+		<field name="fReticleAlphaMinValue" desc="Player's reticle alpha min value, used to fadeout the reticle while the player is shooting." type="Float32" />
+		<field name="fReticleHitCrossHairAlpha" desc="Player's reticle hit crosshair alpha." type="Float32" />
+	</object>
+	<object name="HealthSystem">
+		<field name="arkHealthVignetteCurve" type="Hash64" />
+		<field name="fHealthVignetteTimer" desc="Animation Timing" type="Float32" />
+		<field name="fHealthBarDisplayTimer" desc="Time the health bar stays on screen." type="Float32" />
+		<field name="fHealthBarBlinkingThreshold" desc="If the player's life is below the threshold, the bar will blink." type="Float32" />
+		<field name="fBloodDisplayTimer" desc="Time a blood splatter stays on screen." type="Float32" />
+	</object>
+	<object name="InventoryWheel">
+		<field name="fInventoryWheelSelectionTiming" desc="Inventory wheel Selection Timing" type="Float32" />
+		<field name="fInventoryWheelTiming" desc="Inventory wheel Timing" type="Float32" />
+	</object>
+	<object name="PopupReminder">
+		<field name="fSkillPointReminderTimer" desc="Time before we display the popup reminder" type="Float32" />
+		<field name="fObjectiveReminderTimer" desc="Time before we display the objective reminder" type="Float32" />
+	</object>
+	<object name="StealthIndicator">
+		<field name="fStealthWarningSoundThreshold" desc="Detection level where whe play the warning sound" type="Float32" />
+	</object>
+</class>

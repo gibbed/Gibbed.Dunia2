@@ -1,0 +1,3 @@
+<class name="CHudComponent">
+	<inherit name="CEntityComponent" />
+</class>

@@ -1,0 +1,12 @@
+<class name="CGridParticleSpawner">
+	<inherit name="#11E152E0" />
+	<field hash="425BD5E7" type="String" />
+	<field name="psWaterBubbles" type="Hash64" />
+	<field name="iBubbleEmitPerSec" type="Int32" />
+	<field name="uiMaxRaysPerRegion" type="UInt32" />
+	<field name="fRaysPerSecond" type="Float32" />
+	<field name="uiGridSize" type="UInt32" />
+	<field name="uiHalfNumGrids" type="UInt32" />
+	<field name="bClampAboveWaterLevel" type="Boolean" />
+	<field name="bClampUnderWaterLevel" type="Boolean" />
+</class>

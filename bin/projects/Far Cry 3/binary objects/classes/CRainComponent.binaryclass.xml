@@ -1,0 +1,13 @@
+<class name="CRainComponent">
+	<inherit name="CEntityComponent" />
+	<field hash="967351FD" type="String" />
+	<field name="psRainEmitter" type="Hash64" />
+	<field hash="24AFCA78" type="String" />
+	<field name="psRainSplash" type="Hash64" />
+	<object name="SplashSpawningGrid">
+		<inherit name="CGridParticleSpawner" />
+	</object>
+	<field name="bAutoStart" type="Boolean" />
+	<field name="fIntensity" type="Float32" />
+	<field name="fEmitterDistanceOffset" type="Float32" />
+</class>

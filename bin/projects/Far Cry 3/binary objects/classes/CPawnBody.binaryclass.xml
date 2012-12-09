@@ -1,0 +1,46 @@
+<class name="CPawnBody">
+	<inherit name="#11E152E0" />
+	<field name="fJumpHeight" type="Float32" />
+	<field name="fJumpHeightExhausted" type="Float32" />
+	<field name="fGravity" type="Float32" />
+	<field name="fWalkingMaxSpeed" type="Float32" />
+	<field name="fWalkingMaxSpeedCrouch" type="Float32" />
+	<field name="fWalkingAcceleration" type="Float32" />
+	<field name="fWalkingDeceleration" type="Float32" />
+	<field name="fForwardWalkMultiplier" type="Float32" />
+	<field name="fSprintMultiplier" type="Float32" />
+	<field name="arkSprintCurve" type="Hash64" />
+	<field name="fSprintingDeceleration" type="Float32" />
+	<field name="fClickToPressForwardSprintBuffer" type="Float32" />
+	<field name="fJumpFromCoverTime" type="Float32" />
+	<field name="fBackwardWalkMultiplier" type="Float32" />
+	<field name="fBackwardCrouchRunMultiplier" type="Float32" />
+	<field name="fSwimmingDepthMin" type="Float32" />
+	<field name="fSwimmingMaxSpeed" type="Float32" />
+	<field name="fSwimmingAcceleration" type="Float32" />
+	<field name="fSwimmingDeceleration" type="Float32" />
+	<field name="fDivingMaxSpeed" type="Float32" />
+	<field name="fDivingAcceleration" type="Float32" />
+	<field name="fDivingDeceleration" type="Float32" />
+	<field name="fSprintingTurnModifier" type="Float32" />
+	<field name="fSprintingStrafeLimit" type="Float32" />
+	<field name="bCanClimbLedges" type="Boolean" />
+	<field name="fGroundClimbMinHeight" type="Float32" />
+	<field name="fGroundClimbMaxHeight" type="Float32" />
+	<field name="fSwimmingClimbMinHeight" type="Float32" />
+	<field name="fSwimmingClimbMaxHeight" type="Float32" />
+	<field name="fJumpClimbMinHeight" type="Float32" />
+	<field name="fJumpClimbMaxHeight" type="Float32" />
+	<field name="fJumpClimbMinHeightAboveGround" type="Float32" />
+	<field name="fClimbWidthNeeded" type="Float32" />
+	<field name="fJumpClimbMinVelocity" desc="When closest to ledges you must be at least at this horizontal speed before physics is applied to auto climb." type="Float32" />
+	<field name="fJumpClimbMaxVelocity" desc="When furthest from ledges you must be at least at this horizontal speed before physics is applied to auto climb." type="Float32" />
+	<object name="LadderParams">
+		<object name="HandsOnSide">
+			<inherit name="CPawnBody_LadderParameters" />
+		</object>
+		<object name="HandOverHand">
+			<inherit name="CPawnBody_LadderParameters" />
+		</object>
+	</object>
+</class>

@@ -1,0 +1,18 @@
+<class name="CProceduralSway">
+	<inherit name="#11E152C8" />
+	<field name="sway_horizontal_speed" type="Float32" />
+	<field name="sway_horizontal_amplitude" type="Float32" />
+	<field name="sway_vertical_speed" type="Float32" />
+	<field name="sway_vertical_amplitude" type="Float32" />
+	<object name="HoldBreathAbility">
+		<field name="fGoingIntoHoldBreathTime" type="Float32" />
+		<field name="fHoldBreathMaxTime" type="Float32" />
+		<field name="fGoingOutOfHoldBreathTime" type="Float32" />
+		<field name="fCatchingBreathTime" type="Float32" />
+		<field name="fHoldingBreathSpecialSwayModifier" type="Float32" />
+		<field name="fOutOfBreathSpecialSwayModifier" type="Float32" />
+		<field name="sndInhaleSound" type="String" />
+		<field name="sndExhaleSound" type="String" />
+		<field name="sndtpSoundType" type="Int32" />
+	</object>
+</class>

@@ -1,0 +1,8 @@
+<class name="CPawn::SPawnImpl::SDropInfos">
+	<inherit name="#11E152C8" />
+	<field name="bDropPrimary" type="Boolean" />
+	<field name="bDropSecondary" type="Boolean" />
+	<field name="bDropSpecial" type="Boolean" />
+	<field name="bDropGadget" type="Boolean" />
+	<field name="bDropHand" type="Boolean" />
+</class>

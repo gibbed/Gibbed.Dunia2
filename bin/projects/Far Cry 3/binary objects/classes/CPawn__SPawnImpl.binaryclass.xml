@@ -1,0 +1,138 @@
+<class name="CPawn::SPawnImpl">
+	<inherit name="#11E152C8" />
+	<field name="bIsAI" type="Boolean" />
+	<object name="Body">
+		<inherit name="CPawnBody" />
+	</object>
+	<object name="Skills" />
+	<field hash="502D1B6A" type="String" />
+	<field name="filePawnStateMachine" type="Hash64" />
+	<object name="Inventory">
+		<inherit name="CInventoryViewPawn" />
+	</object>
+	<object name="Procedural_sway">
+		<inherit name="CProceduralSway" />
+	</object>
+	<object name="IdleCycleBreaker">
+		<field name="fMinTime" type="Float32" />
+		<field name="fMaxTime" type="Float32" />
+	</object>
+	<object name="Diving">
+		<field name="fDivingCheckHorizontalOffsetA" type="Float32" />
+		<field name="fDivingCheckVerticalOffsetA" type="Float32" />
+		<field name="fDivingCheckHorizontalOffsetB" type="Float32" />
+		<field name="fDivingCheckVerticalOffsetB" type="Float32" />
+		<field name="fDivingCheckHorizontalOffsetC" type="Float32" />
+		<field name="fDivingCheckVerticalOffsetC" type="Float32" />
+		<field name="fDivingMaxDistanceToWater" desc="Max distance to water to dive" type="Float32" />
+		<field name="fDivingMinWaterDepth" desc="Min water depth to dive" type="Float32" />
+		<field name="fDivingCheckRadius" type="Float32" />
+	</object>
+	<object name="SlopeBehavior">
+		<field name="fSlideSlopeAngle" desc="Slope angle at which the pawn will slide and partially lose control" type="Float32" />
+		<field name="fFallingSlopeAngle" desc="Slope angle at which the pawn will fall and completely lose control" type="Float32" />
+		<field name="fMinSlideFallAccel" desc="Acceleration of the pawn towards ground when slide falling at min slide angle" type="Float32" />
+		<field name="fMaxSlideFallAccel" desc="Acceleration of the pawn towards ground when slide falling at max slide angle" type="Float32" />
+		<field name="fSlideFallDecelOnGround" desc="Deceleration of sliding speed when not sliding and on ground" type="Float32" />
+		<field name="fSlideFallDecelInAir" desc="Deceleration of sliding speed when not sliding and in the air" type="Float32" />
+		<field name="fMinFallSpeedToSlideSpeedMultiplier" desc="Multiplier applied to fall speed to translate into slide speed when landing onto a slope at min sliding angle" type="Float32" />
+		<field name="fMaxFallSpeedToSlideSpeedMultiplier" desc="Multiplier applied to fall speed to translate into slide speed when landing onto a slope at max sliding angle" type="Float32" />
+		<field name="fSlideSpeedToFallSpeedMultiplier" desc="Transfer this amount of sliding speed into falling speed when going from slide to fall" type="Float32" />
+		<field name="fSlideSpeedToFallSpeedSlowDown" desc="Multiplier applied to sliding speed when going from slide to fall" type="Float32" />
+		<field name="fMaxSlideFallVelocity" desc="Max velocity while slide falling" type="Float32" />
+		<field name="fSlideFallVelocityReorientSpeed" desc="Speed in radian at which the slide velocity vector reorients itself to the new desired direction" type="Float32" />
+		<field name="fSlidingTargetInputContribution" desc="Desired input contribution when sliding" type="Float32" />
+		<field name="fSlidingInputContributionAccel" desc="Speed at which input contribution goes back to normal" type="Float32" />
+		<field name="fSlidingInputContributionDecel" desc="Speed at which input contribution reduces as we are sliding" type="Float32" />
+		<field name="fMinTimeToUpdateSlidingPMS" desc="Min frequency (seconds) at which we can update the sliding PMS" type="Float32" />
+		<field name="fMinTimeOnGroundToForceUpdateSlidingPMS" desc="If pawn on ground for this long, force update sliding PMS" type="Float32" />
+		<field name="fMinTimeSlidingToForceSlidingPMS" desc="If pawn sliding for this long, force update sliding PMS" type="Float32" />
+		<field name="fMinHeightDiffToSlide" desc="Pawn will not slide before he travels this vertical distance from the last valid position" type="Float32" />
+		<field name="iMinFramesGroundValidToNavigate" desc="Min number of frames necessary on valid ground angle to navigate (get out of slope behavior sliding)" type="Int32" />
+		<field name="fMinSlopeAngleForFrameValidation" desc="The min number of frames only applies if the current ground angle is at least this high" type="Float32" />
+		<field name="fAntiStuckMinDisplacement" desc="The min displacement over a set period of time to ensure anti-stuck does not trigger" type="Float32" />
+		<field name="fAntiStuckMinTime" desc="If player has not moved enough for this long while in sliding, anti-stuck triggers!" type="Float32" />
+	</object>
+	<object name="Falling">
+		<field name="fFallDistanceA" desc="[Idle or Stumble] 1st distance at which pawn will take MINIMUM damage when falling at least this high" type="Float32" />
+		<field name="fFallDistanceB" desc="[Crouch or Roll] 2nd distance at which pawn will take damage when falling at least this high" type="Float32" />
+		<field name="fFallDistanceC" desc="[Crouch or Roll] 3rd distance at which pawn will take damage when falling at least this high" type="Float32" />
+		<field name="fFallDistanceD" desc="[Death by gravity] 4th distance at which pawn will take MAXIMUM damage when falling at least this high" type="Float32" />
+		<field name="fMinHorizontalSpeedToRoll" desc="Min Horizontal speed when landing for pawn to perform Roll or Stumble" type="Float32" />
+		<field name="fSpecialFallDistanceA" desc="[Idle or Stumble] 1st distance at which pawn will take MINIMUM damage when falling at least this high" type="Float32" />
+		<field name="fSpecialFallDistanceB" desc="[Crouch or Roll] 2nd distance at which pawn will take damage when falling at least this high" type="Float32" />
+		<field name="fSpecialFallDistanceC" desc="[Crouch or Roll] 3rd distance at which pawn will take damage when falling at least this high" type="Float32" />
+		<field name="fSpecialFallDistanceD" desc="[Death by gravity] 4th distance at which pawn will take MAXIMUM damage when falling at least this high" type="Float32" />
+		<field name="fTimeToGroundForLandingAnim" desc="Time(in seconds) before hitting ground at which we must start playing the landing animations" type="Float32" />
+		<field name="fTimeToGroundForHolster" desc="Time(in seconds) before hitting ground at which we must start holstering weapon" type="Float32" />
+		<field name="fMinFallDistanceForLandInWater" type="Float32" />
+		<field name="fMinVerticalSpeedToSendStims" type="Float32" />
+		<field name="fEnterWaterStimRadius" type="Float32" />
+		<field name="selEnterWaterStimType" /><!-- enumEnterWaterStimType -->
+		<field name="fFallDistancePawnDamagePercentA" type="Float32" />
+		<field name="fFallDistancePawnDamagePercentB" type="Float32" />
+		<field name="fFallDistancePawnDamagePercentC" type="Float32" />
+		<object name="StimsOnObjectsFallDistanceA">
+			<inherit name="CStimArrayBase_SStimInfo" />
+		</object>
+		<object name="StimsOnObjectsFallDistanceB">
+			<inherit name="CStimArrayBase_SStimInfo" />
+		</object>
+		<object name="StimsOnObjectsFallDistanceC">
+			<inherit name="CStimArrayBase_SStimInfo" />
+		</object>
+		<object name="StimsOnObjectsFallDistanceD">
+			<inherit name="CStimArrayBase_SStimInfo" />
+		</object>
+		<field name="fStimsOnObjectsRadius" desc="Radius that stims will hit objects around the landing position of the pawn." type="Float32" />
+		<field name="fHorizontalSpeedFactor" desc="Modifies the sensitivity of movement horizontally when you are falling." type="Float32" />
+		<field name="fHorizontalSpeedAccel" desc="Modifies the sensitivity of movement horizontally when you are falling." type="Float32" />
+		<field name="fHorizontalSpeedDecel" desc="Modifies the sensitivity of movement horizontally when you are falling." type="Float32" />
+		<field name="fDiveSprintHorizontalSpeedFactor" desc="Modifies the sensitivity of movement horizontally when you are falling after a dive sprint." type="Float32" />
+		<field name="fDiveSprintHorizontalSpeedAccel" desc="Modifies the sensitivity of movement horizontally when you are falling after a dive sprint." type="Float32" />
+		<field name="fDiveSprintHorizontalSpeedDecel" desc="Modifies the sensitivity of movement horizontally when you are falling after a dive sprint." type="Float32" />
+		<field name="fMinFallDistancetoPlayPostFX" type="Float32" />
+		<field name="fMaxFallDistancetoPlayPostFX" type="Float32" />
+		<field name="fMinFallDistancetoPlaySound" type="Float32" />
+		<field name="sndStartFallSoundID" type="String" />
+		<field name="sndStopFallSoundID" type="String" />
+		<field name="sndtpSoundType" type="Int32" />
+		<field name="sndmlFallSpeedMultilayer" type="Hash32" />
+		<field name="mixFallingSoundPreset" type="Hash64" />
+		<field name="sndvarDistanceShooterToPlayer" type="Hash32" />
+	</object>
+	<object name="Wingsuit">
+		<field name="bHasWingsuitBonus" type="Boolean" />
+		<field name="fFallTimeNeededToDeployWingsuit" desc="Duration from when the feet left the ground before player can deploy Wingsuit (mandatory condition)" type="Float32" />
+		<field name="fDistanceNeededToDeployWingsuit" desc="Minimum distance to ground needed for the player to be able to deploy Wingsuit (mandatory condition)" type="Float32" />
+		<field name="fHSpeedNeededToDeployWingsuit" desc="Horizontal Speed needed for the player to be able to deploy Wingsuit (either H or V is needed)" type="Float32" />
+		<field name="fVSpeedNeededToDeployWingsuit" desc="Vertical Speed needed for the player to be able to deploy Wingsuit (either H or V is needed)" type="Float32" />
+		<field name="fDivingDistanceToWaterNeededToDeployWingsuit" desc= "When diving, minimum distance to water needed" type="Float32" />
+		<field name="fFrontRayCastLength" desc="Length of raycast in front of player to deploy wingsuit" type="Float32" />
+		<field name="fFrontRayCastAngle" desc="Angle on pitch of raycast in front of player to deploy wingsuit" type="Float32" />
+	</object>
+	<object name="DiveSprinting">
+		<field name="fDiveSprintBufferTime" desc="Amount of time for which all conditions must be met to trigger Dive Sprint" type="Float32" />
+		<field name="fForwardRaycastLength" desc="Distance in front that needs to be clear" type="Float32" />
+		<field name="fDownwardRaycastLength" desc="Drop distance (after forward distance) that needs to be clear" type="Float32" />
+		<field name="fDownwardRaycastAngle" desc="Angle of the Drop raycast" type="Float32" />
+		<field name="fMaxGroundAngle" desc="Maximum angle of ground on which player can Dive Sprint" type="Float32" />
+	</object>
+	<object name="VehicleCollisionDamage">
+		<field name="fHealthPercentageRemovedAtMaxCrushLevel" desc="Amount of time for which all conditions must be met to trigger Dive Sprint" type="Float32" />
+		<field name="fMaxHealthRemoved" desc="Distance in front that needs to be clear" type="Float32" />
+	</object>
+	<object name="PlayerIndoorOutdoor">
+		<field name="sndswtpIndoorOutdoorSwitchType" type="Hash32" />
+		<field name="sndswvlSoundSwitchPlayerIndoor" type="Hash32" />
+		<field name="sndswvlSoundSwitchPlayerOutdoor" type="Hash32" />
+	</object>
+	<field name="sCharacterName" type="String" />
+	<field name="nCharacterFireID" type="String" />
+	<field name="sCharacterType" type="String" />
+	<object name="DropInfos">
+		<inherit name="CPawn::SPawnImpl::SDropInfos" />
+	</object>
+	<field name="bIsVIP" type="Boolean" />
+	<field name="bIsVIPCoop" type="Boolean" />
+</class>

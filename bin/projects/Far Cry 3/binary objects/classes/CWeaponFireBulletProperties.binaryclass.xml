@@ -7,13 +7,13 @@
 		<inherit name="CPhysBulletHitStim" />
 	</object>
 	<object name="MuzzleStims" desc="The list of Stims that a weapon produces when it is fired (Ex: Sound steam)">
-		<inherit name="CStimArrayBase" />
+		<inherit name="CStimArrayBase_SStimInfo" />
 	</object>
 	<object name="ImpactStims" desc="The list of primary stims that the weapon produces at the point of impact (inflicts damage from the gun).">
-		<inherit name="CStimArrayBase" />
+		<inherit name="CStimArrayBase_SStimInfo" />
 	</object>
 	<object name="VictimStims" desc="The list of stims that weapon produces for the victim These are additional stims that can be called when the weapon hits a target. USE WITH CAUTION!">
-		<inherit name="CStimArrayBase" />
+		<inherit name="CStimArrayBase_SStimInfo" />
 	</object>
 	<field name="BulletWhizRadius" desc="The radius of the bullet whiz sound around the weapon line of fire that causes the AI to react." type="Float32" />
 	<object name="RangeMultipliers">

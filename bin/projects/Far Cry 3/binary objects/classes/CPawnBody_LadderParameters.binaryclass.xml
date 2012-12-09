@@ -1,0 +1,7 @@
+<class name="CPawnBody_LadderParameters">
+	<!-- #11E41298 -->
+	<inherit name="#11E152C8" />
+	<field name="fLadderClimbingSpeed" type="Float32" />
+	<field name="fLadderSlideDownSpeed" type="Float32" />
+	<field name="arkLadderSpeedMultiplierCurve" type="Hash64" />
+</class>

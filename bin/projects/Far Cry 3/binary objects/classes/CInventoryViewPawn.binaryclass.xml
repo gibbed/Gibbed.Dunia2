@@ -1,0 +1,57 @@
+<class name="CInventoryViewPawn">
+	<inherit name="#11E152E0" />
+	<field hash="8C965C28" type="String" />
+	<field name="packInventoryPack" type="Hash32" />
+	<field name="bUnlimitedAmmo" type="Boolean" />
+	<field name="bAutoReload" type="Boolean" />
+	<field name="bAutoDraw" type="Boolean" />
+	<field hash="130CDED8" type="String" />
+	<field name="sInitialWeaponCategory" type="Hash32" />
+	<field name="UseExternalWeapon" />
+	<field name="Locked" />
+	<field name="WeaponLocked" />
+	<field name="Inventory" />
+	<field name="ThrowGadget" />
+	<field name="Pouch" />
+	<field name="NumSlotsUnlocked" type="Int32" />
+	<field name="MaxLoot" desc="Initial max loot you can carry." type="Int32" />
+	<field name="MaxMoney" desc="Initial max money you can carry." type="Int32" />
+	<field name="CurrentWeapon" />
+	<field name="CurrentWeaponEntity" />
+	<field name="DesiredWeapon" />
+	<field name="DesiredWeaponEntity" />
+	<field name="LastWeapon" />
+	<field name="LastWeaponEntity" />
+	<field name="OldLastWeapon" />
+	<field name="OldLastWeaponEntity" />
+	<field name="LastPrimaryWeaponEntity" />
+	<field name="LastSecondaryEntity" />
+	<field name="CurrentGadget" />
+	<field name="DesiredGadget" />
+	<field name="LastGadget" />
+	<field name="EquippedTrack" />
+	<field name="DesiredTrack" />
+	<object name="BackupEquipments">
+		<object name="BackupEquipment">
+		</object>
+	</object>
+	<object name="Props">
+		<object name="Prop">
+			<object name="Prop">
+				<field name="PropName" />
+			</object>
+		</object>
+	</object>
+	<object name="AmmoInClips">
+		<object name="AmmoInClip">
+			<object name="AmmoInClip">
+				<field name="AmmoInClipName" />
+			</object>
+		</object>
+	</object>
+	<object name="Archetypes">
+		<object name="Archetype">
+			<field name="arkId" type="Hash64" />
+		</object>
+	</object>
+</class>

@@ -1,0 +1,7 @@
+<class name="CTaggingComponent">
+	<inherit name="CEntityComponent" />
+	<object name="IronSightTagging">
+		<field name="fOnTargetRadius" desc="The radius around the target" type="Float32" />
+	</object>
+	<field name="fTaggingRange" desc="The tagged entity must be within that range to stay tagged." type="Float32" />
+</class>

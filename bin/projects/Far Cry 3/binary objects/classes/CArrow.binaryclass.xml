@@ -1,0 +1,67 @@
+<class name="CArrow">
+	<inherit name="CProjectile" />
+	<field name="sFXBone" />
+	<object name="Stages">
+		<object name="Idle">
+			<field hash="BE25F0C9" type="String" />
+			<field name="psLoopPS" desc="Particle played at the tip while idle (not yet fired.)" type="Hash64" />
+			<field name="sndLoopSound" type="String" />
+			<field name="sndtpLoopSound" type="Hash32" />
+			<field name="sndLoopEndSound" type="String" />
+			<field name="sndtpLoopEndSound" type="Hash32" />
+		</object>
+		<object name="Fire">
+			<field name="fSpeed" desc="Speed at which rocket is fired" type="Float32" />
+			<object name="curveTensionSpeedFactorCurve" desc="Multiply the fire speed by the y value of the curve when the arrow is fired with this tension from the bow.">
+				<inherit name="CCurveObj" />
+			</object>
+			<field name="fGravity" desc="Gravity affecting the rocket when fired" type="Float32" />
+			<field name="fHipFireMaxDeviationAngle" desc="Max deviation angle(in degrees) when shooting from hip fire" type="Float32" />
+			<field name="fCrouchHipFireMaxDeviationAngle" desc="Max deviation angle(in degrees) when crouched and shooting from hip fire" type="Float32" />
+			<field name="fIronSightMaxDeviationAngle" desc="Max deviation angle(in degrees) when shooting from ironsight" type="Float32" />
+			<field hash="3BB1654D" type="String" />
+			<field name="psStartPS" type="Hash64" />
+			<field hash="BE25F0C9" type="String" />
+			<field name="psLoopPS" type="Hash64" />
+			<field name="fParticleEmitMultiplierForFullSpeed" desc="The rate of emission of the particles are multiplied by this proportional to the speed of the bow when the arrow is fired. max speed =&lt; max emit rate." />
+			<field name="sndStartSound" type="String" />
+			<field name="sndtpStartSound" type="Hash32" />
+			<field name="sndLoopSound" type="String" />
+			<field name="sndtpLoopSound" type="Hash32" />
+			<field name="sndLoopEndSound" type="String" />
+			<field name="sndtpLoopEndSound" type="Hash32" />
+		</object>
+		<object name="Fall">
+			<field name="fTime" desc="Delay from launch(in seconds) before rocket starts to fall" type="Float32" />
+			<field name="fGravity" desc="Gravity affecting rocket when it is falling" type="Float32" />
+			<field hash="3BB1654D" type="String" />
+			<field name="psStartPS" type="Hash64" />
+			<field hash="BE25F0C9" type="String" />
+			<field name="psLoopPS" type="Hash64" />
+			<field name="sndStartSound" type="String" />
+			<field name="sndtpStartSound" type="Hash32" />
+			<field name="sndLoopSound" type="String" />
+			<field name="sndtpLoopSound" type="Hash32" />
+			<field name="sndLoopEndSound" type="String" />
+			<field name="sndtpLoopEndSound" type="Hash32" />
+		</object>
+		<field name="fMaxDistance" desc="Maximum distance(in meters) to travel before explosion" type="Float32" />
+		<field name="fMaxLifeTime" desc="Maximum life time(in seconds) before explosion. WARNING: Delay in the Explosive component also affects this!" type="Float32" />
+	</object>
+	<field name="selArrowType" /><!-- enumArrowType -->
+	<field name="arkPickupArchetype" desc="The name of the pickup archetype, replaces the particle arrow with this (rigid) after the first collision with something." type="Hash64" />
+	<object name="BaseDamage" desc="Damage stims." />
+	<object name="ImpactStims" desc="impact stims (for effects etc).">
+		<inherit name="CStimArrayBase_SStimInfo" />
+	</object>
+	<object name="FlightStims" desc="Stims triggered each frame while the arrow is in flight">
+		<inherit name="CStimArrayBase_SStimInfo" />
+	</object>
+	<field name="fRestitution" desc="[0-1] How much bounce is applied when deflecting off an object." type="Float32" />
+	<field name="fArrowLength" desc="The length of the arrow in metres - used for penetration distances." type="Float32" />
+	<field name="Active" />
+	<field name="Step" />
+	<field name="Origin" />
+	<field name="TimeSinceLaunch" />
+	<field name="Shooter" />
+</class>

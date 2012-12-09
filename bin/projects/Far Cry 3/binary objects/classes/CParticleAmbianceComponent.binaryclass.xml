@@ -1,0 +1,10 @@
+<class name="CParticleAmbianceComponent">
+	<inherit name="CEntityComponent" />
+	<field name="zoneExclusionRegion" />
+	<field name="fExclusionRegionThreshold" type="Float32" />
+	<object name="Regions">
+		<object name="Region">
+			<inherit name="CParticleRegion" />
+		</object>
+	</object>
+</class>

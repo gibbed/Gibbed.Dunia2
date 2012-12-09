@@ -1,0 +1,11 @@
+<class name="CParticleAmbiance">
+	<inherit name="#11E152E0" />
+	<field hash="93D2AFB5" type="String" />
+	<field name="psParticleSystem" type="Hash64" />
+	<object name="curveIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveTimeOfDayIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+</class>

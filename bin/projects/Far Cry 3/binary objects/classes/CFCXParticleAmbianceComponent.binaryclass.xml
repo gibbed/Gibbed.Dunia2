@@ -1,0 +1,8 @@
+<class name="CFCXParticleAmbianceComponent">
+	<inherit name="CParticleAmbianceComponent" />
+	<object name="WindParticleSystems">
+		<object name="ParticleSystemRegion">
+			<inherit name="CParticleRegion" />
+		</object>
+	</object>
+</class>

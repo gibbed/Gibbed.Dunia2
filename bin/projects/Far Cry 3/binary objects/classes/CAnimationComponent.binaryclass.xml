@@ -1,0 +1,7 @@
+<class name="CAnimationComponent">
+	<inherit name="CBaseAnimationComponent" />
+	<field hash="BC76906F" type="String" />
+	<field name="fileSkeletonMocap" type="Hash64" />
+	<field name="bEnableLOD" type="Boolean" />
+	<field name="bEnablePartBlending" type="Boolean" />
+</class>

@@ -1,0 +1,8 @@
+<class name="CZoneInfoComponent">
+	<inherit name="CEntityComponent" />
+	<field name="fSamplingRadius" type="Float32" />
+	<field name="uiGridSubdivisions" type="UInt32" />
+	<field name="fDensityAdjustmentSpeed" type="Float32" />
+	<field name="fWeightScale" type="Float32" />
+	<field name="fWeightDistributionPower" type="Float32" />
+</class>

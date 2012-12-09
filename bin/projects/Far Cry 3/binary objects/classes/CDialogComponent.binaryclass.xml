@@ -1,0 +1,9 @@
+<class name="CDialogComponent">
+	<inherit name="CEntityComponent" />
+	<field name="CanPlaySystemicDialog" desc="Enable or Disable an agent systemic dialog" type="Boolean" />
+	<object name="RdmActorList">
+		<object name="RdmActorList">
+			<field name="tmplRdmActorList" />
+		</object>
+	</object>
+</class>

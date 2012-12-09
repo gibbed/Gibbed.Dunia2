@@ -1,0 +1,9 @@
+<class name="CUnlockEntityPopupList">
+	<inherit name="#11E152E0" />
+	<field name="entEntityId" type="Hash64" />
+	<object name="UnlockPopups">
+		<object name="UnlockPopup">
+			<field name="popupLocId" />
+		</object>
+	</object>
+</class>

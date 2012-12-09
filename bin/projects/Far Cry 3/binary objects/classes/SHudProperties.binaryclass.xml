@@ -1,0 +1,113 @@
+<class name="SHudProperties">
+	<inherit name="CNomadDbObjectNamed" />
+	<object name="HUDEvents">
+		<object name="Crafting">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="Collectible">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="BlockingTutorial">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="HintBox">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="MissionStart">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="ObjectiveUpdate">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="ObjectiveReminderUpdate">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="LastObjectiveComplete">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="MissionComplete">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="MissionFail">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="MissionExit">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="XP">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="SkillPoint">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="Money">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="Prompt">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="UnlockXP">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="WikiUpdate">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="VideoTablet">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="Loot">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="KillXP">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="DynamicChecklistObjective">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="OpenworldComplete">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="IncomingOutgoingCall">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+		<object name="LockedContentUpdate">
+			<inherit name="CHudUpdateProperties" />
+		</object>
+	</object>
+	<object name="UnlockEntitiesPopups">
+		<object name="Entities">
+			<object name="Entity">
+				<inherit name="CUnlockEntityPopupList" />
+			</object>
+		</object>
+	</object>
+	<object name="TowerEntitiesPopups">
+		<object name="Entities">
+			<object name="Entity">
+				<object name="Entity">
+				</object>
+			</object>
+		</object>
+	</object>
+	<object name="MissionEntitiesPopups">
+		<object name="Entities">
+			<object name="Entity">
+				<object name="Entity">
+				</object>
+			</object>
+		</object>
+	</object>
+	<object name="TutorialPaths">
+		<object name="TutorialPath">
+			<object name="Tutorial">
+				<inherit name="CTutorialResourcePath" />
+			</object>
+		</object>
+	</object>
+	<object name="XPTierData">
+		<field name="Tier0" type="Float32" />
+		<field name="Tier1" type="Float32" />
+		<field name="Tier2" type="Float32" />
+		<field name="Tier3" type="Float32" />
+	</object>
+</class>

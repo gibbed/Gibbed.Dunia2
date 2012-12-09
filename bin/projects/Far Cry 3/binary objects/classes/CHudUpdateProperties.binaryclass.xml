@@ -1,0 +1,14 @@
+<class name="CHudUpdateProperties">
+	<inherit name="#11E152E0" />
+	<field name="iPriority" type="Int32" />
+	<field name="fTimer" type="Float32" />
+	<object name="Conditions">
+		<object name="Condition">
+			<!-- #11E4DD38 -->
+			<field name="selConditionType" /><!-- enumConditionType -->
+			<field name="fConditionValue" type="Float32" />
+			<field name="MissionName" type="String" />
+			<field name="ConditioCurrentValue" />
+		</object>
+	</object>
+</class>

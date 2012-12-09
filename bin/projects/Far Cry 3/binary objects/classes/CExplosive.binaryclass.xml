@@ -144,7 +144,7 @@
 	<field name="Shooter" />
 	<field name="LastAIUpdatePos" />
 	<field name="ShootOrigin" />
-	<field name="arkStickyFireFlame" type="Hash64" />
+	<field name="arkStickyFireFlame" type="ArchetypeId" />
 	<field name="sStickyFireWeaponName" desc="Weapon name used by sticky fire stim" type="String" />
 	<object name="postFxData">
 		<inherit name="CExplosionPostFXData" />

@@ -12,5 +12,5 @@
 	<field name="fAlertSoundRadHit" desc="Alerting sound radius when melee swing hit something" type="Float32" />
 	<field name="fAlertSoundRadNoHit" desc="Alerting sound radius when melee swing hit nothing" type="Float32" />
 	<field name="matimpMeleeImpactFx" desc="Name of the material for the melee slash FX" type="Hash64" />
-	<field name="arkMeleeProp" type="Hash64" />
+	<field name="arkMeleeProp" type="ArchetypeId" />
 </class>

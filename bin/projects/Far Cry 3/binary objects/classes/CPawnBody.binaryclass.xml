@@ -9,7 +9,7 @@
 	<field name="fWalkingDeceleration" type="Float32" />
 	<field name="fForwardWalkMultiplier" type="Float32" />
 	<field name="fSprintMultiplier" type="Float32" />
-	<field name="arkSprintCurve" type="Hash64" />
+	<field name="arkSprintCurve" type="ArchetypeId" />
 	<field name="fSprintingDeceleration" type="Float32" />
 	<field name="fClickToPressForwardSprintBuffer" type="Float32" />
 	<field name="fJumpFromCoverTime" type="Float32" />

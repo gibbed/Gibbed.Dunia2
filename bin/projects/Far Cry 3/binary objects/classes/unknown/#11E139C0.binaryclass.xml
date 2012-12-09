@@ -13,7 +13,7 @@
 		<field name="fFalloffMinLevel" type="Float32" />
 		<field name="fFalloffInterpolationFactor" type="Float32" />
 		<field name="bUseNewFalloffCurve" type="Boolean" />
-		<field name="arkFalloffCurve" type="Hash64" />
+		<field name="arkFalloffCurve" type="ArchetypeId" />
 	<!--</object>-->
 	<field name="hidShowType" type="Boolean" />
 	<field name="hidShowRadius" type="Boolean" />

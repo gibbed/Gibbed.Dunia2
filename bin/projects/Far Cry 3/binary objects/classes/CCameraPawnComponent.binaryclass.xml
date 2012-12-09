@@ -1,0 +1,16 @@
+<class name="CCameraPawnComponent">
+	<inherit name="CCameraGameComponent" />
+	<field hash="920A6E7C" type="String" />
+	<field name="Bone" type="Hash32" />
+	<field name="DebugOffset" type="Vector3" />
+	<field name="NoiseFOVEnabled" type="Boolean" />
+	<field name="NoiseFOVTimeCount" />
+	<field name="NoiseFOVTarget" />
+	<field name="NoiseFOVCurrent" />
+	<field name="fCloseUpNearDistance" type="Float32" />
+	<field name="fRegularNearDistance" type="Float32" />
+	<field name="fZoomedNearDistance" type="Float32" />
+	<field name="fZoomedNearDistanceOverride" type="Float32" />
+	<field name="fGotoFirstPersonTime" type="Float32" />
+	<field name="bEnableSeparateNearFOV" type="Boolean" />
+</class>

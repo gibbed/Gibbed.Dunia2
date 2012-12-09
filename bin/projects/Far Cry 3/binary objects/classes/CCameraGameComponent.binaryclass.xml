@@ -1,0 +1,3 @@
+<class name="CCameraGameComponent">
+	<inherit name="CCameraNetworkComponent" />
+</class>

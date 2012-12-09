@@ -1,0 +1,4 @@
+<class name="CCameraFreeComponent">
+	<inherit name="CCameraNetworkComponent" />
+	<field name="fSpeed" type="Float32" />
+</class>

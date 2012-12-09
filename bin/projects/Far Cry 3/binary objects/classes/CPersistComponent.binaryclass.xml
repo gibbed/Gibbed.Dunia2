@@ -1,0 +1,8 @@
+<class name="CPersistComponent">
+	<inherit name="CEntityComponent" />
+	<field name="selLevel" /><!-- enumLevel -->
+	<field name="OriginalSector" />
+	<field name="hidArchetypeOverwriteId" />
+	<field name="bDontPersistIfChild" type="Boolean" />
+	<field name="bIgnoreEntityLimiter" type="Boolean" />
+</class>

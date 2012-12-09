@@ -1,0 +1,7 @@
+<class name="CCameraBoneComponent">
+	<inherit name="CCameraComponent" />
+	<field hash="920A6E7C" type="String" />
+	<field name="Bone" type="Hash32" />
+	<field name="Cinematic" />
+	<field name="EnableDynamicLoading" type="Boolean" />
+</class>

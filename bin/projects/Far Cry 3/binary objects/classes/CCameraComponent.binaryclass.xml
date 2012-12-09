@@ -1,0 +1,10 @@
+<class name="CCameraComponent">
+	<inherit name="CEntityComponent" />
+	<field name="fCameraBlendTime" type="Float32" />
+	<field name="fNearDistance" type="Float32" />
+	<field name="fFarDistance" type="Float32" />
+	<field name="fFOV" type="Float32" />
+	<field name="fNearFOV" type="Float32" />
+	<field name="FocusEntityID" />
+	<field name="Active" />
+</class>

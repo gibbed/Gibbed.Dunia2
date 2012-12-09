@@ -1,0 +1,6 @@
+<class name="CCameraSpectatorComponent">
+	<inherit name="CCameraNetworkComponent" />
+	<field name="fSpeed" type="Float32" />
+	<field name="fFastSpeed" type="Float32" />
+	<field name="fMaxHeight" type="Float32" />
+</class>

@@ -1,0 +1,6 @@
+<class name="CCameraOrbitalComponent">
+	<inherit name="CCameraComponent" />
+	<field name="fCameraSpeed" type="Float32" />
+	<field name="fCameraAcceleration" type="Float32" />
+	<field name="fOrbitalCameraRotationSpeed" type="Float32" />
+</class>

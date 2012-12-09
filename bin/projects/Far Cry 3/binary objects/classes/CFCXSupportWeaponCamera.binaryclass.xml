@@ -1,0 +1,14 @@
+<class name="CFCXSupportWeaponCamera">
+	<inherit name="CCameraComponent" />
+	<field name="sndAmbience" />
+	<field name="sndTargetLocked" />
+	<field name="fHeight" type="Float32" />
+	<field name="fSpeed" type="Float32" />
+	<field name="fMovementDamping" type="Float32" />
+	<field name="bUsePosFromEntity" desc="Use entity position instead of center of sw region" type="Boolean" />
+	<object name="Zoom">
+		<field name="fZoomedHeight" type="Float32" />
+		<field name="fZoomedSpeed" type="Float32" />
+		<field name="fZoomTransitionTime" type="Float32" />
+	</object>
+</class>

@@ -1,0 +1,8 @@
+<class name="CCameraHelicopterComponent">
+	<inherit name="CCameraOrbitalComponent" />
+	<field name="fMaximumRollRotation" type="Float32" />
+	<field name="fRollRotationSpeed" type="Float32" />
+	<field name="fMaximumPitchRotation" type="Float32" />
+	<field name="fPitchRotationSpeed" type="Float32" />
+	<field name="fRotationFudgeFactor" desc="Rotation fudge to smooth target rotation transitions" type="Float32" />
+</class>

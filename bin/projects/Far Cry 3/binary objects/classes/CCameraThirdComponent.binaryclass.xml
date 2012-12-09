@@ -1,0 +1,4 @@
+<class name="CCameraThirdComponent">
+	<inherit name="CCameraNetworkComponent" />
+	<field name="fDistance" type="Float32" />
+</class>

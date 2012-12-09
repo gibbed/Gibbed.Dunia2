@@ -1,0 +1,24 @@
+<class name="CFCXKillCamComponent">
+	<inherit name="CCameraComponent" />
+	<object name="curveGrenadeSpeedCurve">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveGrenadeRotationBlendCurve">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fStartTime" type="Float32" />
+	<field name="fToTargetTravelTime" type="Float32" />
+	<field name="fEndTime" type="Float32" />
+	<field name="fStartReturnTime" type="Float32" />
+	<field name="fEndReturnTime" type="Float32" />
+	<field name="fDistanceToRotateAroundPoint" type="Float32" />
+	<field name="fDistanceFromTargetToStartRotatePrecentage" type="Float32" />
+	<field name="fMaxDistanceToStartRotation" type="Float32" />
+	<field name="OffsetForCameraOverShoulder" type="Vector3" />
+	<field name="fAbortReturnSpeed" type="Float32" />
+	<field name="fMaxUpPitch" type="Float32" />
+	<field name="fMaxDownPitch" type="Float32" />
+	<field name="fMinWaitBeforeCancel" type="Float32" />
+	<field name="fTimeToReachBehind" type="Float32" />
+	<field name="fTimeToStayBehind" type="Float32" />
+</class>

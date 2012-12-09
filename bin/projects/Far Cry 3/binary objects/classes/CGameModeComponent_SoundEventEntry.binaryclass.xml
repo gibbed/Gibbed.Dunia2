@@ -1,0 +1,24 @@
+<class name="CGameModeComponent_SoundEventEntry">
+	<inherit name="#11E152C8" />
+	<field hash="F1B1D97B" type="String" />
+	<field name="sName" type="Hash32" />
+	<field name="unPriority" />
+	<field name="fChildPlayProbability" type="Float32" />
+	<field hash="DBB74670" type="String" />
+	<field name="sChildEventName" type="Hash32" />
+	<object name="TeamEntries">
+		<object name="TeamEntry">
+			<!-- #11E37200 -->
+			<inherit name="#11E152C8" />
+			<field name="sTeam" />
+			<object name="SoundEntries">
+				<object name="SoundEntry">
+					<inherit name="CSoundLibrarySoundEntry" />
+				</object>
+			</object>
+		</object>
+	</object>
+	<object name="SoundOverride">
+		<inherit name="CSoundLibrarySoundEntry" />
+	</object>
+</class>

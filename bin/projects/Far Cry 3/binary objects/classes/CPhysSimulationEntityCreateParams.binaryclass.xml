@@ -1,0 +1,3 @@
+<class name="CPhysSimulationEntityCreateParams">
+	<inherit name="CPhysEntityCreateParams" />
+</class>

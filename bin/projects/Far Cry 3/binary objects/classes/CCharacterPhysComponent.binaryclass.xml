@@ -1,0 +1,30 @@
+<class name="CCharacterPhysComponent">
+	<inherit name="CPhysComponent" />
+	<field name="fileRagdoll" type="String" />
+	<field name="fileOptionalRagdollRaycast" type="String" />
+	<field name="fFloatingTime" type="Float32" />
+	<field name="fFloatingTimeRandom" type="Float32" />
+	<field name="fSinkSpeed" type="Float32" />
+	<field name="fWaterForceFactor" type="Float32" />
+	<field name="UsesRagdoll" type="Boolean" />
+	<field name="DestroyCharacterControllerOnRagdoll" type="Boolean" />
+	<object name="FloatingBones">
+		<object name="BoneNames">
+			<inherit name="CPhysRagdollFloating" />
+		</object>
+	</object>
+	<field name="bCreateCharacterController" type="Boolean" />
+	<object name="CharacterParams">
+		<inherit name="CPhysCharacterControllerEntityCreateParams" />
+	</object>
+	<field name="RagdollCollideSpeedLimit" type="Float32" />
+	<field hash="041E4C28" type="String" />
+	<field name="LockBone" type="Hash32" />
+	<!--<object name="Enable" />-->
+	<object name="BonesIgnoringTerrainCollisions">
+		<object name="BoneName">
+			<field hash="795F32D4" type="String" />
+			<field name="BoneName" type="Hash32" />
+		</object>
+	</object>
+</class>

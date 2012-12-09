@@ -1,0 +1,24 @@
+<class name="CPhysCharacterControllerEntityCreateParams">
+	<inherit name="#11E2F5E0" />
+	<object name="StandDimensions">
+		<inherit name="CPhysCharacterControllerStanceDimensions" />
+	</object>
+	<object name="CrouchDimensions">
+		<inherit name="CPhysCharacterControllerStanceDimensions" />
+	</object>
+	<object name="SwimDimensions">
+		<inherit name="CPhysCharacterControllerStanceDimensions" />
+	</object>
+	<object name="TinyDimensions">
+		<inherit name="CPhysCharacterControllerStanceDimensions" />
+	</object>
+	<field name="fMass" type="Float32" />
+	<field name="bUpdateRotation" type="Boolean" />
+	<field name="bUseRigidBased" type="Boolean" />
+	<field name="bUseLowQualitySim" type="Boolean" />
+	<field name="fMaxLinearVelocity" type="Float32" />
+	<field name="fMaxIntepenetration" type="Float32" />
+	<field name="fStickToGroundGravityFactor" desc="Additional gravity added to stick to the ground" type="Float32" />
+	<field name="fMaxSlopeAngle" type="Float32" />
+	<field name="fMaxTerrainSlopeAngle" type="Float32" />
+</class>

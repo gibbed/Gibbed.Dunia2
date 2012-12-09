@@ -1,0 +1,33 @@
+<class name="CFCXPlayerAbilitiesComponent">
+	<inherit name="CEntityComponent" />
+	<field name="fBarXP" type="Float32" />
+	<field name="fTotalXP" type="Float32" />
+	<field name="fCurrentLevel" type="Float32" />
+	<field name="fAvailableUpgradeLevels" type="Float32" />
+	<field name="bShowTattoo" type="Boolean" />
+	<field name="selPlayerProgressionLevel" /><!-- enumPlayerProgressionLevel -->
+	<object name="Tattoo">
+		<field name="fTattooApparitionTime" type="Float32" />
+		<field name="sndTattooApparitionSound" type="String" />
+		<field name="sndtpTattooApparitionSoundType" type="Int32" />
+		<object name="Timings">
+			<field name="fLocationATiming" desc="Location A timing" type="Float32" />
+			<field name="fLocationBTiming" desc="Location B timing" type="Float32" />
+			<field name="fLocationCTiming" desc="Location C timing" type="Float32" />
+			<field name="fLocationDTiming" desc="Location D timing" type="Float32" />
+			<field name="fLocationETiming" desc="Location E timing" type="Float32" />
+			<field name="fLocationFTiming" desc="Location F timing" type="Float32" />
+		</object>
+		<object name="RelicTattoo">
+			<field name="sndRelicTattooApparitionSound" type="String" />
+			<field name="sndtpRelicTattooApparitionSoundType" type="Int32" />
+			<field hash="E155416F" type="String" />
+			<field name="sRelicTattooPartName" type="Hash32" />
+			<field name="selRelicTattooLocation" /><!-- enumRelicTattooLocation -->
+		</object>
+	</object>
+	<object name="availableAbilities">
+		<object name="Abilities">
+		</object>
+	</object>
+</class>

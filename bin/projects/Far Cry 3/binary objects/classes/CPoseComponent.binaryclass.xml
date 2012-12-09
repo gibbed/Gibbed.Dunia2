@@ -1,0 +1,3 @@
+<class name="CPoseComponent">
+	<inherit name="CEntityComponent" />
+</class>

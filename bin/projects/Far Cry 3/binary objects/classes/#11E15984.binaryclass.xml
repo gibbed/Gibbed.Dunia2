@@ -1,0 +1,6 @@
+<class name="#11E15984">
+	<inherit name="#11E152C8" />
+	<field name="Value" type="Vector4" />
+	<field name="Info" type="Vector4" />
+	<field name="Type" type="Int32" />
+</class>

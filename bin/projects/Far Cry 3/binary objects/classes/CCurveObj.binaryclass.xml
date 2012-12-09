@@ -1,0 +1,10 @@
+<class name="CCurveObj">
+	<inherit name="#11E152E0" />
+	<object name="Knots">
+		<object name="Knot">
+			<inherit name="#11E15984" />
+		</object>
+	</object>
+	<field name="hidNumKnots" type="Int32" />
+	<field name="hidAllowedTypes" type="Int32" />
+</class>

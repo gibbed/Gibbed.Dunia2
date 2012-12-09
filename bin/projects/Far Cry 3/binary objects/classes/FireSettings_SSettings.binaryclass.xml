@@ -1,0 +1,30 @@
+<class name="FireSettings_SSettings">
+	<inherit name="CNomadDbObjectNamed" />
+	<field name="fNormalFireLoopTimer" type="Float32" />
+	<field name="fFastFireLoopTimer" type="Float32" />
+	<field name="sndmlSoundMultilayer" />
+	<object name="FireRegionSettings">
+		<inherit name="SFireResPoolSetting" />
+	</object>
+	<object name="FireObjectSettings">
+		<inherit name="SFireResPoolSetting" />
+	</object>
+	<object name="FireRealtreeSettings">
+		<inherit name="SFireResPoolSetting" />
+	</object>
+	<object name="FireStickyStreamSettings">
+		<inherit name="SFireResPoolSetting" />
+	</object>
+	<object name="FireSmokeRegionSettings">
+		<inherit name="SFireResPoolSetting" />
+	</object>
+	<object name="FireSmokeObjectSettings">
+		<inherit name="SFireResPoolSetting" />
+	</object>
+	<object name="FireSmokeStickySettings">
+		<inherit name="SFireResPoolSetting" />
+	</object>
+	<object name="FirePostEffectSettings">
+		<inherit name="SFireResPoolSetting" />
+	</object>
+</class>

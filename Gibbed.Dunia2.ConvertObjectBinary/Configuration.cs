@@ -94,20 +94,23 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         private ClassDefinition LoadClassDefinition(List<RawClassDefinition> rawClassDefs,
                                                     RawClassDefinition rawClassDef)
         {
-            if (string.IsNullOrEmpty(rawClassDef.Name) == true)
-            {
-                throw new InvalidOperationException();
-            }
-
             var name = rawClassDef.Name;
             var hash = rawClassDef.Hash;
             var fieldDefs = new List<FieldDefinition>();
             var nestedClassDefs = new List<ClassDefinition>();
             var dynamicNestedClasses = rawClassDef.DynamicNestedClasses;
+            var classFieldName = rawClassDef.ClassFieldName;
+            var classFieldHash = rawClassDef.ClassFieldHash;
 
             MergeClassDefinition(rawClassDefs, rawClassDef, fieldDefs, nestedClassDefs);
 
-            return new ClassDefinition(name, hash, fieldDefs, nestedClassDefs, dynamicNestedClasses);
+            return new ClassDefinition(name,
+                                       hash,
+                                       fieldDefs,
+                                       nestedClassDefs,
+                                       dynamicNestedClasses,
+                                       classFieldName,
+                                       classFieldHash);
         }
 
         private void MergeClassDefinition(List<RawClassDefinition> rawClassDefs,
@@ -145,7 +148,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 var inheritRawClassDef = rawClassDefs.FirstOrDefault(rcd => rcd.Name == inherit.Name);
                 if (inheritRawClassDef == null)
                 {
-                    throw new InvalidOperationException(string.Format("could not find definition for binary class '{0}'", inherit.Name));
+                    throw new InvalidOperationException(string.Format(
+                        "could not find definition for binary class '{0}'", inherit.Name));
                 }
 
                 MergeClassDefinition(rawClassDefs, inheritRawClassDef, fieldDefs, nestedClassDefs);
@@ -169,18 +173,24 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             public ReadOnlyCollection<FieldDefinition> FieldDefinitions { get; private set; }
             public ReadOnlyCollection<ClassDefinition> NestedClassDefinitions { get; private set; }
             public bool DynamicNestedClasses { get; private set; }
+            public string ClassFieldName { get; private set; }
+            public uint? ClassFieldHash { get; private set; }
 
             public ClassDefinition(string name,
                                    uint hash,
                                    IList<FieldDefinition> fieldDefs,
                                    IList<ClassDefinition> nestedClassDefs,
-                                   bool dynamicNestedClasses)
+                                   bool dynamicNestedClasses,
+                                   string classFieldName,
+                                   uint? classFieldHash)
             {
                 this.Name = name;
                 this.Hash = hash;
                 this.FieldDefinitions = new ReadOnlyCollection<FieldDefinition>(fieldDefs);
                 this.NestedClassDefinitions = new ReadOnlyCollection<ClassDefinition>(nestedClassDefs);
                 this.DynamicNestedClasses = dynamicNestedClasses;
+                this.ClassFieldName = classFieldName;
+                this.ClassFieldHash = classFieldHash;
             }
 
             public FieldDefinition GetFieldDefinition(string name)
@@ -228,6 +238,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             private List<RawFieldDefinition> _FieldDefinitions = new List<RawFieldDefinition>();
             private List<RawClassDefinition> _NestedClassDefinitions = new List<RawClassDefinition>();
             private bool _DynamicNestedClasses;
+            private string _ClassFieldName;
+            private uint? _ClassFieldHash;
 
             [XmlIgnore]
             public string Path
@@ -315,6 +327,60 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             {
                 get { return this._DynamicNestedClasses; }
                 set { this._DynamicNestedClasses = value; }
+            }
+
+            [XmlIgnore]
+            public uint? ClassFieldHash
+            {
+                get
+                {
+                    if (this._ClassFieldHash.HasValue == true)
+                    {
+                        return this._ClassFieldHash.Value;
+                    }
+
+                    if (this._ClassFieldName != null)
+                    {
+                        var hash = FileFormats.CRC32.Hash(this._ClassFieldName);
+                        this._ClassFieldHash = hash;
+                        return hash;
+                    }
+
+                    return null;
+                }
+
+                set
+                {
+                    if (this._ClassFieldName != null &&
+                        FileFormats.CRC32.Hash(this._ClassFieldName) != value)
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    this._ClassFieldHash = value;
+                }
+            }
+
+            [XmlAttribute("class_field_hash")]
+            public string ClassFieldHashString
+            {
+                set { this.ClassFieldHash = uint.Parse(value, NumberStyles.AllowHexSpecifier); }
+            }
+
+            [XmlAttribute("class_field_name")]
+            public string ClassFieldName
+            {
+                get { return this._ClassFieldName; }
+                set
+                {
+                    if (this._ClassFieldHash.HasValue == true &&
+                        FileFormats.CRC32.Hash(value) != this._ClassFieldHash.Value)
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    this._ClassFieldName = value;
+                }
             }
         }
 

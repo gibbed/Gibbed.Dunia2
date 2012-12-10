@@ -1,10 +1,3 @@
 <file name="EntityLibrary">
-	<object hash="BCDD10B4">
-		<object hash="E0BDB3DB">
-			<object hash="256A1FF9">
-				<object name="Entity" class_field_name="hidEntityClass">
-				</object>
-			</object>
-		</object>
-	</object>
+	<object name="EntityLibraries" class="EntityLibraries" />
 </file>

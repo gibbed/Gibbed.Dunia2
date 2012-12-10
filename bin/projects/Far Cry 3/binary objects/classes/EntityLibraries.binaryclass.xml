@@ -2,7 +2,7 @@
 	<object name="EntityLibrary">
 		<field name="Name" type="String" />
 		<object hash="256A1FF9">
-			<field name="disLibItemId" type="ArchetypeId" />
+			<field name="disLibItemId" type="Id64" />
 			<field name="Name" type="String" />
 			<object name="Entity" class_field_name="hidEntityClass" />
 		</object>

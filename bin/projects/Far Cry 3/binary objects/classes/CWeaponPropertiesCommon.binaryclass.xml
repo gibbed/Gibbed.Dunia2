@@ -97,16 +97,16 @@
 		<field name="fVerticalRecoilPerShot" type="Float32" />
 		<field name="fLeftRollPerShot" type="Float32" />
 		<field name="fRightRollPerShot" type="Float32" />
-		<field name="arkRollCurve" desc="The curve that the roll value will map onto. X is Scaled by roll duration. Y is scaled by the roll applied. X is cut off after 1 on initial unscaled curve." type="ArchetypeId" />
-		<field name="arkAchieveCurve" desc="The curve (x from 0 to 1) that controls the amount of recoil over the achieve time." type="ArchetypeId" />
-		<field name="arkRecoveryCurve" desc="The curve( x from 0 to 1) that controls the amount of recoil over the recovery time." type="ArchetypeId" />
+		<field name="arkRollCurve" desc="The curve that the roll value will map onto. X is Scaled by roll duration. Y is scaled by the roll applied. X is cut off after 1 on initial unscaled curve." type="Id64" />
+		<field name="arkAchieveCurve" desc="The curve (x from 0 to 1) that controls the amount of recoil over the achieve time." type="Id64" />
+		<field name="arkRecoveryCurve" desc="The curve( x from 0 to 1) that controls the amount of recoil over the recovery time." type="Id64" />
 		<field name="fRollCurveDuration" type="Float32" />
 		<field name="fMaxYOffset" desc="Max amount of Y the gun can translate back by." type="Float32" />
 		<field name="fYOffsetPerShot" desc="Amount of y moved back on the weapon per shot." type="Float32" />
 		<field name="fIronsightMaxYOffset" desc="Max amount of Y the gun can translate back by." type="Float32" />
 		<field name="fIronsightYOffsetPerShot" desc="Amount of y moved back on the weapon per shot." type="Float32" />
 		<field name="fRecoilYOffsetRecoveryTime" desc="The speed at which the weapon recovers from recoil" type="Float32" />
-		<field name="arkYOffsetRecoveryCurve" desc="The curve( x from 0 to 1) that controls the amount of recoil over the recovery time." type="ArchetypeId" />
+		<field name="arkYOffsetRecoveryCurve" desc="The curve( x from 0 to 1) that controls the amount of recoil over the recovery time." type="Id64" />
 		<object name="RecoilIK">
 			<field name="fIKRecoilBurstSpeedIn" desc="Used for RecoilWeight calculation only when WeaponFireStrategy is being used, affects the 3rd person characters" type="Float32" />
 			<field name="fIKRecoilBurstPitchRandom" desc="If not equal zero, used as a coefficient for random generator" type="Float32" />
@@ -148,16 +148,16 @@
 		</object>
 		<field name="FlickSwayCalmTime" type="Float32" />
 		<field name="FlickSwayGoingOutTime" type="Float32" />
-		<field name="arkSwayHorizCurve" type="ArchetypeId" />
-		<field name="arkSwayVertCurve" type="ArchetypeId" />
-		<field name="arkSwayMovingHorizCurve" type="ArchetypeId" />
-		<field name="arkSwayMovingVertCurve" type="ArchetypeId" />
+		<field name="arkSwayHorizCurve" type="Id64" />
+		<field name="arkSwayVertCurve" type="Id64" />
+		<field name="arkSwayMovingHorizCurve" type="Id64" />
+		<field name="arkSwayMovingVertCurve" type="Id64" />
 		<field name="fSwayCurveBlendRate" desc="Rate at which we blend when going between the sway curves and the sway moving curves. Increase to speed up." type="Float32" />
 	</object>
 	<object name="WeaponOffset">
 		<field name="bIsRightHanded" desc="Are the bones used calculated from the right hand or the left hand? This also applies to the procedural sway." type="Boolean" />
 		<field name="fBlendRate" desc="Rate of change from one set of offset data to another." type="Float32" />
-		<field name="arkWeaponOffsetBlendingCurve" desc="A curve that takes the difference in speed values for each axis of input movement (0-1) and generates a multiplier on the blend rate." type="ArchetypeId" />
+		<field name="arkWeaponOffsetBlendingCurve" desc="A curve that takes the difference in speed values for each axis of input movement (0-1) and generates a multiplier on the blend rate." type="Id64" />
 		<field name="fStrafeBlendRate" desc="Rate of change between amounts of strafe-ing." type="Float32" />
 		<field name="fPitchBlendRate" desc="Rate of change between amounts of pitch offset." type="Float32" />
 		<field name="fYawBlendRate" desc="Rate of change between amounts of yaw offset." type="Float32" />
@@ -269,8 +269,8 @@
 		<field name="bIronsightCanPrepare" desc="Triggers a different set of anims/behavior when the weapon needs to prepare while in ironsight. Otherwise the weapon goes out of ironsight first." type="Boolean" />
 		<field name="bStayInIronsightWhenPrepare" desc="If the weapon can be prepared in iron sight and this is true, will force the weapon to stay in ironsight." type="Boolean" />
 		<field name="bAlwaysIronsightReload" desc="Always stay in ironsight when reloading." type="Boolean" />
-		<field name="arkTransitionCurve" desc="The name of the curve for ironsight transition" type="ArchetypeId" />
-		<field name="arkAnimPlaybackCurve" desc="The name of the curve ironshight animation playback" type="ArchetypeId" />
+		<field name="arkTransitionCurve" desc="The name of the curve for ironsight transition" type="Id64" />
+		<field name="arkAnimPlaybackCurve" desc="The name of the curve ironshight animation playback" type="Id64" />
 		<field hash="D553AED0" type="String" />
 		<field name="IronsightFX" type="Hash32" />
 		<field name="bCanShootDuringIronsightTransition" desc="Allow firing during ironsight transition. ***WARNING*** Animation move states need to be set up specially for this to work." type="Boolean" />
@@ -314,7 +314,7 @@
 	<field name="iJamBulletThreshold" desc="After which bullet a jam can occur in the clip. Ex: threshold = 10, a jam will possibly occur after bullet 10" type="Int32" />
 	<field name="iDudBulletThreshold" desc="Before which bullet a dud will occur in the clip if there is a jam bullet present. Ex: threshold = 10, a dud bullet will occur before bullet 10" type="Int32" />
 	<field name="iSafeClipsAfterUnjam" desc="Number of clips that will never jam after clearing or unjamming the weapon" type="Int32" />
-	<field name="arkPickupArchetype" desc="The name of the pickup archetype, creates this entity when the weapon is dropped" type="ArchetypeId" />
+	<field name="arkPickupArchetype" desc="The name of the pickup archetype, creates this entity when the weapon is dropped" type="Id64" />
 	<field name="fShootingAngle" desc="Shooting angle in normal mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." type="Float32" />
 	<field name="fShootingIronsightAngle" desc="Shooting angle in Iron Sight mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." type="Float32" />
 	<field name="selCategory" /><!-- enumCategory -->

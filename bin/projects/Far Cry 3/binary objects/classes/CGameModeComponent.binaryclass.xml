@@ -20,22 +20,22 @@
 	</object>
 	<object name="CommonArchetypeReferences">
 		<object name="Archetype">
-			<field name="arkName" type="ArchetypeId" />
+			<field name="arkName" type="Id64" />
 		</object>
 	</object>
 	<object name="SpecificArchetypeReferences">
 		<object name="Archetype">
-			<field name="arkName" type="ArchetypeId" />
+			<field name="arkName" type="Id64" />
 		</object>
 	</object>
 	<object name="ArchetypeReferencesResLoaded">
 		<object name="Archetype">
-			<field name="arkName" type="ArchetypeId" />
+			<field name="arkName" type="Id64" />
 		</object>
 	</object>
 	<object name="ArchetypeReferences">
 		<object name="Archetype">
-			<field name="arkName" type="ArchetypeId" />
+			<field name="arkName" type="Id64" />
 		</object>
 	</object>
 	<object name="AnimationPackageReferences">
@@ -45,12 +45,12 @@
 	</object>
 	<object name="ArchetypesNorth">
 		<object name="Archetype">
-			<field name="arkName" type="ArchetypeId" />
+			<field name="arkName" type="Id64" />
 		</object>
 	</object>
 	<object name="ArchetypesSouth">
 		<object name="Archetype">
-			<field name="arkName" type="ArchetypeId" />
+			<field name="arkName" type="Id64" />
 		</object>
 	</object>
 </class>

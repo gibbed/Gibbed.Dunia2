@@ -51,7 +51,7 @@
 	</object>
 	<object name="Archetypes">
 		<object name="Archetype">
-			<field name="arkId" type="ArchetypeId" />
+			<field name="arkId" type="Id64" />
 		</object>
 	</object>
 </class>

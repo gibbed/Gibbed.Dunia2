@@ -3,5 +3,5 @@
 	<inherit name="#11E152C8" />
 	<field name="fLadderClimbingSpeed" type="Float32" />
 	<field name="fLadderSlideDownSpeed" type="Float32" />
-	<field name="arkLadderSpeedMultiplierCurve" type="ArchetypeId" />
+	<field name="arkLadderSpeedMultiplierCurve" type="Id64" />
 </class>

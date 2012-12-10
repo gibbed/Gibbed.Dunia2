@@ -1,6 +1,6 @@
 <class name="CWeaponPropertiesCommon_Attachment">
 	<inherit name="#11E152C8" />
-	<field name="arkAttachmentArchetypeName" desc="Name of the archetype to use as an attachment" type="ArchetypeId" />
+	<field name="arkAttachmentArchetypeName" desc="Name of the archetype to use as an attachment" type="Id64" />
 	<field name="bIsIlluminatedSight" desc="This is an illuminated sight. No archetype is required." type="Boolean" />
 	<object name="NonAttachments">
 		<field name="colorIlluminatedSightsColour" desc="The colour of the illuminated sights." type="Vector3" />
@@ -23,7 +23,7 @@
 	<object name="weaponOffset">
 		<inherit name="CWeaponOffsetSettings" />
 	</object>
-	<field name="arkIronsightOffsetCurve" desc="The curve that maps the current ironsight transition value (x axis 0-1) onto the amount of the offset applied (y axis 0-1)" type="ArchetypeId" />
+	<field name="arkIronsightOffsetCurve" desc="The curve that maps the current ironsight transition value (x axis 0-1) onto the amount of the offset applied (y axis 0-1)" type="Id64" />
 	<field name="bTriggersFoldingSights" desc="Set this to allow folding sights to trigger. Set the data for the transform under Folding Sights in the weapon xml" type="Boolean" />
 	<field name="bRevealsHiddenMesh" desc="Set this to make any mesh that's hidden by the meshToHide property in the weapon properties visible again." type="Boolean" />
 	<field name="magazineUpgradeReplacement" desc="Replaces the max ammo in clip." type="Int32" />

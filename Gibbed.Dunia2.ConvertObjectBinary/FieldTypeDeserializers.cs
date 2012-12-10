@@ -22,8 +22,10 @@
 
 using System;
 using System.Globalization;
+using System.IO;
 using System.Text;
 using System.Xml;
+using Gibbed.Dunia2.FileFormats;
 
 namespace Gibbed.Dunia2.ConvertObjectBinary
 {
@@ -289,16 +291,49 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     break;
                 }
 
-                case FieldType.ArchetypeId:
+                case FieldType.Id32:
+                {
+                    if (data == null ||
+                        data.Length != 4)
+                    {
+                        throw new FormatException("field type Id32 requires 4 bytes");
+                    }
+
+                    var value = BitConverter.ToUInt32(data, 0);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Id64:
                 {
                     if (data == null ||
                         data.Length != 8)
                     {
-                        throw new FormatException("field type ArchetypeId requires 8 bytes");
+                        throw new FormatException("field type Id64 requires 8 bytes");
                     }
 
                     var value = BitConverter.ToUInt64(data, 0);
                     writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Rml:
+                {
+                    if (data == null ||
+                        data.Length < 5)
+                    {
+                        throw new FormatException("field type Rml requires at least 5 bytes");
+                    }
+
+                    var rez = new XmlResourceFile();
+                    using (var input = new MemoryStream(data))
+                    {
+                        rez.Deserialize(input);
+                    }
+
+                    writer.WriteStartElement("rml");
+                    ConvertXml.Program.WriteNode(writer, rez.Root);
+                    writer.WriteEndElement();
                     break;
                 }
 

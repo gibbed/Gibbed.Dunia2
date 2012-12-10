@@ -12,8 +12,8 @@
 	<field name="ammoAmmoType" type="Hash32" />
 	<field name="iAmmoAmount" type="Int32" />
 	<field name="selGadgetType" /><!-- enumGadgetType -->
-	<field name="arkArchetype" type="ArchetypeId" />
-	<field name="arkDisplayArchetype" type="ArchetypeId" />
+	<field name="arkArchetype" type="Id64" />
+	<field name="arkDisplayArchetype" type="Id64" />
 	<field name="fRotationSpeed" type="Float32" />
 	<field name="fRotationAmplitude" type="Float32" />
 	<field hash="F1B1D97B" type="String" />

@@ -26,6 +26,8 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.XPath;
+using Gibbed.Dunia2.FileFormats;
+using Gibbed.IO;
 
 namespace Gibbed.Dunia2.ConvertObjectBinary
 {
@@ -286,7 +288,17 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     return BitConverter.GetBytes(value);
                 }
 
-                case FieldType.ArchetypeId:
+                case FieldType.Id32:
+                {
+                    uint value;
+                    if (TryParseUInt32(nav.Value, out value) == false)
+                    {
+                        throw new FormatException();
+                    }
+                    return BitConverter.GetBytes(value);
+                }
+
+                case FieldType.Id64:
                 {
                     ulong value;
                     if (TryParseUInt64(nav.Value, out value) == false)
@@ -294,6 +306,19 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException();
                     }
                     return BitConverter.GetBytes(value);
+                }
+
+                case FieldType.Rml:
+                {
+                    var rml = new XmlResourceFile();
+                    rml.Root = ConvertXml.Program.ReadNode(nav.SelectSingleNode("rml"));
+
+                    using (var temp = new MemoryStream())
+                    {
+                        rml.Serialize(temp);
+                        temp.Position = 0;
+                        return temp.ReadBytes((uint)temp.Length);
+                    }
                 }
             }
 

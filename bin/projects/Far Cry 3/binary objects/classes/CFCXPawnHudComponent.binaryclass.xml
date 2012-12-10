@@ -33,7 +33,7 @@
 		<field name="fReticleHitCrossHairAlpha" desc="Player's reticle hit crosshair alpha." type="Float32" />
 	</object>
 	<object name="HealthSystem">
-		<field name="arkHealthVignetteCurve" type="ArchetypeId" />
+		<field name="arkHealthVignetteCurve" type="Id64" />
 		<field name="fHealthVignetteTimer" desc="Animation Timing" type="Float32" />
 		<field name="fHealthBarDisplayTimer" desc="Time the health bar stays on screen." type="Float32" />
 		<field name="fHealthBarBlinkingThreshold" desc="If the player's life is below the threshold, the bar will blink." type="Float32" />

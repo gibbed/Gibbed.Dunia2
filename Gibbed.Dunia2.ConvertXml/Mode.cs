@@ -20,31 +20,12 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.ConvertObjectBinary
+namespace Gibbed.Dunia2.ConvertXml
 {
-    public enum FieldType
+    internal enum Mode
     {
-        Invalid = 0,
-        BinHex,
-        Boolean,
-        UInt8,
-        Int8,
-        UInt16,
-        Int16,
-        UInt32,
-        Int32,
-        UInt64,
-        Int64,
-        Float32,
-        Float64,
-        Vector2,
-        Vector3,
-        Vector4,
-        String,
-        Hash32,
-        Hash64,
-        Id32,
-        Id64,
-        Rml,
+        Unknown,
+        ToXml,
+        ToRml,
     }
 }

@@ -48,7 +48,14 @@
 		<field name="fMaxDistance" desc="Maximum distance(in meters) to travel before explosion" type="Float32" />
 		<field name="fMaxLifeTime" desc="Maximum life time(in seconds) before explosion. WARNING: Delay in the Explosive component also affects this!" type="Float32" />
 	</object>
-	<field name="selArrowType" /><!-- enumArrowType -->
+	<field name="selArrowType" type="Enum">
+		<enum name="enumArrowType">
+			<element name="Regular">1</element>
+			<element name="Explosive">2</element>
+			<element name="Flame">3</element>
+			<element name="Poison">4</element>
+		</enum>
+	</field>
 	<field name="arkPickupArchetype" desc="The name of the pickup archetype, replaces the particle arrow with this (rigid) after the first collision with something." type="Id64" />
 	<object name="BaseDamage" desc="Damage stims." />
 	<object name="ImpactStims" desc="impact stims (for effects etc).">

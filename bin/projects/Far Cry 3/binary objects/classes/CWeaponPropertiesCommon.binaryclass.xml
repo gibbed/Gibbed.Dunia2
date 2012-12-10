@@ -63,15 +63,70 @@
 	<field name="fNearFovDegrees" desc="Near FOV for weapon in degrees." type="Float32" />
 	<field name="fNearFovDegreesSplitscreen" desc="Near FOV override for weapon in degrees, 0 means use same as Near FOV." type="Float32" />
 	<field name="bIsScopeAttached" desc="Is this weapon a scoped weapon (without requiring attachments)" type="Boolean" />
-	<field name="selReloadType" /><!-- enumReloadType -->
-	<field name="selWeaponClass" /><!-- enumWeaponClass -->
-	<field name="selFireStrategy" /><!-- enumFireStrategy -->
-	<field name="selReticleType" /><!-- enumReticleType -->
+	<field name="selReloadType" type="Enum">
+		<enum name="enumReloadType">
+			<element name="Magazine">0</element>
+			<element name="Bullet">1</element>
+			<element name="None">2</element>
+		</enum>
+	</field>
+	<field name="selWeaponClass" type="Enum">
+		<enum name="enumWeaponClass">
+			<element name="Invalid">-1</element>
+			<element name="Machete">0</element>
+			<element name="Pistol">1</element>
+			<element name="Assault">2</element>
+			<element name="SMG">3</element>
+			<element name="Shotgun">4</element>
+			<element name="Sniper">5</element>
+			<element name="LMG">6</element>
+			<element name="RPG">7</element>
+			<element name="CarlGustav">8</element>
+			<element name="Flamethrower">9</element>
+			<element name="Mortar">10</element>
+			<element name="IED">11</element>
+			<element name="ProximityMine">12</element>
+			<element name="Tool">13</element>
+			<element name="Rock">14</element>
+			<element name="Bow">15</element>
+			<element name="TrackingDevice">16</element>
+		</enum>
+	</field>
+	<field name="selFireStrategy" type="Enum">
+		<enum name="enumFireStrategy">
+			<element name="Bullet">0</element>
+			<element name="Melee">1</element>
+			<element name="Flame">2</element>
+			<element name="Mortar">3</element>
+			<element name="Projectile">4</element>
+			<element name="IED">5</element>
+			<element name="Machete_MP">6</element>
+			<element name="ProximityMine">7</element>
+			<element name="Repair">8</element>
+			<element name="Arrow">9</element>
+			<element name="ThrowWeapon">10</element>
+			<element name="TrackingDevice">11</element>
+			<element name="SupportWeaponTrigger">12</element>
+		</enum>
+	</field>
+	<field name="selReticleType" type="Enum">
+		<enum name="enumReticleType">
+			<element name="Type1">0</element>
+			<element name="Type2">1</element>
+			<element name="Type3">2</element>
+		</enum>
+	</field>
 	<object name="FireRate">
 		<field name="fBusyDuration" desc="'Busy' time in between shots, a weapon cannot fire until the busy time has expired. Busy time starts when the weapon is activated" type="Float32" />
 		<field name="iFireRate" desc="Frequency at which a specific weapon can fire or launch its projectiles in rounds per minute" type="Float32" />
 		<field name="bControlsSpeedOfShootAnims" desc="Code controls the speed of the shoot anims." type="Boolean" />
-		<field name="selFireRateMode" /><!-- enumFireRateMode -->
+		<field name="selFireRateMode" type="Enum">
+			<enum name="enumFireRateMode">
+				<element name="SingleShot">0</element>
+				<element name="FullAuto">1</element>
+				<element name="PrepareShot">2</element>
+			</enum>
+		</field>
 		<field name="fPrepareShotTime" desc="Duration of shot prepare (bolt action) animation." type="Float32" />
 		<field name="iMeleeSwingRate" desc="Frequency at which a specific weapon can be swung for melee attacks in swings per minute." type="Float32" />
 	</object>
@@ -299,7 +354,13 @@
 	<field name="fTagRange" desc="the max distance to tag ennemies in iron sight." type="Float32" />
 	<field name="fTagTime" desc="the time needed to tag ennemies in iron sight." type="Float32" />
 	<field name="fUnjamTime" desc="The time it takes to unjam" type="Float32" />
-	<field name="selJamType" /><!-- enumJamType -->
+	<field name="selJamType" type="Enum">
+		<enum name="enumJamType">
+			<element name="Jam">0</element>
+			<element name="Malfunction">1</element>
+			<element name="StrategyManaged">2</element>
+		</enum>
+	</field>
 	<field name="iClipsForSelfDestruct" desc="Part of the weapon degradation system. Used computing self damage per shot method" type="Int32" />
 	<field name="bIsIndestructible" desc="Weapon cannot jam and have it's reliability go down" type="Boolean" />
 	<field name="bIsBreakable" desc="Weapon can jam and have it's reliability go down but cannot break" type="Boolean" />

@@ -2,7 +2,30 @@
 	<inherit name="#11E152E0" />
 	<field name="fMeleeDamageLevel" desc="How much damage will victim during melee attack" type="Float32" />
 	<field name="fMeleeImpulseStrength" desc="The impulse multiplier which will be applied to the target pawn during melee" type="Float32" />
-	<field name="selMeleeStimType" /><!-- enumMeleeStimType -->
+	<field name="selMeleeStimType" type="Enum">
+		<enum name="enumMeleeStimType">
+			<element name="None">0</element>
+			<element name="Bang">1</element>
+			<element name="Snap">2</element>
+			<element name="Pierce">3</element>
+			<element name="Crush">4</element>
+			<element name="Cut">5</element>
+			<element name="Health">6</element>
+			<element name="Burn">7</element>
+			<element name="Water">8</element>
+			<element name="Panic">9</element>
+			<element name="Fear">10</element>
+			<element name="Morale">11</element>
+			<element name="Dirt">12</element>
+			<element name="Unused_0">13</element>
+			<element name="Interest">14</element>
+			<element name="Stun">15</element>
+			<element name="Explosion">16</element>
+			<element name="Boom">17</element>
+			<element name="Toxic">18</element>
+			<element name="BleedOut">19</element>
+		</enum>
+	</field>
 	<object name="MeleeObjectsStims" desc="The list of stims that weapon produces for objects hit by melee attack">
 		<inherit name="CPhysBulletHitStim" />
 	</object>

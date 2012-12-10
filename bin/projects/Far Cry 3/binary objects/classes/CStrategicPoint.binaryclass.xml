@@ -2,8 +2,25 @@
 	<inherit name="CTagPoint" />
 	<field name="fRadius" type="Float32" />
 	<field name="fMovementRadius" type="Float32" />
-	<field name="selStrategyType" /><!-- enumStrategyType -->
-	<field name="selArmy" /><!-- enumArmy -->
+	<field name="selStrategyType" type="Enum">
+		<enum name="enumStrategyType">
+			<element name="Defensive">0</element>
+			<element name="Zone">1</element>
+			<element name="Protection">2</element>
+			<element name="AssassinationIndoor">3</element>
+			<element name="AIvsAI">4</element>
+			<element name="AssassinationOutdoor">5</element>
+			<element name="ClashPoint">6</element>
+		</enum>
+	</field>
+	<field name="selArmy" type="Enum">
+		<enum name="enumArmy">
+			<element name="Red">0</element>
+			<element name="Blue">1</element>
+			<element name="Grey">2</element>
+			<element name="Neutral">3</element>
+		</enum>
+	</field>
 	<field name="nMaxDefensive" />
 	<field name="nCurrentDefensiveCount" />
 </class>

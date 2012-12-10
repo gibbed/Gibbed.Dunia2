@@ -137,6 +137,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             }
 
             var project = manager.ActiveProject;
+            var config = Configuration.Load(project);
 
             if (mode == Mode.ToFcb)
             {
@@ -155,6 +156,17 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 }
 
                 basePath = Path.ChangeExtension(inputPath, null);
+
+                if (string.IsNullOrEmpty(baseName) == true)
+                {
+                    baseName = Path.GetFileNameWithoutExtension(inputPath);
+
+                    if (string.IsNullOrEmpty(baseName) == false &&
+                        baseName.EndsWith("_converted") == true)
+                    {
+                        baseName = baseName.Substring(0, baseName.Length - 10);
+                    }
+                }
 
                 inputPath = Path.GetFullPath(inputPath);
                 outputPath = Path.GetFullPath(outputPath);
@@ -183,7 +195,14 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         Console.WriteLine("Reading XML...");
                     }
 
-                    bof.Root = ReadNode(basePath, root);
+                    var objectFileDef = config.GetObjectFileDefinition(baseName);
+                    if (objectFileDef == null)
+                    {
+                        Console.WriteLine("Warning: could not find binary object definition '{0}'", baseName);
+                    }
+
+                    var objectDef = objectFileDef != null ? objectFileDef.ObjectDefinition : null;
+                    bof.Root = ReadNodeInternal(config, objectDef, basePath, root);
                 }
 
                 if (verbose == true)
@@ -228,8 +247,6 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 inputPath = Path.GetFullPath(inputPath);
                 outputPath = Path.GetFullPath(outputPath);
                 basePath = Path.GetFullPath(basePath);
-
-                var config = Configuration.Load(project);
 
                 if (verbose == true)
                 {
@@ -349,17 +366,90 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             hash = name != null ? CRC32.Hash(name) : uint.Parse(_hash, NumberStyles.AllowHexSpecifier);
         }
 
-        private static BinaryObject ReadNode(string basePath, XPathNavigator node)
+        private static BinaryObject ReadNode(Configuration config,
+                                             Configuration.ObjectDefinition objectDef,
+                                             Configuration.ClassDefinition classDef,
+                                             string basePath,
+                                             XPathNavigator nav)
         {
             string className;
             uint classNameHash;
 
-            LoadNameAndHash(node, out className, out classNameHash);
+            LoadNameAndHash(nav, out className, out classNameHash);
+
+            if (classDef == null || classDef.DynamicNestedClasses == false)
+            {
+                var childObjectDef = GetChildObjectDefinition(objectDef, classDef, classNameHash);
+                return ReadNodeInternal(config, childObjectDef, basePath, nav);
+            }
+
+            if (classDef.DynamicNestedClasses == true)
+            {
+                Configuration.ObjectDefinition childObjectDef = null;
+
+                var nestedClassDef = config.GetClassDefinition(classNameHash);
+                if (nestedClassDef != null)
+                {
+                    childObjectDef = new Configuration.ObjectDefinition(nestedClassDef.Name,
+                                                                        nestedClassDef.Hash,
+                                                                        nestedClassDef,
+                                                                        null,
+                                                                        null,
+                                                                        null);
+                }
+
+                return ReadNodeInternal(config, childObjectDef, basePath, nav);
+            }
+
+            throw new InvalidOperationException();
+        }
+
+        private static BinaryObject ReadNodeInternal(Configuration config,
+                                                     Configuration.ObjectDefinition objectDef,
+                                                     string basePath,
+                                                     XPathNavigator nav)
+        {
+            string className;
+            uint classNameHash;
+
+            LoadNameAndHash(nav, out className, out classNameHash);
+
+            Configuration.ClassDefinition classDef = null;
+
+            if (objectDef != null &&
+                objectDef.ClassFieldHash.HasValue == true)
+            {
+                var hash = GetClassDefinitionByField(objectDef.ClassFieldName, objectDef.ClassFieldHash, nav);
+                if (hash.HasValue == false)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                classDef = config.GetClassDefinition(hash.Value);
+            }
+
+            if (classDef == null &&
+                objectDef != null)
+            {
+                classDef = objectDef.ClassDefinition;
+
+                if (classDef != null &&
+                    classDef.ClassFieldHash.HasValue == true)
+                {
+                    var hash = GetClassDefinitionByField(classDef.ClassFieldName, classDef.ClassFieldHash, nav);
+                    if (hash.HasValue == false)
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    classDef = config.GetClassDefinition(hash.Value);
+                }
+            }
 
             var parent = new BinaryObject();
             parent.TypeHash = classNameHash;
 
-            var fields = node.Select("field");
+            var fields = nav.Select("field");
             while (fields.MoveNext() == true)
             {
                 if (fields.Current == null)
@@ -379,32 +469,89 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     throw new InvalidOperationException();
                 }
 
-                byte[] data = FieldTypeSerializers.Serialize(fieldType, fields.Current);
+                var fieldDef = classDef != null ? classDef.GetFieldDefinition(fieldNameHash) : null;
+
+                if (parent.Values.ContainsKey(0x9C39465B) &&
+                    BitConverter.ToUInt64(parent.Values[0x9C39465B], 0) == 0xAD4E5BF7E4616AD3)
+                {
+                }
+
+                byte[] data = FieldTypeSerializers.Serialize(fieldDef, fieldType, fields.Current);
                 parent.Values.Add(fieldNameHash, data);
             }
 
-            var children = node.Select("object");
+            var children = nav.Select("object");
             while (children.MoveNext() == true)
             {
-                parent.Children.Add(LoadNode(basePath, children.Current));
+                parent.Children.Add(LoadNode(config, objectDef, classDef, basePath, children.Current));
             }
 
             return parent;
         }
 
-        private static BinaryObject LoadNode(string basePath, XPathNavigator node)
+        private static uint? GetClassDefinitionByField(string classFieldName, uint? classFieldHash, XPathNavigator nav)
         {
-            string external = node.GetAttribute("external", "");
+            uint? hash = null;
+
+            if (string.IsNullOrEmpty(classFieldName) == false)
+            {
+                var fieldByName = nav.SelectSingleNode("field[@name=\"" + classFieldName + "\"]");
+                if (fieldByName != null)
+                {
+                    uint temp;
+                    if (
+                        uint.TryParse(fieldByName.Value,
+                                      NumberStyles.AllowHexSpecifier,
+                                      CultureInfo.InvariantCulture,
+                                      out temp) == false)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                    hash = temp;
+                }
+            }
+
+            if (hash.HasValue == false)
+            {
+                var fieldByHash =
+                    nav.SelectSingleNode("field[@hash=\"" +
+                                         classFieldHash.Value.ToString("X8", CultureInfo.InvariantCulture) +
+                                         "\"]");
+                if (fieldByHash == null)
+                {
+                    uint temp;
+                    if (
+                        uint.TryParse(fieldByHash.Value,
+                                      NumberStyles.AllowHexSpecifier,
+                                      CultureInfo.InvariantCulture,
+                                      out temp) == false)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                    hash = temp;
+                }
+            }
+
+            return hash;
+        }
+
+        private static BinaryObject LoadNode(Configuration config,
+                                             Configuration.ObjectDefinition objectDef,
+                                             Configuration.ClassDefinition classDef,
+                                             string basePath,
+                                             XPathNavigator node)
+        {
+            var external = node.GetAttribute("external", "");
             if (string.IsNullOrWhiteSpace(external) == true)
             {
-                return ReadNode(basePath, node);
+                return ReadNode(config, objectDef, classDef, basePath, node);
             }
 
             var inputPath = Path.Combine(basePath, external);
-
             using (var input = File.OpenRead(inputPath))
             {
-                Console.WriteLine("Loading object from '{0}'...", Path.GetFileName(inputPath));
+                //Console.WriteLine("Loading object from '{0}'...", Path.GetFileName(inputPath));
+
                 var doc = new XPathDocument(input);
                 var nav = doc.CreateNavigator();
 
@@ -414,7 +561,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     throw new InvalidOperationException();
                 }
 
-                return LoadNode(Path.ChangeExtension(inputPath, null), root);
+                return ReadNode(config, objectDef, classDef, Path.ChangeExtension(inputPath, null), root);
             }
         }
 
@@ -494,6 +641,13 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     else
                     {
                         writer.WriteAttributeString("type", fieldDef.Type.ToString());
+
+                        if (fieldDef.Type == FieldType.Enum &&
+                            fieldDef.EnumDefinition != null)
+                        {
+                            writer.WriteAttributeString("enum", fieldDef.EnumDefinition.Name);
+                        }
+
                         FieldTypeDeserializers.Deserialize(writer, fieldDef, kv.Value);
                     }
 

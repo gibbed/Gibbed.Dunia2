@@ -5,7 +5,15 @@
 	<object name="Conditions">
 		<object name="Condition">
 			<!-- #11E4DD38 -->
-			<field name="selConditionType" /><!-- enumConditionType -->
+			<field name="selConditionType" type="Enum">
+				<enum name="enumConditionType">
+					<element name="Invalid">-1</element>
+					<element name="Timer">0</element>
+					<element name="Usage">1</element>
+					<element name="Mission">2</element>
+					<element name="VideoTabletStop">3</element>
+				</enum>
+			</field>
 			<field name="fConditionValue" type="Float32" />
 			<field name="MissionName" type="String" />
 			<field name="ConditioCurrentValue" />

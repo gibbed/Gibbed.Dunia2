@@ -68,7 +68,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         {
             var rawClassDefs = new List<RawClassDefinition>();
 
-            var serializer = new XmlSerializer(typeof(RawClassDefinition), new[] {typeof(RawFieldDefinition)});
+            var serializer = new XmlSerializer(typeof(RawClassDefinition));
             foreach (var inputPath in GetClassDefinitionPaths(project))
             {
                 using (var input = File.OpenRead(inputPath))
@@ -85,7 +85,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 if (this._ClassDefinitions.Any(cd => cd.Name == classDef.Name ||
                                                      cd.Hash == classDef.Hash) == true)
                 {
-                    throw new InvalidOperationException();
+                    throw new ConfigurationLoadException(string.Format("duplicate binary class '{0}'", classDef.Name));
                 }
                 this._ClassDefinitions.Add(classDef);
             }
@@ -102,7 +102,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             var classFieldName = rawClassDef.ClassFieldName;
             var classFieldHash = rawClassDef.ClassFieldHash;
 
-            MergeClassDefinition(rawClassDefs, rawClassDef, fieldDefs, nestedClassDefs);
+            MergeClassDefinition(rawClassDef.Name, rawClassDefs, rawClassDef, fieldDefs, nestedClassDefs);
 
             return new ClassDefinition(name,
                                        hash,
@@ -113,7 +113,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                                        classFieldHash);
         }
 
-        private void MergeClassDefinition(List<RawClassDefinition> rawClassDefs,
+        private void MergeClassDefinition(string rootClassName,
+                                          List<RawClassDefinition> rawClassDefs,
                                           RawClassDefinition rawClassDef,
                                           List<FieldDefinition> fieldDefs,
                                           List<ClassDefinition> nestedClassDefs)
@@ -123,7 +124,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 var fieldDef = LoadFieldDefinition(rawFieldDef);
                 if (fieldDefs.Any(fd => fd.Hash == fieldDef.Hash))
                 {
-                    throw new InvalidOperationException();
+                    throw new ConfigurationLoadException(
+                        string.Format("duplicate field '{1}' from '{2}' in binary class '{0}'",
+                                      rootClassName,
+                                      rawFieldDef.Name,
+                                      rawClassDef.Name));
                 }
                 fieldDefs.Add(fieldDef);
             }
@@ -133,7 +138,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 var objectDef = this.LoadClassDefinition(rawClassDefs, rawNestedClassDef);
                 if (nestedClassDefs.Any(fd => fd.Hash == objectDef.Hash))
                 {
-                    throw new InvalidOperationException();
+                    throw new ConfigurationLoadException(
+                        string.Format("duplicate nested class '{1}' from '{2}' in binary class '{0}'",
+                                      rootClassName,
+                                      rawNestedClassDef.Name,
+                                      rawClassDef.Name));
                 }
                 nestedClassDefs.Add(objectDef);
             }
@@ -142,23 +151,77 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             {
                 if (string.IsNullOrEmpty(inherit.Name) == true)
                 {
-                    throw new InvalidOperationException();
+                    throw new ConfigurationLoadException(
+                        string.Format("null inherit name from '{1}' in binary class '{0}'",
+                                      rootClassName,
+                                      rawClassDef.Name));
                 }
 
                 var inheritRawClassDef = rawClassDefs.FirstOrDefault(rcd => rcd.Name == inherit.Name);
                 if (inheritRawClassDef == null)
                 {
-                    throw new InvalidOperationException(string.Format(
-                        "could not find definition for binary class '{0}'", inherit.Name));
+                    throw new ConfigurationLoadException(
+                        string.Format("could not find definition for binary class '{0}'",
+                                      inherit.Name));
                 }
 
-                MergeClassDefinition(rawClassDefs, inheritRawClassDef, fieldDefs, nestedClassDefs);
+                MergeClassDefinition(rootClassName, rawClassDefs, inheritRawClassDef, fieldDefs, nestedClassDefs);
             }
         }
 
         private FieldDefinition LoadFieldDefinition(RawFieldDefinition rawFieldDef)
         {
-            return new FieldDefinition(rawFieldDef.Name, rawFieldDef.Hash, rawFieldDef.Type);
+            EnumDefinition enumDef;
+
+            if (rawFieldDef.EnumDefinition == null)
+            {
+                enumDef = null;
+
+                if (rawFieldDef.Type == FieldType.Enum)
+                {
+                    Console.WriteLine("Warning: enum definition for field '{0}' is missing.", rawFieldDef.Name);
+                }
+            }
+            else
+            {
+                if (rawFieldDef.Type != FieldType.Enum)
+                {
+                    throw new ConfigurationLoadException(string.Format(
+                        "field '{0}' specified an enum but isn't an enum",
+                        rawFieldDef.Name));
+                }
+
+                enumDef = LoadEnumDefinition(rawFieldDef.EnumDefinition);
+            }
+
+            return new FieldDefinition(rawFieldDef.Name, rawFieldDef.Hash, rawFieldDef.Type, enumDef);
+        }
+
+        private EnumDefinition LoadEnumDefinition(RawEnumDefinition rawEnumDef)
+        {
+            var name = rawEnumDef.Name;
+
+            var elementDefs = new List<EnumElementDefinition>();
+            foreach (var rawElementDef in rawEnumDef.ElementDefinitions)
+            {
+                if (elementDefs.Any(ed => ed.Name == rawElementDef.Name) == true)
+                {
+                    throw new ConfigurationLoadException(
+                        string.Format("duplicate element name '{1}' in binary enum '{0}'",
+                                      rawEnumDef.Name,
+                                      rawElementDef.Name));
+                }
+
+                if (elementDefs.Any(ed => ed.Value == rawElementDef.Value) == true)
+                {
+                    throw new ConfigurationLoadException(string.Format(
+                        "duplicate element value '{1}' in binary enum '{0}'", rawEnumDef.Name, rawElementDef.Value));
+                }
+
+                elementDefs.Add(new EnumElementDefinition(rawElementDef.Name, rawElementDef.Value));
+            }
+
+            return new EnumDefinition(name, elementDefs);
         }
 
         private static string[] GetClassDefinitionPaths(ProjectData.Project project)
@@ -219,12 +282,38 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             public string Name { get; private set; }
             public uint Hash { get; private set; }
             public FieldType Type { get; private set; }
+            public EnumDefinition EnumDefinition { get; private set; }
 
-            public FieldDefinition(string name, uint hash, FieldType type)
+            public FieldDefinition(string name, uint hash, FieldType type, EnumDefinition enumDef)
             {
                 this.Name = name;
                 this.Hash = hash;
                 this.Type = type;
+                this.EnumDefinition = enumDef;
+            }
+        }
+
+        public class EnumDefinition
+        {
+            public string Name { get; private set; }
+            public List<EnumElementDefinition> ElementDefinitions { get; private set; }
+
+            public EnumDefinition(string name, List<EnumElementDefinition> elementDefs)
+            {
+                this.Name = name;
+                this.ElementDefinitions = elementDefs ?? new List<EnumElementDefinition>();
+            }
+        }
+
+        public class EnumElementDefinition
+        {
+            public string Name { get; private set; }
+            public int Value { get; private set; }
+
+            public EnumElementDefinition(string name, int value)
+            {
+                this.Name = name;
+                this.Value = value;
             }
         }
 
@@ -272,15 +361,21 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         return hash;
                     }
 
-                    throw new InvalidOperationException();
+                    throw new ConfigurationLoadException("tried to get null hash value");
                 }
 
                 set
                 {
-                    if (this._Name != null &&
-                        FileFormats.CRC32.Hash(this._Name) != value)
+                    if (this._Name != null)
                     {
-                        throw new InvalidOperationException();
+                        var hash = FileFormats.CRC32.Hash(this._Name);
+                        if (hash != value)
+                        {
+                            throw new InvalidOperationException(string.Format("hash mismatch for '{0}': {1} vs {2}",
+                                                                              this._Name,
+                                                                              hash,
+                                                                              value));
+                        }
                     }
 
                     this._Hash = value;
@@ -351,10 +446,16 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
                 set
                 {
-                    if (this._ClassFieldName != null &&
-                        FileFormats.CRC32.Hash(this._ClassFieldName) != value)
+                    if (this._ClassFieldName != null)
                     {
-                        throw new InvalidOperationException();
+                        var hash = FileFormats.CRC32.Hash(this._ClassFieldName);
+                        if (hash != value)
+                        {
+                            throw new InvalidOperationException(string.Format("hash mismatch for '{0}': {1} vs {2}",
+                                                                              this._ClassFieldName,
+                                                                              hash,
+                                                                              value));
+                        }
                     }
 
                     this._ClassFieldHash = value;
@@ -401,6 +502,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             private string _Name;
             private uint? _Hash;
             private FieldType _Type = FieldType.BinHex;
+            private RawEnumDefinition _EnumDefinition;
 
             [XmlAttribute("name")]
             public string Name
@@ -463,14 +565,69 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 get { return this._Type; }
                 set { this._Type = value; }
             }
+
+            [XmlElement("enum")]
+            public RawEnumDefinition EnumDefinition
+            {
+                get { return this._EnumDefinition; }
+                set { this._EnumDefinition = value; }
+            }
+        }
+
+        public class RawEnumDefinition
+        {
+            private string _Path;
+            private string _Name;
+            private List<RawEnumElementDefinition> _ElementDefinitions = new List<RawEnumElementDefinition>();
+
+            [XmlIgnore]
+            public string Path
+            {
+                get { return this._Path; }
+                set { this._Path = value; }
+            }
+
+            [XmlAttribute("name")]
+            public string Name
+            {
+                get { return this._Name; }
+                set { this._Name = value; }
+            }
+
+            [XmlElement("element")]
+            public List<RawEnumElementDefinition> ElementDefinitions
+            {
+                get { return this._ElementDefinitions; }
+                set { this._ElementDefinitions = value; }
+            }
+        }
+
+        public class RawEnumElementDefinition
+        {
+            private string _Name;
+            private int _Value;
+
+            [XmlAttribute("name")]
+            public string Name
+            {
+                get { return this._Name; }
+                set { this._Name = value; }
+            }
+
+            //[XmlAttribute("value")]
+            [XmlText]
+            public int Value
+            {
+                get { return this._Value; }
+                set { this._Value = value; }
+            }
         }
 
         private void LoadObjectFileDefinitions(ProjectData.Project project)
         {
             var rawObjectFileDefs = new List<RawObjectFileDefinition>();
 
-            var serializer = new XmlSerializer(typeof(RawObjectFileDefinition),
-                                               new[] {typeof(RawObjectDefinition)});
+            var serializer = new XmlSerializer(typeof(RawObjectFileDefinition));
             foreach (var inputPath in GetObjectFilePaths(project))
             {
                 using (var input = File.OpenRead(inputPath))

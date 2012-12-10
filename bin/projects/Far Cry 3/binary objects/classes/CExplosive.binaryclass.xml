@@ -4,7 +4,30 @@
 	<field name="sCategory" type="String" />
 	<object name="StimsToExplode">
 		<object name="Stim">
-			<field name="selType" /><!-- enumType -->
+			<field name="selType" type="Enum">
+				<enum name="enumType">
+					<element name="None">0</element>
+					<element name="Bang">1</element>
+					<element name="Snap">2</element>
+					<element name="Pierce">3</element>
+					<element name="Crush">4</element>
+					<element name="Cut">5</element>
+					<element name="Health">6</element>
+					<element name="Burn">7</element>
+					<element name="Water">8</element>
+					<element name="Panic">9</element>
+					<element name="Fear">10</element>
+					<element name="Morale">11</element>
+					<element name="Dirt">12</element>
+					<element name="Reliability">13</element>
+					<element name="Interest">14</element>
+					<element name="Stun">15</element>
+					<element name="Explosion">16</element>
+					<element name="Boom">17</element>
+					<element name="Toxic">18</element>
+					<element name="BleedOut">19</element>
+				</enum>
+			</field>
 		</object>
 	</object>
 	<object name="Sound">
@@ -54,7 +77,16 @@
 		</object>
 		<field name="matimpExplosionFx" />
 	</object>
-	<field name="selDelayExplodeType" /><!-- enumDelayExplodeType -->
+	<field name="selDelayExplodeType" type="Enum">
+		<enum name="enumDelayExplodeType">
+			<element name="None">0</element>
+			<element name="DelayFromStart">1</element>
+			<element name="DelayFromHit">2</element>
+			<element name="BothDelays">3</element>
+			<element name="RandomDelay">4</element>
+			<element name="DelayAfterTrigger">5</element>
+		</enum>
+	</field>
 	<object name="DelayValue">
 		<!-- if selDelayExplodeType is 1, 2, 5 -->
 		<field name="fDelay" type="Float32" />

@@ -20,32 +20,24 @@
  *    distribution.
  */
 
+using System;
+
 namespace Gibbed.Dunia2.ConvertObjectBinary
 {
-    public enum FieldType
+    internal class ConfigurationLoadException : Exception
     {
-        Invalid = 0,
-        BinHex,
-        Boolean,
-        UInt8,
-        Int8,
-        UInt16,
-        Int16,
-        UInt32,
-        Int32,
-        UInt64,
-        Int64,
-        Float32,
-        Float64,
-        Vector2,
-        Vector3,
-        Vector4,
-        String,
-        Enum,
-        Hash32,
-        Hash64,
-        Id32,
-        Id64,
-        Rml,
+        public ConfigurationLoadException()
+        {
+        }
+
+        public ConfigurationLoadException(string message)
+            : base(message)
+        {
+        }
+
+        public ConfigurationLoadException(String message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
     }
 }

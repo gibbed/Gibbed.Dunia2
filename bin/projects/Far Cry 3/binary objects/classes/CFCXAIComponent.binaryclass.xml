@@ -1,8 +1,46 @@
 <class name="CFCXAIComponent">
 	<inherit name="CAIComponent" />
-	<field name="selCharacterType" /><!-- enumCharacterType -->
-	<field name="selGenderType" /><!-- enumGenderType -->
-	<field name="selMetaCharacterType" /><!-- enumMetaCharacterType -->
+	<field name="selCharacterType" type="Enum">
+		<enum name="enumCharacterType">
+			<element name="GenericNPC">0</element>
+			<element name="Nicole">1</element>
+			<element name="HeavyNPC">2</element>
+			<element name="VillagerNPCMale_LEGACY">3</element>
+			<element name="Privateer">4</element>
+			<element name="Molotov">5</element>
+			<element name="Outsider">6</element>
+			<element name="Beheader">7</element>
+			<element name="Villager">8</element>
+			<element name="Companion">9</element>
+		</enum>
+	</field>
+	<field name="selGenderType" type="Enum">
+		<enum name="enumGenderType">
+			<element name="Male">0</element>
+			<element name="Female">1</element>
+		</enum>
+	</field>
+	<field name="selMetaCharacterType" type="Enum">
+		<enum name="enumMetaCharacterType">
+			<element name="None">0</element>
+			<element name="DrunkMan">1</element>
+			<element name="Widow">2</element>
+			<element name="FlowerGirl">3</element>
+			<element name="HungryWoman">4</element>
+			<element name="Nurse">5</element>
+			<element name="Pimp">6</element>
+			<element name="Prostitute">7</element>
+			<element name="Junkie">8</element>
+			<element name="Willis">9</element>
+			<element name="Limping">10</element>
+			<element name="Jason">11</element>
+			<element name="HostageOnChair">12</element>
+			<element name="Dennis">13</element>
+			<element name="Oliver">14</element>
+			<element name="BeatenMan">15</element>
+			<element name="HostageKneel">16</element>
+		</enum>
+	</field>
 	<field name="arkPistolTakedownArchetype" desc="Replaces the default pistol archetype used when performing a pistol takedown on this NPC." type="Id64" />
 	<field name="fMaxLookAngle" desc="Max angle at which head look at offsets are applied for this character" />
 	<field name="fMaxAimAngle" desc="Max angle at which aim offsets are applied for this character" />

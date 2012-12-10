@@ -1,6 +1,13 @@
 <class name="CPersistComponent">
 	<inherit name="CEntityComponent" />
-	<field name="selLevel" /><!-- enumLevel -->
+	<field name="selLevel" type="Enum">
+		<enum name="enumLevel">
+			<element name="None">0</element>
+			<element name="Limited">1</element>
+			<element name="Full">2</element>
+			<element name="Critical">3</element>
+		</enum>
+	</field>
 	<field name="OriginalSector" />
 	<field name="hidArchetypeOverwriteId" />
 	<field name="bDontPersistIfChild" type="Boolean" />

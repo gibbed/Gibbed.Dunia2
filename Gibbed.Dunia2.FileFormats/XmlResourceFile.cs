@@ -134,11 +134,10 @@ namespace Gibbed.Dunia2.FileFormats
                 for (uint i = 0; i < childCount; i++)
                 {
                     var child = new Node();
-                    child.Deserialize(
-                        input,
-                        ref totalNodeCount,
-                        ref totalAttributeCount,
-                        endian);
+                    child.Deserialize(input,
+                                      ref totalNodeCount,
+                                      ref totalAttributeCount,
+                                      endian);
                     this.Children.Add(child);
                 }
             }
@@ -164,11 +163,10 @@ namespace Gibbed.Dunia2.FileFormats
 
                 foreach (var child in this.Children)
                 {
-                    child.Serialize(
-                        output,
-                        ref totalNodeCount,
-                        ref totalAttributeCount,
-                        endian);
+                    child.Serialize(output,
+                                    ref totalNodeCount,
+                                    ref totalAttributeCount,
+                                    endian);
                 }
             }
 

@@ -7,11 +7,26 @@
 	<field name="shpitpeItemType" type="UInt8" />
 	<field name="shpisubtpeItemSubType" type="UInt8" />
 	<field name="locidDescriptionId" type="Int32" />
-	<field name="selAttachmentType" /><!-- enumAttachmentType -->
+	<field name="selAttachmentType" type="Enum">
+		<enum name="enumAttachmentType">
+			<element name="None">0</element>
+			<element name="Scope">1</element>
+			<element name="Silencer">2</element>
+			<element name="Pointer">3</element>
+			<element name="Upgrade">4</element>
+			<element name="Clip">5</element>
+		</enum>
+	</field>
 	<field hash="AB258E09" type="String" />
 	<field name="ammoAmmoType" type="Hash32" />
 	<field name="iAmmoAmount" type="Int32" />
-	<field name="selGadgetType" /><!-- enumGadgetType -->
+	<field name="selGadgetType" type="Enum">
+		<enum name="enumGadgetType">
+			<element name="None">0</element>
+			<element name="Grenade">1</element>
+			<element name="Molotov">2</element>
+		</enum>
+	</field>
 	<field name="arkArchetype" type="Id64" />
 	<field name="arkDisplayArchetype" type="Id64" />
 	<field name="fRotationSpeed" type="Float32" />
@@ -43,7 +58,26 @@
 			</object>
 		</object>
 	</object>
-	<field name="selCollectibleType" /><!-- enumCollectibleType -->
+	<field name="selCollectibleType" type="Enum">
+		<enum name="enumCollectibleType">
+			<element name="Invalid">-1</element>
+			<element name="Plant">0</element>
+			<element name="SDCard">1</element>
+			<element name="JapLetter">2</element>
+			<element name="TribalRelic">3</element>
+			<element name="BoarRelic">4</element>
+			<element name="SpiderRelic">5</element>
+			<element name="SharkRelic">6</element>
+			<element name="HeronRelic">7</element>
+			<element name="AnimalPart">8</element>
+			<element name="Misc">9</element>
+			<element name="Photo">10</element>
+			<element name="Money">11</element>
+			<element name="LootWood">12</element>
+			<element name="LootMetal">13</element>
+			<element name="LootReinforced">14</element>
+		</enum>
+	</field>
 	<field name="bIsWeaponStatistics" desc="Is this a weapon" type="Boolean" />
 	<object name="WeaponStatistics">
 		<inherit name="SWeaponStatistics" />

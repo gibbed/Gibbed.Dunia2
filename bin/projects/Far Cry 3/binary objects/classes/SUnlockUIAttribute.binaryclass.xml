@@ -1,5 +1,17 @@
 <class name="SUnlockUIAttribute">
 	<inherit name="#11E152E0" />
-	<field name="selAttribute" /><!-- enumAttribute -->
+	<field name="selAttribute" type="Enum">
+		<enum name="enumAttribute">
+			<element name="None">0</element>
+			<element name="Range">1</element>
+			<element name="Damage">2</element>
+			<element name="Accuracy">3</element>
+			<element name="FireRate">4</element>
+			<element name="Mobility">5</element>
+			<element name="UNUSED_1">6</element>
+			<element name="UNUSED_2">7</element>
+			<element name="UNUSED_3">8</element>
+		</enum>
+	</field>
 	<field name="Value" type="Float32" />
 </class>

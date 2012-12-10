@@ -5,7 +5,13 @@
 	<field name="fCurrentLevel" type="Float32" />
 	<field name="fAvailableUpgradeLevels" type="Float32" />
 	<field name="bShowTattoo" type="Boolean" />
-	<field name="selPlayerProgressionLevel" /><!-- enumPlayerProgressionLevel -->
+	<field name="selPlayerProgressionLevel" type="Enum">
+		<enum name="enumPlayerProgressionLevel">
+			<element name="Novice">0</element>
+			<element name="Soldier">1</element>
+			<element name="Warrior">2</element>
+		</enum>
+	</field>
 	<object name="Tattoo">
 		<field name="fTattooApparitionTime" type="Float32" />
 		<field name="sndTattooApparitionSound" type="String" />
@@ -23,7 +29,17 @@
 			<field name="sndtpRelicTattooApparitionSoundType" type="Int32" />
 			<field hash="E155416F" type="String" />
 			<field name="sRelicTattooPartName" type="Hash32" />
-			<field name="selRelicTattooLocation" /><!-- enumRelicTattooLocation -->
+			<field name="selRelicTattooLocation" type="Enum">
+				<enum name="enumRelicTattooLocation">
+					<element name="Invalid">-1</element>
+					<element name="A">0</element>
+					<element name="B">1</element>
+					<element name="C">2</element>
+					<element name="D">3</element>
+					<element name="E">4</element>
+					<element name="F">5</element>
+				</enum>
+			</field>
 		</object>
 	</object>
 	<object name="availableAbilities">

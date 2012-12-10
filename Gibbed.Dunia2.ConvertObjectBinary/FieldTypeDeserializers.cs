@@ -23,6 +23,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using Gibbed.Dunia2.FileFormats;
@@ -262,6 +263,30 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
                     var value = Encoding.UTF8.GetString(data, 0, data.Length - 1);
                     writer.WriteString(value);
+                    break;
+                }
+
+                case FieldType.Enum:
+                {
+                    if (data == null ||
+                        data.Length != 4)
+                    {
+                        throw new FormatException("field type Enum requires 4 bytes");
+                    }
+
+                    var value = BitConverter.ToInt32(data, 0);
+
+                    if (fieldDef.EnumDefinition != null)
+                    {
+                        var enumDef = fieldDef.EnumDefinition.ElementDefinitions.FirstOrDefault(ed => ed.Value == value);
+                        if (enumDef != null)
+                        {
+                            writer.WriteString(enumDef.Name);
+                            break;
+                        }
+                    }
+
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
                     break;
                 }
 

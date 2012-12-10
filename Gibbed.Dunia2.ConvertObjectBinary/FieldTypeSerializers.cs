@@ -23,6 +23,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.XPath;
@@ -33,7 +34,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 {
     internal static class FieldTypeSerializers
     {
-        public static byte[] Serialize(FieldType fieldType, XPathNavigator nav)
+        public static byte[] Serialize(Configuration.FieldDefinition fieldDef, FieldType fieldType, XPathNavigator nav)
         {
             switch (fieldType)
             {
@@ -268,6 +269,32 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     return data;
                 }
 
+                case FieldType.Enum:
+                {
+                    var enumDef = fieldDef.EnumDefinition;
+
+                    var text = nav.Value;
+                    var elementDef = enumDef != null
+                                         ? enumDef.ElementDefinitions.FirstOrDefault(ed => ed.Name == text)
+                                         : null;
+
+                    int value;
+                    if (elementDef != null)
+                    {
+                        value = elementDef.Value;
+                    }
+                    else
+                    {
+                        if (TryParseInt32(nav.Value, out value) == false)
+                        {
+                            throw new FormatException(string.Format("could not parse enum value '{0}' as an Int32",
+                                                                    nav.Value));
+                        }
+                    }
+
+                    return BitConverter.GetBytes(value);
+                }
+
                 case FieldType.Hash32:
                 {
                     uint value;
@@ -311,7 +338,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 case FieldType.Rml:
                 {
                     var rml = new XmlResourceFile();
-                    rml.Root = ConvertXml.Program.ReadNode(nav.SelectSingleNode("rml"));
+                    rml.Root = ConvertXml.Program.ReadNode(nav.SelectSingleNode("rml/*"));
 
                     using (var temp = new MemoryStream())
                     {

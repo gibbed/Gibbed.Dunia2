@@ -166,7 +166,6 @@ namespace Gibbed.Dunia2.ConvertXml
         {
             var node = new XmlResourceFile.Node();
             node.Name = nav.Name;
-            node.Value = nav.Value;
 
             if (nav.MoveToFirstAttribute() == true)
             {
@@ -187,11 +186,21 @@ namespace Gibbed.Dunia2.ConvertXml
             var children = nav.SelectChildren(XPathNodeType.Element);
             if (children.Count > 0)
             {
+                node.Value = "";
                 node.Children = new List<XmlResourceFile.Node>();
                 while (children.MoveNext() == true)
                 {
-                    node.Children.Add(ReadNode(children.Current));
+                    if (children.Current == null)
+                    {
+                        throw new InvalidOperationException();
+                    }
+
+                    node.Children.Add(ReadNode(children.Current.CreateNavigator()));
                 }
+            }
+            else
+            {
+                node.Value = nav.Value;
             }
 
             return node;

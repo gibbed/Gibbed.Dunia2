@@ -1,4 +1,9 @@
 <class name="CFCXFireStormCamera">
 	<inherit name="CCameraComponent" />
-	<field name="selPlaneDirection" /><!-- enumPlaneDirection -->
+	<field name="selPlaneDirection" type="Enum">
+		<enum name="enumPlaneDirection">
+			<element name="AtoB">0</element>
+			<element name="BtoA">1</element>
+		</enum>
+	</field>
 </class>

@@ -27,7 +27,7 @@
 		<object name="RelicTattoo">
 			<field name="sndRelicTattooApparitionSound" type="String" />
 			<field name="sndtpRelicTattooApparitionSoundType" type="Int32" />
-			<field hash="E155416F" type="String" />
+			<field name="text_sRelicTattooPartName" type="String" />
 			<field name="sRelicTattooPartName" type="Hash32" />
 			<field name="selRelicTattooLocation" type="Enum">
 				<enum name="enumRelicTattooLocation">

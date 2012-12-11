@@ -5,7 +5,7 @@
 		<inherit name="CPawnBody" />
 	</object>
 	<object name="Skills" />
-	<field hash="502D1B6A" type="String" />
+	<field name="text_filePawnStateMachine" type="String" />
 	<field name="filePawnStateMachine" type="Hash64" />
 	<object name="Inventory">
 		<inherit name="CInventoryViewPawn" />

@@ -1,6 +1,6 @@
 <class name="CAIComponent">
 	<inherit name="CEntityComponent" />
-	<field hash="2B928622" type="String" />
+	<field name="text_Type" type="String" />
 	<field name="Type" />
 	<object name="AIObject" />
 </class>

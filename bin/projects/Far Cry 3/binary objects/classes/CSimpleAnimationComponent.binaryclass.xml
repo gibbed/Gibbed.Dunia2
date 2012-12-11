@@ -4,7 +4,7 @@
 	<field name="Enable" />
 	<field name="bEnableEvents" />
 	<field name="bRandomStart" />
-	<field hash="FCAC35BB" type="String" />
+	<field name="text_Animation" type="String" />
 	<field name="Animation" />
 	<field name="RootTransform" />
 </class>

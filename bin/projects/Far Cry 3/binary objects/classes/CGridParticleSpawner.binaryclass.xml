@@ -1,6 +1,6 @@
 <class name="CGridParticleSpawner">
 	<inherit name="#11E152E0" />
-	<field hash="425BD5E7" type="String" />
+	<field name="text_psWaterBubbles" type="String" />
 	<field name="psWaterBubbles" type="Hash64" />
 	<field name="iBubbleEmitPerSec" type="Int32" />
 	<field name="uiMaxRaysPerRegion" type="UInt32" />

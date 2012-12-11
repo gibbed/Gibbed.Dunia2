@@ -3,7 +3,7 @@
 	<field name="sName" desc="The name of the weapon. This is a unique identifier" type="String" />
 	<field name="sIconName" desc="Icon name - UI"  type="String" />
 	<field name="locidDisplayName" desc="Localized 'Human' name of the weapon" type="Int32" />
-	<field hash="41C3276B" type="String" />
+	<field name="text_sUniquePickupName" type="String" />
 	<field name="sUniquePickupName" desc="Unique name used to prevent picking up of any other weapons with the same name as one you already carry." type="Hash32" />
 	<object name="Reloading">
 		<field name="fReloadTimeNormal" desc="Time of the reloading process, playing animation is scaled on defined time when m_reloadTime is not equal to 0" type="Float32" />
@@ -131,7 +131,7 @@
 		<field name="iMeleeSwingRate" desc="Frequency at which a specific weapon can be swung for melee attacks in swings per minute." type="Float32" />
 	</object>
 	<object name="Ammo">
-		<field hash="AB258E09" type="String" />
+		<field name="text_ammoAmmoType" type="String" />
 		<field name="ammoAmmoType" desc="Unique id of the ammo type. To add an ammo type, edit the file in /data/editor/WeaponsTemplates.xml" type="Hash32" />
 		<field name="iAmmoInClip" desc="How many bullets does the clip contain. Every time the player hits Reload, the clip will be reset to this amount, if there are enough bullets left" type="Int32" />
 		<field name="bUsesClips" desc="If the weapon doesn't use clips, always fetch the bullets from the pouch" type="Boolean" />
@@ -302,7 +302,7 @@
 		<field name="fFovDegrees" desc="Main FOV for weapon in degrees when in marksman mode." type="Float32" />
 	</object>
 	<object name="IronSight">
-		<field hash="C6FC0C7A" type="String" />
+		<field name="text_ScopeCenterBone" type="String" />
 		<field name="ScopeCenterBone" desc="Bone on the weapon or the scope attachement to look through when aiming in ironsights." type="Hash32" />
 		<field name="fMoveSpeedFactor" desc= "The move sensitivity factor to apply from the weapon in ironsight" type="Float32" />
 		<field name="bCanIronsight" desc="Identifies whether the pawn can go in iron sight mode using this weapon" type="Boolean" />
@@ -326,7 +326,7 @@
 		<field name="bAlwaysIronsightReload" desc="Always stay in ironsight when reloading." type="Boolean" />
 		<field name="arkTransitionCurve" desc="The name of the curve for ironsight transition" type="Id64" />
 		<field name="arkAnimPlaybackCurve" desc="The name of the curve ironshight animation playback" type="Id64" />
-		<field hash="D553AED0" type="String" />
+		<field name="text_IronsightFX" type="String" />
 		<field name="IronsightFX" type="Hash32" />
 		<field name="bCanShootDuringIronsightTransition" desc="Allow firing during ironsight transition. ***WARNING*** Animation move states need to be set up specially for this to work." type="Boolean" />
 		<field name="bCanIronsightTransitionWhileShooting" desc="Allow transitioning between ironsight while shooting." type="Boolean" />
@@ -379,9 +379,9 @@
 	<field name="fShootingAngle" desc="Shooting angle in normal mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." type="Float32" />
 	<field name="fShootingIronsightAngle" desc="Shooting angle in Iron Sight mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." type="Float32" />
 	<field name="selCategory" /><!-- enumCategory -->
-	<field hash="E0FF29E0" type="String" />
+	<field name="text_HolsterHandle" type="String" />
 	<field name="HolsterHandle" desc="Holster Handle String ID" type="Hash32" />
-	<field hash="18780E07" type="String" />
+	<field name="text_RightHandHandle" type="String" />
 	<field name="RightHandHandle" desc="Equip Handle String ID" type="Hash32" />
 	<field name="fRumbleMultiplier" desc="Multiplier for pad vibration when shooting." type="Float32" />
 	<field name="fRumbleMultiplierIronsight" desc="Multiplier for pad vibration when shooting in ironsight." type="Float32" />
@@ -428,9 +428,9 @@
 			<inherit name="SMultiplayerHitLocationMultipliers" />
 		</object>
 	</object>
-	<field hash="38900205" type="String" />
+	<field name="text_GraphicKitHolsterTag" type="String" />
 	<field name="GraphicKitHolsterTag" desc="Graphic Kit part tag for holster" type="Hash32" />
-	<field hash="31D4AC92" type="String" />
+	<field name="text_MeshToHide" type="String" />
 	<field name="MeshToHide" desc="Name of mesh (if any) to hide for this weapon." type="Hash32" />
 	<field name="bIsMountedWeapon" desc="Is this a mounted weapon?" type="Boolean" />
 	<object name="StatisticsAndProgressionWiki">

@@ -7,7 +7,7 @@
 			<inherit name="#11E152C8" />
 			<field name="iPoolSlackSize" type="Int32" />
 			<field name="iPoolMaxSize" type="Int32" />
-			<field hash="7F614501" type="String" />
+			<field name="text_psParticlesSys" type="String" />
 			<field name="psParticlesSys" type="Hash64" />
 		</object>
 	</object>

@@ -1,6 +1,6 @@
 <class name="CParticleAmbiance">
 	<inherit name="#11E152E0" />
-	<field hash="93D2AFB5" type="String" />
+	<field name="text_psParticleSystem" type="String" />
 	<field name="psParticleSystem" type="Hash64" />
 	<object name="curveIntensity">
 		<inherit name="CCurveObj" />

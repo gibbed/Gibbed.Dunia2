@@ -5,7 +5,7 @@
 		<object name="FacialPoseDefinition">
 			<!-- #11E14810 -->
 			<inherit name="#11E152C8" />
-			<field hash="0AF17627" type="String" />
+			<field name="text_sHeadTag" type="String" />
 			<field name="sHeadTag" />
 			<field name="facialposedefinitionFacialDefinition" type="Hash64" />
 		</object>

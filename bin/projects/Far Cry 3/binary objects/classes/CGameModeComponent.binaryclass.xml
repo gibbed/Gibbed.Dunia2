@@ -1,12 +1,12 @@
 <class name="CGameModeComponent">
 	<inherit name="CEntityComponent" />
-	<field hash="F1B1D97B" type="String" />
+	<field name="text_sName" type="String" />
 	<field name="sName" type="Hash32" />
-	<field hash="8E4FDD0E" type="String" />
+	<field name="text_sVoiceIntroEventName" type="String" />
 	<field name="sVoiceIntroEventName" type="Hash32" />
-	<field hash="25438FC1" type="String" />
+	<field name="text_sVoiceOutroEventName" type="String" />
 	<field name="sVoiceOutroEventName" type="Hash32" />
-	<field hash="3F4C7746" type="String" />
+	<field name="text_sVoiceSeparatorEventName" type="String" />
 	<field name="sVoiceSeparatorEventName" type="Hash32" />
 	<object name="CommonSoundEvents">
 		<object name="EventEntry">

@@ -3,7 +3,7 @@
 	<field name="sFXBone" />
 	<object name="Stages">
 		<object name="Idle">
-			<field hash="BE25F0C9" type="String" />
+			<field name="text_psLoopPS" type="String" />
 			<field name="psLoopPS" desc="Particle played at the tip while idle (not yet fired.)" type="Hash64" />
 			<field name="sndLoopSound" type="String" />
 			<field name="sndtpLoopSound" type="Hash32" />
@@ -19,9 +19,9 @@
 			<field name="fHipFireMaxDeviationAngle" desc="Max deviation angle(in degrees) when shooting from hip fire" type="Float32" />
 			<field name="fCrouchHipFireMaxDeviationAngle" desc="Max deviation angle(in degrees) when crouched and shooting from hip fire" type="Float32" />
 			<field name="fIronSightMaxDeviationAngle" desc="Max deviation angle(in degrees) when shooting from ironsight" type="Float32" />
-			<field hash="3BB1654D" type="String" />
+			<field name="text_psStartPS" type="String" />
 			<field name="psStartPS" type="Hash64" />
-			<field hash="BE25F0C9" type="String" />
+			<field name="text_psLoopPS" type="String" />
 			<field name="psLoopPS" type="Hash64" />
 			<field name="fParticleEmitMultiplierForFullSpeed" desc="The rate of emission of the particles are multiplied by this proportional to the speed of the bow when the arrow is fired. max speed =&lt; max emit rate." />
 			<field name="sndStartSound" type="String" />
@@ -34,9 +34,9 @@
 		<object name="Fall">
 			<field name="fTime" desc="Delay from launch(in seconds) before rocket starts to fall" type="Float32" />
 			<field name="fGravity" desc="Gravity affecting rocket when it is falling" type="Float32" />
-			<field hash="3BB1654D" type="String" />
+			<field name="text_psStartPS" type="String" />
 			<field name="psStartPS" type="Hash64" />
-			<field hash="BE25F0C9" type="String" />
+			<field name="text_psLoopPS" type="String" />
 			<field name="psLoopPS" type="Hash64" />
 			<field name="sndStartSound" type="String" />
 			<field name="sndtpStartSound" type="Hash32" />

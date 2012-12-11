@@ -131,21 +131,21 @@
 	<field name="bAlignTrailWithDirection" type="Boolean" />
 	<object name="Particles">
 		<field name="bSpawnTrailSeparately" desc="Spawn trail only when the explosive is properly activated. E.g. when thrown." type="Boolean" />
-		<field hash="4C4C6AB9" type="String" />
+		<field name="text_psIdle" type="String" />
 		<field name="psIdle" desc="Particle activated at the start if spawn trail separately is ticked." type="Hash64" />
-		<field hash="F42B64D4" type="String" />
+		<field name="text_sIdleParticleBone" type="String" />
 		<field name="sIdleParticleBone" desc="Bone to attach the idle particles to." type="Hash32" />
-		<field hash="6D980293" type="String" />
+		<field name="text_psTrail" type="String" />
 		<field name="psTrail" type="Hash64" />
-		<field hash="38680A74" type="String" />
+		<field name="text_psLand" type="String" />
 		<field name="psLand" type="Hash64" />
-		<field hash="8DF2AAC6" type="String" />
+		<field name="text_psExplosion" type="String" />
 		<field name="psExplosion" type="Hash64" />
-		<field hash="8E6613D3" type="String" />
+		<field name="text_psExplosionUnderwater" type="String" />
 		<field name="psExplosionUnderwater" type="Hash64" />
-		<field hash="4FBACFBE" type="String" />
+		<field name="text_psExplosionInAir" type="String" />
 		<field name="psExplosionInAir" type="Hash64" />
-		<field hash="BC45A121" type="String" />
+		<field name="text_psRemains" type="String" />
 		<field name="psRemains" />
 		<object name="Light">
 			<object name="LightExplosion">

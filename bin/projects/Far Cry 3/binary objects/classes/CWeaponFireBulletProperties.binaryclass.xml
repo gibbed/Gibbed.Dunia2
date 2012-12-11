@@ -146,7 +146,7 @@
 		<field name="BulletCaseBone" desc="Name of the the bullet casing bone for FX to attach to on the weapon mesh" />
 		<field name="psShineParticleId" desc="Sniper Shine FX " />
 		<object name="UnderwaterBullet">
-			<field hash="27A99E19" type="String" />
+			<field name="text_psUnderwaterBulletParticleId" type="String" />
 			<field name="psUnderwaterBulletParticleId" desc="Underwater Bullet FX " />
 			<field name="fUnderwaterBulletMinAngle" desc="Minimum angle between water normal and bullet dir for Underwater FX to appear" />
 			<field name="fUnderwaterBulletMinDistSquared" desc="Minimum distance between water surface and bullet hit pos for Underwater FX to appear" />
@@ -169,7 +169,7 @@
 		<field name="fBulletSpread_movement_stabilization_time" desc="Controls how long it takes to reset back to perfect aim in-between shots. WARNING ? THERE IS NO EXTERNAL FEEDBACK FOR THIS VALUE, AND IT CAN RADICALLY AFFECT THE AIMING BEHAVIOR OF WEAPONS." />
 		<field name="fBulletSpread_turn_modifier" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired while the Player is turning" />
 		<field name="bBulletSpread_clamp_spread" desc="Whether the weapon should clamp the spread value to the max spread allowed during the current state (jumping, crouch etc.). If false, all spread actions add up and can go beyond the max spread (ex.: shooting while moving)." />
-		<field hash="7DC27A84" type="String" />
+		<field name="text_sShootRumbleEffect" type="String" />
 		<field name="sShootRumbleEffect" desc="The name of the effect in the player cameraShakeAndRumble list used when shooting." />
 		<object name="ReflexFire">
 			<field name="bReflexFire_enabled" desc="If true this turns on aim assist when shooting from the hip. Bones will be targeted on NPCs when they fall within the reticule." />

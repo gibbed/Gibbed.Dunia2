@@ -1,6 +1,6 @@
 <class name="CRocket">
 	<inherit name="CProjectile" />
-	<field hash="011F98D9" type="String" />
+	<field name="text_sFXBone" type="String" />
 	<field name="sFXBone" />
 	<object name="Stages">
 		<object name="Malfunction">
@@ -16,9 +16,9 @@
 			<field name="fHipFireMaxDeviationAngle" desc="Max deviation angle(in degrees) when shooting from hip fire" type="Float32" />
 			<field name="fCrouchHipFireMaxDeviationAngle" desc="Max deviation angle(in degrees) when crouched and shooting from hip fire" type="Float32" />
 			<field name="fIronSightMaxDeviationAngle" desc="Max deviation angle(in degrees) when shooting from ironsight" type="Float32" />
-			<field hash="3BB1654D" type="String" />
+			<field name="text_psStartPS" type="String" />
 			<field name="psStartPS" />
-			<field hash="BE25F0C9" type="String" />
+			<field name="text_psLoopPS" type="String" />
 			<field name="psLoopPS" />
 			<field name="sndStartSound" type="String" />
 			<field name="sndStopSound" type="String" />
@@ -33,9 +33,9 @@
 			<field name="fTime" desc="Delay from launch(in seconds) before rocket ignites" type="Float32" />
 			<field name="fHipFireMaxDeviationSpeed" desc="Max deviation angle speed(in degrees per second) when shooting from hip fire" type="Float32" />
 			<field name="fIronSightMaxDeviationSpeed" desc="Max deviation angle speed(in degrees per second) when shooting from ironsight" type="Float32" />
-			<field hash="3BB1654D" type="String" />
+			<field name="text_psStartPS" type="String" />
 			<field name="psStartPS" />
-			<field hash="BE25F0C9" type="String" />
+			<field name="text_psLoopPS" type="String" />
 			<field name="psLoopPS" />
 			<field name="sndStartSound" type="String" />
 			<field name="sndtpStartSound" />
@@ -48,9 +48,9 @@
 			<field name="fTime" desc="Delay from launch(in seconds) before rocket starts to fall" type="Float32" />
 			<field name="fGravity" desc="Gravity affecting rocket when it is falling" type="Float32" />
 			<field name="fHipGravity" desc="Gravity affecting the rocket when falling after being fired from the hip." type="Float32" />
-			<field hash="3BB1654D" type="String" />
+			<field name="text_psStartPS" type="String" />
 			<field name="psStartPS" />
-			<field hash="BE25F0C9" type="String" />
+			<field name="text_psLoopPS" type="String" />
 			<field name="psLoopPS" />
 			<field name="sndStartSound" type="String" />
 			<field name="sndtpStartSound" />
@@ -68,9 +68,9 @@
 			<field name="vectorPropellerStartPoint" />
 			<field name="vectorPropellerEndPoint" />
 			<field name="fOnAirTurnSpeed" type="Float32" />
-			<field hash="3BB1654D" type="String" />
+			<field name="text_psStartPS" type="String" />
 			<field name="psStartPS" />
-			<field hash="BE25F0C9" type="String" />
+			<field name="text_psLoopPS" type="String" />
 			<field name="psLoopPS" />
 			<field name="sndStartSound" type="String" />
 			<field name="sndtpStartSound" />

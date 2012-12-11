@@ -6,15 +6,15 @@
 		<field name="colorIlluminatedSightsColour" desc="The colour of the illuminated sights." type="Vector3" />
 		<object name="IlluminatedMaterialNames">
 			<object name="MaterialNames">
-				<field hash="F96FAF0D" type="String" />
+				<field name="text_Name" type="String" />
 				<field name="Name" type="Hash32" />
 			</object>
 		</object>
 	</object>
-	<field hash="F2E588CD" type="String" />
+	<field name="text_attachmentAttachmentType" type="String" />
 	<field name="attachmentAttachmentType" desc="Unique Id of attachment type. Add entries in /data/editor/WeaponsTemplates.xml" type="Hash32" />
 	<field name="UIIconName" desc="Icon name in the UI" type="String" />
-	<field hash="F1B1D97B" type="String" />
+	<field name="text_sName" type="String" />
 	<field name="sName" type="Hash32" />
 	<field name="locAttachmentNameId" type="Int32" />
 	<field name="bAttachAtStart" desc="Is the attachment already attached to this weapon." type="Boolean" />

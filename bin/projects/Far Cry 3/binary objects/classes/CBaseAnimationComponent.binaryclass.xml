@@ -1,8 +1,8 @@
 <class name="CBaseAnimationComponent">
 	<inherit name="CEntityComponent" />
-	<field hash="F9F2D5F4" type="String" />
+	<field name="text_fileSkeleton" type="String" />
 	<field name="fileSkeleton" />
-	<field hash="7D06447F" type="String" />
+	<field name="text_sPackage" type="String" />
 	<field name="sPackage" />
 	<field name="AutoApplyDisplacement" />
 </class>

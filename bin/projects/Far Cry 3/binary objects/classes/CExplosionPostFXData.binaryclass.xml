@@ -1,6 +1,6 @@
 <class name="CExplosionPostFXData">
 	<inherit name="#11E152E0" />
-	<field hash="9A402C27" type="String" />
+	<field name="text_sPostFX" type="String" />
 	<field name="sPostFX" desc="The name of the postfx to play" type="Hash32" />
 	<field name="fMinDistance" desc="The minimum distance of the effect. Strength will be 1 at this dist and closer, and blend to 0 as it reaches maxDistance." />
 	<field name="fMaxDistance" desc="The maximum distance of the effect. Strength will be 0 at this dist and further, and blend to 1 as it reaches minDistance." />

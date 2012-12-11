@@ -18,12 +18,12 @@
 		<inherit name="CPhysCharacterControllerEntityCreateParams" />
 	</object>
 	<field name="RagdollCollideSpeedLimit" type="Float32" />
-	<field hash="041E4C28" type="String" />
+	<field name="text_LockBone" type="String" />
 	<field name="LockBone" type="Hash32" />
 	<!--<object name="Enable" />-->
 	<object name="BonesIgnoringTerrainCollisions">
 		<object name="BoneName">
-			<field hash="795F32D4" type="String" />
+			<field name="text_BoneName" type="String" />
 			<field name="BoneName" type="Hash32" />
 		</object>
 	</object>

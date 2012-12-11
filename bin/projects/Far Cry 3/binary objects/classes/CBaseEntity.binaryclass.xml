@@ -2,6 +2,6 @@
 	<inherit name="#11E152E0" />
 	<field name="hidName" type="String" />
 	<field name="disEntityId" type="Int64" />
-	<field hash="D2B3429E" type="String" />
+	<field name="text_hidEntityClass" type="String" />
 	<field name="hidEntityClass" type="Hash32" />
 </class>

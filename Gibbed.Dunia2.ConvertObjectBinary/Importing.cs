@@ -180,8 +180,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 if (fieldByName != null)
                 {
                     uint temp;
-                    if (
-                        uint.TryParse(fieldByName.Value,
+                    if (uint.TryParse(fieldByName.Value,
                                       NumberStyles.AllowHexSpecifier,
                                       CultureInfo.InvariantCulture,
                                       out temp) == false)
@@ -192,17 +191,17 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 }
             }
 
-            if (hash.HasValue == false)
+            if (hash.HasValue == false &&
+                classFieldHash.HasValue == true)
             {
                 var fieldByHash =
                     nav.SelectSingleNode("field[@hash=\"" +
                                          classFieldHash.Value.ToString("X8", CultureInfo.InvariantCulture) +
                                          "\"]");
-                if (fieldByHash == null)
+                if (fieldByHash != null)
                 {
                     uint temp;
-                    if (
-                        uint.TryParse(fieldByHash.Value,
+                    if (uint.TryParse(fieldByHash.Value,
                                       NumberStyles.AllowHexSpecifier,
                                       CultureInfo.InvariantCulture,
                                       out temp) == false)

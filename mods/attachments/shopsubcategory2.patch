@@ -1,0 +1,170 @@
+--- original\shopsubcategory2.xml	2012-12-10 16:27:29.904918800 -0800
++++ modified\shopsubcategory2.xml	2012-12-10 16:26:45.278366300 -0800
+@@ -29,20 +29,23 @@
+     <field name="hidName" type="Hash32">6B42FC4B</field>
+     <field name="disId" type="UInt8">160</field>
+     <field name="locidDescriptionId" type="Int32">42876</field>
+     <field name="iSortId" type="Int32">1</field>
+     <field name="sIconName" type="String">GrenadeLauncher</field>
+     <object name="ItemTypeDep">
+       <object name="Link">
+         <field name="disshpitpeId" type="UInt8">66</field>
+       </object>
+       <object name="Link">
++        <field name="disshpitpeId" type="UInt8">67</field>
++      </object>
++      <object name="Link">
+         <field name="disshpitpeId" type="UInt8">68</field>
+       </object>
+     </object>
+     <object name="ItemSubTypeDep" />
+   </object>
+   <object hash="72DE4948">
+     <field name="hidSingleObject" type="Boolean">False</field>
+     <field name="bCanBeShared" type="Boolean">True</field>
+     <field hash="9D8873F8" type="String">SMGs/MP5</field>
+     <field name="hidName" type="Hash32">5B63A7B2</field>
+@@ -70,20 +73,23 @@
+     <field name="hidName" type="Hash32">FFED8C7F</field>
+     <field name="disId" type="UInt8">96</field>
+     <field name="locidDescriptionId" type="Int32">42895</field>
+     <field name="iSortId" type="Int32">1</field>
+     <field name="sIconName" type="String">SVD</field>
+     <object name="ItemTypeDep">
+       <object name="Link">
+         <field name="disshpitpeId" type="UInt8">66</field>
+       </object>
+       <object name="Link">
++        <field name="disshpitpeId" type="UInt8">67</field>
++      </object>
++      <object name="Link">
+         <field name="disshpitpeId" type="UInt8">68</field>
+       </object>
+     </object>
+     <object name="ItemSubTypeDep" />
+   </object>
+   <object hash="72DE4948">
+     <field name="hidSingleObject" type="Boolean">False</field>
+     <field name="bCanBeShared" type="Boolean">True</field>
+     <field hash="9D8873F8" type="String">Vehicle/Scavenger</field>
+     <field name="hidName" type="Hash32">4D6FBFA2</field>
+@@ -123,20 +129,23 @@
+     <field name="hidName" type="Hash32">6794C82D</field>
+     <field name="disId" type="UInt8">89</field>
+     <field name="locidDescriptionId" type="Int32">42888</field>
+     <field name="iSortId" type="Int32">1</field>
+     <field name="sIconName" type="String">M133</field>
+     <object name="ItemTypeDep">
+       <object name="Link">
+         <field name="disshpitpeId" type="UInt8">66</field>
+       </object>
+       <object name="Link">
++        <field name="disshpitpeId" type="UInt8">67</field>
++      </object>
++      <object name="Link">
+         <field name="disshpitpeId" type="UInt8">68</field>
+       </object>
+     </object>
+     <object name="ItemSubTypeDep" />
+   </object>
+   <object hash="72DE4948">
+     <field name="hidSingleObject" type="Boolean">False</field>
+     <field name="bCanBeShared" type="Boolean">True</field>
+     <field hash="9D8873F8" type="String">Special weapons/Repair tool</field>
+     <field name="hidName" type="Hash32">A3440A02</field>
+@@ -444,20 +453,23 @@
+     <field name="hidName" type="Hash32">E134BCAB</field>
+     <field name="disId" type="UInt8">74</field>
+     <field name="locidDescriptionId" type="Int32">42881</field>
+     <field name="iSortId" type="Int32">0</field>
+     <field name="sIconName" type="String">KW1911</field>
+     <object name="ItemTypeDep">
+       <object name="Link">
+         <field name="disshpitpeId" type="UInt8">66</field>
+       </object>
+       <object name="Link">
++        <field name="disshpitpeId" type="UInt8">67</field>
++      </object>
++      <object name="Link">
+         <field name="disshpitpeId" type="UInt8">68</field>
+       </object>
+     </object>
+     <object name="ItemSubTypeDep" />
+   </object>
+   <object hash="72DE4948">
+     <field name="hidSingleObject" type="Boolean">False</field>
+     <field name="bCanBeShared" type="Boolean">True</field>
+     <field hash="9D8873F8" type="String">Shotguns/SPAS 12</field>
+     <field name="hidName" type="Hash32">412F69CF</field>
+@@ -507,20 +519,23 @@
+     <field name="hidName" type="Hash32">5A5CF436</field>
+     <field name="disId" type="UInt8">83</field>
+     <field name="locidDescriptionId" type="Int32">42870</field>
+     <field name="iSortId" type="Int32">0</field>
+     <field name="sIconName" type="String">AK47</field>
+     <object name="ItemTypeDep">
+       <object name="Link">
+         <field name="disshpitpeId" type="UInt8">66</field>
+       </object>
+       <object name="Link">
++        <field name="disshpitpeId" type="UInt8">67</field>
++      </object>
++      <object name="Link">
+         <field name="disshpitpeId" type="UInt8">68</field>
+       </object>
+     </object>
+     <object name="ItemSubTypeDep" />
+   </object>
+   <object hash="72DE4948">
+     <field name="hidSingleObject" type="Boolean">False</field>
+     <field name="bCanBeShared" type="Boolean">True</field>
+     <field hash="9D8873F8" type="String">Special weapons/C4</field>
+     <field name="hidName" type="Hash32">AAE5EAB8</field>
+@@ -560,20 +575,23 @@
+     <field name="hidName" type="Hash32">1DEE8682</field>
+     <field name="disId" type="UInt8">156</field>
+     <field name="locidDescriptionId" type="Int32">42885</field>
+     <field name="iSortId" type="Int32">1</field>
+     <field name="sIconName" type="String"></field>
+     <object name="ItemTypeDep">
+       <object name="Link">
+         <field name="disshpitpeId" type="UInt8">66</field>
+       </object>
+       <object name="Link">
++        <field name="disshpitpeId" type="UInt8">67</field>
++      </object>
++      <object name="Link">
+         <field name="disshpitpeId" type="UInt8">68</field>
+       </object>
+     </object>
+     <object name="ItemSubTypeDep" />
+   </object>
+   <object hash="72DE4948">
+     <field name="hidSingleObject" type="Boolean">False</field>
+     <field name="bCanBeShared" type="Boolean">True</field>
+     <field hash="9D8873F8" type="String">Assault rifles/F1</field>
+     <field name="hidName" type="Hash32">0262B2C2</field>
+@@ -623,20 +641,23 @@
+     <field name="hidName" type="Hash32">B284AD82</field>
+     <field name="disId" type="UInt8">165</field>
+     <field name="locidDescriptionId" type="Int32">151202</field>
+     <field name="iSortId" type="Int32">3</field>
+     <field name="sIconName" type="String">Sniper</field>
+     <object name="ItemTypeDep">
+       <object name="Link">
+         <field name="disshpitpeId" type="UInt8">66</field>
+       </object>
+       <object name="Link">
++        <field name="disshpitpeId" type="UInt8">67</field>
++      </object>
++      <object name="Link">
+         <field name="disshpitpeId" type="UInt8">68</field>
+       </object>
+     </object>
+     <object name="ItemSubTypeDep" />
+   </object>
+   <object hash="72DE4948">
+     <field name="hidSingleObject" type="Boolean">False</field>
+     <field name="bCanBeShared" type="Boolean">True</field>
+     <field hash="9D8873F8" type="String">Special weapons/LPO 50</field>
+     <field name="hidName" type="Hash32">AACB3E89</field>

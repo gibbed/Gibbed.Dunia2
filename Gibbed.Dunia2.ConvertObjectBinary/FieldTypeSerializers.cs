@@ -271,7 +271,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
                 case FieldType.Enum:
                 {
-                    var enumDef = fieldDef.EnumDefinition;
+                    var enumDef = fieldDef != null ? fieldDef.EnumDefinition : null;
 
                     var text = nav.Value;
                     var elementDef = enumDef != null
@@ -287,8 +287,19 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     {
                         if (TryParseInt32(nav.Value, out value) == false)
                         {
-                            throw new FormatException(string.Format("could not parse enum value '{0}' as an Int32",
-                                                                    nav.Value));
+                            if (enumDef == null)
+                            {
+                                throw new FormatException(
+                                    string.Format(
+                                        "could not parse enum value '{0}' as an Int32 (perhaps enum definition is missing?)",
+                                        nav.Value));
+                            }
+
+                            throw new FormatException(
+                                string.Format(
+                                    "could not parse enum value '{0}' as an Int32 (perhaps enum element definition is missing from {1}?)",
+                                    nav.Value,
+                                    enumDef.Name));
                         }
                     }
 

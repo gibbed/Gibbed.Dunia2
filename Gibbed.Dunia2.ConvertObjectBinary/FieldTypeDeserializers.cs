@@ -32,16 +32,10 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 {
     internal static class FieldTypeDeserializers
     {
-        public static void Deserialize(XmlWriter writer, Configuration.FieldDefinition fieldDef, byte[] data)
+        public static object Deserialize(FieldType fieldType, byte[] data)
         {
-            switch (fieldDef.Type)
+            switch (fieldType)
             {
-                case FieldType.BinHex:
-                {
-                    writer.WriteBinHex(data, 0, data.Length);
-                    break;
-                }
-
                 case FieldType.Boolean:
                 {
                     if (data == null ||
@@ -56,9 +50,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("invalid value for field type Boolean");
                     }
 
-                    var value = data[0] != 0;
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return data[0] != 0;
                 }
 
                 case FieldType.UInt8:
@@ -69,9 +61,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type UInt8 requires 1 byte");
                     }
 
-                    var value = data[0];
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return data[0];
                 }
 
                 case FieldType.Int8:
@@ -82,9 +72,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Int8 requires 1 byte");
                     }
 
-                    var value = (sbyte)data[0];
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return (sbyte)data[0];
                 }
 
                 case FieldType.UInt16:
@@ -95,9 +83,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type UInt16 requires 2 bytes");
                     }
 
-                    var value = BitConverter.ToUInt16(data, 0);
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return BitConverter.ToUInt16(data, 0);
                 }
 
                 case FieldType.Int16:
@@ -108,9 +94,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Int16 requires 2 bytes");
                     }
 
-                    var value = BitConverter.ToInt16(data, 0);
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return BitConverter.ToInt16(data, 0);
                 }
 
                 case FieldType.UInt32:
@@ -121,9 +105,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type UInt32 requires 4 bytes");
                     }
 
-                    var value = BitConverter.ToUInt32(data, 0);
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return BitConverter.ToUInt32(data, 0);
                 }
 
                 case FieldType.Int32:
@@ -134,9 +116,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Int32 requires 4 bytes");
                     }
 
-                    var value = BitConverter.ToInt32(data, 0);
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return BitConverter.ToInt32(data, 0);
                 }
 
                 case FieldType.UInt64:
@@ -147,9 +127,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type UInt64 requires 8 bytes");
                     }
 
-                    var value = BitConverter.ToUInt64(data, 0);
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return BitConverter.ToUInt64(data, 0);
                 }
 
                 case FieldType.Int64:
@@ -160,9 +138,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Int64 requires 8 bytes");
                     }
 
-                    var value = BitConverter.ToInt64(data, 0);
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return BitConverter.ToInt64(data, 0);
                 }
 
                 case FieldType.Float32:
@@ -173,9 +149,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Float32 requires 4 bytes");
                     }
 
-                    var value = BitConverter.ToSingle(data, 0);
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return BitConverter.ToSingle(data, 0);
                 }
 
                 case FieldType.Float64:
@@ -186,9 +160,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Float64 requires 8 bytes");
                     }
 
-                    var value = BitConverter.ToDouble(data, 0);
-                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
-                    break;
+                    return BitConverter.ToDouble(data, 0);
                 }
 
                 case FieldType.Vector2:
@@ -199,13 +171,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Vector2 requires 8 bytes");
                     }
 
-                    var x = BitConverter.ToSingle(data, 0);
-                    var y = BitConverter.ToSingle(data, 4);
-
-                    writer.WriteString(string.Format("{0},{1}",
-                                                     x.ToString(CultureInfo.InvariantCulture),
-                                                     y.ToString(CultureInfo.InvariantCulture)));
-                    break;
+                    return new Vector2
+                    {
+                        X = BitConverter.ToSingle(data, 0),
+                        Y = BitConverter.ToSingle(data, 4),
+                    };
                 }
 
                 case FieldType.Vector3:
@@ -216,15 +186,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Vector3 requires 12 bytes");
                     }
 
-                    var x = BitConverter.ToSingle(data, 0);
-                    var y = BitConverter.ToSingle(data, 4);
-                    var z = BitConverter.ToSingle(data, 8);
-
-                    writer.WriteString(string.Format("{0},{1},{2}",
-                                                     x.ToString(CultureInfo.InvariantCulture),
-                                                     y.ToString(CultureInfo.InvariantCulture),
-                                                     z.ToString(CultureInfo.InvariantCulture)));
-                    break;
+                    return new Vector3
+                    {
+                        X = BitConverter.ToSingle(data, 0),
+                        Y = BitConverter.ToSingle(data, 4),
+                        Z = BitConverter.ToSingle(data, 8),
+                    };
                 }
 
                 case FieldType.Vector4:
@@ -235,17 +202,13 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Vector4 requires 16 bytes");
                     }
 
-                    var x = BitConverter.ToSingle(data, 0);
-                    var y = BitConverter.ToSingle(data, 4);
-                    var z = BitConverter.ToSingle(data, 8);
-                    var w = BitConverter.ToSingle(data, 12);
-
-                    writer.WriteString(string.Format("{0},{1},{2},{3}",
-                                                     x.ToString(CultureInfo.InvariantCulture),
-                                                     y.ToString(CultureInfo.InvariantCulture),
-                                                     z.ToString(CultureInfo.InvariantCulture),
-                                                     w.ToString(CultureInfo.InvariantCulture)));
-                    break;
+                    return new Vector4
+                    {
+                        X = BitConverter.ToSingle(data, 0),
+                        Y = BitConverter.ToSingle(data, 4),
+                        Z = BitConverter.ToSingle(data, 8),
+                        W = BitConverter.ToSingle(data, 12),
+                    };
                 }
 
                 case FieldType.String:
@@ -261,9 +224,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("invalid trailing byte value for field type String");
                     }
 
-                    var value = Encoding.UTF8.GetString(data, 0, data.Length - 1);
-                    writer.WriteString(value);
-                    break;
+                    return Encoding.UTF8.GetString(data, 0, data.Length - 1);
                 }
 
                 case FieldType.Enum:
@@ -274,7 +235,192 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         throw new FormatException("field type Enum requires 4 bytes");
                     }
 
-                    var value = BitConverter.ToInt32(data, 0);
+                    return BitConverter.ToInt32(data, 0);
+                }
+
+                case FieldType.Hash32:
+                {
+                    if (data == null ||
+                        data.Length != 4)
+                    {
+                        throw new FormatException("field type Hash32 requires 4 bytes");
+                    }
+
+                    return BitConverter.ToUInt32(data, 0);
+                }
+
+                case FieldType.Hash64:
+                {
+                    if (data == null ||
+                        data.Length != 8)
+                    {
+                        throw new FormatException("field type Hash64 requires 4 bytes");
+                    }
+
+                    return BitConverter.ToUInt64(data, 0);
+                }
+
+                case FieldType.Id32:
+                {
+                    if (data == null ||
+                        data.Length != 4)
+                    {
+                        throw new FormatException("field type Id32 requires 4 bytes");
+                    }
+
+                    return BitConverter.ToUInt32(data, 0);
+                }
+
+                case FieldType.Id64:
+                {
+                    if (data == null ||
+                        data.Length != 8)
+                    {
+                        throw new FormatException("field type Id64 requires 8 bytes");
+                    }
+
+                    return BitConverter.ToUInt64(data, 0);
+                }
+
+                default:
+                {
+                    throw new NotSupportedException("unsupported field type");
+                }
+            }
+        }
+
+        public static TType Deserialize<TType>(FieldType fieldType, byte[] data)
+        {
+            return (TType)Deserialize(fieldType, data);
+        }
+
+        public static void Deserialize(XmlWriter writer, Configuration.FieldDefinition fieldDef, byte[] data)
+        {
+            switch (fieldDef.Type)
+            {
+                case FieldType.BinHex:
+                {
+                    writer.WriteBinHex(data, 0, data.Length);
+                    break;
+                }
+
+                case FieldType.Boolean:
+                {
+                    var value = Deserialize<bool>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.UInt8:
+                {
+                    var value = Deserialize<byte>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Int8:
+                {
+                    var value = Deserialize<sbyte>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.UInt16:
+                {
+                    var value = Deserialize<ushort>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Int16:
+                {
+                    var value = Deserialize<short>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.UInt32:
+                {
+                    var value = Deserialize<uint>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Int32:
+                {
+                    var value = Deserialize<int>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.UInt64:
+                {
+                    var value = Deserialize<ulong>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Int64:
+                {
+                    var value = Deserialize<long>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Float32:
+                {
+                    var value = Deserialize<float>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Float64:
+                {
+                    var value = Deserialize<double>(fieldDef.Type, data);
+                    writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Vector2:
+                {
+                    var value = Deserialize<Vector2>(fieldDef.Type, data);
+                    writer.WriteString(string.Format("{0},{1}",
+                                                     value.X.ToString(CultureInfo.InvariantCulture),
+                                                     value.Y.ToString(CultureInfo.InvariantCulture)));
+                    break;
+                }
+
+                case FieldType.Vector3:
+                {
+                    var value = Deserialize<Vector3>(fieldDef.Type, data);
+                    writer.WriteString(string.Format("{0},{1},{2}",
+                                                     value.X.ToString(CultureInfo.InvariantCulture),
+                                                     value.Y.ToString(CultureInfo.InvariantCulture),
+                                                     value.Z.ToString(CultureInfo.InvariantCulture)));
+                    break;
+                }
+
+                case FieldType.Vector4:
+                {
+                    var value = Deserialize<Vector4>(fieldDef.Type, data);
+                    writer.WriteString(string.Format("{0},{1},{2},{3}",
+                                                     value.X.ToString(CultureInfo.InvariantCulture),
+                                                     value.Y.ToString(CultureInfo.InvariantCulture),
+                                                     value.Z.ToString(CultureInfo.InvariantCulture),
+                                                     value.W.ToString(CultureInfo.InvariantCulture)));
+                    break;
+                }
+
+                case FieldType.String:
+                {
+                    var value = Deserialize<string>(fieldDef.Type, data);
+                    writer.WriteString(value);
+                    break;
+                }
+
+                case FieldType.Enum:
+                {
+                    var value = Deserialize<int>(fieldDef.Type, data);
 
                     if (fieldDef.EnumDefinition != null)
                     {
@@ -292,52 +438,28 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
                 case FieldType.Hash32:
                 {
-                    if (data == null ||
-                        data.Length != 4)
-                    {
-                        throw new FormatException("field type Hash32 requires 4 bytes");
-                    }
-
-                    var value = BitConverter.ToUInt32(data, 0);
+                    var value = Deserialize<uint>(fieldDef.Type, data);
                     writer.WriteString(value.ToString("X8", CultureInfo.InvariantCulture));
                     break;
                 }
 
                 case FieldType.Hash64:
                 {
-                    if (data == null ||
-                        data.Length != 8)
-                    {
-                        throw new FormatException("field type Hash64 requires 4 bytes");
-                    }
-
-                    var value = BitConverter.ToUInt64(data, 0);
+                    var value = Deserialize<ulong>(fieldDef.Type, data);
                     writer.WriteString(value.ToString("X16", CultureInfo.InvariantCulture));
                     break;
                 }
 
                 case FieldType.Id32:
                 {
-                    if (data == null ||
-                        data.Length != 4)
-                    {
-                        throw new FormatException("field type Id32 requires 4 bytes");
-                    }
-
-                    var value = BitConverter.ToUInt32(data, 0);
+                    var value = Deserialize<uint>(fieldDef.Type, data);
                     writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
                     break;
                 }
 
                 case FieldType.Id64:
                 {
-                    if (data == null ||
-                        data.Length != 8)
-                    {
-                        throw new FormatException("field type Id64 requires 8 bytes");
-                    }
-
-                    var value = BitConverter.ToUInt64(data, 0);
+                    var value = Deserialize<ulong>(fieldDef.Type, data);
                     writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
                     break;
                 }

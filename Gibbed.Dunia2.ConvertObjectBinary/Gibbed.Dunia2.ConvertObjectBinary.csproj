@@ -45,9 +45,12 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="ConfigurationLoadException.cs" />
+    <Compile Include="Exporting.cs" />
     <Compile Include="FieldType.cs" />
     <Compile Include="FieldTypeDeserializers.cs" />
     <Compile Include="FieldTypeSerializers.cs" />
+    <Compile Include="Helpers.cs" />
+    <Compile Include="Importing.cs" />
     <Compile Include="Mode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

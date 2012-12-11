@@ -30,8 +30,8 @@ namespace Gibbed.Dunia2.FileFormats
     public class BinaryObject
     {
         public long Position;
-        public uint TypeHash;
-        public readonly Dictionary<uint, byte[]> Values = new Dictionary<uint, byte[]>();
+        public uint NameHash;
+        public readonly Dictionary<uint, byte[]> Fields = new Dictionary<uint, byte[]>();
         public readonly List<BinaryObject> Children = new List<BinaryObject>();
 
         public static BinaryObject Deserialize(Stream input, List<BinaryObject> pointers, Endian endian)
@@ -62,7 +62,7 @@ namespace Gibbed.Dunia2.FileFormats
             long position;
             bool isOffset;
 
-            this.TypeHash = input.ReadValueU32(endian);
+            this.NameHash = input.ReadValueU32(endian);
 
             var valueCount = input.ReadCount(out isOffset, endian);
             if (isOffset == true)
@@ -70,7 +70,7 @@ namespace Gibbed.Dunia2.FileFormats
                 throw new NotImplementedException();
             }
 
-            this.Values.Clear();
+            this.Fields.Clear();
             for (var i = 0; i < valueCount; i++)
             {
                 var nameHash = input.ReadValueU32(endian);
@@ -102,7 +102,7 @@ namespace Gibbed.Dunia2.FileFormats
                     input.Read(value, 0, value.Length);
                 }
 
-                this.Values.Add(nameHash, value);
+                this.Fields.Add(nameHash, value);
             }
 
             this.Children.Clear();
@@ -118,14 +118,14 @@ namespace Gibbed.Dunia2.FileFormats
                               Endian endian)
         {
             totalObjectCount += (uint)this.Children.Count;
-            totalValueCount += (uint)this.Values.Count;
+            totalValueCount += (uint)this.Fields.Count;
 
             output.WriteCount(this.Children.Count, false, endian);
 
-            output.WriteValueU32(this.TypeHash, endian);
+            output.WriteValueU32(this.NameHash, endian);
 
-            output.WriteCount(this.Values.Count, false, endian);
-            foreach (var kv in this.Values)
+            output.WriteCount(this.Fields.Count, false, endian);
+            foreach (var kv in this.Fields)
             {
                 output.WriteValueU32(kv.Key, endian);
                 output.WriteCount(kv.Value.Length, false, endian);

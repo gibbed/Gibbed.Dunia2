@@ -25,7 +25,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
     public enum Mode
     {
         Unknown,
-        ToXml,
-        ToFcb,
+        Export, // to XML
+        Import, // to FCB
     }
 }

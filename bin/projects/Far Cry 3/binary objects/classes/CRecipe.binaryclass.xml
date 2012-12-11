@@ -1,0 +1,31 @@
+<class name="CRecipe">
+	<inherit name="CEquipmentBase" />
+	<field name="sName" type="String" />
+	<field name="selRecipeType" type="Enum">
+		<enum name="enumRecipeType">
+			<element name="None">0</element>
+			<element name="Potion">1</element>
+			<element name="Gear">2</element>
+			<element name="Medkit">3</element>
+			<element name="Arrow">4</element>
+		</enum>
+	</field>
+	<object name="EffectList">
+		<object name="Effect">
+			<inherit name="CRecipeItem" />
+		</object>
+	</object>
+	<field name="CurrentLevel" />
+	<field name="CurrentLevelProgression" />
+	<field name="InUse" />
+	<field name="CurrentEffectIndex" />
+	<field name="NumAvailable" />
+	<field name="Owner" />
+	<field name="CurrentLevelIndex" />
+	<field name="bHasBeenPromptedOfUsability" type="Boolean" />
+	<field name="NameLocId" />
+	<object name="PotionArchetypes">
+		<field name="arkPotionArchetype" />
+	</object>
+	<field name="bCraftedAtLeastOnce" type="Boolean" />
+</class>

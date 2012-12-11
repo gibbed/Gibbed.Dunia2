@@ -1,0 +1,46 @@
+<class name="CFCXPhotographyComponent">
+	<inherit name="CFCXIdentifiableComponent" />
+	<field name="selPhotoCategory" type="Enum">
+		<enum name="enumPhotoCategory">
+			<element name="None">0</element>
+			<element name="NpcClasse_Pirate_Assaulter">1</element>
+			<element name="NpcClasse_Pirate_Defender">2</element>
+			<element name="NpcClasse_Pirate_Berserker">3</element>
+			<element name="NpcClasse_Pirate_Beheader">4</element>
+			<element name="NpcClasse_Pirate_Molotov">5</element>
+			<element name="NpcClasse_Pirate_Charger">6</element>
+			<element name="NpcClasse_Pirate_HeavyGunner">7</element>
+			<element name="NpcClasse_Pirate_Sniper">8</element>
+			<element name="NpcClasse_Pirate_Rpg">9</element>
+			<element name="NpcClasse_Dog">10</element>
+			<element name="NpcClasse_Privateer_Assaulter">11</element>
+			<element name="NpcClasse_Privateer_Defender">12</element>
+			<element name="NpcClasse_Privateer_Charger">13</element>
+			<element name="NpcClasse_Privateer_HeavyFlamer">14</element>
+			<element name="NpcClasse_Privateer_HeavyGunner">15</element>
+			<element name="NpcClasse_Privateer_Sniper">16</element>
+			<element name="NpcClasse_Privateer_Rpg">17</element>
+			<element name="Predator_Boar">18</element>
+			<element name="Predator_KomodoDragon">19</element>
+			<element name="Predator_Cassowary">20</element>
+			<element name="Predator_Thylacine">21</element>
+			<element name="Predator_BullShark">22</element>
+			<element name="Predator_Crocodile">23</element>
+			<element name="Predator_RabidDog">24</element>
+			<element name="Predator_Hyena">25</element>
+			<element name="Predator_Leopard">26</element>
+			<element name="Predator_Snake">27</element>
+			<element name="Predator_MorayEel">28</element>
+			<element name="Predator_GreatWhiteShark">29</element>
+			<element name="Predator_AsianBlackBear">30</element>
+			<element name="Predator_SumatranTiger">31</element>
+			<element name="Predator_PolynesianWolf">32</element>
+			<element name="Predator_BlackEagle">33</element>
+			<element name="Location">34</element>
+		</enum>
+	</field>
+	<field name="sDBGTitle" type="String" />
+	<field name="sDBGDescription" type="String" />
+	<field name="locidTitle" type="Id32" />
+	<field name="locidDescription" type="Id32"/>
+</class>

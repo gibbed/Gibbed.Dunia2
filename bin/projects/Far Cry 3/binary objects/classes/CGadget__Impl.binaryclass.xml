@@ -1,0 +1,16 @@
+<class name="CGadget::Impl">
+	<inherit name="#11E152C8" />
+	<object name="CommonGadgetProperties" />
+	<merge name="CGadgetPropertiesCommon" />
+	
+	<!-- This is dynamic based on CGadgetPropertiesCommon.selUseStrategy :( -->
+	<object name="UseStrategy" />
+	
+	<field name="Uses" />
+	<field name="UnlimitedUse" />
+	<object name="StatisticsAndProgressionWiki">
+		<object name="StatisticUsageCount">
+			<inherit name="CStatisticSPData" />
+		</object>
+	</object>
+</class>

@@ -1,0 +1,22 @@
+<class name="CGraphicKitComponent">
+	<inherit name="CEntityComponent" />
+	<field name="kitidGraphicKit" type="Hash64" />
+	<field name="hidGraphicKitIdBkp" type="Hash64" />
+	<field name="kitGraphicKitName" />
+	<field name="bRandomize" type="Boolean" />
+	<field name="bUpdateGfxComponentOnSpawn" type="Boolean" />
+	<field name="bInitiallyLoadAllResources" type="Boolean" />
+	<object name="Parts">
+		<object name="PartOverwrite">
+			<object name="ActivePartOverwrite">
+				<field name="disPartOverwrite" />
+			</object>
+		</object>
+	</object>
+	<object name="InitialTags">
+		<object name="InitialTag">
+			<field name="text_tag" type="String" />
+			<field name="tag" type="Hash32" />
+		</object>
+	</object>
+</class>

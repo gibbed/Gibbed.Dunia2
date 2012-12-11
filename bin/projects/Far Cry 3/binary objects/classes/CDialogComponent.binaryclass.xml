@@ -3,7 +3,7 @@
 	<field name="CanPlaySystemicDialog" desc="Enable or Disable an agent systemic dialog" type="Boolean" />
 	<object name="RdmActorList">
 		<object name="RdmActorList">
-			<field name="tmplRdmActorList" />
+			<field name="tmplRdmActorList" type="String" />
 		</object>
 	</object>
 </class>

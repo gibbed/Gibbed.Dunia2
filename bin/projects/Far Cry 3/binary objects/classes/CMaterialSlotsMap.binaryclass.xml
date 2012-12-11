@@ -1,0 +1,4 @@
+<class name="CMaterialSlotsMap">
+	<inherit name="#11E152C8" />
+	<object name="MaterialSlots" />
+</class>

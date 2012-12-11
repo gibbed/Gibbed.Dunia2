@@ -1,0 +1,4 @@
+<class name="CGadget">
+	<inherit name="CEquipmentBase" />
+	<merge name="CGadget::Impl" />
+</class>

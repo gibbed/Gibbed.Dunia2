@@ -3,17 +3,19 @@
 	<field name="bCastShadow" type="Boolean" />
 	<field name="bReceiveShadow" type="Boolean" />
 	<field name="bCastAmbientShadow" type="Boolean" />
-	<field name="olgLightGroup" />
+	<field name="olgLightGroup" type="Int32" />
 	<field name="bShowInReflection" type="Boolean" />
 	<field name="bAlwaysShowInReflection" type="Boolean" />
 	<field name="bExcludeFromPortalSystem" type="Boolean" />
 	<field name="bHighLight" type="Boolean" />
-	<field name="clrHighLightColor" />
-	<field name="clrHighLightColor2" />
-	<field name="fHighLightSpeed" />
-	<field name="bLodDitheringEnable" />
-	<field name="matIntuitionMaterialName" />
+	<field name="clrHighLightColor" type="Vector3" />
+	<field name="clrHighLightColor2" type="Vector3" />
+	<field name="fHighLightSpeed" type="Float32" />
+	<field name="bLodDitheringEnable" type="Boolean" />
+	<field name="matIntuitionMaterialName" type="String" />
 	<field name="bShowThroughWithFlashing" type="Boolean" />
 	<field name="bBackDrop" type="Boolean" />
-	<field name="MaterialLightSwitch" />
+	<object name="MaterialLightSwitch">
+		<inherit name="CMaterialSlotsMap" />
+	</object>
 </class>

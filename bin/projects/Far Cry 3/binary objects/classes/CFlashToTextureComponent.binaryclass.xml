@@ -1,0 +1,29 @@
+<class name="CFlashToTextureComponent">
+	<inherit name="CEntityComponent" />
+	<field name="fActivationDistance" desc="Only create the flash when the player is close." type="Float32" />
+	<object name="TagTextMaterial">
+		<field name="bIsActive" desc="Enable displaying of a flash file on this Material/Texture." type="Boolean" />
+		<field name="sMaterial" desc="The name of the material where to display the flash file." type="String" />
+		<field name="sTexture" desc="The name of the texture where to display the flash file." type="String" />
+	</object>
+	<object name="FlashProperties">
+		<field name="selTextureType" type="Enum">
+			<enum name="enumTextureType">
+				<element name="None">0</element>
+				<element name="ChallengeBoard">1</element>
+				<element name="Tablet">2</element>
+			</enum>
+		</field>
+		<field name="sflashName" desc="The path of the flash file." type="String" />
+		<field name="sflashDescription" desc="The description of the flash file." type="String" />
+		<field name="iViewportSizeX" desc="Viewport Size X." type="Int32" />
+		<field name="iViewportSizeY" desc="Viewport Size Y." type="Int32" />
+		<field name="iVideoSizeX" desc="Viewport Size X." type="Int32" />
+		<field name="iVideoSizeY" desc="Viewport Size Y." type="Int32" />
+	</object>
+	<object name="SoundProperties">
+		<field name="sndAmbientPlay" type="String" />
+		<field name="sndAmbientStop" type="String" />
+		<field name="sndtpAmbientSoundType" type="Hash32" />
+	</object>
+</class>

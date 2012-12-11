@@ -1,0 +1,9 @@
+<class name="CGroupComponent">
+	<inherit name="CEntityComponent" />
+	<object name="Groups">
+		<object name="group">
+			<field name="text_group" type="String" />
+			<field name="group" type="Hash32" />
+		</object>
+	</object>
+</class>

@@ -1,0 +1,4 @@
+<class name="CRecipeArrowEffect">
+	<inherit name="CRecipeEffect" />
+	<field name="arkArrowArchetype" />
+</class>

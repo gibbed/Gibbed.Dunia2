@@ -1,0 +1,7 @@
+<class name="CMissionComponent">
+	<inherit name="CEntityComponent" />
+	<field name="hidMissionLayerId" type="Hash64" />
+	<field name="text_hidCategory" type="String" />
+	<field name="hidCategory" type="Hash32" />
+	<field name="ForceMerge" type="Boolean" />
+</class>

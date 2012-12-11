@@ -1,0 +1,4 @@
+<class name="CPawnNetworkComponent">
+	<inherit name="CNetworkComponent" />
+	<field name="bIsCinemaPawn" desc="Will disable some network code (like position, angles)" type="Boolean" />
+</class>

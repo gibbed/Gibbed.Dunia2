@@ -1,0 +1,4 @@
+<class name="CRecipeEffect">
+	<inherit name="#11E152E0" />
+	<field name="bActive" type="Boolean" />
+</class>

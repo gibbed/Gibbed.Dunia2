@@ -1,0 +1,9 @@
+<class name="CRecipeItem">
+	<inherit name="#11E152E0" />
+	<field name="hidType" type="Int32" />
+	<field name="level" desc="Level. Starts from 1." type="Int32" />
+	<object name="Properties" desc="Contains properties specific to the ability.">
+		<!-- CRecipeArrowEffect -->
+		<!-- depends on hidType -->
+	</object>
+</class>

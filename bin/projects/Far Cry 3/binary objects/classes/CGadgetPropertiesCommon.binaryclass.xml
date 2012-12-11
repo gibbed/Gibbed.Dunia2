@@ -1,0 +1,51 @@
+<class name="CGadgetPropertiesCommon">
+	<inherit name="#11E152E0" />
+	<field name="sName" />
+	<field name="locidDisplayName" desc="Localized 'Human' name of the gadget" />
+	<field name="selCategory" type="Enum">
+		<enum name="enumCategory">
+			<element name="Grenade">0</element>
+			<element name="Unused1">1</element>
+			<element name="Tablet">2</element>
+			<element name="Watch">3</element>
+			<element name="Binoculars">4</element>
+			<element name="Phone">5</element>
+			<element name="Ratchet">6</element>
+			<element name="Molotov">7</element>
+			<element name="EntitySpawner">8</element>
+			<element name="Rock">9</element>
+			<element name="PingPong">10</element>
+		</enum>
+	</field>
+	<field name="selUseRateMode" type="Enum">
+		<enum name="enumUseRateMode">
+			<element name="Instant">0</element>
+			<element name="Continuous">1</element>
+		</enum>
+	</field>
+	<field name="iUseRate" />
+	<field name="selUseStrategy" type="Enum">
+		<enum name="enumUseStrategy">
+			<element name="Throw">0</element>
+			<element name="Unused1">1</element>
+			<element name="Tablet">2</element>
+			<element name="Watch">3</element>
+			<element name="Binoculars">4</element>
+			<element name="Phone">5</element>
+			<element name="Ratchet">6</element>
+			<element name="Unused4">7</element>
+			<element name="EntitySpawner">8</element>
+			<element name="Unused5">9</element>
+		</enum>
+	</field>
+	<field name="iMaxUsesCasual" />
+	<field name="iMaxUsesExperimented" />
+	<field name="iMaxUsesHardcore" />
+	<field name="iMaxUsesInfamous" />
+	<field name="bUnlimitedUses" type="Boolean" />
+	<field name="arkPickupArchetypeName" />
+	<field name="fLookSensitivity" type="Float32" />
+	<field name="bUseBothHands" type="Boolean" />
+	<field name="bVisibleHolstered" type="Boolean" />
+	<field name="fMoveSpeedFactor" desc="The move sensitivity factor to apply from the weapon" type="Float32" />
+</class>

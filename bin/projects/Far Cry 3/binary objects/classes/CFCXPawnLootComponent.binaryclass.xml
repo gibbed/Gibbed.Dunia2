@@ -1,0 +1,70 @@
+<class name="CFCXPawnLootComponent">
+	<inherit name="CEntityComponent" />
+	<object name="LootGroups">
+		<object name="Group">
+			<inherit name="CFCXPawnLootComponent::PossibleGroup" />
+		</object>
+	</object>
+	<field name="fLootRadius" desc="Distance a player has to be to be able to loot" type="Float32" />
+	<field name="sndPickupAmmoSound" desc="Sound to be played for looting player" type="String" />
+	<field name="sndtpRareAnimalSoundType" type="Hash32" />
+	<field name="sndRareAnimalSound" desc="Sound to be played for looting rare animal" type="String" />
+	<field name="selObjectType" type="Enum">
+		<enum name="enumObjectType">
+			<element name="Generic">0</element>
+			<element name="Human">1</element>
+			<element name="AnimalSmall">2</element>
+			<element name="AnimalMedium">3</element>
+			<element name="AnimalLarge">4</element>
+			<element name="Plant01">5</element>
+			<element name="AnimalAquaticSmall">6</element>
+			<element name="AnimalAquaticMedium">7</element>
+			<element name="AnimalAquaticLarge">8</element>
+			<element name="PlantGround">9</element>
+			<element name="PlantBush">10</element>
+			<element name="PlantWall">11</element>
+		</enum>
+	</field>
+	<field name="text_Bone1" type="String" />
+	<field name="Bone1" desc="Bone1 and Bone2 are used to generate a line perpendicular to the anchor." type="Hash32" />
+	<field name="text_Bone2" type="String" />
+	<field name="Bone2" desc="Bone1 and Bone2 are used to generate a line perpendicular to the anchor." type="Hash32" />
+	<field name="text_BloodMaterial" type="String" />
+	<field name="BloodMaterial" desc="The name of the material in animals which leaves a blood stain." type="Hash32" />
+	<object name="AlternativeBloodMaterials">
+		<object name="AlternativeBloodMaterial">
+			<field name="text_AlternativeBloodMaterial" type="String" />
+			<field name="AlternativeBloodMaterial" type="Hash32" />
+		</object>
+	</object>
+	<field name="bIsLootRolled" />
+	<field name="iRolledMoney" />
+	<object name="RolledItems">
+		<object name="RolledItem">
+		</object>
+	</object>
+	<object name="RolledAmmos">
+		<object name="Ammo">
+		</object>
+	</object>
+	<object name="RolledGadgets">
+		<object name="Gadget">
+		</object>
+	</object>
+	<field name="locidLootPromptId" desc="The string id that will be displayed when you can loot." type="Int32" />
+	<object name="LootMultipliers">
+		<field name="bForceAlwaysLootable" desc="Force this to always be lootable." />
+		<object name="StimTypeMultipliers">
+			<object name="StimTypeMultiplier">
+				<object name="StimTypeMultiplier">
+				</object>
+			</object>
+		</object>
+		<object name="HitLocationMultipliers">
+			<object name="HitLocationMultiplier">
+				<object name="HitLocationMultiplier">
+				</object>
+			</object>
+		</object>
+	</object>
+</class>

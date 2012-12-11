@@ -317,13 +317,6 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     else
                     {
                         writer.WriteAttributeString("type", fieldDef.Type.ToString());
-
-                        if (fieldDef.Type == FieldType.Enum &&
-                            fieldDef.EnumDefinition != null)
-                        {
-                            writer.WriteAttributeString("enum", fieldDef.EnumDefinition.Name);
-                        }
-
                         FieldTypeDeserializers.Deserialize(writer, fieldDef, kv.Value);
                     }
 

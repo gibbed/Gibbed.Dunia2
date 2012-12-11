@@ -46,12 +46,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             var options = new OptionSet()
             {
                 {
-                    "fcb",
+                    "i|import|fcb",
                     "convert XML to FCB",
                     v => mode = v != null ? Mode.Import : mode
                     },
                 {
-                    "xml",
+                    "e|export|xml",
                     "convert FCB to XML",
                     v => mode = v != null ? Mode.Export : mode
                     },

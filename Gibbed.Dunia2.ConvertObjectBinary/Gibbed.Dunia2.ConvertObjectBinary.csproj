@@ -63,6 +63,7 @@
     <Compile Include="Definitions\Raw\InheritDefinition.cs" />
     <Compile Include="Definitions\Raw\ObjectDefinition.cs" />
     <Compile Include="Definitions\Raw\ObjectFileDefinition.cs" />
+    <Compile Include="Definitions\XmlLoadException.cs" />
     <Compile Include="Exporting.cs" />
     <Compile Include="FieldType.cs" />
     <Compile Include="FieldTypeDeserializers.cs" />

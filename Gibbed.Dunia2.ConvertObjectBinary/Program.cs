@@ -139,7 +139,39 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 Console.WriteLine("Loading binary class and object definitions...");
             }
 
-            var config = DefinitionManager.Load(project);
+            DefinitionManager definitionManager;
+
+            if (System.Diagnostics.Debugger.IsAttached == false)
+            {
+                try
+                {
+                    definitionManager = DefinitionManager.Load(project);
+                }
+                catch (Definitions.LoadException e)
+                {
+                    Console.WriteLine("Failed to load binary definitions!");
+                    Console.WriteLine("  {0}", e.Message);
+                    return;
+                }
+                catch (Definitions.XmlLoadException e)
+                {
+                    Console.WriteLine("Failed to load binary definitions!");
+                    Console.WriteLine("  in \"{0}\"", e.FilePath);
+                    Console.WriteLine("  {0}", e.Message);
+                    return;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Exception while loading binary definitions!");
+                    Console.WriteLine();
+                    Console.WriteLine("{0}", e);
+                    return;
+                }
+            }
+            else
+            {
+                definitionManager = DefinitionManager.Load(project);
+            }
 
             if (mode == Mode.Import)
             {
@@ -192,14 +224,14 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                         Console.WriteLine("Reading XML...");
                     }
 
-                    var objectFileDef = config.GetObjectFileDefinition(baseName);
+                    var objectFileDef = definitionManager.GetObjectFileDefinition(baseName);
                     if (objectFileDef == null)
                     {
                         Console.WriteLine("Warning: could not find binary object file definition '{0}'", baseName);
                     }
 
                     var objectDef = objectFileDef != null ? objectFileDef.ObjectDefinition : null;
-                    bof.Root = Importing.Import(config, objectDef, basePath, root);
+                    bof.Root = Importing.Import(definitionManager, objectDef, basePath, root);
                 }
 
                 if (verbose == true)
@@ -245,7 +277,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 outputPath = Path.GetFullPath(outputPath);
                 basePath = Path.GetFullPath(basePath);
 
-                var objectFileDef = config.GetObjectFileDefinition(baseName);
+                var objectFileDef = definitionManager.GetObjectFileDefinition(baseName);
 
                 if (verbose == true)
                 {
@@ -265,11 +297,11 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
                 if (Exporting.IsSuitableForMultiExport(bof) == true)
                 {
-                    Exporting.MultiExport(objectFileDef, basePath, outputPath, config, bof);
+                    Exporting.MultiExport(objectFileDef, basePath, outputPath, definitionManager, bof);
                 }
                 else
                 {
-                    Exporting.Export(objectFileDef, outputPath, config, bof);
+                    Exporting.Export(objectFileDef, outputPath, definitionManager, bof);
                 }
             }
             else

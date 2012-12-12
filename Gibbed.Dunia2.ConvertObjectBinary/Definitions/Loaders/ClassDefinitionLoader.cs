@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions.Loaders
@@ -39,7 +40,22 @@ namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions.Loaders
             {
                 using (var input = File.OpenRead(inputPath))
                 {
-                    var rawClassDef = (Raw.ClassDefinition)serializer.Deserialize(input);
+                    Raw.ClassDefinition rawClassDef;
+
+                    try
+                    {
+                        rawClassDef = (Raw.ClassDefinition)serializer.Deserialize(input);
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        var ie = e.InnerException as XmlException;
+                        if (ie != null)
+                        {
+                            throw new XmlLoadException(inputPath, ie.Message, ie);
+                        }
+                        throw e;
+                    }
+
                     rawClassDef.Path = inputPath;
                     rawClassDefs.Add(rawClassDef);
                 }

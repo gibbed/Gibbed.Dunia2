@@ -24,20 +24,20 @@ using System;
 
 namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions
 {
-    internal class LoadException : Exception
+    internal class XmlLoadException : Exception
     {
-        public LoadException()
-        {
-        }
+        public readonly string FilePath;
 
-        public LoadException(string message)
+        public XmlLoadException(string filePath, string message)
             : base(message)
         {
+            this.FilePath = filePath;
         }
 
-        public LoadException(string message, Exception innerException)
+        public XmlLoadException(string filePath, string message, Exception innerException)
             : base(message, innerException)
         {
+            this.FilePath = filePath;
         }
     }
 }

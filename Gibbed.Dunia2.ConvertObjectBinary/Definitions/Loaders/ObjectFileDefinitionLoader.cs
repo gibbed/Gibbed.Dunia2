@@ -24,6 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions.Loaders
@@ -40,7 +41,22 @@ namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions.Loaders
             {
                 using (var input = File.OpenRead(inputPath))
                 {
-                    var rawObjectFileDef = (Raw.ObjectFileDefinition)serializer.Deserialize(input);
+                    Raw.ObjectFileDefinition rawObjectFileDef;
+
+                    try
+                    {
+                        rawObjectFileDef = (Raw.ObjectFileDefinition)serializer.Deserialize(input);
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        var ie = e.InnerException as XmlException;
+                        if (ie != null)
+                        {
+                            throw new XmlLoadException(inputPath, ie.Message, ie);
+                        }
+                        throw e;
+                    }
+
                     rawObjectFileDef.Path = inputPath;
                     rawObjectFileDefs.Add(rawObjectFileDef);
                 }
@@ -52,7 +68,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions.Loaders
                 var objectFileDef = GetObjectFileDefinition(rawObjectFileDef, classDefs);
                 if (objectFileDefs.Any(ofd => ofd.Name == objectFileDef.Name) == true)
                 {
-                    throw new InvalidOperationException();
+                    throw new LoadException(string.Format("duplicate binary object file '{0}'", objectFileDef.Name));
                 }
                 objectFileDefs.Add(objectFileDef);
             }
@@ -64,7 +80,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions.Loaders
         {
             if (string.IsNullOrEmpty(rawObjectFileDef.Name) == true)
             {
-                throw new InvalidOperationException();
+                throw new LoadException("binary object file missing name?");
             }
 
             var name = rawObjectFileDef.Name;
@@ -89,7 +105,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions.Loaders
                 classDef = classDefs[className];
                 if (classDef == null)
                 {
-                    throw new InvalidOperationException();
+                    throw new LoadException(string.Format("could not find definition for binary class '{0}'",
+                                                          className));
                 }
             }
 
@@ -99,7 +116,30 @@ namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions.Loaders
                 var childDef = GetObjectDefinition(childObjectDef, classDefs);
                 if (objectDefs.Any(fd => fd.Hash == childDef.Hash))
                 {
-                    throw new InvalidOperationException();
+                    if (string.IsNullOrEmpty(rawObjectDef.Name) == false)
+                    {
+                        if (string.IsNullOrEmpty(childDef.Name) == false)
+                        {
+                            throw new LoadException(string.Format("duplicate object '{1}' in binary object '{0}'",
+                                                                  childDef.Name,
+                                                                  rawObjectDef.Name));
+                        }
+
+                        throw new LoadException(string.Format("duplicate object '{1:X8}' in binary object '{0}'",
+                                                              childDef.Hash,
+                                                              rawObjectDef.Name));
+                    }
+
+                    if (string.IsNullOrEmpty(childDef.Name) == false)
+                    {
+                        throw new LoadException(string.Format("duplicate object '{1}' in binary object '{0:X8}'",
+                                                              childDef.Name,
+                                                              rawObjectDef.Hash));
+                    }
+
+                    throw new LoadException(string.Format("duplicate object '{1:X8}' in binary object '{0:X8}'",
+                                                          childDef.Hash,
+                                                          rawObjectDef.Hash));
                 }
                 objectDefs.Add(childDef);
             }

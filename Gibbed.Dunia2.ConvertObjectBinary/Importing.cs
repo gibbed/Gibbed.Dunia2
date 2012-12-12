@@ -30,8 +30,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 {
     internal static class Importing
     {
-        public static BinaryObject Import(Configuration config,
-                                          Configuration.ObjectDefinition objectDef,
+        public static BinaryObject Import(DefinitionManager config,
+                                          Definitions.ObjectDefinition objectDef,
                                           string basePath,
                                           XPathNavigator nav)
         {
@@ -53,9 +53,9 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             hash = name != null ? CRC32.Hash(name) : uint.Parse(_hash, NumberStyles.AllowHexSpecifier);
         }
 
-        private static BinaryObject ReadNode(Configuration config,
-                                             Configuration.ObjectDefinition objectDef,
-                                             Configuration.ClassDefinition classDef,
+        private static BinaryObject ReadNode(DefinitionManager config,
+                                             Definitions.ObjectDefinition objectDef,
+                                             Definitions.ClassDefinition classDef,
                                              string basePath,
                                              XPathNavigator nav)
         {
@@ -72,12 +72,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
             if (classDef.DynamicNestedClasses == true)
             {
-                Configuration.ObjectDefinition childObjectDef = null;
+                Definitions.ObjectDefinition childObjectDef = null;
 
                 var nestedClassDef = config.GetClassDefinition(classNameHash);
                 if (nestedClassDef != null)
                 {
-                    childObjectDef = new Configuration.ObjectDefinition(nestedClassDef.Name,
+                    childObjectDef = new Definitions.ObjectDefinition(nestedClassDef.Name,
                                                                         nestedClassDef.Hash,
                                                                         nestedClassDef,
                                                                         null,
@@ -91,8 +91,8 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             throw new InvalidOperationException();
         }
 
-        private static BinaryObject ReadNodeInternal(Configuration config,
-                                                     Configuration.ObjectDefinition objectDef,
+        private static BinaryObject ReadNodeInternal(DefinitionManager config,
+                                                     Definitions.ObjectDefinition objectDef,
                                                      string basePath,
                                                      XPathNavigator nav)
         {
@@ -101,7 +101,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
             LoadNameAndHash(nav, out className, out classNameHash);
 
-            Configuration.ClassDefinition classDef = null;
+            Definitions.ClassDefinition classDef = null;
 
             if (objectDef != null &&
                 objectDef.ClassFieldHash.HasValue == true)
@@ -215,9 +215,9 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             return hash;
         }
 
-        private static BinaryObject LoadNode(Configuration config,
-                                             Configuration.ObjectDefinition objectDef,
-                                             Configuration.ClassDefinition classDef,
+        private static BinaryObject LoadNode(DefinitionManager config,
+                                             Definitions.ObjectDefinition objectDef,
+                                             Definitions.ClassDefinition classDef,
                                              string basePath,
                                              XPathNavigator node)
         {

@@ -21,23 +21,49 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Gibbed.Dunia2.ConvertObjectBinary
+namespace Gibbed.Dunia2.ConvertObjectBinary.Definitions
 {
-    internal class ConfigurationLoadException : Exception
+    internal sealed class DefinitionLookup<TType>
+        where TType : IDefinition
     {
-        public ConfigurationLoadException()
+        private readonly List<TType> _Items;
+
+        public DefinitionLookup(IEnumerable<TType> items)
         {
+            if (items == null)
+            {
+                throw new ArgumentNullException("items");
+            }
+
+            this._Items = items.ToList();
         }
 
-        public ConfigurationLoadException(string message)
-            : base(message)
+        public bool ContainsKey(uint key)
         {
+            return this._Items.Any(i => i.Hash == key);
         }
 
-        public ConfigurationLoadException(String message, Exception innerException)
-            : base(message, innerException)
+        public bool ContainsKey(string key)
         {
+            return this._Items.Any(i => i.Name == key);
+        }
+
+        public TType this[uint key]
+        {
+            get { return this._Items.FirstOrDefault(i => i.Hash == key); }
+        }
+
+        public TType this[string key]
+        {
+            get { return this._Items.FirstOrDefault(i => i.Name == key); }
+        }
+
+        public IEnumerable<TType> Items
+        {
+            get { return this._Items; }
         }
     }
 }

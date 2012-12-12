@@ -34,7 +34,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 {
     internal static class FieldTypeSerializers
     {
-        public static byte[] Serialize(Configuration.FieldDefinition fieldDef, FieldType fieldType, XPathNavigator nav)
+        public static byte[] Serialize(Definitions.FieldDefinition fieldDef, FieldType fieldType, XPathNavigator nav)
         {
             switch (fieldType)
             {

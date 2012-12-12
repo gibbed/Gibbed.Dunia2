@@ -254,7 +254,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                     if (data == null ||
                         data.Length != 8)
                     {
-                        throw new FormatException("field type Hash64 requires 4 bytes");
+                        throw new FormatException("field type Hash64 requires 8 bytes");
                     }
 
                     return BitConverter.ToUInt64(data, 0);
@@ -294,7 +294,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             return (TType)Deserialize(fieldType, data);
         }
 
-        public static void Deserialize(XmlWriter writer, Configuration.FieldDefinition fieldDef, byte[] data)
+        public static void Deserialize(XmlWriter writer, Definitions.FieldDefinition fieldDef, byte[] data)
         {
             switch (fieldDef.Type)
             {

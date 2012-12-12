@@ -43,8 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
-    <Compile Include="ConfigurationLoadException.cs" />
+    <Compile Include="DefinitionManager.cs" />
+    <Compile Include="Definitions\LoadException.cs" />
+    <Compile Include="Definitions\ClassDefinition.cs" />
+    <Compile Include="Definitions\DefinitionLookup.cs" />
+    <Compile Include="Definitions\EnumDefinition.cs" />
+    <Compile Include="Definitions\EnumElementDefinition.cs" />
+    <Compile Include="Definitions\FieldConditionTarget.cs" />
+    <Compile Include="Definitions\FieldDefinition.cs" />
+    <Compile Include="Definitions\IDefinition.cs" />
+    <Compile Include="Definitions\Loaders\ClassDefinitionLoader.cs" />
+    <Compile Include="Definitions\Loaders\ObjectFileDefinitionLoader.cs" />
+    <Compile Include="Definitions\ObjectDefinition.cs" />
+    <Compile Include="Definitions\ObjectFileDefinition.cs" />
+    <Compile Include="Definitions\Raw\ClassDefinition.cs" />
+    <Compile Include="Definitions\Raw\EnumDefinition.cs" />
+    <Compile Include="Definitions\Raw\EnumElementDefinition.cs" />
+    <Compile Include="Definitions\Raw\FieldDefinition.cs" />
+    <Compile Include="Definitions\Raw\InheritDefinition.cs" />
+    <Compile Include="Definitions\Raw\ObjectDefinition.cs" />
+    <Compile Include="Definitions\Raw\ObjectFileDefinition.cs" />
     <Compile Include="Exporting.cs" />
     <Compile Include="FieldType.cs" />
     <Compile Include="FieldTypeDeserializers.cs" />

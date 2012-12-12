@@ -7,18 +7,18 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 {
     internal static class Helpers
     {
-        public static Configuration.ObjectDefinition GetChildObjectDefinition(Configuration.ObjectDefinition objectDef,
-                                                                              Configuration.ClassDefinition classDef,
+        public static Definitions.ObjectDefinition GetChildObjectDefinition(Definitions.ObjectDefinition objectDef,
+                                                                              Definitions.ClassDefinition classDef,
                                                                               uint typeHash)
         {
-            Configuration.ObjectDefinition childObjectDef = null;
+            Definitions.ObjectDefinition childObjectDef = null;
 
             if (classDef != null)
             {
                 var nestedClassDef = classDef.GetNestedClassDefinition(typeHash);
                 if (nestedClassDef != null)
                 {
-                    childObjectDef = new Configuration.ObjectDefinition(nestedClassDef.Name,
+                    childObjectDef = new Definitions.ObjectDefinition(nestedClassDef.Name,
                                                                         nestedClassDef.Hash,
                                                                         nestedClassDef,
                                                                         null,

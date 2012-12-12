@@ -32,9 +32,9 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 {
     internal static class Exporting
     {
-        public static void Export(Configuration.ObjectFileDefinition objectFileDef,
+        public static void Export(Definitions.ObjectFileDefinition objectFileDef,
                                   string outputPath,
-                                  Configuration config,
+                                  DefinitionManager config,
                                   BinaryObjectFile bof)
         {
             var settings = new XmlWriterSettings();
@@ -60,10 +60,10 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
         internal const uint DisLibItemIdHash = 0x8EDB0295u; // crc32(disLibItemId)
         internal const uint EntityHash = 0x0984415Eu; // crc32(Entity)
 
-        public static void MultiExport(Configuration.ObjectFileDefinition objectFileDef,
+        public static void MultiExport(Definitions.ObjectFileDefinition objectFileDef,
                                        string basePath,
                                        string outputPath,
-                                       Configuration config,
+                                       DefinitionManager config,
                                        BinaryObjectFile bof)
         {
             var settings = new XmlWriterSettings();
@@ -74,7 +74,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
 
             var objectDef = objectFileDef != null ? objectFileDef.ObjectDefinition : null;
 
-            Configuration.ClassDefinition classDef = null;
+            Definitions.ClassDefinition classDef = null;
             if (objectDef != null)
             {
                 classDef = objectDef.ClassDefinition;
@@ -241,12 +241,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
             return true;
         }
 
-        private static void WriteNode(Configuration config,
+        private static void WriteNode(DefinitionManager config,
                                       XmlWriter writer,
                                       BinaryObject node,
-                                      Configuration.ObjectDefinition objectDef)
+                                      Definitions.ObjectDefinition objectDef)
         {
-            Configuration.ClassDefinition classDef = null;
+            Definitions.ClassDefinition classDef = null;
 
             if (objectDef != null &&
                 objectDef.ClassFieldHash.HasValue == true)
@@ -338,12 +338,12 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 {
                     foreach (var child in node.Children)
                     {
-                        Configuration.ObjectDefinition childObjectDef = null;
+                        Definitions.ObjectDefinition childObjectDef = null;
 
                         var nestedClassDef = config.GetClassDefinition(child.NameHash);
                         if (nestedClassDef != null)
                         {
-                            childObjectDef = new Configuration.ObjectDefinition(nestedClassDef.Name,
+                            childObjectDef = new Definitions.ObjectDefinition(nestedClassDef.Name,
                                                                                 nestedClassDef.Hash,
                                                                                 nestedClassDef,
                                                                                 null,

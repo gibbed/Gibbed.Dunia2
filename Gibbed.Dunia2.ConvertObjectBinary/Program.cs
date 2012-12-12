@@ -139,7 +139,7 @@ namespace Gibbed.Dunia2.ConvertObjectBinary
                 Console.WriteLine("Loading binary class and object definitions...");
             }
 
-            var config = Configuration.Load(project);
+            var config = DefinitionManager.Load(project);
 
             if (mode == Mode.Import)
             {

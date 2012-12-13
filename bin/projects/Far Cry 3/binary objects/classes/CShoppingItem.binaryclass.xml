@@ -48,7 +48,7 @@
 	<field name="bIsTreasureMap" desc="If this is a TreasureMap" type="Boolean" />
 	<field name="bIsRareItem" desc="Is this a rare item (cannot discard or sell, special display) ?" type="Boolean" />
 	<field name="TreasureMap" />
-	<field name="RadioTowerEntityId" />
+	<field name="RadioTowerEntityId" type="Hash64" />
 	<object name="RevealInfos">
 		<object name="RevealInfo">
 			<!-- should probably go in #11DF949C -->
@@ -85,24 +85,24 @@
 	<field name="sULC_Name" desc="The name of the unlockable contant if relevant, e.g. Hunting_Skins_1" type="String" />
 	<object name="DefaultPositionOnScreen">
 		<field name="vectorDisplayDefaultPosition" type="Vector3" />
-		<field name="DisplayDefaultAngles" />
+		<field name="DisplayDefaultAngles" type="Vector3" />
 		<field name="vectorDisplayDefaultPositionWithSilencer" type="Vector3" />
-		<field name="DisplayDefaultAnglesWithSilencer" />
+		<field name="DisplayDefaultAnglesWithSilencer" type="Vector3" />
 	</object>
 	<object name="CategoryPositionOnScreen">
 		<field name="bDisplayAsDefaultItem" type="Boolean" />
-		<field name="vectorDisplayDefaultCategoryPosition" />
-		<field name="DisplayDefaultCategoryAngles" />
+		<field name="vectorDisplayDefaultCategoryPosition" type="Vector3" />
+		<field name="DisplayDefaultCategoryAngles" type="Vector3" />
 		<object name="DefaultAttachmentsNames">
 			<object name="DefaultAttachmentName">
 				<field name="text_Name" type="String" />
-				<field name="Name" />
+				<field name="Name" type="Hash32" />
 			</object>
 		</object>
 	</object>
 	<object name="PositionOnFullScreen">
-		<field name="FullscreenpAngles" />
-		<field name="vectorFullscreenCenterOffset" />
+		<field name="FullscreenpAngles" type="Vector3" />
+		<field name="vectorFullscreenCenterOffset" type="Vector3" />
 	</object>
 	<field name="wikiItemId" desc="Does this unlock a wiki entry?" type="Int32" />
 </class>

@@ -1,9 +1,9 @@
 <class name="SWeaponStatistics">
-	<field name="iAccuracy" desc="Accuracy" />
-	<field name="iDammage" desc="Dammage" />
-	<field name="iRange" desc="Range" />
-	<field name="iFireRate" desc="Fire Rate" />
-	<field name="iHandling" desc="Handling" />
-	<field name="iStarRating" desc="Star Rating" />
-	<field name="iStarRatingBonus" desc="Star Rating Bonus" />
+	<field name="iAccuracy" desc="Accuracy" type="Float32" />
+	<field name="iDammage" desc="Dammage" type="Float32" />
+	<field name="iRange" desc="Range" type="Float32" />
+	<field name="iFireRate" desc="Fire Rate" type="Float32" />
+	<field name="iHandling" desc="Handling" type="Float32" />
+	<field name="iStarRating" desc="Star Rating" type="Float32" />
+	<field name="iStarRatingBonus" desc="Star Rating Bonus" type="Float32" />
 </class>

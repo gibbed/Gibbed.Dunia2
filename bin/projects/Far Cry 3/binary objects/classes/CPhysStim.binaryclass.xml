@@ -1,3 +1,3 @@
-<class name="#11E13A2C">
+<class name="CPhysStim">
 	<inherit name="CRandomEntityEventStim" />
 </class>

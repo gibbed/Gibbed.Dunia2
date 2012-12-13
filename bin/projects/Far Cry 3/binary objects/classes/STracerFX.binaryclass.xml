@@ -1,0 +1,25 @@
+<class name="STracerFX">
+	<inherit name="#11E152C8" />
+	<field name="text_texTexture" type="String" />
+	<field name="texTexture" desc="Bullet tracer texture filename  " type="Hash64" />
+	<field name="text_texTextureDistortion" type="String" />
+	<field name="texTextureDistortion" desc="Bullet tracer distortion texture filename" type="Hash64" />
+	<field name="text_texFacingTexture" type="String" />
+	<field name="texFacingTexture" desc="Bullet tracer facing texture filename" type="Hash64" />
+	<field name="text_texLaserTexture" type="String" />
+	<field name="texLaserTexture" desc="Bullet tracer facing texture filename" type="Hash64" />
+	<field name="fSpeed" desc="Tracer speed (in meters/sec)" type="Float32" />
+	<field name="fMinDistToActive" desc="Minimum distance required for the tracer to trigger." type="Float32" />
+	<field name="fLength" desc="Tracer length (in meters)" type="Float32" />
+	<field name="fLengthDistortion" desc="Tracer lentth distorion (in meters)" type="Float32" />
+	<field name="fWidth" desc="Tracer Width (in meters)" type="Float32" />
+	<field name="fOffset" desc="Tracer offset (in meters). Minimum distance to target configuration" type="Float32" />
+	<field name="iFrequency" desc="Limit of tracers count" type="Int32" />
+	<field name="fTextureTileNumber" desc="Number of tiles for the tracer texture" type="Float32" />
+	<field name="fDistortionTileNumber" desc="Number of tiles for the distortion texture" type="Float32" />
+	<field name="fFacingTextureWidth" desc="Tracer Width (in meters) of texture facing shooter" type="Float32" />
+	<field name="text_psTracerParticlesId" type="String" />
+	<field name="psTracerParticlesId" desc="FX for tracer" type="Hash64" />
+	<field name="text_psTrailParticlesId" type="String" />
+	<field name="psTrailParticlesId" desc="FX for trail effect" type="Hash64" />
+</class>

@@ -7,6 +7,35 @@
 		<inherit name="CWeaponMeleeProperties" />
 	</object>
 	<object name="FireStrategyProperties">
-		<inherit name="CWeaponFireBulletProperties" />
+		<inherit name="CWeaponFireBulletProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="0" />
+		<inherit name="CWeaponFireFlameProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="2" />
+		<inherit name="CWeaponFireProjectileProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="4" />
+		<inherit name="CWeaponIEDProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="5" />
+		<inherit name="CWeaponProximityMineProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="7" />
+		<inherit name="CWeaponFireRepairProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="8" />
+		<inherit name="CWeaponFireArrowProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="9" />
+		<inherit name="CWeaponThrowProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="10" />
+		<inherit name="CWeaponTrackingProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="11" />
+		<inherit name="CWeaponFireProperties"
+		         condition_field="^CommonProperties.selFireStrategy"
+		         condition_value="12" />
 	</object>
 </class>

@@ -1,0 +1,21 @@
+<class name="CWeaponProximityMineProperties">
+	<inherit name="CWeaponFireProperties" />
+	<field name="iMaxMinesInWorld" type="Int32" />
+	<field name="text_sActionMap" type="String" />
+	<field name="sActionMap" type="Hash32" />
+	<field name="text_sActionMapInVehicle" type="String" />
+	<field name="sActionMapInVehicle" type="Hash32" />
+	<field name="fMaxDistanceToPlaceOnObject" type="Float32" />
+	<field name="fTossImpulse" type="Hash32" />
+	<field name="vectorMinAngularImpulse" type="Vector3" />
+	<field name="vectorMaxAngularImpulse" type="Vector3" />
+	<field name="placeAngle" type="Vector3" />
+	<field name="fPlaceOffset" type="Float32" />
+	<field name="sndPickupSound1st" desc="Sound played when picking up placed mines." type="String" />
+	<field name="sndtpPickupSoundType1st" desc="Sound type when picking up placed mines" type="Int32" />
+	<object name="Explosives">
+		<object name="Explosive">
+			<field name="arkArchetype" type="Id64" />
+		</object>
+	</object>
+</class>

@@ -1,0 +1,15 @@
+<class name="CWeaponTrackingProperties">
+	<inherit name="CWeaponFireProperties" />
+	<field name="fMaxDistance" desc="The distance when the beep stop getting slower." type="Float32" />
+	<field name="fMinDistance" desc="The distance when the beep stop getting faster" type="Float32" />
+	<field name="fMinBeepPersec" desc="Slowest speed of beeping allowed.  Beep/Sec." type="Float32" />
+	<field name="fMaxBeepPerSec" desc="Fastest speed of beeping allowed.  Beep/sec." type="Float32" />
+	<field name="fLookAngleDetection" desc="The detection angle for the light to stay on." type="Float32" />
+	<field name="fTimeLightOn" desc="The amount of time the light stays ON when if flickers on." type="Float32" />
+	<field name="fWeaponDownTimeMultiplier" desc="Multiply the time require before a weapon down. To have shorter time put a value between (0.0f , 1.0f)." type="Float32" />
+	<field name="sndBeepingID" desc="Beeping Sound ID" type="String" />
+	<field name="sndGreenLightOnSound" desc="Sound when light is green" type="String" />
+	<field name="sndtpGreenLightOnSoundType" desc="Sound when light is green" type="Int32" />
+	<field name="sndtpBeepingType" desc="Beeping Sound Type" type="Int32" />
+	<field name="sndmlBeepMultilayerIndex" desc="Sound multilayer variable used for the beeping intensity" type="Hash32" />
+</class>

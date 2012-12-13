@@ -378,7 +378,22 @@
 	<field name="arkPickupArchetype" desc="The name of the pickup archetype, creates this entity when the weapon is dropped" type="Id64" />
 	<field name="fShootingAngle" desc="Shooting angle in normal mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." type="Float32" />
 	<field name="fShootingIronsightAngle" desc="Shooting angle in Iron Sight mode. The game adds this value to the gun wielded in 3rd person. This is a patch when anims don't point perfectly in the right direction in 3rd; setting this angle can correct the situation." type="Float32" />
-	<field name="selCategory" /><!-- enumCategory -->
+	<field name="selCategory" type="Enum">
+		<enum name="enumCategory">
+			<element name="Hand To Hand">0</element>
+			<element name="Primary">1</element>
+			<element name="Secondary">2</element>
+			<element name="Special">3</element>
+			<element name="IED_Explosive">4</element>
+			<element name="IED_Incendiary">5</element>
+			<element name="IED_Silent">6</element>
+			<element name="Trap">7</element>
+			<element name="ProximityMine">8</element>
+			<element name="Tool">9</element>
+			<element name="Rock">10</element>
+			<element name="TrackingDevice">11</element>
+		</enum>
+	</field>
 	<field name="text_HolsterHandle" type="String" />
 	<field name="HolsterHandle" desc="Holster Handle String ID" type="Hash32" />
 	<field name="text_RightHandHandle" type="String" />

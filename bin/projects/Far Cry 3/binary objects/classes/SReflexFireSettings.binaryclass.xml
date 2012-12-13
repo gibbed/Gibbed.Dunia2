@@ -1,0 +1,8 @@
+<class name="SReflexFireSettings">
+	<inherit name="#11E152C8" />
+	<field name="iWeightingHead" desc="If true this turns on aim assist when shooting from the hip. Bones will be targeted on NPCs when they fall within the reticule." type="Int32" />
+	<field name="iWeightingTorso" desc="If true this turns on aim assist when shooting from the hip. Bones will be targeted on NPCs when they fall within the reticule." type="Int32" />
+	<field name="iWeightingOtherBodyParts" desc="If true this turns on aim assist when shooting from the hip. Bones will be targeted on NPCs when they fall within the reticule." type="Int32" />
+	<field name="iWeightingDefaultAim" desc="If true this turns on aim assist when shooting from the hip. Bones will be targeted on NPCs when they fall within the reticule." type="Int32" />
+	<field name="fDistance" desc="Controls the distance at which these settings apply." type="Float32" />
+</class>

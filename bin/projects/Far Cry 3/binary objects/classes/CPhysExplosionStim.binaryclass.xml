@@ -1,0 +1,4 @@
+<class name="CPhysExplosionStim">
+	<inherit name="CPhysStim" />
+	<merge name="CPhysExplosionStim::PhysData" />
+</class>

@@ -1,0 +1,5 @@
+<class name="CSpreadData">
+	<inherit name="#11E152C8" />
+	<field name="fBaseSpread" type="Float32" />
+	<field name="fMaxBulletSpread" type="Float32" />
+</class>

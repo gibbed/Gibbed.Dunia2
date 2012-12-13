@@ -1,4 +1,4 @@
-<class name="#11E139C0">
+<class name="CEntityEventStims">
 	<inherit name="CEntityEvent" />
 	<field name="text_sDetail" type="String" />
 	<field name="sDetail" type="Hash32" />

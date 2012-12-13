@@ -1,4 +1,3 @@
-<!--<class name="SStimInfo" inherit="#11E152C8">-->
 <class name="SStimInfo">
 	<inherit name="#11E152C8" />
 	<field name="selStimType" type="Enum">
@@ -9,6 +8,14 @@
 			<element name="None">3</element>
 		</enum>
 	</field>
-	<merge name="CPhysBulletHitStim" />
+	<merge name="CPhysStim"
+	       condition_field="selStimType"
+	       condition_value="0" />
+	<merge name="CPhysBulletHitStim"
+	       condition_field="selStimType"
+	       condition_value="1" />
+	<merge name="CPhysExplosionStim"
+	       condition_field="selStimType"
+	       condition_value="2" />
 	<field name="bAppliesRangeMultipliers" type="Boolean" />
 </class>

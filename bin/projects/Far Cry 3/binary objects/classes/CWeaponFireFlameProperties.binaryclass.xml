@@ -1,0 +1,184 @@
+<class name="CWeaponFireFlameProperties">
+	<inherit name="CWeaponFireProperties" />
+	<field name="text_StartBone" type="String" />
+	<field name="StartBone" type="Hash32" />
+	<field name="fConsumeAmmoRate" desc="Period after which to consume one fuel ammo. For example .10 will consume 1 fuel ammo ten times per second. At that rate it takes 30 seconds to reduce a fuel tank of 300 to 0 (empty)" type="Float32" />
+	<field name="fMinUsageTime" desc="If you stop firing (once particles have begun emitting) after a short burst the flamethrower will continue firing until the total time fired has exceeded this period." type="Float32" />
+	<field name="fFlameStartEmitTime" desc="Particles will only begin emitting after you've held the trigger down for this amount of time." type="Float32" />
+	<field name="bUseLineOfSight" desc="Does the weapon do line of sight check." type="Boolean" />
+	<object name="FuelGauge">
+		<field name="text_sNeedleBone" type="String" />
+		<field name="sNeedleBone" desc="The bone is the flame thrower's mesh that controls the needle." type="Hash32" />
+		<field name="fNeedleMaxRotationInDegrees" desc="The maximum rotation to apply to the needle when the flame thrower is full." type="Float32" />
+	</object>
+	<object name="FlameMesh">
+		<field name="fSize" desc="The length of the flame mesh, how many meters it expands in front of the flame thrower. Other settings may limit this value." type="Float32" />
+		<field name="fSplineTension" desc="The flame can curve, when it does the mesh will follow a spline cast along the flame's 'rope' to smooth-out the curve. This changes the length of the tangent vector of the spline. See http://en.wikipedia.org/wiki/Kochanek%E2%80%93Bartels_spline." type="Float32" />
+		<field name="fSplineContinuity" desc="The flame can curve, when it does the mesh will follow a spline cast along the flame's 'rope' to smooth-out the curve. This changes the sharpness in change between tangents of the spline. See http://en.wikipedia.org/wiki/Kochanek%E2%80%93Bartels_spline" type="Float32" />
+		<field name="fSplineBias" desc="The flame can curve, when it does the mesh will follow a spline cast along the flame's 'rope' to smooth-out the curve. This primarily changes the direction of the tangent vector of the spline. See http://en.wikipedia.org/wiki/Kochanek%E2%80%93Bartels_spline" type="Float32" />
+		<field name="fPSSpawnTime" desc="This value is coupled with the SpawnTimeAngularSpeedRationCurve. It is multiplied by the curve's return value to give the period for spawning the flame particle fx. For example if this value is set to 2 and the SpawnTimeAngularSpeedRatioCurve returns 5 (see this variable for details on how it can return 5) then the spawn time period will be 10. This means that a fire puff particle fx will be spawned every 10 seconds." type="Float32" />
+		<field name="arkSpawnTimeAngularSpeedRatioCurve" desc="The value of this curve is coupled with the PSSpawnTime variable. This curve takes in parameter the angular velocity of the wielder and returns a modifier to apply on the PSSpawnTime. Roughly the faster you turn around the greater your angular speed, the more particles you want to spawn. How much more depends on how the curve is setup. If the curve returns a lower value it will decrease the period between particle spawns and increase the number of fire particles. See PSSpawnTime for more details." type="Id64" />
+		<field name="fSegmentLength" desc="The length of each segment in the meshes 'rope'. Basically the mesh is divided in several sub-meshes of this length. The smaller this is the more fluid the flame will feel but it will also decrease the game's performance." type="Float32" />
+		<field name="fFlameStrengthGrowthTime" desc="The time it takes for the flame to grow to full power." type="Float32" />
+		<field name="fFlameStrengthGrowthStartDistance" desc="The initial distance at which gravity kicks in. The flame will then grow to reach the gravity interpolation distance." type="Float32" />
+		<field name="fFlameRestitutionStartDistance" desc="The distance at which the flame will continue straight ahead of the gun and begin to start blending towards being completely free." type="Float32" />
+		<field name="fFlameRestitutionEndDistance" desc="The distance at which the flame particles will stop blending from being straight and now move entirely of their own accord." type="Float32" />
+		<field name="fFlameRestitutionCutoffDistance" desc="If a particle moves more than this in a frame it will not stay locked to the front of the weapon, even if less than the restitutionStartDistance." type="Float32" />
+		<field name="fRestitutionInterpolationDist" desc="Restitution: Restitutes the flame to fire straigth when turning around. Basically as the player turns around the flame adopts a curve and shoots 'curved'. The restitution determines how fast the flame goes back straight in front. This parameter is the distance over which we use an interpolated restitution value from the restitutionInterpolation data group. The part of the flame's mesh that is before this distance will restitute the flame by interpolating between ValueA and ValueB. For the part of the flame that is beyond this distance the flame is restituted by ValueB. Whether we use an interpolated value of not, the smaller the restitution the more time it will take for the flame to come back straight." type="Float32" />
+		<field name="fInactiveRestitutionTime" desc="When the user stops emitting flames, either by running out of ammo or releasing the trigger, this is the maximum time required for the rope to settle back to normal. Note: This should be as low as possible as the rope physics will continue to update while this timer is active." type="Float32" />
+		<field name="restitutionInterpolation" desc="Restitutes the flame to fire straigth when turning around. Basically as the player turns around the flame adopts a curve and shoots 'curved'. The restitution determines how fast the flame goes back straight in front." />
+		<field name="fSizeGrowInterpolationDist" desc="Size of the flame before the width of the flame 'rope' is the thickest. The parameters in sizeGrowInterpolation are used to specify the width of the rope using interpolation between the start of the flame and this distance. The width ranges from ValueA (min) to ValueB (max)." type="Float32" />
+		<object name="sizeGrowInterpolation" desc="Interpolation parameters for the flame's rope growth.">
+			<inherit name="SInterpParams" />
+		</object>
+		<field name="fSizeShrinkInterpolationDist" desc="Size of the flame after which the width of the flame 'rope' starts to diminish and fade out. The parameters in sizeShrinkInterpolation are use to specify the width of the rope using interpolation between this distance and the end of the flame. The width ranges from ValueA and ValueB" type="Float32" />
+		<object name="sizeShrinkInterpolation" desc="Interpolation parameters for the flame's rope shrink.">
+			<inherit name="SInterpParams" />
+		</object>
+		<field name="fGravityScalePlayerPitch" desc="How much to scale gravity as the player is looking up towards the sky. The more the player is looking up the more this value affects gravity. Looking straight up multiplies this value to the gravity. Looking straight down applies 0 gravity (we're shooting down...)." type="Float32" />
+		<field name="fGravityInterpolationDist" desc="Size of the flame before the rope starts to get affected by gravity." type="Float32" />
+		<object name="gravityInterpolation" desc="Interpolation parameters for gravity.">
+			<inherit name="SInterpParams" />
+		</object>
+		<field name="iRingNVertex" desc="This is the number of vertices to use to create the flame rope's rings. With more vertices the rope will look nicer and more round " type="Int32" />
+		<field name="fRingStartAngle" desc="This is the angle of the ring. You can rotate the ring so that it looks better using this." type="Float32" />
+		<field name="fMeshRingCutoffDistance" desc="If 2 points on the mesh are this far apart then the mesh will end." type="Float32" />
+		<field name="fTeselation" desc="How much to tesalate the texture over the flame. The lower the number the more tiling there is but performance goes down." type="Float32" />
+		<field name="fSpeed" desc="This is the speed at which the flame propagates in from of the flame thrower and receeds when we release the trigger." type="Float32" />
+		<field name="bInterpolate" desc="When enabled using the SinusFunctions to have the flame's mesh width oscilate." type="Boolean" />
+		<field name="text_psParticleSystem" type="String" />
+		<field name="psParticleSystem" desc="This is the particle system to spawn an each mesh segment of the flame." type="Hash64" />
+		<field name="text_psMalfunctionParticleSystem" type="String" />
+		<field name="psMalfunctionParticleSystem" desc="This is the particle system to spawn an each mesh segment of the flame when the weapon is in malfunction." type="Hash64" />
+		<field name="text_psThirdPersonParticleSystem" type="String" />
+		<field name="psThirdPersonParticleSystem" type="Hash64" />
+		<field name="text_texTexture" type="String" />
+		<field name="texTexture" desc="This is the texture to apply on the flame mesh." type="Hash64" />
+		<field name="fTextureFrames" desc="This is the number of frames in the mesh. The flame will apply each frame at the interval set by TextureChangeTime." type="Float32" />
+		<field name="fTextureChangeTime" desc="Time after which the flame's texture uses the next frame in the texture. One (1) divided by this value gives the frame rate of the texture animation in frames per second." type="Float32" />
+	</object>
+	<object name="SinusFunctions">
+		<object name="SinusFunction">
+			<inherit name="#11E152C8" />
+			<field name="fWave" type="Float32" />
+			<field name="fTime" type="Float32" />
+			<field name="fOffset" type="Float32" />
+			<field name="bRemove" type="Boolean" />
+		</object>
+	</object>
+	<object name="FireballEffects">
+		<object name="Effects">
+			<object name="Effect">
+				<inherit name="#11E152C8" />
+				<field name="fSpawnTime" type="Float32" />
+				<field name="fSpawnOffset" type="Float32" />
+				<field name="fSpeed" type="Float32" />
+				<field name="fDistance" type="Float32" />
+				<field name="bSendsStim" type="Boolean" />
+				<field name="text_psParticleSystem" type="String" />
+				<field name="psParticleSystem" type="Hash64" />
+				<field name="text_psThirdPersonParticleSystem" type="String" />
+				<field name="psThirdPersonParticleSystem" type="Hash64" />
+				<field name="text_psMalfunctionParticleSystem" type="String" />
+				<field name="psMalfunctionParticleSystem" type="Hash64" />
+				<field name="bRemove" type="Boolean" />
+				<field name="arkSpawnTimeAngularSpeedRatioCurve" type="Id64" />
+			</object>
+		</object>
+	</object>
+	<object name="TipEffects">
+		<object name="Effects">
+			<object name="Effect">
+				<field name="selType" type="Enum">
+					<enum name="enumType">
+						<element name="Idle">0</element>
+						<element name="Shoot">1</element>
+						<element name="IdleNoFuel">2</element>
+						<element name="ShootNoFuel">3</element>
+						<element name="IdleStopShoot">4</element>
+						<element name="None">5</element>
+					</enum>
+				</field>
+				<field name="text_psParticleSystem" type="String" />
+				<field name="psParticleSystem" type="Hash64" />
+				<field name="bFirstPerson" desc="Is it first person or third person" type="Boolean" />
+			</object>
+		</object>
+	</object>
+	<object name="NoFuel">
+		<field name="fRetriggerDelay" type="Float32" />
+	</object>
+	<object name="Collision">
+		<field name="fCollisionDivisions" type="Int32" />
+		<field name="fCollisionOffset" type="Float32" />
+		<field name="fCollisionPSLength" type="Float32" />
+		<field name="fCollisionPSCollisionScaleMax" type="Float32" />
+		<field name="fCollisionPSCollisionScaleMin" type="Float32" />
+		<field name="fCollisionPSGravityScaleMax" type="Float32" />
+		<field name="fCollisionPSGravityScaleMin" type="Float32" />
+		<field name="fCollisionPSFlameAngleScaleMax" type="Float32" />
+		<field name="fCollisionPSFlameAngleScaleMin" type="Float32" />
+		<field name="fCollisionPSFlameDistScaleMax" type="Float32" />
+		<field name="fCollisionPSFlameDistScaleMin" type="Float32" />
+		<field name="fCollisionPSFlameDistScaleDist" type="Float32" />
+		<field name="text_psParticleSystem" type="String" />
+		<field name="psParticleSystem" type="Hash64" />
+		<field name="text_psThirdPersonParticleSystem" type="String" />
+		<field name="psThirdPersonParticleSystem" type="Hash64" />
+		<field name="arkFireStickyStream" type="Id64" />
+		<field name="matimpImpactFX" desc="fx to play when flame impacts a surface." type="Hash64" />
+	</object>
+	<object name="Damage">
+		<field name="SendStimTime" type="Float32" />
+		<field name="Radius" type="Float32" />
+		<field name="Distance" type="Int32" />
+		<field name="Offset" type="Float32" />
+		<field name="Level" type="Float32" />
+	</object>
+	<object name="Reliability">
+		<field name="fDirtSendStimTime" type="Float32" />
+		<object name="MuzzleDirtStim">
+			<inherit name="CPhysStim" />
+		</object>
+	</object>
+	<object name="Stims">
+		<field name="fMuzzleStimTime" type="Float32" />
+		<object name="MuzzleStims">
+			<inherit name="CStimArrayBase_SStimInfo" />
+		</object>
+	</object>
+	<object name="Sounds">
+		<object name="FirstPerson">
+			<field name="sndStartFlameSound" type="String" />
+			<field name="sndStopFlameSound" type="String" />
+			<field name="sndStartIdleSound" type="String" />
+			<field name="sndStopIdleSound" type="String" />
+			<field name="sndEmptyShootSound" type="String" />
+			<field name="sndtpFlameSoundType" type="Int32" />
+			<field name="sndvarFlameTurnSpeed" type="Hash32" />
+		</object>
+		<object name="ThirdPerson">
+			<field name="sndStartFlameSound" type="String" />
+			<field name="sndStopFlameSound" type="String" />
+			<field name="sndStartIdleSound" type="String" />
+			<field name="sndStopIdleSound" type="String" />
+			<field name="sndEmptyShootSound" type="String" />
+			<field name="sndtpFlameSoundType" type="Int32" />
+			<field name="sndvarFlameTurnSpeed" type="Hash32" />
+		</object>
+	</object>
+	<object name="Malfunction">
+		<field name="text_psParticleSystem" type="String" />
+		<field name="psParticleSystem" type="Hash64" />
+		<field name="fTriggerPulls" type="Float32" />
+		<field name="text_FXBone" type="String" />
+		<field name="FXBone" type="Hash32" />
+		<field name="sndShootSoundFP" type="String" />
+		<field name="sndShootSoundTP" type="String" />
+		<field name="sndMalfunctionStartFlameSound" desc="Parameter for First Person: Sound to be started when weapon has already fired a dud flame and is in malfunction state" type="String" />
+		<field name="sndMalfunctionStopFlameSound" desc="Parameter for First Person: Sound to be stopped when weapon has already fired a dud flame and is in malfunction state" type="String" />
+		<field name="sndtpMalfunctionFlameSoundType" desc="Parameter for First Person: Type of Sound to be triggered when weapon has already fired a dud flame and is in malfunction state" type="Int32" />
+		<field name="sndDudFlameSound" desc="Parameter for First Person: Sound to be played when dud flame is fired" type="String" />
+		<field name="sndtpDudFlameSoundType" desc="Parameter for First Person: Type of Sound to be played when dud flame is fired" type="Int32" />
+	</object>
+</class>

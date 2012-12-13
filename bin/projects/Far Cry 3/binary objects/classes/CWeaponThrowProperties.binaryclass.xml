@@ -1,0 +1,4 @@
+<class name="CWeaponThrowProperties">
+	<inherit name="CWeaponFireProperties" />
+	<field name="arkProjectileArchetype" desc="Weapon archetype to throw." type="Id64" />
+</class>

@@ -1,0 +1,38 @@
+<class name="CWeaponFireProjectileProperties">
+	<inherit name="CWeaponFireBulletProperties" />
+	<field name="arkProjectileArchetype" type="Id64" />
+	<field name="fInitialImpulse" type="Float32" />
+	<field name="fMalfunctionImpulse" type="Float32" />
+	<field name="fMalfunctionDetonateAfterHit" type="Float32" />
+	<field name="bActivateOnLaunch" type="Boolean" />
+	<field name="bProjectileBoundOnWeapon" type="Boolean" />
+	<field name="text_sShootBone" type="String" />
+	<field name="sShootBone" type="Hash32" />
+	<object name="AimSeeker">
+		<field name="bAimSeeker" type="Boolean" />
+		<field name="fAimSeekerAngularSpeed" type="Float32" />
+	</object>
+	<object name="Backfire">
+		<field name="bBackfire" type="Boolean" />
+		<field name="fBackfireLength" type="Float32" />
+		<field name="fBackfireWidth" type="Float32" />
+		<field name="fBackfireDuration" type="Float32" />
+		<field name="fBackfireStimsTimer" type="Float32" />
+		<object name="BackfireStims">
+			<inherit name="CStimArrayBase_SStimInfo" />
+		</object>
+		<field name="text_psBackfireParticleSystem" type="String" />
+		<field name="psBackfireParticleSystem" type="Hash64" />
+		<field name="text_BackfireBone" type="String" />
+		<field name="BackfireBone" desc="Name of the muzzle bone for FX to attach to on the weapon mesh" type="Hash32" />
+	</object>
+	<field name="sndMalfunctionLoopSound" type="String" />
+	<field name="sndtpMalfunctionLoopSound" type="Hash32" />
+	<field name="sndMalfunctionEndLoopSound" type="String" />
+	<field name="sndtpMalfunctionEndLoopSound" type="Hash32" />
+	<field name="sndMalfunctionLoopTPSound" type="String" />
+	<field name="sndtpMalfunctionLoopTPSound" type="Hash32" />
+	<field name="sndMalfunctionEndTPLoopSound" type="String" />
+	<field name="sndtpMalfunctionEndTPLoopSound" type="Hash32" />
+	<field name="bRotateBaril" type="Boolean" />
+</class>

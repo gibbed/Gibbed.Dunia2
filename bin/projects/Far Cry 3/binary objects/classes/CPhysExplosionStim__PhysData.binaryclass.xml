@@ -1,0 +1,9 @@
+<class name="CPhysExplosionStim::PhysData">
+	<inherit name="#11E152C8" />
+	<field name="fPhysImpulse" type="Float32" />
+	<field name="fPhysImpulse_z_multiplier" type="Float32" />
+	<field name="fPhysImpulse_x_multiplier" type="Float32" />
+	<field name="fPhysImpulse_y_multiplier" type="Float32" />
+	<field name="fRealTreeImpulseMultiplier" desc="Impulse Multiplier Only Applied for Real Trees" type="Float32" />
+	<field name="fRealTreeRadiusMultiplier" desc="Radius Multiplier Only Applied for Real Trees" type="Float32" />
+</class>

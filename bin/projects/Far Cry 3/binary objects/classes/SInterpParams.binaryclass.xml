@@ -1,0 +1,10 @@
+<class name="SInterpParams">
+	<inherit name="#11E152C8" />
+	<field name="bLinear" type="Boolean" />
+	<field name="fValueA" type="Float32" />
+	<field name="fValueB" type="Float32" />
+	<!--<object name="ExtraParams">-->
+		<field name="fParamA" type="Float32" />
+		<field name="fParamB" type="Float32" />
+	<!--</object>-->
+</class>

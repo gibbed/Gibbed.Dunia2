@@ -1,0 +1,20 @@
+<class name="CWeaponFireArrowProperties">
+	<inherit name="CWeaponFireProjectileProperties" />
+	<object name="curveTensionCurve" desc="Curve to control the tension of the bow while the trigger is held. X axis = time held, Y axis = force [0-1+]">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fPrimeTime" desc="Time of the prime bow animation." type="Float32" />
+	<field name="fReleaseTime" desc="Time of the release bow (shoot) animation." type="Float32" />
+	<field name="fMinPrimePercent" desc="Minimum percent of the animation [0-1] that will always happen, even if you do a quick fire." type="Float32" />
+	<field name="fMaxAbortTime" desc="Time to abort the priming when it is fully primed (this time is scaled down based on how far through it was in the prime anim.)" type="Float32" />
+	<field name="fHipFireFullTensionDeviationMultiplier" desc="Multiplier on the deviation angle when shooting from hip fire with full tension." type="Float32" />
+	<field name="fIronSightFullTensionDeviationMultiplier" desc="Multiplier on the max deviation angle when shooting from ironsight with full tension." type="Float32" />
+	<field name="sndAbortSoundID" desc="sound played when you abort drawing the bow." type="String" />
+	<field name="sndtpAbortSoundType" desc="abort sound type" type="Int32" />
+	<field name="sndDrawSoundID" desc="sound played when you start drawing back the bow" type="String" />
+	<field name="sndtpDrawsoundTypeType" desc="draw sound type" type="Int32" />
+	<field name="sndAbortSoundID_third" desc="sound played when you abort drawing the bow." type="String" />
+	<field name="sndtpAbortSoundType_third" desc="abort sound type" type="Int32" />
+	<field name="sndDrawSoundID_third" desc="sound played when you start drawing back the bow" type="String" />
+	<field name="sndtpDrawsoundTypeType_third" desc="draw sound type" type="Int32" />
+</class>

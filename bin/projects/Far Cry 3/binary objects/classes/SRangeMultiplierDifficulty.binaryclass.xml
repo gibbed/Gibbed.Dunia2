@@ -1,6 +1,12 @@
 <class name="SRangeMultiplierDifficulty">
 	<inherit name="#11E152C8" />
 	<object name="RangeMultiplierDifficulty">
-		<object name="RangeMultiplier" />
+		<object name="RangeMultiplier">
+			<inherit name="#11E152C8" />
+			<field name="fStartMultiplier" desc="Multiplier start value. Start Multiplier to the stim level of damage applied to the target" type="Float32" />
+			<field name="fEndMultiplier" desc="Multiplier end value. End Multiplier to the stim level of damage applied to the target" type="Float32" />
+			<field name="fMinRange" desc="Active when player distance to the target more than minRange" type="Float32" />
+			<field name="fMaxRange" desc="Active when player distance to the target less than maxRange" type="Float32" />
+		</object>
 	</object>
 </class>

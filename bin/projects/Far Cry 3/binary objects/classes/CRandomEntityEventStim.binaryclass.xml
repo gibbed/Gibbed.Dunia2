@@ -1,5 +1,5 @@
 <class name="CRandomEntityEventStim">
-	<inherit name="#11E139C0" />
+	<inherit name="CEntityEventStims" />
 	<!--<object name="DiceRoll" inherit="CDiceRoll" />-->
 	<object name="DiceRolls">
 		<object name="Dice">

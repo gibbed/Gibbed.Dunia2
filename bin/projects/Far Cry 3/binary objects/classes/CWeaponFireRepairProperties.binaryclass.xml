@@ -1,0 +1,34 @@
+<class name="CWeaponFireRepairProperties">
+	<inherit name="CWeaponFireProperties" />
+	<field name="fRepairFactor" desc="Amount of health restored on each shot (each 0.1 sec)" type="Float32" />
+	<object name="Stim" desc="Stim sent to everything that isn't repairable">
+		<inherit name="CPhysBulletHitStim" />
+	</object>
+	<field name="matimpFxRepair" type="Hash64" />
+	<field name="matimpFxImpact" type="Hash64" />
+	<field name="matimpFxRepairFinished" type="Hash64" />
+	<object name="MuzzleFX">
+		<field name="text_FlameBone" type="String" />
+		<field name="FlameBone" desc="Name of the flame bone for FX to attach to on the weapon mesh" type="Hash32" />
+		<field name="text_psIdleMuzzleFx" type="String" />
+		<field name="psIdleMuzzleFx" desc="FX for muzzle flash" type="Hash64" />
+		<field name="text_psRepairMuzzleFx" type="String" />
+		<field name="psRepairMuzzleFx" desc="FX for muzzle flash" type="Hash64" />
+		<field name="text_psRepairFinishedMuzzleFx" type="String" />
+		<field name="psRepairFinishedMuzzleFx" desc="FX for muzzle flash" type="Hash64" />
+	</object>
+	<object name="FirstPersonSounds">
+		<field name="sndStartUseSound" type="String" />
+		<field name="sndStopUseSound" type="String" />
+		<field name="sndStartRepairSound" type="String" />
+		<field name="sndStopRepairSound" type="String" />
+		<field name="sndtpUseRepairSoundType" type="Int32" />
+	</object>
+	<object name="ThirdPersonSounds">
+		<field name="sndStartUseSound" type="String" />
+		<field name="sndStopUseSound" type="String" />
+		<field name="sndStartRepairSound" type="String" />
+		<field name="sndStopRepairSound" type="String" />
+		<field name="sndtpUseRepairSoundType" type="Int32" />
+	</object>
+</class>

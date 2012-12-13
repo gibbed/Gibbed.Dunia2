@@ -10,6 +10,9 @@
 				<field name="Name" type="Hash32" />
 			</object>
 		</object>
+		<!-- TODO: figure out WTF? -->
+		<field name="text_sWeaponBoneName" type="String" />
+		<field name="sWeaponBoneName" desc="Name of the bone on the weapon used for binding. Duplicated here for efficiency." type="Hash32" />
 	</object>
 	<field name="text_attachmentAttachmentType" type="String" />
 	<field name="attachmentAttachmentType" desc="Unique Id of attachment type. Add entries in /data/editor/WeaponsTemplates.xml" type="Hash32" />

@@ -1,0 +1,4 @@
+<class name="CCountersComponentGO">
+	<inherit name="CCountersComponent" />
+	<field name="Health" />
+</class>

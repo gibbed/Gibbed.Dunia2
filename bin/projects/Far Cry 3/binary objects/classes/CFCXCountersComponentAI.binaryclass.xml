@@ -1,0 +1,39 @@
+<class name="CFCXCountersComponentAI">
+	<inherit name="CFCXCountersComponent" />
+	<field name="fAgentHealthOverride" type="Float32" />
+	<field name="bShowHealthBar" type="Boolean" />
+	<object name="Multipliers">
+		<object name="Head">
+			<field name="fHeadArmorPierceStimModifier" desc="Head Stim Modifier for type Pierce" type="Float32" />
+		</object>
+		<object name="Torso">
+			<field name="fTorsoArmorPierceStimModifier" desc="Torso Stim Modifier for type Pierce" type="Float32" />
+		</object>
+		<object name="Legs">
+			<field name="fLegsArmorPierceStimModifier" desc="Legs Stim Modifier for type Pierce" type="Float32" />
+		</object>
+		<object name="GlobalMultipliers">
+			<object name="Stims">
+				<field name="fPierceStimModifier" desc="Stim Modifier for type Pierce" type="Float32" />
+				<field name="fCutStimModifier" desc="Stim Modifier for type Cut" type="Float32" />
+				<field name="fCrushStimModifier" desc="Stim Modifier for type Crush" type="Float32" />
+				<field name="fBurnStimModifier" desc="Stim Modifier for type Crush" type="Float32" />
+				<field name="fExplosionStimModifier" desc="Stim Modifier for type Explosion" type="Float32" />
+				<field name="fExplosionGrenadesStimModifier" desc="Stim Modifier for type Explosion Grenade" type="Float32" />
+				<field name="fExplosionRPGStimModifier" desc="Stim Modifier for type Explosion RPG" type="Float32" />
+				<field name="fExplosionIEDStimModifier" desc="Stim Modifier for type Explosion IED" type="Float32" />
+				<field name="fExplosionSplashStimModifier" desc="Stim Modifier for type Explosion Splash" type="Float32" />
+				<field name="fArrowStimModifier" desc="Stim Modifier for type Arrow" type="Float32" />
+			</object>
+		</object>
+	</object>
+	<object name="Burn">
+		<field name="fBurnDamageAccumulateTime" type="Float32" />
+		<field name="fAccumulatedDamageBeforeBurning" type="Float32" />
+	</object>
+	<object name="HealthRegen">
+		<field name="bEnabled" desc="Activates health regeneration for NPC" type="Boolean" />
+		<field name="fStartCooldown" desc="Time before starting regen" type="Float32" />
+		<field name="fHealRate" desc="Health point gain per second" type="Float32" />
+	</object>
+</class>

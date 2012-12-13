@@ -1,0 +1,14 @@
+<class name="CFCXCountersComponent">
+	<inherit name="CCountersComponentGO" />
+	<field name="fFullBodyDamageMultiplier" type="Float32" />
+	<field name="text_sCoopChallengeFullBodyDamageSetting" type="String" />
+	<field name="sCoopChallengeFullBodyDamageSetting" type="Hash32" />
+	<field name="bIsInvincibleExceptToPlayer" type="Boolean" />
+	<field name="bIsInvincibleToAI" type="Boolean" />
+	<field name="bIsInvincibleToPlayer" type="Boolean" />
+	<field name="WeaponJamProbabilityScale" type="Float32" />
+	<field name="bEnableHitLocations" type="Boolean" />
+	<field name="FirePropagationResistantTimer" />
+	<field name="XpGiven" type="Int32" />
+	<field name="AvengeKillMaxTime" type="Float32" />
+</class>

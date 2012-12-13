@@ -2,9 +2,9 @@
 	<inherit name="CBaseGraphicComponent" />
 	<field name="bAllowCullBySize" type="Boolean" />
 	<field name="bMotionBlurExclusion" type="Boolean" />
-	<field name="bOverrideLODSphere" />
-	<field name="fLODSphereRadius" />
-	<field name="vectorAdditionalAABBDimensionForSkin" desc="Additional AABB size added in negative to aabb min and in positive for aabb max, ONLY for skinned mesh" />
+	<field name="bOverrideLODSphere" type="Boolean" />
+	<field name="fLODSphereRadius" type="Float32" />
+	<field name="vectorAdditionalAABBDimensionForSkin" desc="Additional AABB size added in negative to aabb min and in positive for aabb max, ONLY for skinned mesh" type="Vector3" />
 	<field name="HasNotGraphicKit" />
 	<!-- MaterialOverrides -->
 	<!-- SkinList Skin -->

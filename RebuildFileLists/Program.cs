@@ -132,6 +132,9 @@ namespace RebuildFileLists
 
             var breakdown = new Breakdown();
 
+            var allNames = new List<string>();
+            var allHashes = new List<ulong>();
+
             Console.WriteLine("Processing...");
             foreach (var inputPath in inputPaths)
             {
@@ -192,20 +195,27 @@ namespace RebuildFileLists
 
                 var localBreakdown = new Breakdown();
 
-                var names = new List<string>();
-                foreach (var nameHash in fat.Entries.Select(e => e.NameHash).Distinct())
+                var localNames = new List<string>();
+                var localHashes = fat.Entries
+                    .Select(e => e.NameHash)
+                    .Distinct()
+                    .ToArray();
+                foreach (var hash in localHashes)
                 {
-                    var name = hashes[nameHash];
+                    var name = hashes[hash];
                     if (name != null)
                     {
-                        names.Add(name);
+                        localNames.Add(name);
                     }
 
                     localBreakdown.Total++;
                 }
 
-                var distinctNames = names.Distinct().ToArray();
-                localBreakdown.Known += distinctNames.Length;
+                allHashes.AddRange(localHashes);
+                allNames.AddRange(localNames);
+
+                var distinctLocalNames = localNames.Distinct().ToArray();
+                localBreakdown.Known += distinctLocalNames.Length;
 
                 breakdown.Known += localBreakdown.Known;
                 breakdown.Total += localBreakdown.Total;
@@ -220,7 +230,7 @@ namespace RebuildFileLists
                 {
                     writer.WriteLine("; {0}", localBreakdown);
 
-                    foreach (string name in distinctNames.OrderBy(dn => dn))
+                    foreach (string name in distinctLocalNames.OrderBy(dn => dn))
                     {
                         writer.WriteLine(name);
                     }
@@ -236,7 +246,11 @@ namespace RebuildFileLists
 
             using (var output = new StreamWriter(Path.Combine(Path.Combine(listsPath, "files"), "status.txt")))
             {
-                output.WriteLine("{0}", breakdown);
+                output.WriteLine("{0}", new Breakdown()
+                {
+                    Known = allNames.Distinct().Count(),
+                    Total = allHashes.Distinct().Count(),
+                });
             }
         }
     }

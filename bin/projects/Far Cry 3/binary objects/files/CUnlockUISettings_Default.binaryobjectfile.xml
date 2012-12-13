@@ -1,5 +1,5 @@
 <file name="CUnlockUISettings_Default">
-	<object hash="obj">
+	<object name="obj">
 		<inherit name="CUnlockUISettings" />
 	</object>
 </file>

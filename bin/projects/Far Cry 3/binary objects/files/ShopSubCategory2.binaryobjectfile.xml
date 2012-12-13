@@ -1,9 +1,7 @@
 <file name="ShopSubCategory2">
-	<object>
-		<object hash="A90F3BCC">
-		  <object hash="72DE4948">
-		  	<inherit name="CGameEconomySubCategory2" />
-		  </object>
-		</object>
+	<object hash="lib">
+	  <object hash="72DE4948">
+	  	<inherit name="CGameEconomySubCategory2" />
+	  </object>
 	</object>
 </file>

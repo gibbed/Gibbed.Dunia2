@@ -1,9 +1,7 @@
 <file name="ShopItemType">
-	<object>
-		<object hash="A90F3BCC">
-		  <object hash="72DE4948">
-		  	<inherit name="CGameEconomyItemType" />
-		  </object>
-		</object>
+	<object hash="lib">
+	  <object hash="72DE4948">
+	  	<inherit name="CGameEconomyItemType" />
+	  </object>
 	</object>
 </file>

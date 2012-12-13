@@ -1,9 +1,7 @@
 <file name="ShoppingItems">
-	<object>
-		<object hash="A90F3BCC">
-			<object hash="72DE4948">
-				<inherit name="CShoppingItem" />
-			</object>
+	<object name="lib">
+		<object hash="72DE4948">
+			<inherit name="CShoppingItem" />
 		</object>
 	</object>
 </file>

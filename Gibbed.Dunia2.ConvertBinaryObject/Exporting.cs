@@ -46,7 +46,11 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 OmitXmlDeclaration = false
             };
 
-            var objectDef = objectFileDef != null ? objectFileDef.Object : null;
+            var objectDef = objectFileDef != null &&
+                            objectFileDef.Object != null &&
+                            objectFileDef.Object.Hash == bof.Root.NameHash
+                                ? objectFileDef.Object
+                                : null;
 
             using (var writer = XmlWriter.Create(outputPath, settings))
             {

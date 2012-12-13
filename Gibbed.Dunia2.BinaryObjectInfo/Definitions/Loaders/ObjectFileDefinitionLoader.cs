@@ -56,7 +56,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
 
             if (raw.Object != null)
             {
-                classDef = ClassDefinitionLoader.LoadAnonymousClass(raw.Object, classDefs);
+                classDef = ClassDefinitionLoader.LoadClass(raw.Object, classDefs);
             }
 
             return new ObjectFileDefinition()

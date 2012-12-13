@@ -1,4 +1,4 @@
-; 2862/3061 (93%)
+; 2863/3061 (93%)
 actionmaps\inputactionmapbenchmark.xml
 actionmaps\inputactionmapchat.xml
 actionmaps\inputactionmapcommon.xml
@@ -2855,6 +2855,7 @@ ui\supertextures\multicapturepoints_0.xbt
 ui\supertextures\weaponandgadgetlib_0.xbt
 ui\supertextures\worldmap_0.xbt
 ui\uplay\uplaypopups.feu
+version.xml
 worlds\_empty\levels\_empty\sdat\atlas00_color.xbt
 worlds\_empty\levels\_empty\sdat\atlas00_diffuse.xbt
 worlds\_empty\levels\_empty\sdat\atlas00_mask.xbt

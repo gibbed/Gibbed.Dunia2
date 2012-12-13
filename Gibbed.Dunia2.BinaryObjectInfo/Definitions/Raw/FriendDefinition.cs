@@ -20,16 +20,19 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.FileFormats.Big
+using System.Xml.Serialization;
+
+namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Raw
 {
-    public enum Platform : uint
+    public class FriendDefinition
     {
-        // ReSharper disable InconsistentNaming
-        Any = 0,
-        PC = 1,
-        X360 = 2,
-        PS3 = 3,
-        Invalid = 0xFFFFFFFFu,
-        // ReSharper restore InconsistentNaming
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("condition_field")]
+        public string ConditionField { get; set; }
+
+        [XmlAttribute("condition_value")]
+        public int ConditionValue { get; set; }
     }
 }

@@ -20,7 +20,6 @@
  *    distribution.
  */
 
-using System;
 using System.IO;
 using Gibbed.IO;
 
@@ -49,10 +48,10 @@ namespace Gibbed.Dunia2.FileFormats.Big
             c |= ((entry.UncompressedSize << 2) & 0xFFFFFFFCu);
             c |= (uint)(((byte)entry.CompressionScheme << 0) & 0x00000003u);
 
-            uint d = (uint)((entry.Offset & 0x00000003FFFFFFFCl) >> 2);
+            uint d = (uint)((entry.Offset & 0X00000003FFFFFFFCL) >> 2);
 
             uint e = 0;
-            e |= (uint)((entry.Offset & 0x0000000000000003l) << 30);
+            e |= (uint)((entry.Offset & 0X0000000000000003L) << 30);
             e |= (entry.CompressedSize & 0x3FFFFFFFu) << 0;
 
             output.WriteValueU32(a, endian);

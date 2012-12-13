@@ -43,23 +43,11 @@ namespace Gibbed.Dunia2.ConvertXml
             var mode = Mode.Unknown;
             bool showHelp = false;
 
-            OptionSet options = new OptionSet()
+            var options = new OptionSet()
             {
-                {
-                    "rml",
-                    "convert XML to RML",
-                    v => mode = v != null ? Mode.ToRml : mode
-                    },
-                {
-                    "xml",
-                    "convert RML to XML",
-                    v => mode = v != null ? Mode.ToXml : mode
-                    },
-                {
-                    "h|help",
-                    "show this message and exit",
-                    v => showHelp = v != null
-                    },
+                {"rml", "convert XML to RML", v => mode = v != null ? Mode.ToRml : mode},
+                {"xml", "convert RML to XML", v => mode = v != null ? Mode.ToXml : mode},
+                {"h|help", "show this message and exit", v => showHelp = v != null},
             };
 
             List<string> extras;
@@ -144,10 +132,12 @@ namespace Gibbed.Dunia2.ConvertXml
                     rez.Deserialize(input);
                 }
 
-                var settings = new XmlWriterSettings();
-                settings.Encoding = Encoding.UTF8;
-                settings.Indent = true;
-                settings.OmitXmlDeclaration = true;
+                var settings = new XmlWriterSettings
+                {
+                    Encoding = Encoding.UTF8,
+                    Indent = true,
+                    OmitXmlDeclaration = true
+                };
 
                 using (var writer = XmlWriter.Create(outputPath, settings))
                 {
@@ -164,8 +154,10 @@ namespace Gibbed.Dunia2.ConvertXml
 
         public static XmlResourceFile.Node ReadNode(XPathNavigator nav)
         {
-            var node = new XmlResourceFile.Node();
-            node.Name = nav.Name;
+            var node = new XmlResourceFile.Node
+            {
+                Name = nav.Name
+            };
 
             if (nav.MoveToFirstAttribute() == true)
             {
@@ -220,7 +212,7 @@ namespace Gibbed.Dunia2.ConvertXml
                 WriteNode(writer, child);
             }
 
-            if (node.Value != null && node.Value.Length > 0)
+            if (string.IsNullOrEmpty(node.Value) == false)
             {
                 writer.WriteValue(node.Value);
             }

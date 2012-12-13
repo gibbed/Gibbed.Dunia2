@@ -33,12 +33,10 @@ namespace Gibbed.Dunia2.FileFormats
                                          a => CRC64.Hash(a.ToLowerInvariant()),
                                          s => s.Replace("/", "\\"));
             }
-            else
-            {
-                return manager.LoadLists("*.filelist",
-                                         a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
-                                         s => s.Replace("\\", "/"));
-            }
+
+            return manager.LoadLists("*.filelist",
+                                     a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
+                                     s => s.Replace("\\", "/"));
         }
 
         public static ProjectData.HashList<ulong> LoadListsFileNames(this ProjectData.Project project,
@@ -50,12 +48,10 @@ namespace Gibbed.Dunia2.FileFormats
                                          a => CRC64.Hash(a.ToLowerInvariant()),
                                          s => s.Replace("/", "\\"));
             }
-            else
-            {
-                return project.LoadLists("*.filelist",
-                                         a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
-                                         s => s.Replace("\\", "/"));
-            }
+
+            return project.LoadLists("*.filelist",
+                                     a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
+                                     s => s.Replace("\\", "/"));
         }
     }
 }

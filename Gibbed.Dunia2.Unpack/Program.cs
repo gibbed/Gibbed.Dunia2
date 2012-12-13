@@ -169,7 +169,7 @@ namespace Gibbed.Dunia2.Unpack
 
                     if (entry.SubFatIndex >= 0)
                     {
-                        entryName = Path.Combine("__SUBFAT", entry.SubFatIndex.ToString(), entryName);
+                        entryName = Path.Combine("__SUBFAT", entry.SubFatIndex.ToString(CultureInfo.InvariantCulture), entryName);
                     }
 
                     if (duplicates.ContainsKey(entry.NameHash) == true)
@@ -178,7 +178,7 @@ namespace Gibbed.Dunia2.Unpack
                         var e = Path.GetExtension(entryName);
                         var nn =
                             Path.ChangeExtension(
-                                Path.ChangeExtension(entryName, null) + "__DUPLICATE_" + number.ToString(), e);
+                                Path.ChangeExtension(entryName, null) + "__DUPLICATE_" + number.ToString(CultureInfo.InvariantCulture), e);
                         entryName = Path.Combine("__DUPLICATE", nn);
                     }
                     else
@@ -268,14 +268,7 @@ namespace Gibbed.Dunia2.Unpack
                     extension = tuple != null ? tuple.Item2 : null;
                 }
 
-                if (fat.Version >= 9)
-                {
-                    entryName = entry.NameHash.ToString("X16");
-                }
-                else
-                {
-                    entryName = entry.NameHash.ToString("X8");
-                }
+                entryName = entry.NameHash.ToString(fat.Version >= 9 ? "X16" : "X8");
 
                 if (string.IsNullOrEmpty(extension) == false)
                 {

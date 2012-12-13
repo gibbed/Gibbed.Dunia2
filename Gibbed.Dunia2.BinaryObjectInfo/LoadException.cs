@@ -20,16 +20,24 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.FileFormats.Big
+using System;
+
+namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    public enum Platform : uint
+    public class LoadException : Exception
     {
-        // ReSharper disable InconsistentNaming
-        Any = 0,
-        PC = 1,
-        X360 = 2,
-        PS3 = 3,
-        Invalid = 0xFFFFFFFFu,
-        // ReSharper restore InconsistentNaming
+        public LoadException()
+        {
+        }
+
+        public LoadException(string message)
+            : base(message)
+        {
+        }
+
+        public LoadException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
     }
 }

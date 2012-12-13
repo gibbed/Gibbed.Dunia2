@@ -81,7 +81,7 @@ namespace Gibbed.Dunia2.FileFormats.Big
                 entry.CompressionScheme = CompressionScheme.LZO1x;
                 entry.UncompressedSize = uncompressedSize;
                 entry.CompressedSize = (uint)actualCompressedSize;
-                output.Write(compressedData, 0, (int)actualCompressedSize);
+                output.Write(compressedData, 0, actualCompressedSize);
             }
             else
             {

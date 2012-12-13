@@ -20,16 +20,11 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.FileFormats.Big
+namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    public enum Platform : uint
+    public enum ConditionValueSource
     {
-        // ReSharper disable InconsistentNaming
-        Any = 0,
-        PC = 1,
-        X360 = 2,
-        PS3 = 3,
-        Invalid = 0xFFFFFFFFu,
-        // ReSharper restore InconsistentNaming
+        Self = 0,
+        Parent,
     }
 }

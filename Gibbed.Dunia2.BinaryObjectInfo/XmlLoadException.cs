@@ -20,16 +20,24 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.FileFormats.Big
+using System;
+
+namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    public enum Platform : uint
+    public class XmlLoadException : Exception
     {
-        // ReSharper disable InconsistentNaming
-        Any = 0,
-        PC = 1,
-        X360 = 2,
-        PS3 = 3,
-        Invalid = 0xFFFFFFFFu,
-        // ReSharper restore InconsistentNaming
+        public readonly string FilePath;
+
+        public XmlLoadException(string filePath, string message)
+            : base(message)
+        {
+            this.FilePath = filePath;
+        }
+
+        public XmlLoadException(string filePath, string message, Exception innerException)
+            : base(message, innerException)
+        {
+            this.FilePath = filePath;
+        }
     }
 }

@@ -20,16 +20,34 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.FileFormats.Big
+namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    public enum Platform : uint
+    public enum FieldType
     {
-        // ReSharper disable InconsistentNaming
-        Any = 0,
-        PC = 1,
-        X360 = 2,
-        PS3 = 3,
-        Invalid = 0xFFFFFFFFu,
-        // ReSharper restore InconsistentNaming
+        Invalid = 0,
+        BinHex,
+        Boolean,
+        UInt8,
+        Int8,
+        UInt16,
+        Int16,
+        UInt32,
+        Int32,
+        UInt64,
+        Int64,
+        Float32,
+        Float64,
+        Vector2,
+        Vector3,
+        Vector4,
+        String,
+        Enum,
+        Hash32,
+        Hash64,
+        Id32,
+        Id64,
+        Rml,
+        ComputeHash32,
+        ComputeHash64,
     }
 }

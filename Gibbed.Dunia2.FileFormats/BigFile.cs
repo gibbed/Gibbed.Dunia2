@@ -35,9 +35,11 @@ namespace Gibbed.Dunia2.FileFormats
 
         public int Version;
         public Big.Platform Platform;
+        // ReSharper disable InconsistentNaming
         public uint Unknown74;
         public uint UnknownA8;
         public uint UnknownAC;
+        // ReSharper restore InconsistentNaming
         public readonly List<Big.Entry> Entries = new List<Big.Entry>();
 
         public void Serialize(FileStream output)
@@ -127,9 +129,9 @@ namespace Gibbed.Dunia2.FileFormats
             foreach (var subfatIndex in subfatIndices)
             {
                 var subfatEntries = this.Entries
-                .Where(e => e.SubFatIndex == subfatIndex)
-                .OrderBy(e => e.NameHash)
-                .ToArray();
+                    .Where(e => e.SubFatIndex == subfatIndex)
+                    .OrderBy(e => e.NameHash)
+                    .ToArray();
                 output.WriteValueS32(subfatEntries.Length, Endian.Little);
                 foreach (var entry in subfatEntries)
                 {

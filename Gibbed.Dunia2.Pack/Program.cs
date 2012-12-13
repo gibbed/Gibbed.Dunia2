@@ -189,8 +189,7 @@ namespace Gibbed.Dunia2.Pack
 
                     if (pieces[index].ToUpperInvariant() == "__UNKNOWN")
                     {
-                        string partName;
-                        partName = Path.GetFileNameWithoutExtension(partPath);
+                        var partName = Path.GetFileNameWithoutExtension(partPath);
 
                         if (string.IsNullOrEmpty(partName) == true)
                         {
@@ -228,9 +227,11 @@ namespace Gibbed.Dunia2.Pack
                 }
             }
 
-            var fat = new BigFile();
-            fat.Version = packageVersion;
-            fat.Platform = packagePlatform;
+            var fat = new BigFile
+            {
+                Version = packageVersion,
+                Platform = packagePlatform
+            };
 
             // reasonable default?
             // need to figure out what this value actually does

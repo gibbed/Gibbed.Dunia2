@@ -193,6 +193,11 @@ namespace Gibbed.Dunia2.FileFormats
                 return new Tuple<string, string>("misc", "xml");
             }
 
+            if (read >= 1 && text.StartsWith("<Sequence>") == true)
+            {
+                return new Tuple<string, string>("game", "cseq");
+            }
+
             return null;
         }
     }

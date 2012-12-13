@@ -20,16 +20,13 @@
  *    distribution.
  */
 
-namespace Gibbed.Dunia2.FileFormats.Big
+using System.Collections.ObjectModel;
+
+namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
 {
-    public enum Platform : uint
+    public class EnumDefinition
     {
-        // ReSharper disable InconsistentNaming
-        Any = 0,
-        PC = 1,
-        X360 = 2,
-        PS3 = 3,
-        Invalid = 0xFFFFFFFFu,
-        // ReSharper restore InconsistentNaming
+        public string Name { get; internal set; }
+        public ReadOnlyCollection<EnumElementDefinition> Elements { get; internal set; }
     }
 }

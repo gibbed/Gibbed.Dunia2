@@ -52,8 +52,7 @@ namespace Gibbed.Dunia2.FileFormats
             {
                 uint totalObjectCount = 0, totalValueCount = 0;
 
-                this.Root.Serialize(data,
-                                    ref totalObjectCount,
+                this.Root.Serialize(data,ref totalObjectCount,
                                     ref totalValueCount,
                                     endian);
                 data.Flush();
@@ -96,9 +95,8 @@ namespace Gibbed.Dunia2.FileFormats
 
             this.Version = version;
             this.Flags = flags;
-            this.Root = BinaryObject.Deserialize(input, pointers, endian);
+            this.Root = BinaryObject.Deserialize(null, input, pointers, endian);
         }
-
 
         [Flags]
         public enum HeaderFlags : ushort

@@ -29,87 +29,49 @@ namespace Gibbed.Dunia2.FileFormats
 {
     public class BinaryObject
     {
-        public long Position;
-        public uint NameHash;
-        public readonly Dictionary<uint, byte[]> Fields = new Dictionary<uint, byte[]>();
-        public readonly List<BinaryObject> Children = new List<BinaryObject>();
+        private readonly BinaryObject _Parent;
+        private long _Position;
+        private uint _NameHash;
+        private readonly Dictionary<uint, byte[]> _Fields = new Dictionary<uint, byte[]>();
+        private readonly List<BinaryObject> _Children = new List<BinaryObject>();
 
-        public static BinaryObject Deserialize(Stream input, List<BinaryObject> pointers, Endian endian)
+        /*
+        public BinaryObject()
+            : this(null)
         {
-            long position = input.Position;
+        }
+        */
 
-            bool isOffset;
-            var childCount = input.ReadCount(out isOffset, endian);
-
-            if (isOffset == true)
-            {
-                return pointers[(int)childCount];
-            }
-
-            var child = new BinaryObject();
-            child.Position = position;
-            pointers.Add(child);
-
-            child.Deserialize(input, childCount, pointers, endian);
-            return child;
+        public BinaryObject(BinaryObject parent)
+        {
+            this._Parent = parent;
         }
 
-        private void Deserialize(Stream input,
-                                 uint childCount,
-                                 List<BinaryObject> pointers,
-                                 Endian endian)
+        public BinaryObject Parent
         {
-            long position;
-            bool isOffset;
+            get { return this._Parent; }
+        }
 
-            this.NameHash = input.ReadValueU32(endian);
+        public long Position
+        {
+            get { return this._Position; }
+            set { this._Position = value; }
+        }
 
-            var valueCount = input.ReadCount(out isOffset, endian);
-            if (isOffset == true)
-            {
-                throw new NotImplementedException();
-            }
+        public uint NameHash
+        {
+            get { return this._NameHash; }
+            set { this._NameHash = value; }
+        }
 
-            this.Fields.Clear();
-            for (var i = 0; i < valueCount; i++)
-            {
-                var nameHash = input.ReadValueU32(endian);
-                byte[] value;
+        public Dictionary<uint, byte[]> Fields
+        {
+            get { return this._Fields; }
+        }
 
-                uint size;
-                position = input.Position;
-
-                size = input.ReadCount(out isOffset, endian);
-                if (isOffset == true)
-                {
-                    input.Seek(position - size, SeekOrigin.Begin);
-
-                    size = input.ReadCount(out isOffset, endian);
-                    if (isOffset == true)
-                    {
-                        throw new FormatException();
-                    }
-
-                    value = new byte[size];
-                    input.Read(value, 0, value.Length);
-
-                    input.Seek(position, SeekOrigin.Begin);
-                    input.ReadCount(out isOffset, endian);
-                }
-                else
-                {
-                    value = new byte[size];
-                    input.Read(value, 0, value.Length);
-                }
-
-                this.Fields.Add(nameHash, value);
-            }
-
-            this.Children.Clear();
-            for (var i = 0; i < childCount; i++)
-            {
-                this.Children.Add(Deserialize(input, pointers, endian));
-            }
+        public List<BinaryObject> Children
+        {
+            get { return this._Children; }
         }
 
         public void Serialize(Stream output,
@@ -129,7 +91,7 @@ namespace Gibbed.Dunia2.FileFormats
             {
                 output.WriteValueU32(kv.Key, endian);
                 output.WriteCount(kv.Value.Length, false, endian);
-                output.Write(kv.Value, 0, kv.Value.Length);
+                output.WriteBytes(kv.Value);
             }
 
             foreach (var child in this.Children)
@@ -138,6 +100,82 @@ namespace Gibbed.Dunia2.FileFormats
                                 ref totalObjectCount,
                                 ref totalValueCount,
                                 endian);
+            }
+        }
+
+        public static BinaryObject Deserialize(BinaryObject parent,
+                                               Stream input,
+                                               List<BinaryObject> pointers,
+                                               Endian endian)
+        {
+            long position = input.Position;
+
+            bool isOffset;
+            var childCount = input.ReadCount(out isOffset, endian);
+
+            if (isOffset == true)
+            {
+                return pointers[(int)childCount];
+            }
+
+            var child = new BinaryObject(parent);
+            child.Position = position;
+            pointers.Add(child);
+
+            child.Deserialize(input, childCount, pointers, endian);
+            return child;
+        }
+
+        private void Deserialize(Stream input,
+                                 uint childCount,
+                                 List<BinaryObject> pointers,
+                                 Endian endian)
+        {
+            bool isOffset;
+
+            this.NameHash = input.ReadValueU32(endian);
+
+            var valueCount = input.ReadCount(out isOffset, endian);
+            if (isOffset == true)
+            {
+                throw new NotImplementedException();
+            }
+
+            this.Fields.Clear();
+            for (var i = 0; i < valueCount; i++)
+            {
+                var nameHash = input.ReadValueU32(endian);
+                byte[] value;
+
+                var position = input.Position;
+                var size = input.ReadCount(out isOffset, endian);
+                if (isOffset == true)
+                {
+                    input.Seek(position - size, SeekOrigin.Begin);
+
+                    size = input.ReadCount(out isOffset, endian);
+                    if (isOffset == true)
+                    {
+                        throw new FormatException();
+                    }
+
+                    value = input.ReadBytes(size);
+
+                    input.Seek(position, SeekOrigin.Begin);
+                    input.ReadCount(out isOffset, endian);
+                }
+                else
+                {
+                    value = input.ReadBytes(size);
+                }
+
+                this.Fields.Add(nameHash, value);
+            }
+
+            this.Children.Clear();
+            for (var i = 0; i < childCount; i++)
+            {
+                this.Children.Add(Deserialize(this, input, pointers, endian));
             }
         }
     }

@@ -102,8 +102,8 @@ namespace Gibbed.Dunia2.FileFormats
             public string Name;
             public string Value;
 
-            internal uint _NameIndex;
-            internal uint _ValueIndex;
+            internal uint NameIndex;
+            internal uint ValueIndex;
 
             public List<Attribute> Attributes = new List<Attribute>();
             public List<Node> Children = new List<Node>();
@@ -113,8 +113,8 @@ namespace Gibbed.Dunia2.FileFormats
                                     ref uint totalAttributeCount,
                                     Endian endian)
             {
-                this._NameIndex = input.ReadValuePackedU32(endian);
-                this._ValueIndex = input.ReadValuePackedU32(endian);
+                this.NameIndex = input.ReadValuePackedU32(endian);
+                this.ValueIndex = input.ReadValuePackedU32(endian);
 
                 var attributeCount = input.ReadValuePackedU32(endian);
                 var childCount = input.ReadValuePackedU32(endian);
@@ -147,8 +147,8 @@ namespace Gibbed.Dunia2.FileFormats
                                   ref uint totalAttributeCount,
                                   Endian endian)
             {
-                output.WriteValuePackedU32(this._NameIndex, endian);
-                output.WriteValuePackedU32(this._ValueIndex, endian);
+                output.WriteValuePackedU32(this.NameIndex, endian);
+                output.WriteValuePackedU32(this.ValueIndex, endian);
 
                 totalAttributeCount += (uint)this.Attributes.Count;
                 totalNodeCount += (uint)this.Children.Count;
@@ -172,8 +172,8 @@ namespace Gibbed.Dunia2.FileFormats
 
             internal void ReadStringTable(StringTable stringTable)
             {
-                this.Name = stringTable.Read(this._NameIndex);
-                this.Value = stringTable.Read(this._ValueIndex);
+                this.Name = stringTable.Read(this.NameIndex);
+                this.Value = stringTable.Read(this.ValueIndex);
 
                 foreach (var attribute in this.Attributes)
                 {
@@ -188,8 +188,8 @@ namespace Gibbed.Dunia2.FileFormats
 
             internal void WriteStringTable(StringTable stringTable)
             {
-                this._NameIndex = stringTable.Write(this.Name);
-                this._ValueIndex = stringTable.Write(this.Value);
+                this.NameIndex = stringTable.Write(this.Name);
+                this.ValueIndex = stringTable.Write(this.Value);
 
                 foreach (var attribute in this.Attributes)
                 {
@@ -209,8 +209,8 @@ namespace Gibbed.Dunia2.FileFormats
             public string Name;
             public string Value;
 
-            internal uint _NameIndex;
-            internal uint _ValueIndex;
+            internal uint NameIndex;
+            internal uint ValueIndex;
 
             public void Deserialize(Stream input, Endian endian)
             {
@@ -221,33 +221,33 @@ namespace Gibbed.Dunia2.FileFormats
                     throw new FormatException();
                 }
 
-                this._NameIndex = input.ReadValuePackedU32(endian);
-                this._ValueIndex = input.ReadValuePackedU32(endian);
+                this.NameIndex = input.ReadValuePackedU32(endian);
+                this.ValueIndex = input.ReadValuePackedU32(endian);
             }
 
             public void Serialize(Stream output, Endian endian)
             {
                 output.WriteValuePackedU32(this.Unknown, endian);
-                output.WriteValuePackedU32(this._NameIndex, endian);
-                output.WriteValuePackedU32(this._ValueIndex, endian);
+                output.WriteValuePackedU32(this.NameIndex, endian);
+                output.WriteValuePackedU32(this.ValueIndex, endian);
             }
 
             internal void ReadStringTable(StringTable stringTable)
             {
-                this.Name = stringTable.Read(this._NameIndex);
-                this.Value = stringTable.Read(this._ValueIndex);
+                this.Name = stringTable.Read(this.NameIndex);
+                this.Value = stringTable.Read(this.ValueIndex);
             }
 
             internal void WriteStringTable(StringTable stringTable)
             {
-                this._NameIndex = stringTable.Write(this.Name);
-                this._ValueIndex = stringTable.Write(this.Value);
+                this.NameIndex = stringTable.Write(this.Name);
+                this.ValueIndex = stringTable.Write(this.Value);
             }
         }
 
         internal class StringTable
         {
-            private MemoryStream Data = new MemoryStream();
+            private MemoryStream _Data = new MemoryStream();
 
             // this is dumb :effort:
             private readonly Dictionary<uint, string> _Offsets = new Dictionary<uint, string>();
@@ -270,10 +270,10 @@ namespace Gibbed.Dunia2.FileFormats
                     return this._Values[value];
                 }
 
-                var offset = (uint)this.Data.Position;
+                var offset = (uint)this._Data.Position;
                 this._Offsets.Add(offset, value);
                 this._Values.Add(value, offset);
-                this.Data.WriteStringZ(value, Encoding.UTF8);
+                this._Data.WriteStringZ(value, Encoding.UTF8);
                 return offset;
             }
 
@@ -282,12 +282,11 @@ namespace Gibbed.Dunia2.FileFormats
                 this._Offsets.Clear();
                 this._Values.Clear();
 
-                this.Data = new MemoryStream(buffer);
-
-                while (this.Data.Position < this.Data.Length)
+                this._Data = new MemoryStream(buffer);
+                while (this._Data.Position < this._Data.Length)
                 {
-                    var offset = (uint)this.Data.Position;
-                    var value = this.Data.ReadStringZ(Encoding.UTF8);
+                    var offset = (uint)this._Data.Position;
+                    var value = this._Data.ReadStringZ(Encoding.UTF8);
                     this._Offsets.Add(offset, value);
                     this._Values.Add(value, offset);
                 }
@@ -295,8 +294,8 @@ namespace Gibbed.Dunia2.FileFormats
 
             public byte[] Serialize()
             {
-                var buffer = new byte[this.Data.Length];
-                Array.Copy(this.Data.GetBuffer(), buffer, buffer.Length);
+                var buffer = new byte[this._Data.Length];
+                Array.Copy(this._Data.GetBuffer(), buffer, buffer.Length);
                 return buffer;
             }
         }

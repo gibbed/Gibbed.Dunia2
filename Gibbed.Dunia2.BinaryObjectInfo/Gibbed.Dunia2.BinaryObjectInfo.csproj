@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{419092A1-B3E8-4619-8BB3-6099505B74F1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gibbed.Dunia2.BinaryObjectInfo</RootNamespace>
+    <AssemblyName>Gibbed.Dunia2.BinaryObjectInfo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Definitions\ClassDefinition.cs" />
+    <Compile Include="Definitions\EnumDefinition.cs" />
+    <Compile Include="Definitions\EnumElementDefinition.cs" />
+    <Compile Include="ConditionValueSource.cs" />
+    <Compile Include="Definitions\FieldDefinition.cs" />
+    <Compile Include="Definitions\FriendDefinition.cs" />
+    <Compile Include="Definitions\Loaders\ClassDefinitionLoader.cs" />
+    <Compile Include="Definitions\Loaders\LoaderHelper.cs" />
+    <Compile Include="Definitions\Loaders\ObjectFileDefinitionLoader.cs" />
+    <Compile Include="FieldType.cs" />
+    <Compile Include="IFileDefinition.cs" />
+    <Compile Include="LoadException.cs" />
+    <Compile Include="Definitions\ObjectFileDefinition.cs" />
+    <Compile Include="Definitions\Raw\ClassDefinition.cs" />
+    <Compile Include="Definitions\Raw\EnumDefinition.cs" />
+    <Compile Include="Definitions\Raw\EnumElementDefinition.cs" />
+    <Compile Include="Definitions\Raw\FieldDefinition.cs" />
+    <Compile Include="Definitions\Raw\FriendDefinition.cs" />
+    <Compile Include="Definitions\Raw\ObjectFileDefinition.cs" />
+    <Compile Include="XmlLoadException.cs" />
+    <Compile Include="IDefinition.cs" />
+    <Compile Include="InfoDictionary.cs" />
+    <Compile Include="InfoManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gibbed.Dunia2.FileFormats\Gibbed.Dunia2.FileFormats.csproj">
+      <Project>{936B8D92-3DD5-4CF5-9C87-A36A073E6BC2}</Project>
+      <Name>Gibbed.Dunia2.FileFormats</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

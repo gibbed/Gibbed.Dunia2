@@ -1,5 +1,9 @@
 <file name="ShopSubCategory2">
-	<object hash="A90F3BCC">
-	  <object hash="72DE4948" class="CGameEconomySubCategory2" />
+	<object>
+		<object hash="A90F3BCC">
+		  <object hash="72DE4948">
+		  	<inherit="CGameEconomySubCategory2" />
+		  </object>
+		</object>
 	</object>
 </file>

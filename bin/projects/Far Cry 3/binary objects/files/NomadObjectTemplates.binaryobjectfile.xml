@@ -1,4 +1,5 @@
 <file name="NomadObjectTemplates">
-	<object name="NomadObjectTemplates">
+	<object>
+		<inherit name="NomadObjectTemplates" />
 	</object>
 </file>

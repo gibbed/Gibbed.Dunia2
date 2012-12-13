@@ -1,3 +1,7 @@
 <file name="HudProperties_Default">
-	<object hash="4666D46C" class="SHudProperties" />
+	<object>
+		<object hash="4666D46C">
+			<inherit name="SHudProperties" />
+		</object>
+	</object>
 </file>

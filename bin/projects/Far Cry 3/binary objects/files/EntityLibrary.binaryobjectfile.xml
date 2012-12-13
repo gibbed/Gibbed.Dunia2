@@ -1,3 +1,5 @@
 <file name="EntityLibrary">
-	<object name="EntityLibraries" class="EntityLibraries" />
+	<object>
+		<inherit name="EntityLibraries" />
+	</object>
 </file>

@@ -1,3 +1,7 @@
 <file name="FireSettings_Default">
-	<object hash="4666D46C" class="FireSettings_SSettings" />
+	<object>
+		<object hash="4666D46C">
+			<inherit name="FireSettings_SSettings" />
+		</object>
+	</object>
 </file>

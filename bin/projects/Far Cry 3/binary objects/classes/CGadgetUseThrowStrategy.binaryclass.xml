@@ -1,0 +1,21 @@
+<class name="CGadgetUseThrowStrategy">
+	<inherit name="CGadgetUseStrategy" />
+	<field name="arkProjectile" type="Id64" />
+	<field name="fThrowStrength" type="Float32" />
+	<field name="fThrowAngle" type="Float32" />
+	<field name="fPrimeGrenadeTime" type="Float32" />
+	<field name="fReleaseGrenadeTime" type="Float32" />
+	<field name="vectorMinAngularImpulse" type="Vector3" />
+	<field name="vectorMaxAngularImpulse" type="Vector3" />
+	<field name="sAmbxScript" />
+	<field name="vectorCenterThrowAnimOffset" desc="Center Throw :: Right hand offset between holding frame and release frame (offset in root space)" type="Vector3" />
+	<field name="vectorLeftThrowAnimOffset" desc="Left Throw :: Right hand offset between holding frame and release frame (offset in root space)" type="Vector3" />
+	<field name="vectorRightThrowAnimOffset" desc="Left Throw :: Right hand offset between holding frame and release frame (offset in root space)" type="Vector3" />
+	<field name="coverZThrowOffset" desc="Offset in Z to be added to grenade start position when player is in cover." type="Float32" />
+	<field name="Throw" />
+	<field name="Attached" />
+	<field name="SpawnedProjID" />
+	<field name="vectorSpawnPosOffset" type="Vector3" />
+	<field name="vectorSpawnOrientOffset" type="Vector3" />
+	<field name="bForcePhysicsThrow" desc="Use the physics calculated system to throw the object instead of relying on the AI system to pre-calculate the final position." type="Boolean" />
+</class>

@@ -1,10 +1,16 @@
 <class name="CGadget::Impl">
 	<inherit name="#11E152C8" />
-	<object name="CommonGadgetProperties" />
+	
+	<!--<object name="CommonGadgetProperties">-->
 	<merge name="CGadgetPropertiesCommon" />
+	<!--</object>-->
 	
 	<!-- This is dynamic based on CGadgetPropertiesCommon.selUseStrategy :( -->
-	<object name="UseStrategy" />
+	<object name="UseStrategy">
+		<inherit name="CGadgetUseThrowStrategy"
+		         condition_field="^selUseStrategy"
+		         condition_value="0" />
+	</object>
 	
 	<field name="Uses" />
 	<field name="UnlimitedUse" />

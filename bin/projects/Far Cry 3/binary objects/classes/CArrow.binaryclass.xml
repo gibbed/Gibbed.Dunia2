@@ -57,7 +57,9 @@
 		</enum>
 	</field>
 	<field name="arkPickupArchetype" desc="The name of the pickup archetype, replaces the particle arrow with this (rigid) after the first collision with something." type="Id64" />
-	<object name="BaseDamage" desc="Damage stims." />
+	<object name="BaseDamage" desc="Damage stims.">
+		<inherit name="CPhysBulletHitStim" />
+	</object>
 	<object name="ImpactStims" desc="impact stims (for effects etc).">
 		<inherit name="CStimArrayBase_SStimInfo" />
 	</object>

@@ -1,0 +1,28 @@
+<class name="CTaggableComponent">
+	<inherit name="CFCXIdentifiableComponent" />
+	<field name="bEnable" desc="Hint state." type="Boolean" />
+	<field name="bDisableTaggingByCameraAndIronsight" desc="When ticked this is only taggable via potions and not the general camera and IS tagging systems." type="Boolean" />
+	<field name="fHighlightFadeOutTime" desc="The time to fade out after death" type="Float32" />
+	<field name="selTagType" type="Enum">
+		<enum name="enumTagType">
+			<element name="Unknown">0</element>
+			<element name="Enemy">1</element>
+			<element name="Animal">2</element>
+			<element name="Plant">3</element>
+			<element name="Explosive">4</element>
+		</enum>
+	</field>
+	<object name="TagIndicator">
+		<field name="bSizeDependsOnDistance" type="Boolean" />
+		<object name="SizeLock">
+			<field name="fMinDistanceToLockSize" type="Float32" />
+			<field name="fMaxDistanceToLockSize" type="Float32" />
+		</object>
+		<field name="text_sTexturePath" type="String" />
+		<field name="sTexturePath" type="Hash64" />
+		<field name="fScaleX" type="Float32" />
+		<field name="fScaleY" type="Float32" />
+		<field name="fVerticalOffset" type="Float32" />
+		<field name="sMinimapFrameLabel" type="String" />
+	</object>
+</class>

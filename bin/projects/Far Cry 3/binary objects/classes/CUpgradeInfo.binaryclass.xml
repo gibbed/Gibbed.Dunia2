@@ -1,0 +1,12 @@
+<class name="CUpgradeInfo">
+	<inherit name="#11E152C8" />
+	<field name="locidDurationDescriptionStringId" desc="Wrapper string for the duration description, e.g 'Time added:'" type="Int32" />
+	<field name="locidDurationValueStringId" desc="Wrapper string for the duration value, e.g 'adds 5 secs'" type="Int32" />
+	<field name="locidStrengthDescriptionStringId" desc="Wrapper string for the strength description, e.g 'Damage added:'" type="Int32" />
+	<field name="locidStrengthValueStringId" desc="Wrapper string for the strength value, e.g 'adds 50 dmg'" type="Int32" />
+	<object name="UpgradeLevels" desc="Upgrade Levels">
+		<object name="Level">
+			<field name="iStrengthValue" type="Int32" />
+		</object>
+	</object>
+</class>

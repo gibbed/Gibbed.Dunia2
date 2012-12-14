@@ -1,0 +1,5 @@
+<class name="SGameEconomyOffscreenRenderParams">
+	<inherit name="#11E152C8" />
+	<field name="vectorBBoxMin" type="Vector3" />
+	<field name="vectorBBoxMax" type="Vector3" />
+</class>

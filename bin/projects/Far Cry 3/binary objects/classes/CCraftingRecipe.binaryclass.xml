@@ -1,0 +1,36 @@
+<class name="CCraftingRecipe">
+	<inherit name="CGameEconomyCategoryBase" />
+	<field name="locidItemNameId" type="Int32" />
+	<field name="cftrcptpeType" type="UInt8" />
+	<field name="cftrcpsubtpeSubType" type="UInt8" />
+	<field name="sItemSize" type="String" />
+	<field name="arkArchetype" type="Id64" />
+	<field name="arkMenuArchetype" type="Id64" />
+	<field name="vectorMenuDisplayPosition" type="Vector3" />
+	<field name="menuDisplayAngles" type="Vector3" />
+	<object name="OffScreenRenderParams">
+		<inherit name="SGameEconomyOffscreenRenderParams" />
+	</object>
+	<field name="UnlockOnMissionComplete" type="String" />
+	<object name="upgradeInfo">
+		<inherit name="CUpgradeInfo" />
+	</object>
+	<field name="UnlockFromScript" type="String" />
+	<field name="arkPreRequisiteRecipe" desc="Recipe that needs to be unlocked for this one to be available." type="Id64" />
+	<object name="Requirements">
+		<object name="Requirement">
+			<inherit name="#11E152C8" />
+			<field name="shpLootObject" type="UInt16" />
+			<field name="iNeeded" type="Int32" />
+		</object>
+	</object>
+	<object name="Levels">
+		<object name="Level">
+			<inherit name="#11E152C8" />
+			<field name="iMax" type="Int32" />
+			<field name="iIncrement" type="Int32" />
+		</object>
+	</object>
+	<field name="fRotationSpeed" type="Float32" />
+	<field name="fRotationAmplitude" type="Float32" />
+</class>

@@ -1,0 +1,10 @@
+<class name="CCraftingRecipeSubType">
+	<inherit name="CGameEconomyCategoryBase" />
+	<field name="locidItemNameId" type="Int32" />
+	<field name="arkDisplayDefaultArchetype" type="Id64" />
+	<field name="vectorMenuDisplayPosition" type="Vector3" />
+	<field name="menuDisplayAngles" type="Vector3" />
+	<object name="OffScreenRenderParams">
+		<inherit name="SGameEconomyOffscreenRenderParams" />
+	</object>
+</class>

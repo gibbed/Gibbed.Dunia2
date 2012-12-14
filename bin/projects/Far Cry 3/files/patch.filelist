@@ -1,4 +1,4 @@
-; 180/197 (91%)
+; 182/197 (92%)
 domino\library\sp\lib_common.backupinventory.lua
 domino\library\sp\lib_common.bng_playermodel.lua
 domino\library\sp\lib_common.displaymarkerincave.lua
@@ -165,6 +165,8 @@ domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.log_ismissionre
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.obj_freethetarget.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.obj_oliverreachjason.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.wil_050_b20.lua
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_vista.xbg
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_vista.xml
 graphics\_materials\akotelnikoff-m-2012032134076621.material.bin
 graphics\_materials\akotelnikoff-m-2012032654065929.material.bin
 graphics\_materials\bwaddingham-m-2011090238689715.material.bin

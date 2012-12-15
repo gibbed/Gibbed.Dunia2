@@ -43,12 +43,17 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             string baseName = "";
             bool showHelp = false;
             bool verbose = false;
+            bool useMultiExporting = true;
 
             var options = new OptionSet()
             {
                 {"i|import|fcb", "convert XML to FCB", v => mode = v != null ? Mode.Import : mode},
                 {"e|export|xml", "convert FCB to XML", v => mode = v != null ? Mode.Export : mode},
                 {"b|base-name=", "when converting, use specified base name instead of file name", v => baseName = v},
+                {
+                    "nme|no-multi-export", "when exporting, disable multi-exporting of entitylibrary and lib files",
+                    v => useMultiExporting = v == null
+                    },
                 {"v|verbose", "be verbose", v => verbose = v != null},
                 {"h|help", "show this message and exit", v => showHelp = v != null},
             };
@@ -271,11 +276,13 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                     Console.WriteLine("Writing XML...");
                 }
 
-                if (Exporting.IsSuitableForEntityLibraryMultiExport(bof) == true)
+                if (useMultiExporting == true &&
+                    Exporting.IsSuitableForEntityLibraryMultiExport(bof) == true)
                 {
                     Exporting.MultiExportEntityLibrary(objectFileDef, basePath, outputPath, infoManager, bof);
                 }
-                else if (Exporting.IsSuitableForLibraryMultiExport(bof) == true)
+                else if (useMultiExporting == true &&
+                         Exporting.IsSuitableForLibraryMultiExport(bof) == true)
                 {
                     Exporting.MultiExportLibrary(objectFileDef, basePath, outputPath, infoManager, bof);
                 }

@@ -1,4 +1,4 @@
-; 182/197 (92%)
+; 194/197 (98%)
 domino\library\sp\lib_common.backupinventory.lua
 domino\library\sp\lib_common.bng_playermodel.lua
 domino\library\sp\lib_common.displaymarkerincave.lua
@@ -165,6 +165,18 @@ domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.log_ismissionre
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.obj_freethetarget.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.obj_oliverreachjason.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.wil_050_b20.lua
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_cabin.hkx
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_cabin.xbg
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_cabin.xml
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_deckprops.hkx
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_deckprops.xbg
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_deckprops.xml
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_hull.hkx
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_hull.xbg
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_hull.xml
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_mastprops.hkx
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_mastprops.xbg
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_mastprops.xml
 graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_vista.xbg
 graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_vista.xml
 graphics\_materials\akotelnikoff-m-2012032134076621.material.bin

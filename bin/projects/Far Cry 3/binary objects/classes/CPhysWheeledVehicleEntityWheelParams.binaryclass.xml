@@ -1,0 +1,15 @@
+<class name="CPhysWheeledVehicleEntityWheelParams">
+	<inherit name="#11E152E0" />
+	<field name="bDriving" desc="Torque is spreaded between the driving wheels" type="Boolean" />
+	<field name="fMass" desc="Weight of the wheel (in kg)" type="Float32" />
+	<field name="fFriction" desc="Tire friction factor" type="Float32" />
+	<field name="fFrictionReverse" desc="Tire friction factor in reverse" type="Float32" />
+	<field name="fViscosityFriction" desc="Extra tire friction factor when sliding (positive increase handling; negative is realistic)" type="Float32" />
+	<field name="fBrakingTorque" desc="The maximum torque the wheel can apply when braking" type="Float32" />
+	<field name="bHandBrake" desc="if &gt; 0, wheel is connected to thandbrake control" type="Boolean" />
+	<field name="fSuspStrength" desc="The strength [N/m] of the suspension at each wheel" type="Float32" />
+	<field name="fSuspLength" desc="Wheel lower pos point offset" type="Float32" />
+	<field name="fSuspDampingCompression" desc="The damping force [N/(m/sec)] of the suspension at each wheel" type="Float32" />
+	<field name="fSuspDampingRelaxation" desc="The damping force [N/(m/sec)] of the suspension at each wheel" type="Float32" />
+	<field name="fWheelOffsetZ" desc="Wheel Pos  hard point  offset " type="Float32" />
+</class>

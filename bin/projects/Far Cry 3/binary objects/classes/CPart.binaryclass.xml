@@ -1,0 +1,86 @@
+<class name="CPart">
+	<inherit name="#11E152C8" />
+	<field name="text_Name" type="String" />
+	<field name="Name" desc="Name of the bone to attach" type="Hash32" />
+	<field name="hidIsFrame" desc="var is hidden" type="Boolean" />
+	<field name="hidIsWindshiled" desc="var is hidden" type="Boolean" />
+	<field name="selhidType" type="Enum">
+		<enum name="enumhidType">
+			<element name="Undefined">0</element>
+			<element name="Chassis">1</element>
+			<element name="Engine">2</element>
+			<element name="GasTank">3</element>
+			<element name="Wheel">4</element>
+			<element name="Rotor">5</element>
+			<element name="TailRotor">6</element>
+			<element name="Propeller">7</element>
+			<element name="Windshield">8</element>
+			<element name="Hood">9</element>
+			<element name="HeadLight">10</element>
+			<element name="TailLight">11</element>
+		</enum>
+	</field>
+	<field name="fMaxHealth" desc="Most vehicles have a core Chassis that controls how much damage they can take before they are destroyed. Most vehicles also have a number of other pieces that are attached to the core chassis, and can be destroyed independently. These pieces have unique damage state models that swap in as the piece goes through its total health. For example the hoods on cars will dent, then flap open and finally fly off the chassis when they are destroyed." type="Float32" />
+	<field name="fInitialHealth" desc="Initial health" type="Float32" />
+	<field name="fHealthDamaged" desc="Visually damaged under this health" type="Float32" />
+	<field name="fHealthDisable" desc="Disable the vehicle when health is equal or under this value, -1 does nothing" type="Float32" />
+	<field name="fHealthConstrained" desc="Goes in constrained state when health is under this value, n.b. a part fall out at health zero if it can" type="Float32" />
+	<field name="fArmor" desc="Indicates armor value substract from each damage receive" type="Float32" />
+	<field name="bCanBeRepair" desc="Can be repair even when destroyed" type="Boolean" />
+	<field name="bRepairVisual" desc="When repaired, come back to its initial visual" type="Boolean" />
+	<field name="bIsVisible" desc="Is visible (lets you hide the part)" type="Boolean" />
+	<field name="bUseRayCheck" desc="Perform ray check on the part rigidbody (can be hit by bullet)" type="Boolean" />
+	<field name="bKeepAttached" desc="Part if detachable if equals to false" type="Boolean" />
+	<field name="bDetachOnExplosion" type="Boolean" />
+	<field name="bDetachOnVehicleExplosion" type="Boolean" />
+	<field name="bUseConstraintDampings" desc="When the part in physic/Havok constrained state, use default constraint velocities linear and angular damping, else no 'friction' is applied on the part and it won't slow down the vehicle" type="Boolean" />
+	<field name="bUseLogicConstraint" desc="Add logic constraint state to the part, not physic/Havok" type="Boolean" />
+	<field name="bLaunchFXOnStateCreate" desc="Launch FX when arriving on a state rather than when leaving it." type="Boolean" />
+	<field name="bImpulseOnDetach" desc="Explosion: Add impulse in the direction away from the center of mass; Falloff: detach with current velocity of the vehicle + modifier" type="Boolean" />
+	<field name="fAngularModifier" desc="Modifier applied on angular velocity when detaching" type="Float32" />
+	<!--<object name="ImpulseOnDetachSetting">-->
+		<field name="fImpulseOnDetachModifierPierce" desc="Base speed at detach" type="Float32" />
+		<field name="fImpulseOnDetachModifierCrush" desc="Base speed at detach" type="Float32" />
+		<field name="fImpulseOnDetachModifierExplosion" desc="Base speed at detach" type="Float32" />
+	<!--</object>-->
+	<field name="bAnnihilation" desc="The part will completetly disappear when its health reach zero (this disable KeepAttach and ImpulseOnDetach)" type="Boolean" />
+	<field name="fFloatingScale" desc="For buoyancyForce  calculations" type="Float32" />
+	<field name="fWaterFriction" desc="Additive value for the total friction" type="Float32" />
+	<field name="fWaterForceFactor" desc="For river drag force" type="Float32" />
+	<field name="fCollisionExtraRadius" desc="Extra distance to local Aabb" type="Float32" />
+	<field name="fBurnExtraRadius" desc="Extra distance to local Aabb" type="Float32" />
+	<field name="fMass" desc="Mass of the part once detached" type="Float32" />
+	<field name="fLinearDamping" desc="Livear damping once detached" type="Float32" />
+	<field name="fAngularDamping" desc="Angular damping once detached" type="Float32" />
+	<field name="fGravityFactor" desc="Gravity factor once detached" type="Float32" />
+	<!--<object name="LogicConstraint">-->
+		<object name="LogicConstraintParam">
+			<inherit name="CLogicConstraint" />
+		</object>
+	<!--</object>-->
+	<object name="Stim" desc="The 'instant death' variable is a cumulative 'health' rating for crushing damage which, when exceeded causes the vehicle to be destroyed and explode, releasing a satisfying explosion. What this variable does is allow us to tune the vehicles so that they can be destroyed in one shot by a rocket from an RPG, but still take plausible amouts of damage from individual bullets etc. As I mentioned, this value is cumulative, so once a vehicle hits its threshold : boom. USE WITH SUPREME CAUTION">
+		<inherit name="CPhysStimSettings" />
+	</object>
+	<object name="Sounds" desc="Sound bank for states">
+		<object name="Sound">
+			<field name="sndId" type="String" />
+		</object>
+	</object>
+	<object name="hidStates" desc="Variable is hidden">
+		<object name="hidState">
+			<field name="hidRigidbodyIndex" type="Int32" />
+			<field name="hidGraphicIndex" type="Int32" />
+			<field name="text_hidRigidbodyName" type="String" />
+			<field name="hidRigidbodyName" type="Hash32" />
+			<field name="text_hidHighresRigidbodyName" type="String" />
+			<field name="hidHighresRigidbodyName" type="Hash32" />
+			<field name="hidPartId" type="Int32" />
+		</object>
+	</object>
+	<object name="disStateFXs" desc="Variable is hidden">
+		<object name="disStateFX">
+			<field name="text_disFXNode" type="String" />
+			<field name="disFXNode" type="Hash32" />
+		</object>
+	</object>
+</class>

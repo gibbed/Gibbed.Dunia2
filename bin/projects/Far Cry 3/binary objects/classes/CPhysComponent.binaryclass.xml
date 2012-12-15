@@ -1,8 +1,13 @@
 <class name="CPhysComponent">
 	<inherit name="CEntityComponent" />
 	<field name="text_hidResourceId" type="String" />
-	<field name="hidResourceId" />
-	<object name="LogicMaterialOverrides" />
+	<field name="hidResourceId" type="Hash64" />
+	<object name="LogicMaterialOverrides">
+		<object name="LogicMaterial">
+			<field name="logmatLogicMaterial" type="Int32" />
+			<field name="disSlotName" type="String" />
+		</object>
+	</object>
 	<object name="PartType" />
 	<object name="Velocity" />
 	<object name="Enable" />

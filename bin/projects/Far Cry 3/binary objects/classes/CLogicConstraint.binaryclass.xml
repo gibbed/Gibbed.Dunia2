@@ -1,0 +1,9 @@
+<class name="CLogicConstraint">
+	<inherit name="#11E152C8" />
+	<field name="MinAngle" desc="Min angle the part can rotate[degrees]" type="Vector3" />
+	<field name="MaxAngle" desc="Max angle the part can rotate[degrees]" type="Vector3" />
+	<field name="ImpulseModifier" desc="Scale applied on the angular acceleration of the part[0,+" type="Float32" />
+	<field name="Damping" desc="Scale applied to the gravity strength pushing the part at the balance ratio[0,1]" type="Float32" />
+	<field name="BalanceRatio" desc="Ratio locating the target angle of the gravity[0,1]" type="Float32" />
+	<field name="AccelSquareLengthForImpulse" desc="Square length needed on acceleration to impact the logic hinge." type="Float32" />
+</class>

@@ -1,0 +1,171 @@
+<class name="CPhysWheeledVehicleEntityCreateParams">
+	<inherit name="CPhysVehicleEntityCreateParams" />
+	<field name="fMass" desc="Weight of the vehicle (in kg)" type="Float32" />
+	<field name="vectorCenterOfMassOffset" desc="Center of Vehicle Mass" type="Vector3" />
+	<field name="vectorDestroyedCenterOfMassOffset" desc="Center of Vehicle Mass once destroyed" type="Vector3" />
+	<field name="bLocateCOMBetweenWheels" desc="Locate Center Of Mass between wheels" type="Boolean" />
+	<field name="fTorqueRollFactor" desc="Scales the torques(angular velocity) applied by the simulation at the roll axis by the given factor (a modifier of angular force apply on the vehicle)" type="Float32" />
+	<field name="fTorquePitchFactor" desc="Scales the torques(angular velocity) applied by the simulation at the pitch axis by the given factor (a modifier of angular force apply on the vehicle)" type="Float32" />
+	<field name="fTorqueYawFactor" desc="Scales the torques(angular velocity) applied by the simulation at the yaw axis by the given factor (a modifier of angular force apply on the vehicle)" type="Float32" />
+	<field name="fExtraTorqueFactor" desc="An extra torque which is applied to the car when steering is poUInting left or right" type="Float32" />
+	<field name="fExtraReverseTorqueFactor" desc="An extra torque which is applied to the car in reverse when steering is poUInting left or right" type="Float32" />
+	<field name="fExtraTorqueMinDist" desc="Pivot point of extra torque at low speed" type="Float32" />
+	<field name="fExtraTorqueMaxDist" desc="Pivot point of extra torque at max speed" type="Float32" />
+	<field name="fChassisUnitInertiaYaw" desc="The rotation inertia in yaw direction for a car of the mass 1.0f kg (a resistance to rotate the car on an axis)" type="Float32" />
+	<field name="fChassisUnitInertiaRoll" desc="The rotation inertia in roll direction for a car of the mass 1.0f kg (a resistance to rotate the car on an axis)" type="Float32" />
+	<field name="fChassisUnitInertiaPitch" desc="The rotation inertia in pitch direction for a car of the mass 1.0f kg (a resistance to rotate the car on an axis)" type="Float32" />
+	<field name="fChassisAngularDamping" desc="Angular velocity damping when on ground [0,1] default 0.05" type="Float32" />
+	<field name="fSpinningMinAngle" desc="Min steering angle to start spinning force" type="Float32" />
+	<field name="fSpinningMaxAngle" desc="Max steering angle to fully apply spinning force" type="Float32" />
+	<field name="fSpinningAccel" desc="Spinning acceleration" type="Float32" />
+	<field name="fSpinningMinSpeed" desc="Min tire spinning speed to spin the vehicle" type="Float32" />
+	<field name="fAeroFrontalArea" desc="Aerodynamics frontal area (in m^2)" type="Float32" />
+	<field name="fAeroDragCoefficient" desc="Aerodynamics drag coefficient, force speed relative pulling back the vehicle, positive value" type="Float32" />
+	<field name="fAeroLiftCoefficient" desc="Aerodynamics lift coefficient, force speed relative pushing the vehicle down(negative value) or up(positive value)" type="Float32" />
+	<field name="fAeroExtraGravity" desc="Aerodynamics extra gravity (in m/s^2)" type="Float32" />
+	<object name="Collision">
+		<field name="ParallelMaxAngle" desc="Limit angle defining parallel collision (top view)" type="Float32" />
+		<field name="UpDownMaxAngle" desc="Limit angle defining valid(not bottom or top) collision (side/front view)" type="Float32" />
+		<field name="ParallelAngularImpulseScale" desc="Scale applied to front or rear angular impulse from collision solver" type="Float32" />
+		<field name="LateralAngularImpulseScale" desc="Scale applied to side angular impulse from collision solver" type="Float32" />
+		<field name="BottomAngularImpulseScale" desc="Scale applied to bottom angular impulse from collision solver" type="Float32" />
+		<field name="ParallelLinearImpulseScale" desc="Scale applied to front or rear linear impulse from collision solver" type="Float32" />
+		<field name="LateralLinearImpulseScale" desc="Scale applied to side linear impulse from collision solver" type="Float32" />
+		<field name="BottomLinearImpulseScale" desc="Scale applied to bottom linear impulse from collision solver" type="Float32" />
+		<field name="fDisableImpulseScaleAngle" desc="Vehicle angle disabling impulse scale (if the vehicle fall and slide on its side, we don't want the vehicle slide on the ground but having the normal friction applied to the vehicle)" type="Float32" />
+		<field name="fColParallelDamageModifier" desc="Damage modifier applied to parallel collision" type="Float32" />
+		<field name="fColLateralDamageModifier" desc="Damage modifier applied to lateral collision" type="Float32" />
+		<field name="fColBottomDamageModifier" desc="Damage modifier applied to bottom collision" type="Float32" />
+		<field name="WaterHitVolumeTrigger" desc="Volume in water fraction to trigger velocities damping [0,1]" type="Float32" />
+		<field name="WaterHitVolumeUntrigger" desc="Volume in water fraction to untrigger velocities damping [0,1]" type="Float32" />
+		<field name="WaterHitVelocityDamping" desc="Damping ratio to be removed on velocities on water impact [0,1]" type="Float32" />
+		<field name="SinkingFloatingScale" desc="Ratio of buoyancy kept per second [0,1] (e.i. 0.75 means each second buoyancy volume will be reduced to 75 percent)" type="Float32" />
+	</object>
+	<field name="fEnginePower" desc="The net torque of the engine (in Horse Power)" type="Float32" />
+	<field name="fExtraClimbEnginePower" desc="For the maximum gross torque the engine can supply at the optimum RPM calculations" type="Float32" />
+	<field name="fEngineMinRPM" desc="Minimal engine rpm" type="Float32" />
+	<field name="fEngineOptimalRPM" desc="Optimal engine rpm" type="Float32" />
+	<field name="fEngineMaxRPM" desc="Maximal engine rpm" type="Float32" />
+	<field name="bEngineTorqueFactorLinear" desc="Eval engine torque factor linear instead of curve" type="Boolean" />
+	<field name="fEngineTorqueFactorAtMinRPM" desc="Engine torque factor at min RPM [0,1]" type="Float32" />
+	<field name="fEngineTorqueFactorAtMaxRPM" desc="Engine torque factor at max RPM [0,1]" type="Float32" />
+	<field name="fEngineRresistanceFactorAtMinRPM" desc="Engine resistance factor at min RPM" type="Float32" />
+	<field name="fEngineResistanceFactorAtOptRPM" desc="Engine resistance factor at optimal RPM" type="Float32" />
+	<field name="fEngineResistanceFactorAtMaxRPM" desc="Engine resistance factor at max RPM" type="Float32" />
+	<field name="fEngineBrakeRatio" desc="Engine brake ratio, applied when there's no gas nor brake input, 1=normal engine brake, 0=no engine brake, -1=engine give power to wheels" type="Float32" />
+	<field name="fEngineCutOffSpeed" desc="Engine cut off above this speed (in m/s)" type="Float32" />
+	<field name="fEngineReverseCutOffSpeed" desc="Engine cut off above this speed in reverse (in m/s)" type="Float32" />
+	<field name="fGearBoxTopSpeed" desc="Top speed the gear box will push to(speed in m/s reached at engine max rpm)" type="Float32" />
+	<object name="GearsConfig" desc="Ratios of the gears (except reverse)">
+		<object name="Gear">
+			<field name="GearRatio" desc="Gear ratio for transmission" type="Float32" />
+			<field name="MinSpeed" desc="Transmission keep this gear when vehicle speed is in this min/max range (kmph)" type="Float32" />
+			<field name="MaxSpeed" desc="Transmission keep this gear when vehicle speed is in this min/max range (kmph)" type="Float32" />
+		</object>
+	</object>
+	<field name="fReverseGearRatio" desc="Ratio of the reverse gear" type="Float32" />
+	<field name="fClutchDelayTime" desc="Delay to shift up gear" type="Float32" />
+	<field name="fClutchDownDelayTime" desc="Delay to shift down gear" type="Float32" />
+	<field name="fDownshiftRPM" desc="RPM to shift down" type="Float32" />
+	<field name="fUpshiftRPM" desc="RPM to shift up" type="Float32" />
+	<field name="fTopSpeedRPM" desc="Target RPM at top speed, used to compute gear box main gear" type="Float32" />
+	<field name="bUseTransmissionPrediction" desc="If true, the transmission will evaluate the state of the vehicle before shifting up gear (this is to avoid shift up then shift back down beacause the speed lost during clutch delay)" type="Boolean" />
+	<!--<object name="Predicted">-->
+		<field name="fTransmissionPredictionSensibility" desc="This is a ratio to calibrate the transmission prediction, increase to make it more strict" type="Float32" />
+	<!--</object>-->
+	<field name="RpmUpDamping" desc="Max RPM increase per second" type="Float32" />
+	<field name="RpmDownDamping" desc="Max RPM decrease per second" type="Float32" />
+	<field name="fgroundFrictionIncreaseMinAngle" desc="Minimum angle to apply the ApexFactor on wheel's friction - linearly - (degree)" type="Float32" />
+	<field name="fgroundFrictionIncreaseApexAngle" desc="Apex angle to totally apply the ApexFactor on wheel's friction (degree)" type="Float32" />
+	<field name="fgroundFrictionIncreaseApexFactor" desc="Factor applied at the apex on wheel's friction" type="Float32" />
+	<field name="fgroundFrictionIncreaseMaxAngle" desc="Maximum angle to apply the ApexFactor on wheel's friction - linearly - (degree)" type="Float32" />
+	<field name="fGroundFrictionReduceMinAngle" desc="When wheels are standing on steep ground the friction is reduced. Limits control at which angles this is happening: Which slope does the friction start to get reduced" type="Float32" />
+	<field name="fGroundFrictionReduceMaxAngle" desc="When wheels are standing on steep ground the friction is reduced. Limits control at which angles this is happening: At this slope and more friction will be zero" type="Float32" />
+	<field name="fRearWheelHandBrakeFrictionScale" desc=" Affects the skidding behavior when using the hand brake. Lower means more skidding. Range 0.0 - 1.0. 0.0 means no friction and at all on the rear wheels. 1.0 mean no change is done to the friction." type="Float32" />
+	<field name="bTyresCanBeHit" desc="If the vehicle has a phantom for it's tires" type="Boolean" />
+	<field name="bUseTyreWidthFromModel" desc="The tyre's width will be taken from wheel's collision primitive setup in 3dsMax, else it will be 0.2m" type="Boolean" />
+	<field name="fDamagedWheelFriction" desc="Any damaged wheeled will use this friction factor" type="Float32" />
+	<field name="fDamagedWheelViscosity" desc="Any damaged wheeled will use this viscosity friction factor" type="Float32" />
+	<field name="fDamagedWheelBrakingTorque" desc="Any damaged wheeled will use this braking torque" type="Float32" />
+	<field name="fDamagedWheelTractionTorqueRatio" desc="Any damaged wheeled will be affected by this ratio, Range 0.0 - 1.0 means no torque to normal torque" type="Float32" />
+	<field name="MinPedalInputToBlock" desc="Minimum brake input value required to lock all wheels" type="Float32" />
+	<field name="WheelLockFrictionScale" desc="Scale applied to wheel when locked" type="Float32" />
+	<field name="fNoDriverWheelBrakingTorqueMultiplier" desc="Multiplies the braking torque of the wheels when there is no driver in the vehicle" type="Float32" />
+	<field name="AIFrictionScale" desc="Scale applied to wheel when ai driving" type="Float32" />
+	<field name="WheelsInWaterExtraFriction" desc="Extra friction to wheel in water" type="Float32" />
+	<field name="fFrictionEqualizer" desc="Change dynamic load distribution to be more equal to static load distribution of suspension to wheel [0,1]" type="Float32" />
+	<object name="WheelSpinning">
+		<field name="WheelSpinRpmStart" desc="Minimum engine rpm to apply friction scale" type="Float32" />
+		<field name="WheelSpinRpmEnd" desc="Maximum engine rpm to apply friction scale" type="Float32" />
+		<field name="WheelSpinFrictionRatioStart" desc="Friction scale applied at start" type="Float32" />
+		<field name="WheelSpinFrictionRatioEnd" desc="Friction scale applied at end" type="Float32" />
+	</object>
+	<object name="WheelAirborne">
+		<field name="WheelAirborneFrictionReduction" desc="Friction ratio lost by the wheel after WheelAirborneFrictionFadeOut time being airborne [0,1]" type="Float32" />
+		<field name="WheelAirborneFrictionFadeIn" desc="Grounded time required to get full friction [sec]" type="Float32" />
+		<field name="WheelAirborneFrictionFadeOut" desc="Airborne time required to loss full friction reduction [sec]" type="Float32" />
+		<field name="WheelAirborneGravityModifier" desc="Factor applied to gravity when no wheel are touching the ground" type="Float32" />
+		<field name="WheelAirborneGravityModifierFadeInTime" desc="Transition time used to fully apply WheelAirborneGravityModifier to gravity [time in sec]" type="Float32" />
+		<field name="WheelAirborneGravityModifierMinSpeed" desc="Minimum speed to apply WheelAirborneGravityModifier to gravity [m/s]" type="Float32" />
+		<field name="fStabilizerAccel" desc="Stabilizer rotation speed [rad/s] default 4" type="Float32" />
+		<field name="fStabilizerDimmer" desc="Control on activation / sensibility; small value = hard, high value = smooth [0,+] default 3" type="Float32" />
+		<field name="fStabilizerRollAngleActivation" desc="Vehicle roll angle must be under this angle to stabilizer be active" type="Float32" />
+		<field name="fStabilizerPitchAngleActivation" desc="Vehicle pitch angle must be under this angle to stabilizer be active" type="Float32" />
+		<field name="bStabilizerDisableWhenDisabled" desc="Disable the stabilizer when the vehicle is disabled" type="Boolean" />
+		<field name="bStabilizerDisableWhenDestroyed" desc="Disable the stabilizer when the vehicle is Broken/Destroyed" type="Boolean" />
+		<field name="fWheelAirborneAngularDamping" desc="Angular velocity damping when airborne [0,1] default 0.05" type="Float32" />
+	</object>
+	<object name="Steering">
+		<field name="bUseTimedSteering" desc="If false, Default Steering implementation will be used" type="Boolean" />
+		<!--TODO: conditional merges -->
+		<!--<object name="Timed">-->
+			<field name="fMaxSpeed" desc="Controls max speed for the change of steer angle. Means it won't use the input directly for fast movements" type="Float32" />
+			<field name="fLowMaxAngle" desc="Only if TimedSteering enabled. Steer angle at zero speed" type="Float32" />
+			<field name="fHighMaxAngle" desc="Only if TimedSteering enabled. Steer angle at max speed" type="Float32" />
+			<field name="fLowDirectMaxAngle" desc="Only if TimedSteering enabled. Steer angle at zero speed" type="Float32" />
+			<field name="fHighDirectMaxAngle" desc="Only if TimedSteering enabled. Steer angle at max speed" type="Float32" />
+			<field name="fLowSteerSpeed" desc="value of the minimum speed for steering" type="Float32" />
+			<field name="fHighSteerSpeed" desc="value of the maximum speed for steering" type="Float32" />
+		<!--</object>-->
+		<!--TODO: conditional merges -->
+		<!--<object name="Normal">-->
+			<field name="fMaxSteer" desc="maximum steering angle" type="Float32" />
+			<field name="fMaxSpeedFullSteeringAngle" desc="Over this speed the max angle will be less" type="Float32" />
+		<!--</object>-->
+	</object>
+	<object name="Wheels" desc="Vehicle wheels list">
+		<object name="Wheel">
+			<inherit name="CPhysWheeledVehicleEntityWheelParams" />
+		</object>
+	</object>
+	<field name="selTyreType" type="Enum">
+		<enum name="enumTyreType">
+			<element name="DirtBike">0</element>
+			<element name="4x4">1</element>
+			<element name="4x4Tech">2</element>
+			<element name="APC">3</element>
+			<element name="Truck">4</element>
+		</enum>
+	</field>
+	<object name="SuspensionEnd">
+		<field name="fStrengthRatio" desc="Maximum strength ratio applied to keep suspension positive" type="Float32" />
+		<field name="fStartPoint" desc="Suspension length to start apply extra strength" type="Float32" />
+		<field name="fDistance" desc="Suspension distance to apply extra strength" type="Float32" />
+		<field name="fCompressionFactor" desc="Factor applied on damping compression" type="Float32" />
+		<field name="fMaxSpeed" desc="Local down speed to apply maximum strength" type="Float32" />
+		<field name="bSquared" desc="Apply extra strength at square" type="Boolean" />
+	</object>
+	<object name="Crash">
+		<field name="fTriggerDelay" desc="Delay before applying non-input params [sec]" type="Float32" />
+		<field name="fDamageFactor" desc="Damage applied to all vehicle's part (and chassis)" type="Float32" />
+		<field name="fSteeringLockValue" desc="Steering value overwriting driver input [-1, 1]" type="Float32" />
+		<field name="fGasPedalValue" desc="Brake-Gas pedal value overwriting driver input [-1, 1]" type="Float32" />
+		<field name="CenterOfMassOffset" desc="Center of mass center from wheel center" type="Vector3" />
+		<field name="fAngularDamping" desc="Angular damping applied to the chassis[0,1]" type="Float32" />
+		<field name="fAngularImpulseTime" desc="Time spent to apply angular impulse once wheel are off the ground (sec)" type="Float32" />
+		<field name="fAngularImpulseFactor" desc="Angular velocity factor added as impulse" type="Float32" />
+		<field name="fCollisionAngularImpulseScale" desc="Scale applied to angular impulse from collision" type="Float32" />
+		<field name="fTireFrictionFactor" desc="Factor applied to tire friction" type="Float32" />
+		<field name="fAIMinSpeedToCrash" desc="Min Speed AI need to be moving before they will auto crash when drivers die" type="Float32" />
+	</object>
+</class>

@@ -1,0 +1,60 @@
+<class name="CVehiclePhysComponent">
+	<inherit name="CPhysComponent" />
+	<field name="sndtpSoundType" desc="Type of sound  engine produces if it's not silent" type="Int32" />
+	<field name="bAnimateableAlwaysKeyFrame" type="Boolean" />
+	<field name="fLogicConstraintDeactivationDistance" type="Float32" />
+	<object name="CollisionStims">
+		<field name="fMaxStimCollisionLevel" desc="Maximum stim level which could be generated when collides Ex: This value caps the maximum amount of damage that the vehicle chassis can take from collisions. It can be super useful in making the vehicles robust enough to not get destroyed when running over small stuff, but it can look very weird under some conditions (for example when the vehicle falls from heights etc)." type="Float32" />
+		<field name="fMinStimCollisionLevel" desc="Minimum stim level which could be generated when collides" type="Float32" />
+		<field name="fMinAnimalMassToCollide" desc="Minimum mass for animals to generate crush" type="Float32" />
+		<field name="fMinStimCollisionLevelForVehicleDamage" desc="Minimum stim level needed to apply damage to the vehicle" type="Float32" />
+		<field name="fMinColliderMassForVehicleDamage" desc="Minimum collider mass to apply damage to the vehicle" type="Float32" />
+		<field name="fMinimumSpeedForDamageStim" desc="Minimum speed for damage stim" type="Float32" />
+		<field name="fCollisionImmunityDelay" desc="Time delay for next collision stim" type="Float32" />
+		<field name="fOverallCrushStimModifier" desc="Overall collision stims multiplier" type="Float32" />
+		<field name="fCharacterCrushStimModifier" desc="Collision multiplier when colliding with a character (npc, animal...)" type="Float32" />
+		<object name="CollisionSoundStimRanges">
+			<inherit name="SCollisionSoundStimRange" />
+		</object>
+	</object>
+	<object name="EngineStimSettings">
+		<field name="fThreateningEngineRange" desc="Maximum stim level which could be generated when collides Ex: This value caps the maximum amount of damage that the vehicle chassis can take from collisions. It can be super useful in making the vehicles robust enough to not get destroyed when running over small stuff, but it can look very weird under some conditions (for example when the vehicle falls from heights etc)." type="Float32" />
+		<field name="fInterestingEngineRange" desc="Minimum stim level which could be generated when collides" type="Float32" />
+	</object>
+	<field name="fRepairMultiplier" desc="Multiplies health regenerated per second" type="Float32" />
+	<object name="Reliability">
+		<field name="bReliabilityEnabled" desc="If not, vehicle cannot get damaged" type="Boolean" />
+		<field name="fInitialReliability" desc="Initialize vehicle with currentHealth = m_initialReliability * m_maxHealth" type="Float32" />
+		<field name="MinorDamageLevel" desc="Engine reliability is on Mint state when reliabilityFactor &gt; minor DamageReliability" type="Float32" />
+		<field name="MajorDamageLevel" desc="Engine reliability is on Minor  state when reliabilityFactor &gt; major DamageReliability" type="Float32" />
+		<field name="DisabledDamageLevel" desc="Engine reliability is on Disabled  state when reliabilityFactor &lt; major DamageReliability" type="Float32" />
+		<field name="MinorDamageEngineScale" desc="Engine Power Scale when it's on minor damage state" type="Float32" />
+		<field name="MajorDamageEngineScale" desc="Engine Power Scale when it's on major damage state" type="Float32" />
+		<field name="MintEngineStartTime" desc="How long it will take to start engine when it is in the mint state" type="Float32" />
+		<field name="MinorDamageEngineStartTime" desc="How long it will take to start engine when it in the minor damage state" type="Float32" />
+		<field name="MajorDamageEngineStartTime" desc="How long it will take to start engine when it is the major damage state" type="Float32" />
+		<field name="sndswtpReliabilitySoundSwitchType" desc="Sound type by state" type="Int32" />
+		<field name="sndswvlNoDamageSoundSwitchValue" desc="Reliability Sound Switch value while vehicle is within no-damage state" type="Id32" />
+		<field name="sndswvlMinorDamageSoundSwitchValue" desc="Reliability Sound Switch value while vehicle is within  minor damage state" type="Id32" />
+		<field name="sndswvlMajorDamageSoundSwitchValue" desc="Reliability Sound Switch value while vehicle is within major damage state" type="Id32" />
+		<field name="sndswvlDisabledSoundSwitchValue" desc="Reliability Sound Switch value while vehicle is within disabled state" type="Id32" />
+		<field name="sndswvlBrokenSoundSwitchValue" desc="Reliability Sound Switch value while vehicle is within broken state" type="Id32" />
+		<field name="ImpulseModifierStimPierce" desc="Modifier applied on stim" type="Float32" />
+		<field name="ImpulseModifierStimCrush" desc="Modifier applied on stim" type="Float32" />
+		<field name="ImpulseModifierStimExplosion" desc="Modifier applied on stim" type="Float32" />
+	</object>
+	<object name="Parts" desc="List of vehicle parts">
+		<object name="Part">
+			<inherit name="CPart" />
+		</object>
+	</object>
+	<field name="CurrentHealth" desc="Indicates current health value " />
+	<field name="EngineStartTimer" desc="How long it takes to start engine in seconds" />
+	<field name="HealthDamageEnabled" desc="Indicated if vehicle can recieve damage" type="Boolean" />
+	<object name="SavedParts" />
+	<object name="ExternalConstraints">
+		<object name="Constraint">
+			<field name="index" />
+		</object>
+	</object>
+</class>

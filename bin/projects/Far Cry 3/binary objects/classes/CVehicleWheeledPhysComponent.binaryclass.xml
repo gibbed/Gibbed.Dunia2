@@ -1,0 +1,36 @@
+<class name="CVehicleWheeledPhysComponent">
+	<inherit name="CVehiclePhysComponent" />
+	<field name="fFloatingScale" desc="For buoyancyForce calculations" type="Float32" />
+	<field name="fWaterFriction" desc="Depends on Floating scale" type="Float32" />
+	<field name="fWaterForceFactor" desc="For river drag force" type="Float32" />
+	<object name="WheeledParams">
+		<inherit name="CPhysWheeledVehicleEntityCreateParams" />
+	</object>
+	<object name="WheelParts" desc="List of vehicle wheels">
+		<object name="WheelPart">
+			<object name="Part">
+				<inherit name="CPart" />
+			</object>
+		</object>
+	</object>
+	<object name="WheelSuspLength" desc="Used as initial suspension length, PLEASE set it public to instance!">
+		<object name="Length">
+			<field name="Value" type="Float32" />
+		</object>
+	</object>
+	<object name="AlternativeWheelSuspLength" desc="Alternative lengths to be activated on demand after spawn">
+		<object name="Length">
+			<field name="Value" type="Float32" />
+		</object>
+	</object>
+	<field name="iMaxDetachedWheel" desc="Maximum number of wheel able to detach from the vehicle" type="Int32" />
+	<field name="iNbWheelToDisable" desc="Number of wheel broken required to disable the vehicle" type="Int32" />
+	<field name="matimpWheelBigDustFx" desc="FX for wheel in point of impact" type="Id64" />
+	<field name="matimpWheelSmallDustFx" desc="FX for wheel in point of impact" type="Id64" />
+	<field name="fMinFallingDist" desc="Minimum falling distance for crush stim generation" type="Float32" />
+	<field name="fMaxFallingDist" desc="Upper bound for the falling ratio and crush stim calculations" type="Float32" />
+	<field name="fMinFallingCrushLevel" desc="Minimum value for the crush stim" type="Float32" />
+	<field name="arkWheelWaterFrictionCurve" desc="Curve applied on vehicle water fraction used for extra water friction" type="Id64" />
+	<field name="fMaxFallingCrushLevel" desc="Upper bound for the crush level calculations" type="Float32" />
+	<field name="fFallingMinHeight" desc="Minimum height to be falling and not crash rolling (m)" type="Float32" />
+</class>

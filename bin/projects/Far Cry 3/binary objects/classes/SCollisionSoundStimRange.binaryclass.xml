@@ -1,0 +1,11 @@
+<class name="SCollisionSoundStimRange">
+	<inherit name="#11E152C8" />
+	<field name="MinInterestingSpeed" desc="Min Speed for interesting sound stim" type="Float32" />
+	<field name="MaxInterestingSpeed" desc="Max Speed for interesting sound stim" type="Float32" />
+	<field name="MinThreateningSpeed" desc="Min Speed for threatening sound stim" type="Float32" />
+	<field name="MaxThreateningSpeed" desc="Max Speed for threatening sound stim" type="Float32" />
+	<field name="MinInterestingRange" desc="Min Range for interesting sound stim" type="Float32" />
+	<field name="MaxInterestingRange" desc="Max Range for interesting sound stim" type="Float32" />
+	<field name="MinThreateningRange" desc="Min Range for threatening sound stim" type="Float32" />
+	<field name="MaxThreateningRange" desc="Max Range for threatening sound stim" type="Float32" />
+</class>

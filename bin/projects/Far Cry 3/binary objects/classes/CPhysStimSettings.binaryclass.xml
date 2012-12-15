@@ -1,0 +1,25 @@
+<class name="CPhysStimSettings">
+	<inherit name="#11E152C8" />
+	<field name="bPierceStim" type="Boolean" />
+	<field name="fPierceDamageMultiplier" type="Float32" />
+	<field name="bCrushStim" type="Boolean" />
+	<field name="fCrushDamageMultiplier" type="Float32" />
+	<field name="bBurnStim" type="Boolean" />
+	<field name="fBurnDamageMultiplier" type="Float32" />
+	<field name="bExplosionStim" type="Boolean" />
+	<field name="fExplosionDamageMultiplier" type="Float32" />
+	<field name="bExplosionGrenadeStim" type="Boolean" />
+	<field name="fExplosionGrenadeDamageMultiplier" type="Float32" />
+	<field name="bExplosionRPGStim" type="Boolean" />
+	<field name="fExplosionRPGDamageMultiplier" type="Float32" />
+	<field name="bExplosionIEDStim" type="Boolean" />
+	<field name="fExplosionIEDDamageMultiplier" type="Float32" />
+	<field name="bExplosionSplashStim" type="Boolean" />
+	<field name="fExplosionSplashDamageMultiplier" type="Float32" />
+	<field name="bArrowStim" type="Boolean" />
+	<field name="fArrowDamageMultiplier" type="Float32" />
+	<field name="bCutStim" type="Boolean" />
+	<field name="fCutDamageMultiplier" type="Float32" />
+	<field name="fBulletImpulseScale" type="Float32" />
+	<field name="fExplosionImpulseScale" type="Float32" />
+</class>

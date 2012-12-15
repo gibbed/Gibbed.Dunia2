@@ -271,9 +271,13 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                     Console.WriteLine("Writing XML...");
                 }
 
-                if (Exporting.IsSuitableForMultiExport(bof) == true)
+                if (Exporting.IsSuitableForEntityLibraryMultiExport(bof) == true)
                 {
-                    Exporting.MultiExport(objectFileDef, basePath, outputPath, infoManager, bof);
+                    Exporting.MultiExportEntityLibrary(objectFileDef, basePath, outputPath, infoManager, bof);
+                }
+                else if (Exporting.IsSuitableForLibraryMultiExport(bof) == true)
+                {
+                    Exporting.MultiExportLibrary(objectFileDef, basePath, outputPath, infoManager, bof);
                 }
                 else
                 {

@@ -66,12 +66,15 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
         internal const uint EntityLibraryItemHash = 0x256A1FF9u; // unknown source name
         internal const uint DisLibItemIdHash = 0x8EDB0295u; // crc32(disLibItemId)
         internal const uint EntityHash = 0x0984415Eu; // crc32(Entity)
+        internal const uint LibHash = 0xA90F3BCC; // crc32(lib)
+        internal const uint LibItemHash = 0x72DE4948; // unknown source name
+        internal const uint TextHidNameHash = 0x9D8873F8; // crc32(text_hidName);
 
-        public static void MultiExport(ObjectFileDefinition objectFileDef,
-                                       string basePath,
-                                       string outputPath,
-                                       InfoManager infoManager,
-                                       BinaryObjectFile bof)
+        public static void MultiExportEntityLibrary(ObjectFileDefinition objectFileDef,
+                                                    string basePath,
+                                                    string outputPath,
+                                                    InfoManager infoManager,
+                                                    BinaryObjectFile bof)
         {
             var settings = new XmlWriterSettings
             {
@@ -203,10 +206,10 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             }
         }
 
-        public static bool IsSuitableForMultiExport(BinaryObjectFile bof)
+        public static bool IsSuitableForEntityLibraryMultiExport(BinaryObjectFile bof)
         {
             if (bof.Root.Fields.Count != 0 ||
-                bof.Root.NameHash != EntityLibrariesHash ||
+                bof.Root.NameHash != LibHash ||
                 bof.Root.Children.Any(c => c.NameHash != EntityLibraryHash) == true)
             {
                 return false;
@@ -242,6 +245,94 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             }
 
             return true;
+        }
+
+        public static void MultiExportLibrary(ObjectFileDefinition objectFileDef,
+                                              string basePath,
+                                              string outputPath,
+                                              InfoManager infoManager,
+                                              BinaryObjectFile bof)
+        {
+            var settings = new XmlWriterSettings
+            {
+                Encoding = Encoding.UTF8,
+                Indent = true,
+                CheckCharacters = false,
+                OmitXmlDeclaration = false
+            };
+
+            var objectDef = objectFileDef != null ? objectFileDef.Object : null;
+
+            using (var writer = XmlWriter.Create(outputPath, settings))
+            {
+                writer.WriteStartDocument();
+
+                var root = bof.Root;
+                {
+                    writer.WriteStartElement("object");
+                    writer.WriteAttributeString("name", "lib");
+
+                    Directory.CreateDirectory(basePath);
+
+                    var itemNames = new Dictionary<string, int>();
+
+                    foreach (var item in root.Children)
+                    {
+                        var itemDef = objectDef != null
+                                          ? objectDef.GetObjectDefinition(item.NameHash, null)
+                                          : null;
+
+                        var itemName =
+                            FieldTypeDeserializers.Deserialize<string>(FieldType.String,
+                                                                       item.Fields[TextHidNameHash]);
+                        itemName = itemName.Replace('/', Path.DirectorySeparatorChar);
+                        itemName = itemName.Replace('\\', Path.DirectorySeparatorChar);
+
+                        if (itemNames.ContainsKey(itemName) == false)
+                        {
+                            itemNames.Add(itemName, 1);
+                        }
+                        else
+                        {
+                            itemName = string.Format("{0} ({1})", itemName, ++itemNames[itemName]);
+                        }
+
+                        var itemPath = itemName + ".xml";
+
+                        writer.WriteStartElement("object");
+                        writer.WriteAttributeString("external", itemPath);
+                        writer.WriteEndElement();
+
+                        itemPath = Path.Combine(basePath, itemPath);
+
+                        var itemParentPath = Path.GetDirectoryName(itemPath);
+                        if (string.IsNullOrEmpty(itemParentPath) == false)
+                        {
+                            Directory.CreateDirectory(itemParentPath);
+                        }
+
+                        using (var itemWriter = XmlWriter.Create(itemPath, settings))
+                        {
+                            itemWriter.WriteStartDocument();
+                            WriteNode(infoManager,
+                                      itemWriter,
+                                      item,
+                                      itemDef);
+                            itemWriter.WriteEndDocument();
+                        }
+                    }
+                }
+
+                writer.WriteEndDocument();
+            }
+        }
+
+        public static bool IsSuitableForLibraryMultiExport(BinaryObjectFile bof)
+        {
+            return bof.Root.Fields.Count == 0 &&
+                   bof.Root.NameHash == LibHash &&
+                   bof.Root.Children.Any(c => c.NameHash != LibItemHash ||
+                                              c.Fields.ContainsKey(TextHidNameHash) == false) == false;
         }
 
         private static void WriteNode(InfoManager infoManager,

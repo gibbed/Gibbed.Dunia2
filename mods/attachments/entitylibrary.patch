@@ -1,6 +1,6 @@
 diff -r -u original\entitylibrary/WeaponProperties/FC3/AK47.xml modified\entitylibrary/WeaponProperties/FC3/AK47.xml
---- original\entitylibrary/WeaponProperties/FC3/AK47.xml	2012-12-11 02:55:47.924122200 -0800
-+++ modified\entitylibrary/WeaponProperties/FC3/AK47.xml	2012-12-11 02:57:00.361265300 -0800
+--- original\entitylibrary/WeaponProperties/FC3/AK47.xml	2012-12-15 00:52:50.373242000 -0800
++++ modified\entitylibrary/WeaponProperties/FC3/AK47.xml	2012-12-15 00:55:07.856105500 -0800
 @@ -501,7 +501,7 @@
              <field name="bCanUseWhenRunning" type="Boolean">False</field>
            </object>
@@ -11,8 +11,8 @@ diff -r -u original\entitylibrary/WeaponProperties/FC3/AK47.xml modified\entityl
                <object name="Attachments">
                  <field name="arkAttachmentArchetypeName" type="Id64">7647656694902</field>
 diff -r -u original\entitylibrary/WeaponProperties/FC3/KW1911.xml modified\entitylibrary/WeaponProperties/FC3/KW1911.xml
---- original\entitylibrary/WeaponProperties/FC3/KW1911.xml	2012-12-11 02:55:53.172422400 -0800
-+++ modified\entitylibrary/WeaponProperties/FC3/KW1911.xml	2012-12-11 02:57:03.214428500 -0800
+--- original\entitylibrary/WeaponProperties/FC3/KW1911.xml	2012-12-15 00:52:52.061338500 -0800
++++ modified\entitylibrary/WeaponProperties/FC3/KW1911.xml	2012-12-15 00:55:07.949110900 -0800
 @@ -501,7 +501,7 @@
              <field name="bCanUseWhenRunning" type="Boolean">False</field>
            </object>
@@ -23,8 +23,8 @@ diff -r -u original\entitylibrary/WeaponProperties/FC3/KW1911.xml modified\entit
                <object name="Attachments">
                  <field name="arkAttachmentArchetypeName" type="Id64">7646733255608</field>
 diff -r -u original\entitylibrary/WeaponProperties/FC3/M133.xml modified\entitylibrary/WeaponProperties/FC3/M133.xml
---- original\entitylibrary/WeaponProperties/FC3/M133.xml	2012-12-11 02:55:53.655450000 -0800
-+++ modified\entitylibrary/WeaponProperties/FC3/M133.xml	2012-12-11 02:57:03.782461000 -0800
+--- original\entitylibrary/WeaponProperties/FC3/M133.xml	2012-12-15 00:52:52.371356300 -0800
++++ modified\entitylibrary/WeaponProperties/FC3/M133.xml	2012-12-15 00:55:07.975112300 -0800
 @@ -501,7 +501,7 @@
              <field name="bCanUseWhenRunning" type="Boolean">False</field>
            </object>
@@ -35,8 +35,8 @@ diff -r -u original\entitylibrary/WeaponProperties/FC3/M133.xml modified\entityl
                <object name="Attachments">
                  <field name="arkAttachmentArchetypeName" type="Id64">7666473569587</field>
 diff -r -u original\entitylibrary/WeaponProperties/FC3/PKM.xml modified\entitylibrary/WeaponProperties/FC3/PKM.xml
---- original\entitylibrary/WeaponProperties/FC3/PKM.xml	2012-12-11 02:55:55.074531100 -0800
-+++ modified\entitylibrary/WeaponProperties/FC3/PKM.xml	2012-12-11 02:57:05.479558100 -0800
+--- original\entitylibrary/WeaponProperties/FC3/PKM.xml	2012-12-15 00:52:53.476419500 -0800
++++ modified\entitylibrary/WeaponProperties/FC3/PKM.xml	2012-12-15 00:55:08.006114100 -0800
 @@ -501,7 +501,7 @@
              <field name="bCanUseWhenRunning" type="Boolean">False</field>
            </object>
@@ -47,8 +47,8 @@ diff -r -u original\entitylibrary/WeaponProperties/FC3/PKM.xml modified\entityli
                <object name="Attachments">
                  <field name="arkAttachmentArchetypeName" type="Id64">7723385677420</field>
 diff -r -u original\entitylibrary/WeaponProperties/FC3/SVD.xml modified\entitylibrary/WeaponProperties/FC3/SVD.xml
---- original\entitylibrary/WeaponProperties/FC3/SVD.xml	2012-12-11 02:55:56.168593700 -0800
-+++ modified\entitylibrary/WeaponProperties/FC3/SVD.xml	2012-12-11 02:57:06.530618200 -0800
+--- original\entitylibrary/WeaponProperties/FC3/SVD.xml	2012-12-15 00:52:54.167459000 -0800
++++ modified\entitylibrary/WeaponProperties/FC3/SVD.xml	2012-12-15 00:55:08.031115600 -0800
 @@ -501,7 +501,7 @@
              <field name="bCanUseWhenRunning" type="Boolean">False</field>
            </object>

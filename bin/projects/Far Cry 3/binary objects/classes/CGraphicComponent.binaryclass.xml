@@ -6,6 +6,27 @@
 	<field name="fLODSphereRadius" type="Float32" />
 	<field name="vectorAdditionalAABBDimensionForSkin" desc="Additional AABB size added in negative to aabb min and in positive for aabb max, ONLY for skinned mesh" type="Vector3" />
 	<field name="HasNotGraphicKit" />
-	<!-- MaterialOverrides -->
-	<!-- SkinList Skin -->
+	<object name="MaterialOverrides">
+		<inherit name="CMaterialSlotsMap" />
+	</object>
+	<object name="SkinList" desc="List of skins.">
+		<object name="Skin">
+			<inherit name="CGraphicMaterialSkin" />
+		</object>
+	</object>
+	<field name="text_currentSkin" type="String" />
+	<field name="currentSkin" desc="Name of skin to start with." type="Hash32" />
+	<field name="bUseCurrentSkin" desc="Force the specific skin on this." type="Boolean" />
+	<object name="object">
+		<inherit name="#11E152C8" />
+		<field name="hidIndex" type="Int32" />
+		<field name="text_fileModel" type="String" />
+		<field name="fileModel" type="Hash64" />
+		<field name="hidMeshName" type="String" />
+		<field name="text_hidNodeName" type="String" />
+		<field name="hidNodeName" type="Hash32" />
+		<field name="text_hidNodeNameLOD0" type="String" />
+		<field name="hidNodeNameLOD0" type="Hash32" />
+		<field name="hidDetailObject" type="Boolean" />
+	</object>
 </class>

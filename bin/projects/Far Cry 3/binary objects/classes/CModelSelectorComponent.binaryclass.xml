@@ -1,17 +1,30 @@
 <class name="CModelSelectorComponent">
 	<inherit name="CEntityComponent" />
-	<field name="DefaultModel" />
-	<field name="hidHighResModelInfo" />
+	<field name="text_DefaultModel" type="String" />
+	<field name="DefaultModel" type="Hash32" />
+	<object name="hidHighResModelInfo">
+		<inherit name="SModelInfo" />
+	</object>
 	<object name="Models">
 		<object name="Model">
+			<field name="text_Name" type="String" />
+			<field name="Name" type="Hash32" />
+			<field name="text_filePath" type="String" />
+			<field name="filePath" type="Hash64" />
 		</object>
 	</object>
 	<object name="hidInfos">
 		<object name="ModelInfo">
+			<inherit name="SModelInfo" />
 		</object>
 	</object>
 	<object name="FirstPersonModelSkinList">
 		<object name="Skin">
+			<field name="text_Name" type="String" />
+			<field name="Name" desc="Skin name. Must be unique within this model selector component." type="Hash32" />
+			<object name="MaterialOverrides">
+				<inherit name="CMaterialSlotsMap" />
+			</object>
 		</object>
 	</object>
 </class>

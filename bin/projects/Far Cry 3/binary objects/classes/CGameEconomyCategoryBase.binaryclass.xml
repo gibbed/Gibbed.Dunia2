@@ -1,5 +1,5 @@
 <class name="CGameEconomyCategoryBase">
-	<inherit name="#11E15A60" />
+	<inherit name="CNomadDbObjectSeqId:unsigned char" />
 	<field name="locidDescriptionId" type="Int32" />
 	<field name="iSortId" type="Int32" />
 	<field name="sIconName" type="String" />

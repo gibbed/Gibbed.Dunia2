@@ -1,5 +1,5 @@
 <class name="CDiceRoll">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<object name="DiceRolledLevels">
 		<object name="DiceRolledLevel">
 		</object>

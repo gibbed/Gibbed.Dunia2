@@ -1,5 +1,5 @@
-<class name="#11E15A60">
-	<inherit name="#11E15A10" />
+<class name="CNomadDbObjectSeqId:unsigned char">
+	<inherit name="CNomadDbObject" />
 	<field name="text_hidName" type="String" />
 	<field name="hidName" type="Hash32" />
 	<field name="disId" type="UInt8" />

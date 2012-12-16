@@ -1,5 +1,5 @@
 <class name="CPhysCharacterControllerEntityCreateParams">
-	<inherit name="#11E2F5E0" />
+	<inherit name="CPhysSharedSystemGroupEntityCreateParams" />
 	<object name="StandDimensions">
 		<inherit name="CPhysCharacterControllerStanceDimensions" />
 	</object>

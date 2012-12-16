@@ -1,5 +1,5 @@
 <class name="CShoppingItem">
-	<inherit name="#11E15A48" />
+	<inherit name="CNomadDbObjectSeqId:unsigned short" />
 	<field name="locidItemNameId" type="Int32" />
 	<field name="shpcatCategory" type="UInt8" />
 	<field name="shpscataSubCategory1" type="UInt8" />

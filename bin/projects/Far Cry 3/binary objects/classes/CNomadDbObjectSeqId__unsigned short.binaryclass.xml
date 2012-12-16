@@ -1,0 +1,6 @@
+<class name="CNomadDbObjectSeqId:unsigned short">
+	<inherit name="CNomadDbObject" />
+	<field name="text_hidName" type="String" />
+	<field name="hidName" type="Hash32" />
+	<field name="disId" type="UInt16" />
+</class>

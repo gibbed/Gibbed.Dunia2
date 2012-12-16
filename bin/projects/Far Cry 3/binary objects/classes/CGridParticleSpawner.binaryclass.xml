@@ -1,5 +1,5 @@
 <class name="CGridParticleSpawner">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="text_psWaterBubbles" type="String" />
 	<field name="psWaterBubbles" type="Hash64" />
 	<field name="iBubbleEmitPerSec" type="Int32" />

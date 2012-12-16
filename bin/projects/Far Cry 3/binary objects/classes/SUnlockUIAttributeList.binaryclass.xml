@@ -1,5 +1,5 @@
 <class name="SUnlockUIAttributeList">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<object name="UIAttributes">
 		<object name="UIAttribute">
 			<inherit name="SUnlockUIAttribute" />

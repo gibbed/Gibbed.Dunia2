@@ -1,5 +1,5 @@
 <class name="SUnlockUIAttribute">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="selAttribute" type="Enum">
 		<enum name="enumAttribute">
 			<element name="None">0</element>

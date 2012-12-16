@@ -1,5 +1,5 @@
 <class name="CPhysWheeledVehicleEntityWheelParams">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="bDriving" desc="Torque is spreaded between the driving wheels" type="Boolean" />
 	<field name="fMass" desc="Weight of the wheel (in kg)" type="Float32" />
 	<field name="fFriction" desc="Tire friction factor" type="Float32" />

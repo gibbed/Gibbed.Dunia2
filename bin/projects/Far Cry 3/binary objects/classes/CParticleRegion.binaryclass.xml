@@ -1,5 +1,5 @@
 <class name="CParticleRegion">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="zoneRegion" type="Int32" />
 	<object name="ParticleSystems">
 		<object name="ParticleSystem">

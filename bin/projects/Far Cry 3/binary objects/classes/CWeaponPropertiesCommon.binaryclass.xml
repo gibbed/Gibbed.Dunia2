@@ -1,5 +1,5 @@
 <class name="CWeaponPropertiesCommon">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="sName" desc="The name of the weapon. This is a unique identifier" type="String" />
 	<field name="sIconName" desc="Icon name - UI"  type="String" />
 	<field name="locidDisplayName" desc="Localized 'Human' name of the weapon" type="Int32" />

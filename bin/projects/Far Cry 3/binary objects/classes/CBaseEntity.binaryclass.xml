@@ -1,5 +1,5 @@
 <class name="CBaseEntity">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="hidName" type="String" />
 	<field name="disEntityId" type="Int64" />
 	<field name="text_hidEntityClass" type="String" />

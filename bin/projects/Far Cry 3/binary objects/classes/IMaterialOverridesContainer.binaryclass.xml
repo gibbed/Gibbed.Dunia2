@@ -1,0 +1,3 @@
+<class name="IMaterialOverridesContainer">
+	<inherit name="CNomadObject" />
+</class>

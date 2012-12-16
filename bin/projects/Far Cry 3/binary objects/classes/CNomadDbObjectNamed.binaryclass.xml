@@ -1,5 +1,5 @@
 <class name="CNomadDbObjectNamed">
-	<inherit name="#11E15A28" />
+	<inherit name="CNomadDbObject32" />
 	<field name="hidName" type="String" />
 	<field name="hidKey" type="Hash64" />
 </class>

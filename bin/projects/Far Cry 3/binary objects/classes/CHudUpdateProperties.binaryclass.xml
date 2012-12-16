@@ -1,5 +1,5 @@
 <class name="CHudUpdateProperties">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="iPriority" type="Int32" />
 	<field name="fTimer" type="Float32" />
 	<object name="Conditions">

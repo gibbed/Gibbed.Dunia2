@@ -1,4 +1,4 @@
 <class name="CRecipeEffect">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="bActive" type="Boolean" />
 </class>

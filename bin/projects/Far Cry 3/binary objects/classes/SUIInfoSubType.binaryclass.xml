@@ -1,5 +1,5 @@
 <class name="SUIInfoSubType">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="sName" desc="Identifier for UI" type="String" />
 	<object name="Attributes" desc="For displaying weapon stat modifiers in UI">
 		<inherit name="SUnlockUIAttributeList" />

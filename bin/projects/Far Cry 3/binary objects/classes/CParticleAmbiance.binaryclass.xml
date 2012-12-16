@@ -1,5 +1,5 @@
 <class name="CParticleAmbiance">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="text_psParticleSystem" type="String" />
 	<field name="psParticleSystem" type="Hash64" />
 	<object name="curveIntensity">

@@ -1,5 +1,5 @@
 <class name="CEntityComponent">
-	<inherit name="#11E152E0" />
+	<inherit name="CNomadObject" />
 	<field name="hidHasAliasName" type="Boolean" />
 	<field name="hidComponentClassName" />
 	<field name="hidInjected" type="Boolean" />

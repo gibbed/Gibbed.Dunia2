@@ -1,7 +1,7 @@
 <class name="CFCXSupportWeaponCamera">
 	<inherit name="CCameraComponent" />
-	<field name="sndAmbience" />
-	<field name="sndTargetLocked" />
+	<field name="sndAmbience" type="String" />
+	<field name="sndTargetLocked" type="String" />
 	<field name="fHeight" type="Float32" />
 	<field name="fSpeed" type="Float32" />
 	<field name="fMovementDamping" type="Float32" />

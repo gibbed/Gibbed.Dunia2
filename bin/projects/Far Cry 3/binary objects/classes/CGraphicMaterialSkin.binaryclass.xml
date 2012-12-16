@@ -1,5 +1,5 @@
 <class name="CGraphicMaterialSkin">
-	<inherit name="#11E144D8" />
+	<inherit name="IMaterialOverridesContainer" />
 	<field name="text_name" type="String" />
 	<field name="name" desc="Skin name. Must be unique within this graphic component." type="Hash32" />
 	<field name="locSkinNameId" type="Int32" />

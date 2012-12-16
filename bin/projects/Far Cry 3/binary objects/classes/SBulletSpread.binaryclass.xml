@@ -1,0 +1,12 @@
+<class name="SBulletSpread">
+	<inherit name="#11E152C8" />
+	<object name="BulletSpread" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired. Note this value is a set amount, it is not additive, so the spread pops to this amount immediately">
+		<inherit name="CSpreadData" />
+	</object>
+	<object name="BulletSpread_ironSight" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired from standing Ironsights. Note this value is a set amount, it is not additive, so the spread pops to this amount immediately.">
+		<inherit name="CSpreadData" />
+	</object>
+	<field name="fBulletSpread_movementModifier" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired while the Player is moving" type="Float32" />
+	<field name="fBulletSpread_maxSpreadModifier" desc="Controls how long it takes to reset back to perfect aim in-between shots. WARNING ? THERE IS NO EXTERNAL FEEDBACK FOR THIS VALUE, AND IT CAN RADICALLY AFFECT THE AIMING BEHAVIOR OF WEAPONS." type="Float32" />
+	<field name="fBulletSpread_turnModifier" desc="Noise spread is used if useAngleSpread is false. Controls how much the bullets spread when fired while the Player is turning" type="Float32" />
+</class>

@@ -1,0 +1,12 @@
+<class name="SFOV">
+	<inherit name="#11E152C8" />
+	<field name="fAdditionalNearFOVDegrees" desc="Added onto Near FOV." type="Float32" />
+	<field name="fAdditionalIronsightFOVDegrees" desc="Added onto ironsight FOV." type="Float32" />
+	<field name="fAdditionalIronsightNearFOVDegrees" desc="Added onto ironsight near FOV." type="Float32" />
+	<field name="bCanSwitchIronsight" desc="Can turn off the additionnal ironsight." type="Boolean" />
+	<field name="fTimeToSwitchIronSight" desc="Transition time to turn on / off the additionnal FOV." type="Float32" />
+	<field name="sndSwitchZoomSound" desc="The sound to be played when doing a zoom transition." type="String" />
+	<field name="sndtpSwitchZoomSoundType" desc="The sound type." type="Int32" />
+	<field name="text_sPostFX" type="String" />
+	<field name="sPostFX" type="Hash32" />
+</class>

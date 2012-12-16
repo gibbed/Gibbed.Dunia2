@@ -1,0 +1,9 @@
+<class name="SWeaponOffsetModifiers">
+	<inherit name="#11E152C8" />
+	<field name="fPitchSpeedLimitMultiplier" desc="multiplier for weapon offset pitch speed limit" type="Float32" />
+	<field name="fYawSpeedLimitMultiplier" desc="multiplier for weapon offset yaw speed limit." type="Float32" />
+	<field name="fMaxYawMultiplier" desc="Multiplier for weapon offset yaw" type="Float32" />
+	<field name="fMaxPitchMultiplier" desc="multiplier for weapon offset pitch" type="Float32" />
+	<field name="fMaxRollMultiplier" desc="multiplier for weapon offset roll" type="Float32" />
+	<field name="maxTranslateMultiplier" desc="multiplier for weapon offset translation." type="Vector3" />
+</class>

@@ -1,0 +1,62 @@
+<class name="CWeaponAttachmentModifiers">
+	<inherit name="#11E152C8" />
+	<object name="ironsightSwayMultipliers">
+		<inherit name="SSwayModifiers" />
+	</object>
+	<object name="snapAimHelperMultipliers">
+		<inherit name="SSnapAimHelperModifiers" />
+	</object>
+	<object name="weaponOffsetMultipliers">
+		<inherit name="SWeaponOffsetModifiers" />
+	</object>
+	<object name="fovModifiers">
+		<inherit name="SFOV" />
+	</object>
+	<object name="recoilModifiers">
+		<inherit name="SRecoil" />
+	</object>
+	<object name="bulletSpreadMultipliers">
+		<inherit name="SBulletSpread" />
+	</object>
+	<object name="dof" desc="Fake DOF blur modifiers">
+		<inherit name="SDOF" />
+	</object>
+	<field name="fLookSpeedMultiplierIronsight" desc="Multiply rate of look speed in ironsight." type="Float32" />
+	<field name="fVerticalLookSpeedMultiplierIronsight" desc="Multiply rate of look speed in vertical ironsight." type="Float32" />
+	<field name="fLookSpeedMultiplierIronsightMouse" desc="Multiply rate of look speed in ironsight when using the mouse." type="Float32" />
+	<field name="fDrawTimeAdd" desc="Additive" type="Float32" />
+	<field name="fHolsterTimeAdd" desc="Additive" type="Float32" />
+	<field name="fIronsightTransitionTimeAdd" desc="Additive" type="Float32" />
+	<field name="fReloadTimeMultiplier" desc="Multiplier" type="Float32" />
+	<field name="fRumbleMultiplier" desc="Multiplier" type="Float32" />
+	<field name="fRumbleMultiplierIronsight" desc="Multiplier" type="Float32" />
+	<field name="text_psMuzzleParticlesId" type="String" />
+	<field name="psMuzzleParticlesId" desc="FX for muzzle flash in first person" type="Hash64" />
+	<field name="text_psMuzzleParticlesId_IronSight" type="String" />
+	<field name="psMuzzleParticlesId_IronSight" desc="FX for muzzle flash in first person Ironsight" type="Hash64" />
+	<field name="text_psMuzzleParticlesId_3rd" type="String" />
+	<field name="psMuzzleParticlesId_3rd" desc="FX for muzzle flash in third person" type="Hash64" />
+	<field name="text_MuzzleBone" type="String" />
+	<field name="MuzzleBone" desc="Name of the muzzle bone for FX to attach to on the weapon mesh" type="Hash32" />
+	<object name="MuzzleStim">
+		<object name="StimModifiers">
+			<inherit name="#11E36BD4" />
+		</object>
+	</object>
+	<object name="ImpactStimPrimary">
+		<object name="StimModifiers">
+			<inherit name="#11E36BD4" />
+		</object>
+	</object>
+	<object name="ImpactStimSecondary">
+		<object name="StimModifiers">
+			<inherit name="#11E36BD4" />
+		</object>
+	</object>
+	<object name="baseDamagePrimary">
+		<inherit name="CWeaponAttachmentDamageStimModifier" />
+	</object>
+	<object name="baseDamageSecondary">
+		<inherit name="CWeaponAttachmentDamageStimModifier" />
+	</object>
+</class>

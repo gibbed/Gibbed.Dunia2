@@ -1,0 +1,17 @@
+<class name="SRecoil">
+	<inherit name="#11E152C8" />
+	<field name="fRecoveryTimeMultiplier" desc="Multiplier on the speed at which the weapon recovers from recoil" type="Float32" />
+	<field name="fAchieveTimeMultiplier" desc="Multiplier on the time to achieve the recoil" type="Float32" />
+	<field name="fLeftRecoilMultiplierPerShot" desc="Multiplier" type="Float32" />
+	<field name="fRightRecoilMultiplierPerShot" desc="Multiplier" type="Float32" />
+	<field name="fVerticalMultiplierRecoilPerShot" desc="Multiplier" type="Float32" />
+	<field name="fLeftRollMultiplierPerShot" desc="Multiplier" type="Float32" />
+	<field name="fRightRollMultiplierPerShot" desc="Multiplier" type="Float32" />
+	<field name="fRollCurveDuration" type="Float32" />
+	<field name="fIronsightRecoilMultiplier" desc="A multiplier to be applied to the weapon's recoil when in ironsight" type="Float32" />
+	<field name="fYOffsetMultiplier" desc="A multiplier on the y offset of the recoil." type="Float32" />
+	<field name="fMaxYMultiplier" desc="A multiplier on the max y offset of the recoil." type="Float32" />
+	<field name="fIronsightYOffsetMultiplier" desc="A multiplier on the y offset of the recoil." type="Float32" />
+	<field name="fIronsightMaxYMultiplier" desc="A multiplier on the max y offset of the recoil." type="Float32" />
+	<field name="fYOffsetRecoveryTimeMultiplier" desc="A multiplier on the recovery time just for the y offset." type="Float32" />
+</class>

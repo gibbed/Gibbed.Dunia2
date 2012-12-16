@@ -1,0 +1,5 @@
+<class name="CWeaponAttachmentDamageStimModifier">
+	<inherit name="#11E152C8" />
+	<field name="levelAdditive" desc="Adds level to the existing value." type="Float32" />
+	<field name="diceRollMultiplier" desc="Multiplies dice roll values by this." type="Float32" />
+</class>

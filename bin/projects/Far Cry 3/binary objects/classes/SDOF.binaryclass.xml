@@ -1,0 +1,6 @@
+<class name="SDOF">
+	<inherit name="#11E152C8" />
+	<object name="ironsight">
+		<inherit name="SAttachmentDof" />
+	</object>
+</class>

@@ -1,0 +1,7 @@
+<class name="SSwayModifiers">
+	<inherit name="#11E152C8" />
+	<field name="fHSizeMultiplier" desc="multiplier for horizontal sway size." type="Float32" />
+	<field name="fVSizeMultiplier" desc="multiplier for vertical sway size." type="Float32" />
+	<field name="fHSpeedMultiplier" desc="Multiplier for horizontal sway speed." type="Float32" />
+	<field name="fVSpeedMultiplier" desc="multiplier for vertical sway speed." type="Float32" />
+</class>

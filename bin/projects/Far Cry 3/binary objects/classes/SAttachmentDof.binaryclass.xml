@@ -1,0 +1,6 @@
+<class name="SAttachmentDof">
+	<inherit name="#11E152C8" />
+	<field name="fBlur" desc="The blur amount to add to the DOF." type="Float32" />
+	<field name="fBlurFactor" desc="The blur factor to add to the DOF." type="Float32" />
+	<field name="fFocusDistance" desc="The focus distance to add to the DOF." type="Float32" />
+</class>

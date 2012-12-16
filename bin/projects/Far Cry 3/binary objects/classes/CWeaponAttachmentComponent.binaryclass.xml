@@ -1,0 +1,59 @@
+<class name="CWeaponAttachmentComponent">
+	<inherit name="CEntityComponent" />
+	<field name="selType" type="Enum">
+		<enum name="enumType">
+			<element name="Magazine">0</element>
+			<element name="Suppressor">1</element>
+			<element name="BarrelLength">2</element>
+			<element name="Ironsight">3</element>
+			<element name="LaserPointer">4</element>
+			<element name="IRLaserScope">5</element>
+			<element name="ACOG">6</element>
+			<element name="ReflexDotSightA">7</element>
+			<element name="ReflexDotSightB">8</element>
+			<element name="NightVisionScope">9</element>
+			<element name="HighPoweredScope">10</element>
+		</enum>
+	</field>
+	<field name="text_sWeaponBoneName" type="String" />
+	<field name="sWeaponBoneName" desc="Name of the bone on the weapon used for binding" type="Hash32" />
+	<field name="text_sWeaponHandleName" type="String" />
+	<field name="sWeaponHandleName" desc="Name of the handle on the weapon used for binding. Used over the bone if valid." type="Hash32" />
+	<object name="Reticle">
+		<field name="selLensShape" type="Enum">
+			<enum name="enumLensShape">
+				<element name="Rectangle">0</element>
+				<element name="Circle">1</element>
+			</enum>
+		</field>
+		<object name="ReticleMaterialNames" desc="List of materials to be modified when the reticle colour changes.">
+			<object name="MaterialNames">
+				<field name="text_Name" type="String" />
+				<field name="Name" type="Hash32" />
+			</object>
+		</object>
+		<!--TODO: conditional -->
+		<!--<object name="RectangularLens">-->
+			<field name="fReticleMaxXDist" desc="The max horizontal distance of visibility from the centre for a rectangular lens." type="Float32" />
+			<field name="fReticleMaxYDist" desc="The max vertical distance of visibility from the centre for a rectangular lens." type="Float32" />
+		<!--</object>-->
+		<!--TODO: conditional -->
+		<!--<object name="CircularLens">-->
+			<field name="fReticleMaxRadius" desc="The max distance from the centre for visibility on a circular lens." type="Float32" />
+		<!--</object>-->
+		<field name="fAlphaFalloffPercent" desc="The falloff percent, where it starts fading off up to the max visibility range (0=centre, 1=max visibility range)" type="Float32" />
+		<field name="fReticleDistance" desc="Distance from the muzzle bone for any sight particles. Also controls size of particle due to perspective." type="Float32" />
+		<object name="ReticleParticles">
+			<object name="ReticleParticles">
+				<field name="text_psSightParticlesId" type="String" />
+				<field name="psSightParticlesId" desc="FX for any related sights." type="Hash64" />
+			</object>
+		</object>
+	</object>
+	<field name="sBonusPlan" desc="Name of bonus plan to apply when this attachment is attached." type="String" />
+	<object name="modifiers">
+		<inherit name="CWeaponAttachmentModifiers" />
+	</object>
+	<field name="iCurrentReticle" desc="Current index (0-based) of the particle for the reticle." type="Int32" />
+	<field name="iCurrentReticleColour" desc="Current index (0-based) of the colour of the reticle." type="Int32" />
+</class>

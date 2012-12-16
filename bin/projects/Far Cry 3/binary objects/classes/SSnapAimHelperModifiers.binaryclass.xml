@@ -1,0 +1,6 @@
+<class name="SSnapAimHelperModifiers">
+	<inherit name="#11E152C8" />
+	<field name="fInacurracyDistanceMult" desc="multiplier for distance at which aiming helper is least accurate." type="Float32" />
+	<field name="fFadeOutStartDistanceMult" desc="multiplier for start distance for fade out of snap aim." type="Float32" />
+	<field name="fFadeOutStopDistanceMult" desc="Multiplier for stop distance for fade out of snap aim where it is off." type="Float32" />
+</class>

@@ -2,7 +2,7 @@
 	<inherit name="#11E152C8" />
 	<field name="text_sName" type="String" />
 	<field name="sName" type="Hash32" />
-	<field name="unPriority" />
+	<field name="unPriority" type="UInt32" />
 	<field name="fChildPlayProbability" type="Float32" />
 	<field name="text_sChildEventName" type="String" />
 	<field name="sChildEventName" type="Hash32" />
@@ -10,7 +10,8 @@
 		<object name="TeamEntry">
 			<!-- #11E37200 -->
 			<inherit name="#11E152C8" />
-			<field name="sTeam" />
+			<field name="text_sTeam" type="String" />
+			<field name="sTeam" type="Hash32" />
 			<object name="SoundEntries">
 				<object name="SoundEntry">
 					<inherit name="CSoundLibrarySoundEntry" />

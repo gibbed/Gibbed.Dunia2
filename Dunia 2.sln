@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Dunia2.BinaryObjectI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Dunia2.ConvertBinaryObject", "Gibbed.Dunia2.ConvertBinaryObject\Gibbed.Dunia2.ConvertBinaryObject.csproj", "{BE0B4152-8E31-4257-BCE0-CF5C66E81435}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Dunia2.GeometryFormats", "Gibbed.Dunia2.GeometryFormats\Gibbed.Dunia2.GeometryFormats.csproj", "{667A14C3-596E-4A47-B5F2-D3EC72B47A03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,16 @@ Global
 		{BE0B4152-8E31-4257-BCE0-CF5C66E81435}.Release|Mixed Platforms.Build.0 = Release|x86
 		{BE0B4152-8E31-4257-BCE0-CF5C66E81435}.Release|x86.ActiveCfg = Release|x86
 		{BE0B4152-8E31-4257-BCE0-CF5C66E81435}.Release|x86.Build.0 = Release|x86
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -187,6 +199,7 @@ Global
 		{892A5036-FF59-41E9-AFDC-BC489AC435CD} = {4F52D6AF-0A03-442A-92CC-8ECFEB91E33A}
 		{419092A1-B3E8-4619-8BB3-6099505B74F1} = {4F52D6AF-0A03-442A-92CC-8ECFEB91E33A}
 		{BE0B4152-8E31-4257-BCE0-CF5C66E81435} = {4F52D6AF-0A03-442A-92CC-8ECFEB91E33A}
+		{667A14C3-596E-4A47-B5F2-D3EC72B47A03} = {4F52D6AF-0A03-442A-92CC-8ECFEB91E33A}
 		{05BE44A7-DA2B-4631-8F6D-CA1C518A07D0} = {FD3DBD4B-DD60-4B1B-B73F-A14F6791B876}
 		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7} = {FD3DBD4B-DD60-4B1B-B73F-A14F6791B876}
 	EndGlobalSection

@@ -1,15 +1,15 @@
 <class name="CGameEconomyItemType">
 	<inherit name="CGameEconomyCategoryBase" />
-	<field name="iAmountLootedForExtraXP" />
-	<field name="iExtraXP" />
-	<field name="iFixedNumber" />
+	<field name="iAmountLootedForExtraXP" type="Int32" />
+	<field name="iExtraXP" type="Int32" />
+	<field name="iFixedNumber" type="Int32" />
 	<object name="ItemSubTypeDep">
 		<object name="Link">
 			<field name="disshpisubtpeId" type="UInt8" />
 		</object>
 	</object>
-	<field name="fCostMultiplierCasual" />
-	<field name="fCostPickupMultiplierExperimented" />
-	<field name="fCostPickupMultiplierHardcore" />
-	<field name="fCostPickupMultiplierInfamous" />
+	<field name="fCostMultiplierCasual" type="Float32" />
+	<field name="fCostPickupMultiplierExperimented" type="Float32" />
+	<field name="fCostPickupMultiplierHardcore" type="Float32" />
+	<field name="fCostPickupMultiplierInfamous" type="Float32" />
 </class>

@@ -1,4 +1,4 @@
-; 194/197 (98%)
+; 197/197 (100%)
 domino\library\sp\lib_common.backupinventory.lua
 domino\library\sp\lib_common.bng_playermodel.lua
 domino\library\sp\lib_common.displaymarkerincave.lua
@@ -168,6 +168,9 @@ domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b20\wil_050_b20.wil_050_b20.lua
 graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_cabin.hkx
 graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_cabin.xbg
 graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_cabin.xml
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_crane01.hkx
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_crane01.xbg
+graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_crane01.xml
 graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_deckprops.hkx
 graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_deckprops.xbg
 graphics\__fc3_graphics\sidequests\vehicles\sea\sha_boat_deckprops.xml

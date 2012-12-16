@@ -209,7 +209,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
         public static bool IsSuitableForEntityLibraryMultiExport(BinaryObjectFile bof)
         {
             if (bof.Root.Fields.Count != 0 ||
-                bof.Root.NameHash != LibHash ||
+                bof.Root.NameHash != EntityLibrariesHash ||
                 bof.Root.Children.Any(c => c.NameHash != EntityLibraryHash) == true)
             {
                 return false;

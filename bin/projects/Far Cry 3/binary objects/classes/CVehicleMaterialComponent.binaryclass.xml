@@ -1,0 +1,7 @@
+<class name="CVehicleMaterialComponent">
+	<inherit name="CCustomMaterialComponent" />
+	<field name="fDustFactor" type="Float32" />
+	<field name="fDirtFactor" type="Float32" />
+	<field name="Destroyed" />
+	<field name="nVehicleColor" type="Int32" />
+</class>

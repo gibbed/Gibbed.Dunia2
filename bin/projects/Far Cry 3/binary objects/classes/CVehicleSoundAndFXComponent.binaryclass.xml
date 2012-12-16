@@ -1,0 +1,3 @@
+<class name="CVehicleSoundAndFXComponent">
+	<inherit name="CObjectSoundAndFXComponent" />
+</class>

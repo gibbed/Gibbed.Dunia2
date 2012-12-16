@@ -1,0 +1,3 @@
+<class name="CPawnPlayerAbilitiesComponent">
+	<inherit name="CEntityComponent" />
+</class>

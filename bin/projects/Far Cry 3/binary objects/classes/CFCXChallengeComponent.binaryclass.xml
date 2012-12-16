@@ -1,0 +1,4 @@
+<class name="CFCXChallengeComponent">
+	<inherit name="CChallengeComponent" />
+	<object name="VehicleChallenge" />
+</class>

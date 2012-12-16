@@ -1,0 +1,99 @@
+<class name="CVehicle::Implementation">
+	<field name="bUsePerlinNoise" type="Boolean" />
+	<field name="bPlayerHeroVehicle" desc="This variable is set to true on the vehicle that's considered to be THE Player's Hero Vehicle" type="Boolean" />
+	<field name="text_sBeautifierName" type="String" />
+	<field name="sBeautifierName" desc="Name of the beautifier" type="Hash32" />
+	<field name="text_sName" type="String" />
+	<field name="sName" desc="Name of the vehicle" type="Hash32" />
+	<field name="driverActionMap" desc="Name of the action map to activate while driving" type="String" />
+	<field name="arkSteeringInputCurve" desc="Curve applied on steering input" type="Id64" />
+	<field name="arkPitchInputCurve" desc="Curve applied to pitch and roll inputs (glider, wingsuit...)" type="Id64" />
+	<object name="PassengerDamage" />
+	<field name="fUnderWaterBailoutDepth" desc="Waterline to trigger the bailout of passenger off the vehicle" type="Float32" />
+	<field name="fSeatEntryMaxRadius" desc="Counts while useExtraEntyRadius is enabled" type="Float32" />
+	<field name="fSeatEntryClimbMaxRadius" desc="Radius for climbing from water" type="Float32" />
+	<field name="fSeatEntryClimbMaxAngle" desc="Angle for climbing from water (in degrees)" type="Float32" />
+	<field name="iAnimVehicleType" desc="Id of animation group for the vehicle" type="Int32" />
+	<field name="bAnchorToSeatBoneByDefault" desc="If true, all entry/switch seat anims will be anchor to seat bone by default (can still be overridden by the AnimSeatEntryAnchorBones)." type="Boolean" />
+	<object name="AnimSeatEntryMoveStates" />
+	<object name="AnimSeatEntryAnchorBones" />
+	<field name="fIncomingFireEvasiveness" desc="Evasiveness Factor of Vehicle (statusFactor for AI)" type="Float32" />
+	<field name="fAccelerationPushFactor" desc="Compute the acceleration offset effect (only if looking forward to prevent clipping problems)" type="Float32" />
+	<field name="sEnterUsageString" desc="Usage string for entering event" type="String" />
+	<field name="sKickUsageString" desc="String for event while vehicle is Flipped" type="String" />
+	<field name="fKickForce" desc="PushVehicle: SetVelocity(pushDir * m_kickForce);" type="Float32" />
+	<field name="fJumpOutMinSpeed" desc="Min speed for jump out" type="Float32" />
+	<field name="fJumpOutBrakeFactor" desc="Subtracted from accelerator while JumpOut activated" type="Float32" />
+	<field name="fGetOutBrakeFactor" desc="Subtracted from accelerator when getting out of vehicle" type="Float32" />
+	<field name="bDisableEnterCollisionDetection" desc="whether entering collision enabled or not" type="Boolean" />
+	<field name="text_sEnterSignal" type="String" />
+	<field name="sEnterSignal" desc="Name of the signal to use while entering" type="Hash32" />
+	<field name="text_sLeaveTransitionSignal" type="String" />
+	<field name="sLeaveTransitionSignal" desc="Name of the signal to use while leaving" type="Hash32" />
+	<field name="bDiscardAfterUse" desc="Descarded only when vehicle moved more than 2 meters" type="Boolean" />
+	<field name="bUseDestroyedMaterial" desc="Apply the destroyed material once the vehicle is destroyed" type="Boolean" />
+	<field name="fExitPointOffset" desc="Offset of the exit point" type="Float32" />
+	<field name="bUseExitPointOffset" desc="Boolean flag for use/not use offset" type="Boolean" />
+	<object name="VehicleMountedWeapons" desc="list of weapons archetypes to mount" />
+	<object name="VehiculeAttachments" desc="list of attachments archetypes to spawn on the vehicle" />
+	<object name="VehiculeBoneSecondaryAttachments" desc="list of attachments archetypes to spawn on the vehicle" />
+	<field name="bAddSecondaryAttachments" desc="Do we need to randomize the attachments?" type="Boolean" />
+	<field name="vehicleMinLookAngle" desc="Angle lower limits for x,y,z while in vehicle" type="Vector3" />
+	<field name="vehicleMaxLookAngle" desc="Angle upper limits for x,y,z while in vehicle" type="Vector3" />
+	<field name="bCanPlayerLookBack" desc="Can the player look back while in this vehicle?" type="Boolean" />
+	<!--<object name="CanPlayerLookBack">-->
+		<field name="vehicleBackMinLookAngle" desc="Angle lower limits for x,y,z while in vehicle and looking back" type="Vector3" />
+		<field name="vehicleBackMaxLookAngle" desc="Angle upper limits for x,y,z while in vehicle and looking back" type="Vector3" />
+		<field name="fLookBackAngle" desc="Angle of look back (will determine which way the player will turn)" type="Float32" />
+		<field name="fLookBackDampingFactor" desc="Damping factor for when looking back (0 = instantly, 0.6 = very smoothly)" type="Float32" />
+	<!--</object>-->
+	<field name="fMountedWeaponOffsetMultiplier" desc="Multiplier to determine how much the user of a mounted weapon is affected by this vehicle speed and acceleration" type="Float32" />
+	<field name="vehicleLockedCameraMinLookAngle" desc="Angle lower limits for x,y,z while in vehicle and LockCameraMode turned on" type="Vector3" />
+	<field name="vehicleLockedCameraMaxLookAngle" desc="Angle upper limits for x,y,z while in vehicle and LockCameraMode turned on" type="Vector3" />
+	<field name="HideBodyYawAngle" desc="Angle limit while in First Person" type="Float32" />
+	<field name="vehicleMinAimYaw" desc="Min yaw to rotate camera while aiming. Can't exceed anim limit." type="Float32" />
+	<field name="vehicleMaxAimYaw" desc="Max yaw to rotate camera while aiming. Can't exceed anim limit." type="Float32" />
+	<object name="Leaning" desc="Leaning params" />
+	<object name="Rumble" desc="Rumble params" />
+	<object name="ChassisRumble" />
+	<object name="ChassisRumbleNoise" />
+	<field name="ChassisRumbleNoiseMaxSpeed" desc="Max rotation speed applied from chassis rumble noise (rad/s)" type="Float32" />
+	<field name="ChassisRumbleNoiseMaxAccel" desc="Max rotation acceleration applied from chassis rumble noise (rad/s)" type="Float32" />
+	<object name="WaterDrops" />
+	<field name="fDustFactor" desc="Triggers a material update" type="Float32" />
+	<field name="fDirtFactor" desc="Triggers a material update" type="Float32" />
+	<field name="nMinRandomColorIndex" desc="Lower boundary for the random color selection while spawned" type="Int32" />
+	<field name="nMaxRandomColorIndex" desc="Upper boundary for the random color selection while spawned" type="Int32" />
+	<object name="VehicleAvoidanceStims" desc="The list of Stims that a vehicle produces when it moves" />
+	<field name="bCanEnterFromWater" desc="Can enter from water" type="Boolean" />
+	<field name="bEnableClimbingFromWater" desc="Enable climb from water" type="Boolean" />
+	<field name="text_defaultSkin" type="String" />
+	<field name="defaultSkin" desc="This is the randomly chosen skin, you can rerandomize by leaving this empty." type="Hash32" />
+	<field name="bCanShootFromAttachedTurret" desc="If the player is shooting from a turret attached to this vehicle they are allowed to shoot the vehicle. Unticking this prevents some issues in cases where this is not desired." type="Boolean" />
+	<field name="bHeadCouldClipThroughGround" desc="Allows checks to see if the head of any passenger clips through the gound." type="Boolean" />
+	<field name="selVehicleColor" type="Enum">
+		<enum name="enumVehicleColor">
+		</enum>
+	</field>
+	<object name="FOV" />
+	<object name="SpeedFX" />
+	<object name="Look" />
+	<object name="CollisionCamPos" />
+	<object name="Steering" />
+	<object name="OnOffRoad" />
+	<field name="fWindFactor" desc="used for wind force caclulations. (Used in AMBX)" type="Float32" />
+	<field name="MaxSpeedToExit" desc="Maximum speed(kmph) where the pawn can exit the vehicle (do not affect bailout nor exterior seat)" type="Float32" />
+	<object name="ExitAnim" />
+	<object name="SeatsInfo" desc="Info on seats in vehicle (NB: MUST NOT be edited or loaded)" />
+	<object name="PassengerSeatsLookAngles" />
+	<object name="UserSeatTypeOverride" />
+	<object name="SeatsExterior" />
+	<object name="SeatsEntryRestriction" />
+	<object name="SeatsSwitchesAllowed" />
+	<object name="SeatsTypeOverride" />
+	<object name="SeatsEntryUsedForClimbing" />
+	<object name="AllowHeadLights" desc="Whether head lights state could be changed" />
+	<object name="SpeedVerticalOffset" />
+	<object name="StatisticAndProgression" />
+	<!-- TODO: finish me -->
+</class>

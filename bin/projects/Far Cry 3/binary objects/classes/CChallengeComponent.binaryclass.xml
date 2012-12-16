@@ -1,0 +1,5 @@
+<class name="CChallengeComponent">
+	<inherit name="CEntityComponent" />
+	<object name="CompletedChallenges" />
+	<object name="SavedActiveChallenges" />
+</class>

@@ -42,6 +42,6 @@
 		</enum>
 	</field>
 	<field name="arkPistolTakedownArchetype" desc="Replaces the default pistol archetype used when performing a pistol takedown on this NPC." type="Id64" />
-	<field name="fMaxLookAngle" desc="Max angle at which head look at offsets are applied for this character" />
-	<field name="fMaxAimAngle" desc="Max angle at which aim offsets are applied for this character" />
+	<field name="fMaxLookAngle" desc="Max angle at which head look at offsets are applied for this character" type="Float32" />
+	<field name="fMaxAimAngle" desc="Max angle at which aim offsets are applied for this character" type="Float32" />
 </class>

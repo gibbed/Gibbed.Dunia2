@@ -1,0 +1,7 @@
+<class name="CPawnMagicCrate">
+	<inherit name="CEntityComponent" />
+	<object name="Contents" />
+	<field name="bSwitch" />
+	<field name="fAttachVisibleCounter" />
+	<field name="AttachVisibleEntity" />
+</class>

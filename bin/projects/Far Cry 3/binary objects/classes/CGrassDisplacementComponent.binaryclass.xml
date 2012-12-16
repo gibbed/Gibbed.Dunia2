@@ -1,0 +1,15 @@
+<class name="CGrassDisplacementComponent">
+	<inherit name="CEntityComponent" />
+	<object name="Primitives">
+		<object name="Primitive">
+			<field name="selPrimitiveType" type="Enum">
+				<enum name="enumPrimitiveType">
+					<element name="None">0</element>
+					<element name="Sphere">1</element>
+					<element name="Segment">2</element>
+					<element name="Quad">3</element>
+				</enum>
+			</field>
+		</object>
+	</object>
+</class>

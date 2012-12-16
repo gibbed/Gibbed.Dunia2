@@ -1,0 +1,6 @@
+<class name="CAISoundAndFXComponent">
+	<inherit name="CPawnSoundAndFXComponent" />
+	<field name="fFootstepsAudibleDistance" type="Float32" />
+	<field name="mpbarkEnemySpotted" />
+	<object name="StunIndicator" />
+</class>

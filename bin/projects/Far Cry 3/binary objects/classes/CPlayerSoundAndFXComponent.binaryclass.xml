@@ -1,0 +1,34 @@
+<class name="CPlayerSoundAndFXComponent">
+	<inherit name="CPawnSoundAndFXComponent" />
+	<field name="arkFootstepSpeedModulationCurve" />
+	<field name="matimpFootStepFirst" />
+	<field name="matimpFootStepFirstSilent" />
+	<field name="matimpSplashMaterialImpactFirst" />
+	<field name="mixReduceSoundPreset" />
+	<field name="mixRunningPreset" />
+	<field name="mixCrouchedPreset" />
+	<field name="sndMeleeReceivedVocalID" type="String" />
+	<field name="mixCombatPreset" />
+	<field name="psBurnFX" desc="Path to the resource" type="String" />
+	<field name="fBurnFXMinAngle" type="Float32" />
+	<object name="WaterInOutFX" />
+	<object name="PlayerCollision" />
+	<object name="Footsteps" />
+	<object name="Sliding" />
+	<object name="DamageValues" />
+	<object name="Ammo" />
+	<object name="PlayerDeath" />
+	<object name="PassBy" />
+	<object name="OceanHandler" />
+	<object name="LakeHandler" />
+	<object name="RiverHandler" />
+	<object name="Stances" />
+	<object name="PostFXSounds" />
+	<object name="PlayerSpecificSounds" />
+	<object name="SeeLowHealthOnTeammate" />
+	<object name="Biofeedback" />
+	<object name="PickupLight" />
+	<field name="text_RespawnFX" type="String" />
+	<field name="RespawnFX" type="Hash32" />
+	<field name="sndvarDetectionUI" type="Hash32" />
+</class>

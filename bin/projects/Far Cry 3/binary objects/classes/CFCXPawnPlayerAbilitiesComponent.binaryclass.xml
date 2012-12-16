@@ -1,0 +1,3 @@
+<class name="CFCXPawnPlayerAbilitiesComponent">
+	<inherit name="CPawnPlayerAbilitiesComponent" />
+</class>

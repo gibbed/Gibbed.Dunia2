@@ -1,0 +1,4 @@
+<class name="CCreatureSoundAndFXComponent">
+	<inherit name="CEntityComponent" />
+	<object name="CreatureSoundAndFXComponent" />
+</class>

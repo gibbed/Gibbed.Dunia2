@@ -1,0 +1,7 @@
+<class name="CPositionLoggerComponent">
+	<inherit name="CEntityComponent" />
+	<field name="distanceInterval" type="Float32" />
+	<field name="timeInterval" />
+	<field name="useDistanceInterval" type="Boolean" />
+	<field name="LoggingSize" type="Int32" />
+</class>

@@ -1,0 +1,18 @@
+<class name="CVehicle">
+	<inherit name="CGameObject" />
+	<merge name="CVehicle::Implementation" />
+	<field name="selVehicleType" type="Enum">
+		<enum name="enumVehicleType">
+			<element name="Wheeled">0</element>
+			<element name="Floating">1</element>
+			<element name="Paraglider">2</element>
+			<element name="Motorcycle">3</element>
+			<element name="Helicopter">4</element>
+			<element name="Plane">5</element>
+			<element name="Wingsuit">6</element>
+			<element name="None">7</element>
+		</enum>
+	</field>
+	<field name="Type" />
+	<!-- TODO: finish me -->
+</class>

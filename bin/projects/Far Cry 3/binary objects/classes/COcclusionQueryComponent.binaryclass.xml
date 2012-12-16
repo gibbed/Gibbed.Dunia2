@@ -1,0 +1,4 @@
+<class name="COcclusionQueryComponent">
+	<inherit name="CEntityComponent" />
+	<field name="bComponentEnabled" type="Boolean" />
+</class>

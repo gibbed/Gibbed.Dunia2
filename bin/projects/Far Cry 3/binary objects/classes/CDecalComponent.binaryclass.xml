@@ -1,0 +1,5 @@
+<class name="CDecalComponent">
+	<inherit name="CEntityComponent" />
+	<field name="fileTexture" type="String" />
+	<field name="fileTextureMask" type="String" />
+</class>

@@ -1,0 +1,15 @@
+<class name="CFCXWorldLabelComponent">
+	<inherit name="CEntityComponent" />
+	<field name="fMaxLabelPoint" type="Float32" />
+	<field name="fMinLabelPoint" type="Float32" />
+	<field name="fLabelCost" type="Float32" />
+	<field name="fLabelPointsRecoveryPerSecond" type="Float32" />
+	<field name="fMaxDistanceTaggerToSelfSound" type="Float32" />
+	<field name="fMaxDistanceSelfToTaggedSound" type="Float32" />
+	<field name="fMaxDistanceTaggerToSelfVisual" type="Float32" />
+	<field name="fMaxDistanceSelfToTaggedVisual" type="Float32" />
+	<object name="Worldlabel" />
+	<object name="PointLabel" />
+	<object name="CharacterLabel" />
+	<object name="Sounds" />
+</class>

@@ -1,0 +1,4 @@
+<class name="CFCXChallengeBonusComponent">
+	<inherit name="CEntityComponent" />
+	<field name="selIncrementType" />
+</class>

@@ -6,7 +6,7 @@
 			<!-- #11E14810 -->
 			<inherit name="#11E152C8" />
 			<field name="text_sHeadTag" type="String" />
-			<field name="sHeadTag" />
+			<field name="sHeadTag" type="Hash32" />
 			<field name="facialposedefinitionFacialDefinition" type="Hash64" />
 		</object>
 	</object>

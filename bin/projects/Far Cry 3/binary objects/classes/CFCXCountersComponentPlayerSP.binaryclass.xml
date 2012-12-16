@@ -1,0 +1,13 @@
+<class name="CFCXCountersComponentPlayerSP">
+	<inherit name="CFCXCountersComponentPlayer" />
+	<field name="mixBuddyRescuePreset" type="Hash64" />
+	<field name="sndBuddyRescueSoundStart" type="String" />
+	<field name="sndBuddyRescueSoundStop" type="String" />
+	<field name="sndtpBuddyRescueSoundType" type="Int32" />
+	<field name="sndtpPlayerFullHealthType" type="Int32" />
+	<field name="sndPlayerFullHealth" type="String" />
+	<object name="CriticalState" />
+	<object name="ReinforcementTokens" />
+	<object name="CurrentHealthTierBoostNumber" />
+	<object name="HealthBoost" />
+</class>

@@ -1,0 +1,19 @@
+<class name="CMapIntelligence">
+	<inherit name="CEntityComponent" />
+	<field name="selType">
+		<enum name="enumType">
+			<element name="None">0</element>
+			<element name="MedKit">1</element>
+			<element name="AmmoPile">2</element>
+			<element name="ExplosivePile">3</element>
+			<element name="FuelPile">4</element>
+			<element name="MountedWeapon">5</element>
+			<element name="SniperPoint">6</element>
+			<element name="LandVehicle">7</element>
+			<element name="WaterVehicle">8</element>
+			<element name="AirVehicle">9</element>
+		</enum>
+	</field>
+	<field name="bDisplayOnMap" type="Boolean" />
+	<field name="vInitialPos" type="Vector3" />
+</class>

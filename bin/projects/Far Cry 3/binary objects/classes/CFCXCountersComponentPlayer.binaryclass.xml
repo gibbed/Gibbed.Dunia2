@@ -1,0 +1,18 @@
+<class name="CFCXCountersComponentPlayer">
+	<inherit name="CFCXCountersComponent" />
+	<field name="Stamina" />
+	<field name="StunHealth" />
+	<field name="Armor" />
+	<field name="bIsInForcedFailure" type="Boolean" />
+	<field name="bIgnoreForceHeal" type="Boolean" />
+	<field name="staminaActionLock" />
+	<field name="fBurnDamageRate" type="Float32" />
+	<field name="fBurnDamageMax" type="Float32" />
+	<field name="fBurnDamage" type="Float32" />
+	<field name="fBurnDamageExpiryDelay" type="Float32" />
+	<field name="fBurnOnFireDamageThreshold" type="Float32" />
+	<field name="fBurnOnFireTimeLimit" type="Float32" />
+	<field name="fBurnOnFireDamageRate" type="Float32" />
+	<field name="HealWhenExit" />
+	<field name="OxygenReserve" />
+</class>

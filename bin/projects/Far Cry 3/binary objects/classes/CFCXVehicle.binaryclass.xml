@@ -1,0 +1,3 @@
+<class name="CFCXVehicle">
+	<inherit name="CVehicle" />
+</class>

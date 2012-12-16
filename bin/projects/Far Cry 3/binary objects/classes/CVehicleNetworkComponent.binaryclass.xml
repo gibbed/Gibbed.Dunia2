@@ -1,0 +1,7 @@
+<class name="CVehicleNetworkComponent">
+	<inherit name="CNetworkComponent" />
+	<field name="fEmptyResetTime" type="Float32" />
+	<field name="fDisabledResetTime" type="Float32" />
+	<field name="fPawnsTooCloseRadius" type="Float32" />
+	<field name="fPawnsLookingRadius" type="Float32" />
+</class>

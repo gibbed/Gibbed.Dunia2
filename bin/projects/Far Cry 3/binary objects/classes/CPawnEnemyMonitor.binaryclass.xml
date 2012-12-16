@@ -1,0 +1,3 @@
+<class name="CPawnEnemyMonitor">
+	<inherit name="CEntityComponent" />
+</class>

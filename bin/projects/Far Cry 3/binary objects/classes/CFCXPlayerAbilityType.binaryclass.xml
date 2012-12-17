@@ -1,0 +1,69 @@
+<class name="CFCXPlayerAbilityType">
+	<inherit name="CNomadObject" />
+	<field name="selAbilityType" type="Enum">
+		<enum name="enumAbilityType">
+			<element name="None">0</element>
+			<!--<element name="SP_SniperHoldBreath">1</element>-->
+			<!--<element name="MP_SniperHoldBreath">1</element>-->
+			<element name="SniperHoldBreath">1</element>
+			<element name="SP_ShowThrowableTrajectory">2</element>
+			<element name="MP_Steroids">3</element>
+			<element name="MP_EMP">4</element>
+			<element name="MP_Explosion">5</element>
+			<element name="MP_Revive">6</element>
+			<element name="Unused1">7</element>
+			<element name="Unused2">8</element>
+			<element name="SP_CookThrowables">9</element>
+			<!--<element name="SP_SwayReduction">10</element>-->
+			<!--<element name="MP_SwayReduction">10</element>-->
+			<element name="SwayReduction">10</element>
+			<element name="RootUnlocked">11</element>
+			<element name="SP_Sabotage">12</element>
+			<element name="SP_ShowWeakSpots">13</element>
+			<element name="SP_ShowHiddenExplosives">14</element>
+			<element name="SP_ShowTraps">15</element>
+			<element name="SP_ShowMostPowerfulEnemies">16</element>
+			<element name="SP_ShowIncomingPatrols">17</element>
+			<element name="SP_ShowAIPaths">18</element>
+			<element name="SP_ShowHiddenSupplies">19</element>
+			<element name="SP_ShowSnipingPoints">20</element>
+			<element name="Unused3">21</element>
+			<element name="SP_ShowTacticalLandingSpots">22</element>
+			<element name="SP_TakeDownStealthy">23</element>
+			<element name="unused5">24</element>
+			<element name="MP_SilentFootSteps">25</element>
+			<element name="SP_FlickFire">26</element>
+			<element name="MP_BattleCry">27</element>
+			<element name="SP_Intuition">28</element>
+			<element name="MP_SeeThrough">29</element>
+			<element name="SP_QuickReload">30</element>
+			<element name="Unused4">31</element>
+			<element name="SP_ImprovedIntuition">32</element>
+			<element name="SP_QuickFire">33</element>
+			<element name="MP_BloodLust">34</element>
+			<element name="MP_SixthSense">35</element>
+			<element name="SP_GenericWeaponSkill">36</element>
+			<element name="SP_PlayerSkill">38</element>
+			<element name="MP_PlayerAwareness">39</element>
+		</enum>
+	</field>
+	<field name="text_name" type="String" />
+	<field name="name" />
+	<object name="Properties" desc="Contains properties specific to the ability.">
+		<inherit name="CFCXAbilityShowThrowableTrajectoryProperties"
+		         condition_field="^selAbilityType"
+		         condition_value="2"  condition_type="Int32" />
+		<inherit name="CFCXPersistentAbilityProperties"
+		         condition_field="^selAbilityType"
+		         condition_value="26" condition_type="Int32" />
+		<inherit name="CFCXAbilityIntuitionProperties"
+		         condition_field="^selAbilityType"
+		         condition_value="28" condition_type="Int32" />
+		<inherit name="CFCXAbilityImprovedIntuitionProperties"
+		         condition_field="^selAbilityType"
+		         condition_value="32" condition_type="Int32" />
+		<inherit name="CFCXAbilityQuickFireProperties"
+		         condition_field="^selAbilityType"
+		         condition_value="33" condition_type="Int32" />
+	</object>
+</class>

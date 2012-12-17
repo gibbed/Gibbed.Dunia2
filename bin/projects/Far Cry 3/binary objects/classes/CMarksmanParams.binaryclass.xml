@@ -1,0 +1,32 @@
+<class name="CMarksmanParams">
+	<inherit name="#11E152C8" />
+	<field name="fDefaultAmount" desc="Defaut amount of max marksman skill." type="Float32" />
+	<field name="fMinUseAmount" desc="Minimum amount of marksman skill needed to enter the mode." type="Float32" />
+	<field name="fInitialUseAmount" desc="Initial amount of marksman skill used up when activating the mode." type="Float32" />
+	<field name="fUseRatePerSecond" desc="Amount of marksman skill meter that gets used per second." type="Float32" />
+	<field name="fRechargeRatePerSecond" desc="Amount of marksman skill meter that gets restored per second." type="Float32" />
+	<field name="fRechargeAmountPerKill" desc="Amount of marksman skill meter that gets restored per kill." type="Float32" />
+	<field name="fRechargeAmountPerHeadShot" desc="Amount of marksman skill meter that gets restored per kill." type="Float32" />
+	<field name="fRechargeAmountPerStealthKill" desc="Amount of marksman skill meter that gets restored per kill." type="Float32" />
+	<field name="fRechargeAmountMultiKillMultiplier" desc="Amount of marksman skill meter that gets restored per kill." type="Float32" />
+	<field name="fMaxTargetDistance" desc="Furthers distance to consider targets." type="Float32" />
+	<field name="fCameraMoveRate" desc="Rate camera moves to target in degrees per second." type="Float32" />
+	<field name="fCameraStartMoveRate" desc="Initial rate camera moves to target in degrees per second." type="Float32" />
+	<field name="fCameraBlendDuration" desc="Time it takes for camera movement to reach the maximum speed." type="Float32" />
+	<field name="fWeaponMoveRate" desc="Rate weapon moves to target in degrees per second." type="Float32" />
+	<field name="text_PostFX" type="String" />
+	<field name="PostFX" desc="The name of the post FX to play." type="Hash32" />
+	<field name="fTargetSelectInnerScreenRatio" desc="Enemies that fall inside this area of the screen are ignored." type="Float32" />
+	<field name="fTargetSelectOuterScreenRatio" desc="Enemies that fall outside this area of the screen are ignored." type="Float32" />
+	<field name="bUseSlowMo" desc="Modifiers for reflex fire." type="Boolean" />
+	<field name="fCameraPitchAmount" desc="How much the camera pitches when travelling at the maximum turn speed for pitching." type="Float32" />
+	<field name="fCameraMoveMaxTurnSpeedForPitch" desc="The maximum turn (yaw) speed for the weapon in order to have the maximum pitch offset." type="Float32" />
+	<field name="fCameraMoveDistanceScaler" desc="When at the near angle distance the cmaera move rate will be multiplied by this value." type="Float32" />
+	<field name="fCameraMoveNearAngles" desc="The nearest distance between the current aim and the target at which the camera move rate will be multiplied by the distance scaler" type="Float32" />
+	<field name="fCameraMoveFarAngles" desc="The furthest distance between the current aim and the target at which the camera will not be multiplied by the distance scaler." type="Float32" />
+	<field name="sndtpSoundType" type="Int32" />
+	<field name="sndLoopStartSound" type="String" />
+	<field name="sndLoopStopSound" type="String" />
+	<field name="sndChangeTargetSound" type="String" />
+	<field name="mixSoundPreset" type="Id64" />
+</class>

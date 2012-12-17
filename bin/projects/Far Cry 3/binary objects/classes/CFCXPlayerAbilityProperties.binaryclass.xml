@@ -1,0 +1,9 @@
+<class name="CFCXPlayerAbilityProperties">
+	<inherit name="CNomadObject" />
+	<field name="iMaxSkillPoint" desc="Max skill point the player can put in this Skill" type="Int32" />
+	<field name="locidLocalizedSkillName" desc="Localized name of the Skill" type="Int32" />
+	<field name="locidLocalizedDescription" desc="Localized Description of the Skill" type="Int32" />
+	<field name="iDescriptionInt" desc="A whole number that can be inserted into the description using formatting. If non 0 it will not use the float value." type="Int32" />
+	<field name="fDescriptionFloat" desc="A floating point number that can be inserted into the description using formatting. Ignored if the description int is non-zero. " type="Float32" />
+	<field name="sIconName" desc="Icon name for skills" type="String" />
+</class>

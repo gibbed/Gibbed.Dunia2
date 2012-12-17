@@ -1,0 +1,57 @@
+<class name="CFCXAbilityIntuitionProperties">
+	<inherit name="CFCXPersistentAbilityProperties" />
+	<object name="CoreSettings">
+		<field name="fTransitionTime" desc="Duration of transition into and out of intuition mode." type="Float32" />
+		<field name="text_PostFX" type="String" />
+		<field name="PostFX" desc="The name of the post FX to play when in intuition mode." type="Hash32" />
+		<field name="text_SenseFX" type="String" />
+		<field name="SenseFX" desc="The name of the post FX to play when the player gets a 'sense'." type="Hash32" />
+		<field name="fMaxIntuitionRange" desc="Maximum range that intuition entities will be considered." type="Float32" />
+	</object>
+	<object name="ShaderSettings">
+		<field name="fShaderFadeOutTime" desc="Duration of transition of shader out of intuition." type="Float32" />
+		<field name="fShaderFadeInTime" desc="Duration of transition of shader in intuition." type="Float32" />
+		<field name="selShaderVisibilityType" type="Enum">
+			<enum name="enumShaderVisibilityType">
+				<element name="AlwaysVisible">0</element>
+				<element name="UnoccludedAreasOnly">1</element>
+			</enum>
+		</field>
+		<field name="fShaderRange" desc="Range before intuition shader fades out." type="Float32" />
+		<field name="fFullShaderRadius" desc="Radius where intuition shader is at 100%." type="Float32" />
+		<field name="fNoShaderRadius" desc="Radius where intuition shader is not displayed." type="Float32" />
+		<field name="bOcclusionCheck" desc="Check if the enemy/object is occluded, in that case fade out shader." type="Boolean" />
+		<field name="fOcclusionThreshold" desc="Occlusion threshold." type="Float32" />
+		<field name="selEntityMustHave" type="Enum">
+			<enum name="enumEntityMustHave">
+				<element name="BeenSeen">0</element>
+				<element name="BeenTagged">1</element>
+				<element name="NoCondition">2</element>
+			</enum>
+		</field>
+	</object>
+	<object name="SlowMotion">
+		<field name="bUseSlowMotion" desc="Turn on/off slow motion during intuition." type="Boolean" />
+		<field name="fPostFxSpeedUpFactor" desc="Increases speed of transition for post fx by this rate to cope with the post fx needing to appear in sync with the slow mo." type="Float32" />
+		<field name="fSlowmoFactor" desc="Speed of game during intuition mode." type="Float32" />
+		<field name="fIntuitionPlayerMoveAccelMultiplier" desc="Speed up the player when in intuition." type="Float32" />
+		<field name="fIntuitionPlayerMoveSpeedMultiplier" desc="Speed up the player when in intuition." type="Float32" />
+		<field name="bIntuitionEnableSway" desc="Enable weapon sway during intuition." type="Boolean" />
+	</object>
+	<object name="IntuitionTimer">
+		<field name="bIntuitionExpire" desc="Intuition is limited in time or not." type="Boolean" />
+		<field name="fDefaultAmount" desc="Defaut amount of max intuition." type="Float32" />
+		<field name="fMinUseAmount" desc="Minimum amount of intuition needed to enter the mode." type="Float32" />
+		<field name="fUseRatePerSecond" desc="Amount of intuition meter that gets used per second." type="Float32" />
+		<field name="fRestoreRatePerSecond" desc="Amount of intuition meter that gets restored per second." type="Float32" />
+		<field name="fRestoreRatePerKill" desc="Amount of intuition meter that gets restored per kill." type="Float32" />
+	</object>
+	<object name="IntuitionTextHint">
+		<field name="fDiscoveryTime" desc="Time required to look at an intuition object to discover it." type="Float32" />
+		<field name="fDiscoveryFOV" desc="FOV to discover an object in intuition." type="Float32" />
+		<field name="fProximityRange" desc="The player must be within that range to see the hint." type="Float32" />
+		<field name="fExpiryTime" desc="How long the Tag remains before it's removed" type="Float32" />
+		<field name="bIsOcclusionActive" desc="Use the occlusion system on your tag" type="Boolean" />
+		<field name="fMaxDistanceFromReticule" desc="Maximum distance an entity should be from the reticule to be tagged." type="Float32" />
+	</object>
+</class>

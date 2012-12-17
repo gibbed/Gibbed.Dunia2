@@ -1,5 +1,104 @@
 <class name="CFCXPlayerAbilitiesService">
 	<inherit name="IGameModeService" />
 	<object name="Single_Player">
+		<object name="AbilityList">
+			<object name="Ability">
+				<inherit name="CFCXPlayerAbilityType" />
+			</object>
+		</object>
+		<object name="Chapters">
+			<object name="ChapterList">
+				<object name="Chapters">
+				</object>
+			</object>
+		</object>
+		<object name="SavedAbilities">
+			<object name="SaveAbiliity">
+				<field name="SaveAbiliity" />
+			</object>
+		</object>
+		<object name="XPLevels">
+			<object name="LevelsList">
+				<object name="XPLevel">
+					<field name="iXPNeeded" desc="Amount of XP needed to reach this level." type="Int32" />
+				</object>
+			</object>
+		</object>
+		<object name="NamedRewards">
+			<object name="MissionRewards">
+				<object name="MissionReward">
+				</object>
+			</object>
+		</object>
+		<object name="XPRewards">
+			<object name="ForAbilities">
+				<object name="Standard">
+					<object name="StealthKill" desc="When player has performed a stealth kill." />
+					<object name="KillWithHoldBreath" desc="When player has killed while using hold breath." />
+					<object name="KillWithHeadShotModifier" desc="Added on top of regular kill xp when a kill is a head shot." />
+					<object name="KillWithExplosion" desc="Added on top of regular kill xp when a kill is done with an explosive." />
+				</object>
+				<object name="Takedown">
+					<object name="StandardTakedown" />
+					<object name="HeavyTakedown" />
+					<object name="TakedownFromAbove" />
+					<object name="TakedownFromAboveDouble" />
+					<object name="TakedownFromWater" />
+					<object name="TakedownFromWaterDouble" />
+					<object name="TakedownFromLedge" />
+					<object name="TakedownFromLedgeDouble" />
+					<object name="TakedownPistolMarksman" />
+					<object name="TakedownKnifeThrow" />
+					<object name="TakedownChain" />
+					<object name="TakedownGrenadePinPull" />
+				</object>
+			</object>
+			<object name="RadioTower">
+				<field name="UnlockRadioTower" desc="Give XP to the player when he unlocks a radio tower" type="Int32" />
+			</object>
+			<object name="SafeHouse">
+				<field name="UnlockSafeHouse" desc="Give XP to the player when he unlocks a safe house" type="Int32" />
+				<field name="DisableAlarm" desc="Give XP when the player disables a safe house alarm." type="Int32" />
+			</object>
+		</object>
+		<object name="PlayerProgression">
+			<field name="text_sSoldierStepMission" type="String" />
+			<field name="sSoldierStepMission" type="Hash32" />
+			<field name="text_sWarriorStepMission" type="String" />
+			<field name="sWarriorStepMission" type="Hash32" />
+		</object>
+		<object name="WeaponClasses">
+			<object name="WeaponClassList">
+				<object name="WeaponClass">
+				</object>
+			</object>
+		</object>
+		<object name="TattooParts">
+			<object name="TattooPartsList">
+				<object name="TattooPart">
+					<field name="text_partName" type="String" />
+					<field name="partName" desc="Name of the part" />
+					<object name="IdList">
+						<object name="Id">
+							<field name="value" type="UInt8" />
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object name="Multi_Player">
+		<object name="AbilityList">
+			<object name="Ability">
+				<inherit name="CFCXPlayerAbilityType" />
+			</object>
+		</object>
+	</object>
+	<object name="Coop">
+		<object name="AbilityList">
+			<object name="Ability">
+				<inherit name="CFCXPlayerAbilityType" />
+			</object>
+		</object>
 	</object>
 </class>

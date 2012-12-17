@@ -1,0 +1,7 @@
+<class name="CFCXAbilityQuickFireProperties">
+	<inherit name="CFCXPersistentAbilityProperties" />
+	<object name="marksmanParams">
+		<inherit name="CMarksmanParams" />
+	</object>
+	<field name="reflexfireparamsReflexFireParams" type="Id64" />
+</class>

@@ -1,0 +1,13 @@
+<file name="NomadObjectTemplates">
+	<object name="NomadObjectTemplates">
+		<object hash="142371CF">
+			<field name="Name" type="String" />
+			<object name="Template">
+				<field name="FullName" type="String" />
+				<inherit name="CFCXPlayerAbilitiesService"
+				         condition_field="^Name"
+				         condition_value="AbilityService" condition_type="String" />
+			</object>
+		</object>
+	</object>
+</file>

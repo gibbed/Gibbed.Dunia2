@@ -1,0 +1,22 @@
+<class name="CFCXAbilityShowThrowableTrajectoryProperties">
+	<inherit name="CFCXPersistentAbilityProperties" />
+	<field name="fStartPositionOffset" type="Float32" />
+	<field name="fLineThicknessRadius" type="Float32" />
+	<field name="fCircleThicknessRadius" type="Float32" />
+	<field name="fLineSegmentLength" type="Float32" />
+	<field name="fLineGapLength" type="Float32" />
+	<field name="iLinesSkippedAtStart" type="Float32" />
+	<field name="iNbVertexPerRingLine" type="Int32" />
+	<field name="iNbVertexPerRingCircle" type="Int32" />
+	<field name="fCircleRadius" type="Float32" />
+	<field name="iNbRingsCircle" type="Int32" />
+	<field name="fImpactOnObjectOffsetMinus" type="Float32" />
+	<field name="fImpactOnGroundOffsetMinus" type="Float32" />
+	<field name="text_texTextureLine" type="String" />
+	<field name="texTextureLine" desc="This is the texture to apply on the line mesh." type="Hash64" />
+	<field name="text_texTextureCircle" type="String" />
+	<field name="texTextureCircle" desc="This is the texture to apply on the circle mesh." type="Hash64" />
+	<field name="fImpactUndergroundTest" type="Float32" />
+	<field name="iNbRaycasts" type="Int32" />
+	<field name="iNbPointsTrajectory" type="Int32" />
+</class>

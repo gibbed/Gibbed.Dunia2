@@ -1,0 +1,11 @@
+<class name="SReflexFireDifficultySettings">
+	<inherit name="#11E152C8" />
+	<object name="NearMultipliers">
+		<inherit name="SReflexFireModifiers" />
+	</object>
+	<object name="FarMultipliers">
+		<inherit name="SReflexFireModifiers" />
+	</object>
+	<field name="fZiplineInterpolationAmount" desc="0 will use the original settings up to 1 to use the multiplied settings." type="Float32" />
+	<field name="fAnimalInterpolationAmount" desc="0 will use the original settings up to 1 to use the multiplied settings." type="Float32" />
+</class>

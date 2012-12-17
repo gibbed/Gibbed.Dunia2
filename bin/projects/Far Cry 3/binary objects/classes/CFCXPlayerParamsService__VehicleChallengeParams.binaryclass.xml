@@ -1,0 +1,9 @@
+<class name="CFCXPlayerParamsService::VehicleChallengeParams">
+	<inherit name="#11E152C8" />
+	<field name="fJourneySpeed" desc="The speed in metres/second the vehicle moves along the route when calculating the par time to beat." type="Float32" />
+	<field name="fAdditiveJourneyTime" desc="Time value to add/subtract if -ive from the final time calculation." type="Float32" />
+	<field name="iXpReward" desc="Amount of XP rewarded for completing a vehicle challenge." type="Int32" />
+	<field name="iCashReward" desc="Amount of money rewarded for completing a vehicle challenge." type="Int32" />
+	<field name="iMinJourneyDistance" desc="A vehicle challenge will only trigger when the distance is greater than this." type="Int32" />
+	<field name="iMaxDistanceFromRouteToTarget" desc="Cut off when the end point of the route-finder is greater than this dist to the destination." type="Int32" />
+</class>

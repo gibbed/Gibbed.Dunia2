@@ -1,0 +1,7 @@
+<class name="SReflexFireModifiers">
+	<inherit name="#11E152C8" />
+	<field name="fMultiplierHead" type="Float32" />
+	<field name="fMultiplierTorso" type="Float32" />
+	<field name="fMultiplierOtherBodyParts" type="Float32" />
+	<field name="fMultiplierDefaultAim" type="Float32" />
+</class>

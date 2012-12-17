@@ -1,0 +1,13 @@
+<class name="CFCXPlayerParamsService::HeadLightParams">
+	<inherit name="#11E152C8" />
+	<field name="arkPlayerHeadlightArchetype" type="Id64" />
+	<object name="Zones">
+		<object name="ZoneEntry">
+			<field name="text_Zone" type="String" />
+			<field name="Zone" type="Hash32" />
+		</object>
+	</object>
+	<field name="fWeightToActivateLight" desc="The weight needed to activate the light.  [0,1]" type="Float32" />
+	<field name="sndTurnOnSoundId" type="String" />
+	<field name="sndTurnOffSoundId" type="String" />
+</class>

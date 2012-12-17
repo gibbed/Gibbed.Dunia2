@@ -1,0 +1,92 @@
+<class name="CFCXPlayerParamsService">
+	<inherit name="CPlayerParamsService" />
+	<object name="MissionUnlocks">
+		<inherit name="SUnlocksOnMissionComplete" />
+	</object>
+	<object name="EnemyAimingHelpers">
+		<object name="AimingHelperCasual" desc="AimingHelpers list for casual difficulty level">
+			<inherit name="SEnemyAimingHelper" />
+		</object>
+		<object name="AimingHelperExperimented" desc="AimingHelpers list for Experimented difficulty level">
+			<inherit name="SEnemyAimingHelper" />
+		</object>
+		<object name="AimingHelperHardcore" desc="AimingHelpers list for Hardcore difficulty level">
+			<inherit name="SEnemyAimingHelper" />
+		</object>
+		<object name="AimingHelperInfamous" desc="AimingHelpers list for Infamous difficulty level">
+			<inherit name="SEnemyAimingHelper" />
+		</object>
+	</object>
+	<object name="FollowHelpers">
+		<object name="FollowHelperCasual" desc="FollowHelpers list for casual difficulty level">
+			<inherit name="SFollowHelper" />
+		</object>
+		<object name="FollowHelperExperimented" desc="FollowHelpers list for Experimented difficulty level">
+			<inherit name="SFollowHelper" />
+		</object>
+		<object name="FollowHelperHardcore" desc="FollowHelpers list for Hardcore difficulty level">
+			<inherit name="SFollowHelper" />
+		</object>
+		<object name="FollowHelperInfamous" desc="FollowHelpers list for Infamous difficulty level">
+			<inherit name="SFollowHelper" />
+		</object>
+	</object>
+	<object name="ReflexFire">
+		<object name="ReflexFireCasual" desc="ReflexFire list for casual difficulty level">
+			<inherit name="SReflexFireDifficultySettings" />
+		</object>
+		<object name="ReflexFireExperimented" desc="ReflexFire list for Experimented difficulty level">
+			<inherit name="SReflexFireDifficultySettings" />
+		</object>
+		<object name="ReflexFireHardcore" desc="ReflexFire list for Hardcore difficulty level">
+			<inherit name="SReflexFireDifficultySettings" />
+		</object>
+		<object name="ReflexFireInfamous" desc="ReflexFire list for Infamous difficulty level">
+			<inherit name="SReflexFireDifficultySettings" />
+		</object>
+	</object>
+	<object name="MoveInputs">
+		<object name="MoveInputsXbox" desc="Move Inputs for the Xbox pad">
+			<inherit name="SMoveData" />
+		</object>
+		<object name="MoveInputsPS3" desc="MoveInputs for the PS3 pad">
+			<inherit name="SMoveData" />
+		</object>
+	</object>
+	<object name="Interactions">
+		<inherit name="SInteractions" />
+	</object>
+	<object name="ZiplineCommonParams">
+		<inherit name="CZiplineCommonParams" />
+	</object>
+	<field name="fMinVerticalDescendingSpeedToGetOnZipline" type="Float32" />
+	<field name="fMinDelayBeforeAllowReattachOnSameZipline" type="Float32" />
+	<object name="ShowThroughWallParams">
+		<inherit name="CFCXPlayerParamsService::ShowThroughWallParams" />
+	</object>
+	<object name="TakedownFromAboveParams">
+		<inherit name="CFCXPlayerParamsService::TakedownFromAboveParams" />
+	</object>
+	<object name="TakedownFromLedgeParams">
+		<inherit name="CFCXPlayerParamsService::TakedownFromLedgeParams" />
+	</object>
+	<object name="OutOfBoundsParams">
+		<inherit name="CFCXPlayerParamsService::OutOfBoundsParams" />
+	</object>
+	<object name="InteractionPriorities">
+		<inherit name="CFCXPlayerParamsService::InteractionPriorities" />
+	</object>
+	<object name="VehicleChallenge">
+		<inherit name="CFCXPlayerParamsService::VehicleChallengeParams" />
+	</object>
+	<field name="fDistanceHeadToChest" desc="Distance from the the head bone to chest (neck region)" type="Float32" />
+	<field name="fDistanceHeadToAbdomen" desc="Distance from the head bone to the abdomen (chest region)" type="Float32" />
+	<field name="arkWingsuitArchetype" type="Id64" />
+	<object name="HeadLightParam">
+		<inherit name="CFCXPlayerParamsService::HeadLightParams" />
+	</object>
+	<object name="Vaulting">
+		<field name="bCanVaultWhenCrouched" type="Boolean" />
+		<field name="bCanVaultWhenStanding" type="Boolean" />
+	</object>
+</class>

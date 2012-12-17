@@ -1,0 +1,15 @@
+<class name="CFCXPlayerParamsService::TakedownFromAboveParams">
+	<inherit name="#11E152C8" />
+	<field name="fTakedownAboveMaxDiffHorizontalDistance" desc="Max diff horizontal distance from 1st TDA target to 2nd target to allow a double" type="Float32" />
+	<field name="fTakedownAboveMaxDiffVerticalDistance" desc="Max diff vertical distance from 1st TDA target to 2nd target to allow a double" type="Float32" />
+	<field name="fTakedownAboveMinHeightAboveEnemyHead" desc="If your feet are any closer to the enemies head then it will not be allow the takedown to trigger" type="Float32" />
+	<field name="fTakedownAboveMaxHorizDistance" desc="Enemies further than this will not be considered" type="Float32" />
+	<field name="fTakedownAboveMaxDistToEnemy" desc="This is the final straight line distance check (feet to head) to determine validity of the target" type="Float32" />
+	<field name="fTakedownAboveOuterDistance" desc="This is the distance passed for the first test that finds all visible entities. Must be about 2 meters larger than the other distances" type="Float32" />
+	<field name="fTakedownAboveDetectionFOV" desc="Fov from the player?s view for detecting enemies" type="Float32" />
+	<field name="fTakedownAboveMinDownSpeed" desc="You must be travelling at this many m/s downwards (only considers the vertical speed)" type="Float32" />
+	<field name="fTakedownAbovePromptMaxHorizDistance" desc="Max horiz distance to target for prompt to appear." type="Float32" />
+	<field name="fTakedownAbovePromptMinHeightAboveHead" desc="Min height above NPC's head for prompt validity. Can be -ive." type="Float32" />
+	<field name="fTakedownAbovePromptMaxHeightAboveHead" desc="Max height above NPC's head for prompt validity." type="Float32" />
+	<field name="fTakedownAbovePromptFOV" desc="FOV for considering valid targets for the prompt." type="Float32" />
+</class>

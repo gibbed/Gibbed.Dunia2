@@ -1,0 +1,5 @@
+<class name="SUnlocksOnMissionComplete">
+	<inherit name="#11E152C8" />
+	<field name="sCraftingMenu" desc="The crafting menu will be unlocked during or after this mission." type="String" />
+	<field name="sSkillsMenu" desc="The skills menu will be unlocked during or after this mission." type="String" />
+</class>

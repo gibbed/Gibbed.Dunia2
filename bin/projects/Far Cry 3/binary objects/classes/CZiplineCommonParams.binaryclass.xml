@@ -1,0 +1,27 @@
+<class name="CZiplineCommonParams">
+	<inherit name="CNomadObject" />
+	<field name="fRadiusSize" desc="Rope radius (in meters)" type="Float32" />
+	<field name="iNbVerticesForCircumference" desc="Number of vertices to render circumference of rope. Higher = smoother rope, but less performance" type="Int32" />
+	<field name="fNbPointsPerMeterForRender" desc="Number of points per meter for rope render. Higher = smoother rope, but less performance" type="Float32" />
+	<field name="fNbPointsPerMeterForPhysics" desc="Number of points per meter for rope physics. Higher = smoother rope, but less performance" type="Float32" />
+	<field name="iNbPointsMinimum" desc="Number of points minimum" type="Int32" />
+	<field name="fGetInDistance" desc="Distance at which the user will get on the zipline at the start (slight offset)" type="Float32" />
+	<field name="fGetOnFrontSpeedToAdd" desc="Front speed to add to the pawn when getting on the zipline" type="Float32" />
+	<field name="fGetOutTimeWndow" desc="User will bail automatically when he is that close (in seconds) to hitting a get out point on the zipline" type="Float32" />
+	<field name="fMinTimeForGetOutPoint" desc="If on zipline for at least this long, get out points are enabled" type="Float32" />
+	<field name="fMinSpeedForGetOutPoint" desc="If going at least this fast on zipline, get out points are enabled" type="Float32" />
+	<field name="vectorPawnOffsetOnHook" desc="Desired offset of pawn on the hook" type="Vector3" />
+	<field name="fUsableFOV" desc="FOV to detect if pawn can use rope" type="Float32" />
+	<field name="bUsable" desc="Enabled or not" type="Boolean" />
+	<field name="fUsableMaxDistance" desc="Max distance to detect if pawn can use rope" type="Float32" />
+	<field name="fRopeDetectionStepSize" desc="To determine if pawn is looking at rope, step size for different points we sample" type="Float32" />
+	<field name="iRopeDetectionNbPoints" desc="To determine if pawn is looking at rope, number of points to sample on each side" type="Int32" />
+	<field name="fGetOutMaxPawnSpeed" type="Float32" />
+	<field name="fGetOutPawnSpeedMultiplier" type="Float32" />
+	<field name="fMinLengthOfUnuseableRopeAtEnd" type="Float32" />
+	<field name="fGetOutMinHeight" desc="Min height the pawn can get out of the zipline" type="Float32" />
+	<field name="bCanGetOutWhenNotSafe" desc="Can the pawn get out whenever he wants?" type="Boolean" />
+	<object name="PhysParams">
+		<inherit name="CPhysZiplineCreateParams" />
+	</object>
+</class>

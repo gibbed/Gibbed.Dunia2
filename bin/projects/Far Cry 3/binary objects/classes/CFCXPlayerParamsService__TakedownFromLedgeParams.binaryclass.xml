@@ -1,0 +1,10 @@
+<class name="CFCXPlayerParamsService::TakedownFromLedgeParams">
+	<inherit name="#11E152C8" />
+	<field name="fTakedownLedgeMaxHorizontalDistanceFromContactPoint" type="Float32" />
+	<field name="fTakedownLedgeMaxVerticalDistanceFromContactPoint" type="Float32" />
+	<field name="fTakedownLedgeMaxDiffHorizontalDistanceForDouble" type="Float32" />
+	<field name="fTakedownLedgeMaxDiffVerticalDistanceForDouble" type="Float32" />
+	<field name="fTakedownLedgeFOV" type="Float32" />
+	<field name="fTakedownLedgeHorizontalOffset" type="Float32" />
+	<field name="fTakedownWaterPullBackDistance" type="Float32" />
+</class>

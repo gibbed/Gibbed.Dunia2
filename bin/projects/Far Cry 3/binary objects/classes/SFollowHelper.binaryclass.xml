@@ -1,0 +1,26 @@
+<class name="SFollowHelper">
+	<inherit name="#11E152C8" />
+	<field name="fInnerBillboardX" desc="x dist either side of the inner billboard pos." type="Float32" />
+	<field name="fIinnerBillboardYAbove" desc="y dist above the inner billboard pos." type="Float32" />
+	<field name="fInnerBillboardYBelow" desc="y dist below the inner billboard pos." type="Float32" />
+	<field name="fOuterBillboardX" desc="x dist either side of the outer billboard pos." type="Float32" />
+	<field name="fOuterBillboardYAbove" desc="y dist above the outer billboard pos." type="Float32" />
+	<field name="fOuterBillboardYBelow" desc="y dist below the outer billboard pos." type="Float32" />
+	<field name="fMinDistForInfluence" desc="Minimum distance to enemy for influence to be applied." type="Float32" />
+	<field name="fMinDistForMaxInfluence" desc="Minimum distance to enemy for max influence to be applied." type="Float32" />
+	<field name="fMaxDistForMaxInfluence" desc="Maximum distance to enemy for max influence to be applied." type="Float32" />
+	<field name="fMaxDistForInfluence" desc="Maximum distance to enemy for min influence to be applied." type="Float32" />
+	<field name="fDistanceFactorDamping" desc="Damping factor based on distance. Increase to soften." type="Float32" />
+	<field name="fMaxYawIntensity" desc="Amount of assist to apply to the yaw." type="Float32" />
+	<field name="fMaxPitchIntensity" desc="Amount of assist to apply to the pitch." type="Float32" />
+	<field name="fInfluenceDamping" desc="Damping applied to the overall influence. 0 = none, Increase to take longer to blend to the max." type="Float32" />
+	<field name="fSprintFactor" desc="Multiplier on how much follow is applied when sprinting." type="Float32" />
+	<field name="bUseRightStickAssist" desc="Use the right stick assistance." type="Boolean" />
+	<field name="fMaxDistForRightStickAssist" desc="Max dist to enemy for right stick assist." type="Float32" />
+	<field name="fYawRightStickAssist" desc="Yaw intensity for right stick assist." type="Float32" />
+	<field name="fPitchRightStickAssist" desc="Pitch intensity for right stick assist." type="Float32" />
+	<field name="fCamRotMod" desc="How much to dampen camera rotation compared to relative angle changes." type="Float32" />
+	<field name="fCamRotModOuter" desc="How much to dampen camera rotation compared to relative angle changes in outer billboard." type="Float32" />
+	<field name="fTowardCentreMod" desc="How much to dampen rotations that would move crosshair closer to enemy center." type="Float32" />
+	<field name="fCamRotBlendRate" desc="Rate at which the camRot values blend as they change. Time = 1/blendRate." type="Float32" />
+</class>

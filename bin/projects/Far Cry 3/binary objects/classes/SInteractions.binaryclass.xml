@@ -1,0 +1,24 @@
+<class name="SInteractions">
+	<inherit name="#11E152C8" />
+	<field name="fLadderInteractAngle" type="Float32" />
+	<field name="fLadderUseAngleMaxDif" type="Float32" />
+	<field name="fLadderUseMaxDist" type="Float32" />
+	<field name="fLadderInteractBlockingDistance" desc="Distance from the ladder of the interact volumes." type="Float32" />
+	<field name="ladderInteractVolume" desc="Volume in front of ladder controlling interactions. If anything else is within the volume the ladder will not be usable." type="Vector3" />
+	<field name="ladderFootBlockingVolume" desc="Volume below the player that tests if the step you are climbing down to has something obstructing it." type="Vector3" />
+	<field name="fTacticComboTime" desc="Max time to press both tactic buttons" type="Float32" />
+	<field name="fUseInteractAngle" desc="Angle to consider use interactions." type="Float32" />
+	<field name="fClimbAngle" desc="Angle to consider climbing interactions." type="Float32" />
+	<field name="fClimbDistance" desc="Distance player must be within to climb." type="Float32" />
+	<field name="fJumpClimbPitch" desc="When jumping the maximum pitch angle in degrees the player must be within to climg onto a ledge." type="Float32" />
+	<field name="arkClimbArchetype" desc="Name of the ledge archetype to create when unbaking climbable objects" type="Id64" />
+	<field name="fLootInteractOverrideDistance" desc="The extra distance check for looting corpses. Will be ignored if 0 or larger than the current use interact box." type="Float32" />
+	<field name="fLootStandingDistance" desc="the distance the player will be from the body when looting it." type="Float32" />
+	<field name="fLootPitchFOV" desc="the pitch the target must be within from the camera angle to be lootable." type="Float32" />
+	<field name="fUse_boxcheck_x" desc="Extra distance on x for bounding box check." type="Float32" />
+	<field name="fUse_boxcheck_y" desc="Extra distance on y for bounding box check." type="Float32" />
+	<field name="fUse_boxcheck_z" desc="Extra distance on z for bounding box check." type="Float32" />
+	<field name="fUse_boxcheck_z_bottom_offset" desc="Extra distance on z for bounding box check." type="Float32" />
+	<field name="fUse_boxcheck_triggers_front" desc="Extra distance on y for bounding box check." type="Float32" />
+	<field name="fUse_sphere_radius" desc="Check for triggers." type="Float32" />
+</class>

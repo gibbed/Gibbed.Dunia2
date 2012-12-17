@@ -1,0 +1,11 @@
+<class name="CFCXPlayerParamsService::ShowThroughWallParams">
+	<inherit name="#11E152C8" />
+	<field name="fFadeSmoothFactor" type="Float32" />
+	<field name="fObscuredPercentage" desc="Enable show through walls effects, if character being covered larger than this value" type="Float32" />
+	<field name="fFadeSpeed" desc="Show through walls effect fade in/out speed" type="Float32" />
+	<field name="colorCharacterOutlineColor" type="Vector3" />
+	<object name="curveLineThinessCurve">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="bUseLineThinessCurve" type="Boolean" />
+</class>

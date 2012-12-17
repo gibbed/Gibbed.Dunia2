@@ -1,0 +1,10 @@
+<class name="CFCXPlayerParamsService::OutOfBoundsParams">
+	<inherit name="#11E152C8" />
+	<field name="fOutOfBoundsFadeOutTime" desc="Duration of fade out" type="Float32" />
+	<field name="fOutOfBoundsBlackScreenTime" desc="Duration of black screen after fade out" type="Float32" />
+	<field name="fOutOfBoundsFadeInTime" desc="Duration of fade in after black screen" type="Float32" />
+	<field name="fOutOfBoundsDisableInputTime" desc="Elapsed time after start of fade out to disable inputs" type="Float32" />
+	<field name="fOutOfBoundsEnableInputTime" desc="Elapsed time after start of fade in to enable inputs" type="Float32" />
+	<field name="fOutOfBoundsMaxWarningTime" desc="Max elapsed time in warning zone before force teleporting back" type="Float32" />
+	<field name="DisableGatingOnMissionComplete" desc="Once this mission is completed, conditional gating is disabled automatically" type="String" />
+</class>

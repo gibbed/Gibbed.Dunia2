@@ -1,0 +1,12 @@
+<class name="SMoveData">
+	<inherit name="#11E152C8" />
+	<field name="fStickXAxisAccelFactor" desc="The blend on the x axis when the stick difference is at the maximum." type="Float32" />
+	<field name="fStickYAxisAccelFactor" desc="The blend on the y axis when the stick difference is at the maximum." type="Float32" />
+	<field name="fStickXAxisDecelFactor" desc="The blend on the x axis when the stick difference is at the maximum." type="Float32" />
+	<field name="fStickYAxisDecelFactor" desc="The blend on the y axis when the stick difference is at the maximum." type="Float32" />
+	<field name="fStickXAxisAccelFactorIronSight" desc="The blend on the y axis when the stick difference is at the maximum." type="Float32" />
+	<field name="fStickYAxisAccelFactorIronSight" desc="The blend on the y axis when the stick difference is at the maximum." type="Float32" />
+	<field name="fStickXAxisDecelFactorIronSight" desc="The blend on the y axis when the stick difference is at the maximum." type="Float32" />
+	<field name="fStickYAxisDecelFactorIronSight" desc="The blend on the y axis when the stick difference is at the maximum." type="Float32" />
+	<field name="bEnableIronsightAccel" desc="Flag to remove acceleration in ironsight" type="Boolean" />
+</class>

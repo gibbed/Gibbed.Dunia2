@@ -1,0 +1,17 @@
+<class name="CFCXPlayerParamsService::InteractionPriorities">
+	<inherit name="#11E152C8" />
+	<field name="iHealPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iUsePriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iTakedownPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iLedgeTakedownPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iAboveTakedownPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iClimbPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iLootPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iGliderPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iWingsuitPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iParachutePriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iZiplinePriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iZiplineDetachPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iBoxCarryPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+	<field name="iBuddyBoostPriority" desc="Highest priority gets precedence over others for display in HUD" type="UInt8" />
+</class>

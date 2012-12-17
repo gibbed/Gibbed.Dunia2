@@ -1,0 +1,19 @@
+<class name="CPhysZiplineCreateParams">
+	<inherit name="CNomadObject" />
+	<field name="fParallelVelocityConservation" type="Float32" />
+	<field name="fPerpendicularVelocityConservation" type="Float32" />
+	<field name="fMinParallelSpeedOnAttach" type="Float32" />
+	<field name="fMinPerpendicularSpeedOnAttach" type="Float32" />
+	<field name="fMaxPerpendicularSpeed" type="Float32" />
+	<field name="fPerpendicularVelocityLossPerSecond" type="Float32" />
+	<field name="fMinPerpendicularSpeedToDecel" type="Float32" />
+	<field name="fHookMass" type="Float32" />
+	<field name="vectorHookCenterOfMass" type="Vector3" />
+	<field name="fMaxParallelAccelFromInput" type="Float32" />
+	<field name="fMaxPerpendicularAccelFromInput" type="Float32" />
+	<field name="fMinParallelSpeedFromInput" type="Float32" />
+	<field name="fMaxParallelSpeedFromInput" type="Float32" />
+	<field name="fMinPerpendicularSpeedFromInput" type="Float32" />
+	<field name="fMaxPerpendicularSpeedFromInput" type="Float32" />
+	<field name="bCanAccelerateUpwards" type="Boolean" />
+</class>

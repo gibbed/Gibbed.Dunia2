@@ -1,0 +1,30 @@
+<class name="SEnemyAimingHelper">
+	<inherit name="#11E152C8" />
+	<field name="fCylinderRadius" desc="The base radius of the cylinder." type="Float32" />
+	<field name="fCylinderRadiusFactor" desc="Factor applied to scale the radius over distance" type="Float32" />
+	<field name="fCylinderHeight" desc="The base height of the cylinder." type="Float32" />
+	<field name="fCylinderHeightFactor" desc="Factor applied to scale the height over distance" type="Float32" />
+	<field name="fCoverCylinderRadiusMultiplier" desc="Multiplier Applied to Cylinder Radius Aiming Parameter when player is in cover" type="Float32" />
+	<field name="fCoverCylinderHeightMultiplier" desc="Multiplier Applied to Cylinder Height Aiming Parameter when player is in cover" type="Float32" />
+	<field name="fMinDistanceForProximityOverride" desc="Enemies closer to the player but further from the screen center will only be considered if this far apart from the current closest target to the screen center." type="Float32" />
+	<field name="fMinDistanceForAnimalProximityOverride" desc="Animals closer to the player but further from the screen center will only be considered if this far apart from the current closest target to the screen center." type="Float32" />
+	<field name="fAnimalCylinderRadiusMultiplier" desc="Multiplier Applied to Cylinder Radius Aiming Parameter when aiming at an animal" type="Float32" />
+	<field name="fAnimalCylinderHeightMultiplier" desc="Multiplier Applied to Cylinder Height Aiming Parameter when aiming at an animal" type="Float32" />
+	<field name="fLockOnFollowTime" desc="Lock On Follow Time" type="Float32" />
+	<field name="fLockOnFadeOutTime" desc="Lock On Fade Time" type="Float32" />
+	<field name="fLockOnStickRemovalBlendTime" desc="Time after being locked on that the stick will be restored. Should ideally be larger than fadeouttime. Only triggered if fadeouttime is set, and is there to prevent jittery caused by fighting between two systems." type="Float32" />
+	<field name="fLockOnHeadRadius" desc="Distance from head bone that you mus tbe looking to snap onto the head." type="Float32" />
+	<field name="fLockOnRadiusFactor" desc="The lock on radius is scaled by this amount, so that you will no longer be locked on if you move beyond the zone." type="Float32" />
+	<field name="fLockOnHeightFactor" desc="The lock on cylinder height is scaled by this amount, so that you will no longer be locked on if you move beyond the zone." type="Float32" />
+	<field name="fLockOnMinDistanceBelowHead" desc="The minimum distance below the head that ironsight will snap to." type="Float32" />
+	<field name="fLockOnMinDistanceAboveTorso" desc="The minimum distance above the torso that ironsight will snap to." type="Float32" />
+	<field name="fLockOnMaxVariation" desc="Max distance reticle will be from target after variation is applied." type="Float32" />
+	<object name="CoverAimingHelpers">
+		<field name="fCoverMaxVariationMultiplier" desc="Cover specific Mutliplier :: Max distance reticule will be from target after variation is applied." type="Float32" />
+		<field name="fCoverInaccuracyDistanceMultiplier" desc="Cover specific Mutliplier :: The range at which aiming is at the maximum variation and least precise." type="Float32" />
+	</object>
+	<field name="fShootCorrectionHelperStrengthMultiplier" desc="Multiplier on shoot correction strength." type="Float32" />
+	<field name="fShootCorrectionHelperCylinderMultiplier" desc="Multiplier on shoot correction cylinder radius." type="Float32" />
+	<field name="fShootCorrectionHelperAnimalVerticalStrength" desc="Multiplier on shoot correction vertical strength for animals." type="Float32" />
+	<field name="fShootCorrectionHelperPawnVerticalStrength" desc="Multiplier on shoot correction vertical strength for pawns." type="Float32" />
+</class>

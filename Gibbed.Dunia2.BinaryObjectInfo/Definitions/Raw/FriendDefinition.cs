@@ -40,7 +40,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Raw
         [XmlAttribute("condition_value")]
         public string ConditionValue { get; set; }
 
-        [XmlAttribute("type")]
+        [XmlAttribute("condition_type")]
         public FieldType ConditionType { get; set; }
     }
 }

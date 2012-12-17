@@ -1,0 +1,5 @@
+<class name="CRecipeGearEffect">
+	<inherit name="CRecipeEffect" />
+	<field name="text_bonusPlan" type="String" />
+	<field name="bonusPlan" desc="Name of bonus plan" type="Hash32" />
+</class>

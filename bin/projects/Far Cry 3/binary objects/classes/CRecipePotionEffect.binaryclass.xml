@@ -1,0 +1,13 @@
+<class name="CRecipePotionEffect">
+	<inherit name="CRecipeEffect" />
+	<object name="BonusPlans">
+		<object name="BonusPlanEntry">
+			<field name="text_BonusPlan" type="String" />
+			<field name="BonusPlan" type="Hash32" />
+		</object>
+	</object>
+	<field name="fDuration" desc="Duration of this effect. If 0 then lasts forever or ignored." type="Float32" />
+	<field name="EffectEnabledPostFX" type="String" />
+	<field name="EffectDisabledPostFX" type="String" />
+	<field name="fTimeRemaining" type="Float32" />
+</class>

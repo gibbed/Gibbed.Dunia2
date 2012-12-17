@@ -24,8 +24,8 @@
 	<field name="CurrentLevelIndex" />
 	<field name="bHasBeenPromptedOfUsability" type="Boolean" />
 	<field name="NameLocId" />
-	<object name="PotionArchetypes">
-		<field name="arkPotionArchetype" />
-	</object>
+	<!--<object name="PotionArchetypes">-->
+		<field name="arkPotionArchetype" type="Id64" />
+	<!--</object>-->
 	<field name="bCraftedAtLeastOnce" type="Boolean" />
 </class>

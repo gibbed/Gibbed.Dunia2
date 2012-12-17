@@ -1,0 +1,5 @@
+<class name="CRecipeMedkitEffect">
+	<inherit name="CRecipeEffect" />
+	<field name="medkitLevel" desc="Number of health bar block(s) the player will get by using the medkit." type="Int32" />
+	<field name="iNumSpecialHealthSlots" desc="Number of extra (special) health slots to add." type="Int32" />
+</class>

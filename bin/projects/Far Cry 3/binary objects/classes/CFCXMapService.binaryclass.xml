@@ -1,0 +1,3 @@
+<class name="CFCXMapService">
+	<inherit name="CMapService" />
+</class>

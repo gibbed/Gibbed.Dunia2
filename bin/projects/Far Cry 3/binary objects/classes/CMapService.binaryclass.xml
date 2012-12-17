@@ -1,0 +1,49 @@
+<class name="CMapService">
+	<object name="Maps">
+		<object name="Map">
+			<field name="sName" type="String" />
+			<field name="sBfName" type="String" />
+			<field name="sLocalizationKey" type="String" />
+			<field name="sPresenceId" type="Hash32" />
+			<field name="sScreenShotPath" type="String" />
+			<field name="selMapType" type="Enum">
+				<enum name="enumMapType">
+					<element name="Invalid">0</element>
+					<element name="Retail">1</element>
+					<element name="Custom">2</element>
+					<element name="DLC">3</element>
+					<element name="Template">4</element>
+					<element name="PlaylistTier">5</element>
+				</enum>
+			</field>
+			<field name="selBattleFiledSize" type="Enum">
+				<enum name="enumBattleFiledSize">
+					<element name="Small">0</element>
+					<element name="Medium">1</element>
+					<element name="Large">2</element>
+					<element name="Extra Large">3</element>
+					<element name="Template">4</element>
+				</enum>
+			</field>
+			<object name="SupportedGameModes">
+				<object name="GameMode">
+					<field name="selGameMode" type="Enum">
+						<enum name="enumGameMode">
+							<element name="Invalid">0</element>
+						</enum>
+					</field>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object name="DefaultMaps">
+		<object name="Map">
+			<field name="selGameMode" type="Enum">
+				<enum name="enumGameMode">
+					<element name="Invalid">0</element>
+				</enum>
+			</field>
+			<field name="sWorldName" type="String" />
+		</object>
+	</object>
+</class>

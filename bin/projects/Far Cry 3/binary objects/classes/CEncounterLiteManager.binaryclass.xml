@@ -1,0 +1,3 @@
+<class name="CEncounterLiteManager">
+	<inherit name="CEncounterMarkerManager" />
+</class>

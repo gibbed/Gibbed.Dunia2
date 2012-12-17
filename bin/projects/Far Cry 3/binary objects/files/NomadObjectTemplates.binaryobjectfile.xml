@@ -10,6 +10,9 @@
 				<inherit name="CFCXMapService"
 				         condition_field="^Name"
 				         condition_value="MapService" condition_type="String" />
+				<inherit name="CFCXEncounterService"
+				         condition_field="^Name"
+				         condition_value="EncounterService" condition_type="String" />
 			</object>
 		</object>
 	</object>

@@ -1,0 +1,10 @@
+<class name="SSpawnSettings">
+	<inherit name="CNomadDbObjectNamed" />
+	<field name="fSpawnDistanceMin" type="Float32" />
+	<field name="fSpawnDistanceMax" type="Float32" />
+	<field name="fSpawnAngle" type="Float32" />
+	<field name="fTimeBetweenSpawns" type="Float32" />
+	<field name="fTimeBetweenSpawnRandomOffset" type="Float32" />
+	<field name="fEncounterSeparationDistance" type="Float32" />
+	<field name="fWildlifeSeparationDistance" type="Float32" />
+</class>

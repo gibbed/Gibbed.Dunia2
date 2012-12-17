@@ -1,0 +1,6 @@
+<class name="CEncounterManager">
+	<inherit name="CNomadObject" />
+	<field name="fBudget" type="Float32" />
+	<field name="nMaxPrefabToSpawn" type="Int32" />
+	<field name="fConsideredSeenDistance" type="Float32" />
+</class>

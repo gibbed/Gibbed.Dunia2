@@ -1,0 +1,89 @@
+<class name="CFCXEncounterService">
+	<inherit name="CEncounterService" />
+	<object name="AnimalSpeciesCooldowns">
+		<object name="SpeciesCooldowns">
+			<field name="selAnimalSpecies" type="Enum">
+				<enum name="enumAnimalSpecies">
+					<element name="Unset">-1</element>
+					<element name="Goat">0</element>
+					<element name="Crocodile">1</element>
+					<element name="Dog">2</element>
+					<element name="Shark">3</element>
+					<element name="KomodoDragon">4</element>
+					<element name="Deer">5</element>
+					<element name="Pig">6</element>
+					
+					<element name="FishSwarm">9</element>
+					<element name="RiverFish">10</element>
+					<element name="Chicken">11</element>
+					<element name="Rat">12</element>
+					<element name="Lizard">13</element>
+					<element name="Thylacine">14</element>
+					<element name="Cassowary">15</element>
+					<element name="GTortoise">16</element>
+					<element name="AsianTapir">17</element>
+					<element name="BullShark">18</element>
+					<element name="SeaTurtle">19</element>
+					<element name="RabidDog">20</element>
+					<element name="Hyena">21</element>
+					<element name="Leopard">22</element>
+					<element name="Snake">23</element>
+					<element name="MorayEel">24</element>
+					<element name="Spider">25</element>
+					<element name="Bats">26</element>
+					<element name="AntHill">27</element>
+					<element name="BeeHive">28</element>
+					<element name="BigWhiteShark">29</element>
+					<element name="BlackEagle">30</element>
+					<element name="Crow">31</element>
+					<element name="Vulture">32</element>
+					<element name="JellyFish">33</element>
+					<element name="Perch">34</element>
+					<element name="Crab">35</element>
+					<element name="MantaRay">36</element>
+					<element name="Buffalo">37</element>
+					<element name="Macaque">38</element>
+					<element name="AsianBlackBear">39</element>
+					<element name="AsianBlackBearScale">40</element>
+					<element name="SumatranTiger">41</element>
+					<element name="PolynesianWolf">42</element>
+					<element name="AsianBlackBearHuge">43</element>
+					<element name="Boar">44</element>
+				</enum>
+			</field>
+			<field name="fCooldownTime" type="Float32" />
+		</object>
+	</object>
+	<object name="EncounterPredators">
+		<object name="Predators">
+			<field name="pfabPrefab" />
+			<field name="fSpawnDistanceFromEncounter" type="Float32" />
+			<field name="fSpawnProbability" type="Float32" />
+		</object>
+	</object>
+	<field name="fOverflowBudget" type="Float32" />
+	<field name="fQuestBudgetReserve" type="Float32" />
+	<field name="fTimeTillReactivationAfterMissionFinished" type="Float32" />
+	<field name="fMinTimeTillReactivationAfterOutpostComplete" type="Float32" />
+	<field name="fMaxTimeTillReactivationAfterOutpostComplete" type="Float32" />
+	<field name="nMaxNumDeadNPCsToCount" type="Int32" />
+	<field name="fHeightAboveTerrainToBeAirborne" type="Float32" />
+	<object name="Preload">
+		<inherit name="CEncounterPreload" />
+	</object>
+	<object name="AmbientEncounters">
+		<inherit name="CEncounterAmbientManager" />
+	</object>
+	<object name="LiteEncounters">
+		<inherit name="CEncounterLiteManager" />
+	</object>
+	<object name="StagedEncounters">
+		<inherit name="CEncounterStagedManager" />
+	</object>
+	<object name="WildlifeEncounters">
+		<inherit name="CEncounterWildlifeManager" />
+	</object>
+	<object name="VehicleEncounters">
+		<inherit name="CEncounterVehicleManager" />
+	</object>
+</class>

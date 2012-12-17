@@ -1,0 +1,9 @@
+<class name="CEncounterAmbientManager">
+	<inherit name="CEncounterManager" />
+	<field name="fMinSpawnDistanceToRoadEnd" type="Float32" />
+	<field name="fMinSpawnDistanceToRiverEnd" type="Float32" />
+	<field name="fMinSpawnDistanceToPathEnd" type="Float32" />
+	<field name="fTimeUntil360Spawning" type="Float32" />
+	<field name="fIntervalTimeMultiplierWhen360Spawning" type="Float32" />
+	<field name="fMinSplineRadiusForSpawn" type="Float32" />
+</class>

@@ -1,0 +1,16 @@
+<class name="CEncounterVehicleManager">
+	<inherit name="CEncounterManager" />
+	<object name="SpawnSettings">
+		<inherit name="SSpawnSettings" />
+	</object>
+	<object name="GenericLandVehiclePrefabs">
+		<object name="Prefab">
+			<field name="pfabItems" />
+		</object>
+	</object>
+	<object name="GenericWaterVehiclePrefabs">
+		<object name="Prefab">
+			<field name="pfabItems" />
+		</object>
+	</object>
+</class>

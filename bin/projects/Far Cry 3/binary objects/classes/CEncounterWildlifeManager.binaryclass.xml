@@ -1,0 +1,8 @@
+<class name="CEncounterWildlifeManager">
+	<inherit name="CEncounterManager" />
+	<field name="fMinSpawnDistanceToRoad" type="Float32" />
+	<field name="fTimeBetweenPredatorSpawns" type="Float32" />
+	<field name="fMinPredatorSpawnDistanceFromPrey" type="Float32" />
+	<field name="fMaxPredatorSpawnDistanceFromPrey" type="Float32" />
+	<field name="pfabFishBoidPrefab" />
+</class>

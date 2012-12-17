@@ -1,0 +1,33 @@
+<class name="CEncounterPreload">
+	<inherit name="CNomadObject" />
+	<object name="ArchetypeCosts">
+		<object name="ArchetypeCost">
+			<field name="hidArchetypeID" type="Id64" />
+			<field name="hidBaseArchetypeID" type="Id64" />
+			<field name="hidRamCost" type="UInt32" />
+		</object>
+	</object>
+	<object name="AnimationCosts">
+		<object name="AnimationCost">
+			<field name="hidAnimationCRC" type="Hash64" />
+			<field name="hidRamCost" type="UInt32" />
+		</object>
+	</object>
+	<object name="VRamCosts">
+		<object name="VRamCost">
+			<field name="hidArchetypeID" type="Id64" />
+			<field name="hidBaseArchetypeID" type="Id64" />
+			<field name="hidRamCost" type="UInt32" />
+		</object>
+	</object>
+	<object name="SoundCosts">
+		<object name="SoundCost">
+			<field name="hidArchetypeID" type="Id64" />
+			<field name="hidBaseArchetypeID" type="Id64" />
+			<field name="hidRamCost" type="UInt32" />
+		</object>
+	</object>
+	<field name="fMaxPreloadTime" type="Float32" />
+	<field name="fMaxRequestTime" type="Float32" />
+	<field name="fProbabilityToPreloadHighPriority" type="Float32" />
+</class>

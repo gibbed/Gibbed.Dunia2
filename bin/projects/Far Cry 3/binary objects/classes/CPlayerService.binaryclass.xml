@@ -1,0 +1,6 @@
+<class name="CPlayerService">
+	<inherit name="IPlayerService" />
+	<object name="PawnFactory">
+		<inherit name="CPlayerPawnFactory" />
+	</object>
+</class>

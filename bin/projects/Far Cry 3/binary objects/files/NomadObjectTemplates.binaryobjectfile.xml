@@ -7,12 +7,18 @@
 				<inherit name="CFCXPlayerAbilitiesService"
 				         condition_field="^Name"
 				         condition_value="AbilityService" condition_type="String" />
-				<inherit name="CFCXMapService"
-				         condition_field="^Name"
-				         condition_value="MapService" condition_type="String" />
 				<inherit name="CFCXEncounterService"
 				         condition_field="^Name"
 				         condition_value="EncounterService" condition_type="String" />
+				<inherit name="CFCXMapService"
+				         condition_field="^Name"
+				         condition_value="MapService" condition_type="String" />
+				<inherit name="CFCXPlayerService"
+				         condition_field="^Name"
+				         condition_value="PlayerService" condition_type="String" />
+				<inherit name="CSocialNetworkingService"
+				         condition_field="^Name"
+				         condition_value="SocialNetworkingService" condition_type="String" />
 			</object>
 		</object>
 	</object>

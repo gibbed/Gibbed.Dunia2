@@ -1,0 +1,8 @@
+<class name="CPlayerPawnFactory">
+	<inherit name="#11E152C8" />
+	<object name="SpawnInfos">
+		<object name="SpawnInfo">
+			<field name="arkPawnArchetypeName" type="Id64" />
+		</object>
+	</object>
+</class>

@@ -286,6 +286,11 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 {
                     Exporting.MultiExportLibrary(objectFileDef, basePath, outputPath, infoManager, bof);
                 }
+                else if (useMultiExporting == true &&
+                         Exporting.IsSuitableForNomadObjectTemplatesMultiExport(bof) == true)
+                {
+                    Exporting.MultiExportNomadObjectTemplates(objectFileDef, basePath, outputPath, infoManager, bof);
+                }
                 else
                 {
                     Exporting.Export(objectFileDef, outputPath, infoManager, bof);

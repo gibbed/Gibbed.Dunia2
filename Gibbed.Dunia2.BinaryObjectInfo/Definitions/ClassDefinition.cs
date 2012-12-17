@@ -21,6 +21,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -39,12 +40,12 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
         public string ClassFieldName { get; internal set; }
         public uint? ClassFieldHash { get; internal set; }
 
-        public FieldDefinition GetFieldDefinition(string name, FileFormats.BinaryObject conditionNode)
+        public FieldDefinition GetFieldDefinition(string name, IEnumerable<FileFormats.BinaryObject> chain)
         {
-            return this.GetFieldDefinition(FileFormats.CRC32.Hash(name), conditionNode);
+            return this.GetFieldDefinition(FileFormats.CRC32.Hash(name), chain);
         }
 
-        public FieldDefinition GetFieldDefinition(uint hash, FileFormats.BinaryObject conditionNode)
+        public FieldDefinition GetFieldDefinition(uint hash, IEnumerable<FileFormats.BinaryObject> chain)
         {
             var def = this.Fields.FirstOrDefault(fd => fd.Hash == hash);
             if (def != null)
@@ -56,15 +57,14 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
             {
                 if (string.IsNullOrEmpty(friend.ConditionField) == false)
                 {
-                    if (conditionNode == null)
+                    if (chain == null)
                     {
                         throw new NotSupportedException();
                     }
 
                     byte[] fieldData;
-                    var hasConditionValue = GetFieldData(friend.ConditionField, conditionNode, out fieldData);
-
-                    if (hasConditionValue == false)
+                    var hasFieldData = GetFieldData(friend.ConditionField, chain, out fieldData);
+                    if (hasFieldData == false)
                     {
                         continue;
                     }
@@ -76,7 +76,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
                     }
                 }
 
-                def = friend.Class.GetFieldDefinition(hash, conditionNode);
+                def = friend.Class.GetFieldDefinition(hash, chain);
                 if (def != null)
                 {
                     return def;
@@ -86,12 +86,12 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
             return null;
         }
 
-        public ClassDefinition GetObjectDefinition(string name, FileFormats.BinaryObject conditionNode)
+        public ClassDefinition GetObjectDefinition(string name, IEnumerable<FileFormats.BinaryObject> chain)
         {
-            return this.GetObjectDefinition(FileFormats.CRC32.Hash(name), conditionNode);
+            return this.GetObjectDefinition(FileFormats.CRC32.Hash(name), chain);
         }
 
-        public ClassDefinition GetObjectDefinition(uint hash, FileFormats.BinaryObject conditionNode)
+        public ClassDefinition GetObjectDefinition(uint hash, IEnumerable<FileFormats.BinaryObject> chain)
         {
             var def = this.Objects.FirstOrDefault(fd => fd.Hash == hash);
             if (def != null)
@@ -103,15 +103,14 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
             {
                 if (string.IsNullOrEmpty(friend.ConditionField) == false)
                 {
-                    if (conditionNode == null)
+                    if (chain == null)
                     {
                         throw new NotSupportedException();
                     }
 
                     byte[] fieldData;
-                    var hasConditionValue = GetFieldData(friend.ConditionField, conditionNode, out fieldData);
-
-                    if (hasConditionValue == false)
+                    var hasFieldData = GetFieldData(friend.ConditionField, chain, out fieldData);
+                    if (hasFieldData == false)
                     {
                         continue;
                     }
@@ -123,7 +122,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
                     }
                 }
 
-                def = friend.Class.GetObjectDefinition(hash, conditionNode);
+                def = friend.Class.GetObjectDefinition(hash, chain);
                 if (def != null)
                 {
                     return def;
@@ -133,30 +132,33 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
             return null;
         }
 
-        private static bool GetFieldData(string path, FileFormats.BinaryObject node, out byte[] data)
+        private static bool GetFieldData(string path, IEnumerable<FileFormats.BinaryObject> chain, out byte[] data)
         {
             data = null;
 
-            if (node == null)
+            if (chain == null)
             {
                 return false;
             }
 
+            int skip = 0;
             int i;
             for (i = 0; i < path.Length; i++)
             {
                 if (path[i] == '^')
                 {
-                    node = node.Parent;
-                    if (node == null)
-                    {
-                        return false;
-                    }
+                    skip++;
                 }
                 else
                 {
                     break;
                 }
+            }
+
+            var node = chain.Reverse().Skip(skip).FirstOrDefault();
+            if (node == null)
+            {
+                return false;
             }
 
             var parts = path.Substring(i).Split('.');

@@ -29,28 +29,10 @@ namespace Gibbed.Dunia2.FileFormats
 {
     public class BinaryObject
     {
-        private readonly BinaryObject _Parent;
         private long _Position;
         private uint _NameHash;
         private readonly Dictionary<uint, byte[]> _Fields = new Dictionary<uint, byte[]>();
         private readonly List<BinaryObject> _Children = new List<BinaryObject>();
-
-        /*
-        public BinaryObject()
-            : this(null)
-        {
-        }
-        */
-
-        public BinaryObject(BinaryObject parent)
-        {
-            this._Parent = parent;
-        }
-
-        public BinaryObject Parent
-        {
-            get { return this._Parent; }
-        }
 
         public long Position
         {
@@ -118,7 +100,7 @@ namespace Gibbed.Dunia2.FileFormats
                 return pointers[(int)childCount];
             }
 
-            var child = new BinaryObject(parent);
+            var child = new BinaryObject();
             child.Position = position;
             pointers.Add(child);
 

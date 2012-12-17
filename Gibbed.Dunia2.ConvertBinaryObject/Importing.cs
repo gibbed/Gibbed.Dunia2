@@ -21,8 +21,10 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Xml.XPath;
 using Gibbed.Dunia2.BinaryObjectInfo;
 using Gibbed.Dunia2.BinaryObjectInfo.Definitions;
@@ -43,16 +45,19 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                                    string basePath,
                                    XPathNavigator nav)
         {
-            var root = new BinaryObject(null);
-            ReadNode(root, objectDef, basePath, nav);
+            var root = new BinaryObject();
+            ReadNode(root, new BinaryObject[0], objectDef, basePath, nav);
             return root;
         }
 
         private void ReadNode(BinaryObject node,
+                              IEnumerable<BinaryObject> parentChain,
                               ClassDefinition objectDef,
                               string basePath,
                               XPathNavigator nav)
         {
+            var chain = parentChain.Concat(new[] {node});
+
             string className;
             uint classNameHash;
 
@@ -92,7 +97,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                     throw new InvalidOperationException();
                 }
 
-                var fieldDef = objectDef != null ? objectDef.GetFieldDefinition(fieldNameHash, node) : null;
+                var fieldDef = objectDef != null ? objectDef.GetFieldDefinition(fieldNameHash, chain) : null;
                 var data = FieldTypeSerializers.Serialize(fieldDef, fieldType, fields.Current);
                 node.Fields.Add(fieldNameHash, data);
             }
@@ -100,13 +105,14 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             var children = nav.Select("object");
             while (children.MoveNext() == true)
             {
-                var child = new BinaryObject(node);
-                LoadChildNode(child, objectDef, basePath, children.Current);
+                var child = new BinaryObject();
+                LoadChildNode(child, chain, objectDef, basePath, children.Current);
                 node.Children.Add(child);
             }
         }
 
         private void HandleChildNode(BinaryObject node,
+                                     IEnumerable<BinaryObject> chain,
                                      ClassDefinition parentDef,
                                      string basePath,
                                      XPathNavigator nav)
@@ -118,15 +124,15 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
             if (parentDef == null || parentDef.DynamicNestedClasses == false)
             {
-                var def = parentDef != null ? parentDef.GetObjectDefinition(classNameHash, node.Parent) : null;
-                ReadNode(node, def, basePath, nav);
+                var def = parentDef != null ? parentDef.GetObjectDefinition(classNameHash, chain) : null;
+                ReadNode(node, chain, def, basePath, nav);
                 return;
             }
 
             if (parentDef.DynamicNestedClasses == true)
             {
                 var def = this._InfoManager.GetClassDefinition(classNameHash);
-                ReadNode(node, def, basePath, nav);
+                ReadNode(node, chain, def, basePath, nav);
                 return;
             }
 
@@ -134,6 +140,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
         }
 
         private void LoadChildNode(BinaryObject node,
+                                   IEnumerable<BinaryObject> chain,
                                    ClassDefinition objectDef,
                                    string basePath,
                                    XPathNavigator nav)
@@ -141,7 +148,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             var external = nav.GetAttribute("external", "");
             if (string.IsNullOrWhiteSpace(external) == true)
             {
-                HandleChildNode(node, objectDef, basePath, nav);
+                HandleChildNode(node, chain, objectDef, basePath, nav);
                 return;
             }
 
@@ -157,7 +164,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                     throw new InvalidOperationException();
                 }
 
-                HandleChildNode(node, objectDef, Path.GetDirectoryName(inputPath), root);
+                HandleChildNode(node, chain, objectDef, Path.GetDirectoryName(inputPath), root);
             }
         }
 

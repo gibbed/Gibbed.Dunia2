@@ -55,7 +55,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             using (var writer = XmlWriter.Create(outputPath, settings))
             {
                 writer.WriteStartDocument();
-                WriteNode(infoManager, writer, bof.Root, objectDef);
+                WriteNode(infoManager, writer, new BinaryObject[0], bof.Root, objectDef);
                 writer.WriteEndDocument();
             }
         }
@@ -68,7 +68,10 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
         internal const uint EntityHash = 0x0984415Eu; // crc32(Entity)
         internal const uint LibHash = 0xA90F3BCC; // crc32(lib)
         internal const uint LibItemHash = 0x72DE4948; // unknown source name
-        internal const uint TextHidNameHash = 0x9D8873F8; // crc32(text_hidName);
+        internal const uint TextHidNameHash = 0x9D8873F8; // crc32(text_hidName)
+        internal const uint NomadObjectTemplatesHash = 0x4C4C4CA4; // crc32(NomadObjectTemplates)
+        internal const uint NomadObjectTemplateHash = 0x142371CF; // unknown source name
+        internal const uint TemplateHash = 0x6E167DD5; // crc32(Template)
 
         public static void MultiExportEntityLibrary(ObjectFileDefinition objectFileDef,
                                                     string basePath,
@@ -101,6 +104,8 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
                     foreach (var library in root.Children)
                     {
+                        var chain = new[] {bof.Root, library};
+
                         var libraryDef = objectDef != null
                                              ? objectDef.GetObjectDefinition(library.NameHash, null)
                                              : null;
@@ -189,6 +194,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                                     itemWriter.WriteStartDocument();
                                     WriteNode(infoManager,
                                               itemWriter,
+                                              chain,
                                               item,
                                               itemDef);
                                     itemWriter.WriteEndDocument();
@@ -268,6 +274,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 writer.WriteStartDocument();
 
                 var root = bof.Root;
+                var chain = new[] {root};
                 {
                     writer.WriteStartElement("object");
                     writer.WriteAttributeString("name", "lib");
@@ -316,6 +323,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                             itemWriter.WriteStartDocument();
                             WriteNode(infoManager,
                                       itemWriter,
+                                      chain,
                                       item,
                                       itemDef);
                             itemWriter.WriteEndDocument();
@@ -335,11 +343,123 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                                               c.Fields.ContainsKey(TextHidNameHash) == false) == false;
         }
 
+        public static void MultiExportNomadObjectTemplates(ObjectFileDefinition objectFileDef,
+                                                           string basePath,
+                                                           string outputPath,
+                                                           InfoManager infoManager,
+                                                           BinaryObjectFile bof)
+        {
+            var settings = new XmlWriterSettings
+            {
+                Encoding = Encoding.UTF8,
+                Indent = true,
+                CheckCharacters = false,
+                OmitXmlDeclaration = false
+            };
+
+            var objectDef = objectFileDef != null ? objectFileDef.Object : null;
+
+            using (var writer = XmlWriter.Create(outputPath, settings))
+            {
+                writer.WriteStartDocument();
+
+                var root = bof.Root;
+                var chain = new[] {root};
+                {
+                    writer.WriteStartElement("object");
+                    writer.WriteAttributeString("name", "NomadObjectTemplates");
+
+                    Directory.CreateDirectory(basePath);
+
+                    var itemNames = new Dictionary<string, int>();
+
+                    foreach (var item in root.Children)
+                    {
+                        var itemDef = objectDef != null
+                                          ? objectDef.GetObjectDefinition(item.NameHash, null)
+                                          : null;
+
+                        var itemName =
+                            FieldTypeDeserializers.Deserialize<string>(FieldType.String,
+                                                                       item.Fields[NameHash]);
+                        itemName = itemName.Replace('/', Path.DirectorySeparatorChar);
+                        itemName = itemName.Replace('\\', Path.DirectorySeparatorChar);
+
+                        if (itemNames.ContainsKey(itemName) == false)
+                        {
+                            itemNames.Add(itemName, 1);
+                        }
+                        else
+                        {
+                            itemName = string.Format("{0} ({1})", itemName, ++itemNames[itemName]);
+                        }
+
+                        var itemPath = itemName + ".xml";
+
+                        writer.WriteStartElement("object");
+                        writer.WriteAttributeString("external", itemPath);
+                        writer.WriteEndElement();
+
+                        itemPath = Path.Combine(basePath, itemPath);
+
+                        var itemParentPath = Path.GetDirectoryName(itemPath);
+                        if (string.IsNullOrEmpty(itemParentPath) == false)
+                        {
+                            Directory.CreateDirectory(itemParentPath);
+                        }
+
+                        using (var itemWriter = XmlWriter.Create(itemPath, settings))
+                        {
+                            itemWriter.WriteStartDocument();
+                            WriteNode(infoManager,
+                                      itemWriter,
+                                      chain,
+                                      item,
+                                      itemDef);
+                            itemWriter.WriteEndDocument();
+                        }
+                    }
+                }
+
+                writer.WriteEndDocument();
+            }
+        }
+
+        public static bool IsSuitableForNomadObjectTemplatesMultiExport(BinaryObjectFile bof)
+        {
+            if (bof.Root.Fields.Count != 0 ||
+                bof.Root.NameHash != NomadObjectTemplatesHash ||
+                bof.Root.Children.Any(c => c.NameHash != NomadObjectTemplateHash) == true)
+            {
+                return false;
+            }
+
+            var nameSeq = new[] {NameHash};
+
+            foreach (var library in bof.Root.Children)
+            {
+                if (library.Fields.Keys.SequenceEqual(nameSeq) == false)
+                {
+                    return false;
+                }
+
+                if (library.Children.Any(sc => sc.NameHash != TemplateHash) == true)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private static void WriteNode(InfoManager infoManager,
                                       XmlWriter writer,
+                                      IEnumerable<BinaryObject> parentChain,
                                       BinaryObject node,
                                       ClassDefinition def)
         {
+            var chain = parentChain.Concat(new[] {node});
+
             var originalDef = def;
 
             if (def != null &&
@@ -374,12 +494,9 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 {
                     writer.WriteStartElement("field");
 
-                    var fieldDef = def != null ? def.GetFieldDefinition(kv.Key, node) : null;
+                    writer.Flush();
 
-                    if (fieldDef != null && fieldDef.Name == "selStimType" &&
-                        node.Fields.Count > 1)
-                    {
-                    }
+                    var fieldDef = def != null ? def.GetFieldDefinition(kv.Key, chain) : null;
 
                     if (fieldDef != null && fieldDef.Name != null && fieldDef.Hash == kv.Key)
                     {
@@ -409,8 +526,8 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             {
                 foreach (var childNode in node.Children)
                 {
-                    var childDef = def != null ? def.GetObjectDefinition(childNode.NameHash, node) : null;
-                    WriteNode(infoManager, writer, childNode, childDef);
+                    var childDef = def != null ? def.GetObjectDefinition(childNode.NameHash, chain) : null;
+                    WriteNode(infoManager, writer, chain, childNode, childDef);
                 }
             }
             else if (def.DynamicNestedClasses == true)
@@ -418,7 +535,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 foreach (var childNode in node.Children)
                 {
                     var childDef = infoManager.GetClassDefinition(childNode.NameHash);
-                    WriteNode(infoManager, writer, childNode, childDef);
+                    WriteNode(infoManager, writer, chain, childNode, childDef);
                 }
             }
 

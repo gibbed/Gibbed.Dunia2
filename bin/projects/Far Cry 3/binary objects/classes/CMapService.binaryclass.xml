@@ -28,8 +28,26 @@
 			<object name="SupportedGameModes">
 				<object name="GameMode">
 					<field name="selGameMode" type="Enum">
-						<enum name="enumGameMode">
+						<enum name="enumGameMode" flags="True">
 							<element name="Invalid">0</element>
+							<!-- This comes from engine\gamemodes\gamemodesconfig.xml -->
+							<!-- /GameModeConfig/GameMode/Desc[@Mask] -->
+							<element name="FCXConsole">1</element>
+							<element name="FCXMainMenu">2</element>
+							<element name="Single">4</element>
+							<element name="Editor">8</element>
+							<element name="FCXEditor">16</element>
+							<element name="FCXBenchmark">32</element>
+							<element name="FCXSingle">64</element>
+							<element name="FCXCoop">128</element>
+							<element name="DeathMatch">256</element>
+							<element name="TeamDeathMatch">512</element>
+							<element name="FCXDeathMatch">1024</element>
+							<element name="FCXTeamDeathMatch">2048</element>
+							<element name="FCXFireStorm">4096</element>
+							<element name="FCXDomination">8192</element>
+							<element name="FCXHeadquarters">16384</element>
+							<element name="FCXDash">32768</element>
 						</enum>
 					</field>
 				</object>
@@ -39,8 +57,26 @@
 	<object name="DefaultMaps">
 		<object name="Map">
 			<field name="selGameMode" type="Enum">
-				<enum name="enumGameMode">
+				<enum name="enumGameMode" flags="True">
 					<element name="Invalid">0</element>
+					<!-- This comes from engine\gamemodes\gamemodesconfig.xml -->
+					<!-- /GameModeConfig/GameMode/Desc[@Mask] -->
+					<element name="FCXConsole">1</element>
+					<element name="FCXMainMenu">2</element>
+					<element name="Single">4</element>
+					<element name="Editor">8</element>
+					<element name="FCXEditor">16</element>
+					<element name="FCXBenchmark">32</element>
+					<element name="FCXSingle">64</element>
+					<element name="FCXCoop">128</element>
+					<element name="DeathMatch">256</element>
+					<element name="TeamDeathMatch">512</element>
+					<element name="FCXDeathMatch">1024</element>
+					<element name="FCXTeamDeathMatch">2048</element>
+					<element name="FCXFireStorm">4096</element>
+					<element name="FCXDomination">8192</element>
+					<element name="FCXHeadquarters">16384</element>
+					<element name="FCXDash">32768</element>
 				</enum>
 			</field>
 			<field name="sWorldName" type="String" />

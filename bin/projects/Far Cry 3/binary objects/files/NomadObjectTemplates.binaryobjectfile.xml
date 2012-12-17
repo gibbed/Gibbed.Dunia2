@@ -13,6 +13,9 @@
 				<inherit name="CFCXMapService"
 				         condition_field="^Name"
 				         condition_value="MapService" condition_type="String" />
+				<inherit name="CFCXPlayerParamsService"
+				         condition_field="^Name"
+				         condition_value="PlayerParamsService" condition_type="String" />
 				<inherit name="CFCXPlayerService"
 				         condition_field="^Name"
 				         condition_value="PlayerService" condition_type="String" />

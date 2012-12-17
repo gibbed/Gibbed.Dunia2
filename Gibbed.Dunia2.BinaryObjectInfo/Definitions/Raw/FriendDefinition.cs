@@ -26,6 +26,11 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Raw
 {
     public class FriendDefinition
     {
+        public FriendDefinition()
+        {
+            this.ConditionType = FieldType.BinHex;
+        }
+
         [XmlAttribute("name")]
         public string Name { get; set; }
 
@@ -33,6 +38,9 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Raw
         public string ConditionField { get; set; }
 
         [XmlAttribute("condition_value")]
-        public int ConditionValue { get; set; }
+        public string ConditionValue { get; set; }
+
+        [XmlAttribute("type")]
+        public FieldType ConditionType { get; set; }
     }
 }

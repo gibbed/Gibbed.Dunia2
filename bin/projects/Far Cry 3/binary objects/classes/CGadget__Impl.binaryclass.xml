@@ -9,7 +9,7 @@
 	<object name="UseStrategy">
 		<inherit name="CGadgetUseThrowStrategy"
 		         condition_field="^selUseStrategy"
-		         condition_value="0" />
+		         condition_value="0" condition_type="Int32" />
 	</object>
 	
 	<field name="Uses" />

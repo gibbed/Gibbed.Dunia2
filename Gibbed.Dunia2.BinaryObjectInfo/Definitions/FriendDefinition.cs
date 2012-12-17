@@ -26,6 +26,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
     {
         public ClassDefinition Class;
         public string ConditionField { get; internal set; }
-        public int ConditionValue { get; internal set; }
+        public string ConditionValue { get; internal set; }
+        public FieldType ConditionType { get; internal set; }
     }
 }

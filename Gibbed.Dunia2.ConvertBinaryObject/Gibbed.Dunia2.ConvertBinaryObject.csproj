@@ -45,8 +45,6 @@
   <ItemGroup>
     <Compile Include="ExportException.cs" />
     <Compile Include="Exporting.cs" />
-    <Compile Include="FieldTypeDeserializers.cs" />
-    <Compile Include="FieldTypeSerializers.cs" />
     <Compile Include="ImportException.cs" />
     <Compile Include="Importing.cs" />
     <Compile Include="Mode.cs" />

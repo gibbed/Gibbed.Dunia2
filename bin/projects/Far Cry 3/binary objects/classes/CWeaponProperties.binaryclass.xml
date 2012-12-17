@@ -9,33 +9,33 @@
 	<object name="FireStrategyProperties">
 		<inherit name="CWeaponFireBulletProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="0" />
+		         condition_value="0" condition_type="Int32" />
 		<inherit name="CWeaponFireFlameProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="2" />
+		         condition_value="2" condition_type="Int32" />
 		<inherit name="CWeaponFireProjectileProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="4" />
+		         condition_value="4" condition_type="Int32" />
 		<inherit name="CWeaponIEDProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="5" />
+		         condition_value="5" condition_type="Int32" />
 		<inherit name="CWeaponProximityMineProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="7" />
+		         condition_value="7" condition_type="Int32" />
 		<inherit name="CWeaponFireRepairProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="8" />
+		         condition_value="8" condition_type="Int32" />
 		<inherit name="CWeaponFireArrowProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="9" />
+		         condition_value="9" condition_type="Int32" />
 		<inherit name="CWeaponThrowProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="10" />
+		         condition_value="10" condition_type="Int32" />
 		<inherit name="CWeaponTrackingProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="11" />
+		         condition_value="11" condition_type="Int32" />
 		<inherit name="CWeaponFireProperties"
 		         condition_field="^CommonProperties.selFireStrategy"
-		         condition_value="12" />
+		         condition_value="12" condition_type="Int32" />
 	</object>
 </class>

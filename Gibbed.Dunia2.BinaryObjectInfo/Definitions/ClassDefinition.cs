@@ -61,9 +61,16 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
                         throw new NotSupportedException();
                     }
 
-                    var conditionValue = GetFieldValue(friend.ConditionField, conditionNode);
-                    if (conditionValue.HasValue == false ||
-                        conditionValue.Value != friend.ConditionValue)
+                    byte[] fieldData;
+                    var hasConditionValue = GetFieldData(friend.ConditionField, conditionNode, out fieldData);
+
+                    if (hasConditionValue == false)
+                    {
+                        continue;
+                    }
+
+                    var conditionData = FieldTypeSerializers.Serialize(friend.ConditionType, friend.ConditionValue);
+                    if (fieldData.SequenceEqual(conditionData) == false)
                     {
                         continue;
                     }
@@ -101,14 +108,16 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
                         throw new NotSupportedException();
                     }
 
-                    var conditionValue = GetFieldValue(friend.ConditionField, conditionNode);
+                    byte[] fieldData;
+                    var hasConditionValue = GetFieldData(friend.ConditionField, conditionNode, out fieldData);
 
-                    if (conditionValue.HasValue == false)
+                    if (hasConditionValue == false)
                     {
                         continue;
                     }
 
-                    if (conditionValue.Value != friend.ConditionValue)
+                    var conditionData = FieldTypeSerializers.Serialize(friend.ConditionType, friend.ConditionValue);
+                    if (fieldData.SequenceEqual(conditionData) == false)
                     {
                         continue;
                     }
@@ -124,11 +133,13 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
             return null;
         }
 
-        private static int? GetFieldValue(string path, FileFormats.BinaryObject node)
+        private static bool GetFieldData(string path, FileFormats.BinaryObject node, out byte[] data)
         {
+            data = null;
+
             if (node == null)
             {
-                return null;
+                return false;
             }
 
             int i;
@@ -139,7 +150,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
                     node = node.Parent;
                     if (node == null)
                     {
-                        return null;
+                        return false;
                     }
                 }
                 else
@@ -158,24 +169,23 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
                 node = node.Children.FirstOrDefault(c => c.NameHash == FileFormats.CRC32.Hash(child));
                 if (node == null)
                 {
-                    return null;
+                    return false;
                 }
             }
 
             var hash = FileFormats.CRC32.Hash(last);
             if (node.Fields.ContainsKey(hash) == false)
             {
-                return null;
+                return false;
             }
 
-            var field = node.Fields[hash];
-            if (field == null ||
-                field.Length != 4)
+            data = node.Fields[hash];
+            if (data == null)
             {
-                return null;
+                return false;
             }
 
-            return BitConverter.ToInt32(field, 0);
+            return true;
         }
     }
 }

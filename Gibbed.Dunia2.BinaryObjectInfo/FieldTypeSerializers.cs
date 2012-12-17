@@ -32,68 +32,48 @@ using Gibbed.Dunia2.BinaryObjectInfo;
 using Gibbed.Dunia2.BinaryObjectInfo.Definitions;
 using Gibbed.IO;
 
-namespace Gibbed.Dunia2.ConvertBinaryObject
+namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    internal static class FieldTypeSerializers
+    public static class FieldTypeSerializers
     {
-        public static byte[] Serialize(FieldDefinition fieldDef,
-                                       FieldType fieldType,
-                                       XPathNavigator nav)
+        public static byte[] Serialize(FieldType fieldType, string text)
         {
             switch (fieldType)
             {
-                case FieldType.BinHex:
-                {
-                    using (var reader = new XmlTextReader(new StringReader(nav.OuterXml)))
-                    {
-                        reader.MoveToContent();
-                        var data = new byte[0];
-                        int read = 0;
-                        do
-                        {
-                            Array.Resize(ref data, data.Length + 4096);
-                            read += reader.ReadBinHex(data, read, 4096);
-                        }
-                        while (reader.EOF == false);
-                        Array.Resize(ref data, read);
-                        return data;
-                    }
-                }
-
                 case FieldType.Boolean:
                 {
                     bool value;
-                    if (bool.TryParse(nav.Value, out value) == false)
+                    if (bool.TryParse(text, out value) == false)
                     {
                         throw new FormatException();
                     }
-                    return new[] {(byte)(value == true ? 1 : 0)};
+                    return new[] { (byte)(value == true ? 1 : 0) };
                 }
 
                 case FieldType.UInt8:
                 {
                     byte value;
-                    if (TryParseUInt8(nav.Value, out value) == false)
+                    if (TryParseUInt8(text, out value) == false)
                     {
                         throw new FormatException();
                     }
-                    return new[] {value};
+                    return new[] { value };
                 }
 
                 case FieldType.Int8:
                 {
                     sbyte value;
-                    if (TryParseInt8(nav.Value, out value) == false)
+                    if (TryParseInt8(text, out value) == false)
                     {
                         throw new FormatException();
                     }
-                    return new[] {(byte)value};
+                    return new[] { (byte)value };
                 }
 
                 case FieldType.UInt16:
                 {
                     ushort value;
-                    if (TryParseUInt16(nav.Value, out value) == false)
+                    if (TryParseUInt16(text, out value) == false)
                     {
                         throw new FormatException();
                     }
@@ -103,7 +83,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 case FieldType.Int16:
                 {
                     short value;
-                    if (TryParseInt16(nav.Value, out value) == false)
+                    if (TryParseInt16(text, out value) == false)
                     {
                         throw new FormatException();
                     }
@@ -113,7 +93,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 case FieldType.UInt32:
                 {
                     uint value;
-                    if (TryParseUInt32(nav.Value, out value) == false)
+                    if (TryParseUInt32(text, out value) == false)
                     {
                         throw new FormatException();
                     }
@@ -123,7 +103,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 case FieldType.Int32:
                 {
                     int value;
-                    if (TryParseInt32(nav.Value, out value) == false)
+                    if (TryParseInt32(text, out value) == false)
                     {
                         throw new FormatException();
                     }
@@ -133,7 +113,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 case FieldType.UInt64:
                 {
                     ulong value;
-                    if (TryParseUInt64(nav.Value, out value) == false)
+                    if (TryParseUInt64(text, out value) == false)
                     {
                         throw new FormatException();
                     }
@@ -143,7 +123,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 case FieldType.Int64:
                 {
                     long value;
-                    if (TryParseInt64(nav.Value, out value) == false)
+                    if (TryParseInt64(text, out value) == false)
                     {
                         throw new FormatException();
                     }
@@ -153,7 +133,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 case FieldType.Float32:
                 {
                     float value;
-                    if (TryParseFloat32(nav.Value, out value) == false)
+                    if (TryParseFloat32(text, out value) == false)
                     {
                         throw new FormatException();
                     }
@@ -163,7 +143,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 case FieldType.Float64:
                 {
                     double value;
-                    if (TryParseFloat64(nav.Value, out value) == false)
+                    if (TryParseFloat64(text, out value) == false)
                     {
                         throw new FormatException();
                     }
@@ -172,7 +152,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
                 case FieldType.Vector2:
                 {
-                    var parts = nav.Value.Split(',');
+                    var parts = text.Split(',');
                     if (parts.Length != 2)
                     {
                         throw new FormatException("field type Vector2 requires 2 float values delimited by a comma");
@@ -198,7 +178,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
                 case FieldType.Vector3:
                 {
-                    var parts = nav.Value.Split(',');
+                    var parts = text.Split(',');
                     if (parts.Length != 3)
                     {
                         throw new FormatException("field type Vector3 requires 3 float values delimited by a comma");
@@ -230,7 +210,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
                 case FieldType.Vector4:
                 {
-                    var parts = nav.Value.Split(',');
+                    var parts = text.Split(',');
                     if (parts.Length != 4)
                     {
                         throw new FormatException("field type Vector4 requires 4 float values delimited by a comma");
@@ -268,9 +248,108 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
                 case FieldType.String:
                 {
-                    var data = Encoding.UTF8.GetBytes(nav.Value);
+                    var data = Encoding.UTF8.GetBytes(text);
                     Array.Resize(ref data, data.Length + 1);
                     return data;
+                }
+
+                case FieldType.Hash32:
+                {
+                    uint value;
+                    if (TryParseHash32(text, out value) == false)
+                    {
+                        throw new FormatException();
+                    }
+                    return BitConverter.GetBytes(value);
+                }
+
+                case FieldType.Hash64:
+                {
+                    ulong value;
+                    if (TryParseHash64(text, out value) == false)
+                    {
+                        throw new FormatException();
+                    }
+                    return BitConverter.GetBytes(value);
+                }
+
+                case FieldType.Id32:
+                {
+                    uint value;
+                    if (TryParseUInt32(text, out value) == false)
+                    {
+                        throw new FormatException();
+                    }
+                    return BitConverter.GetBytes(value);
+                }
+
+                case FieldType.Id64:
+                {
+                    ulong value;
+                    if (TryParseUInt64(text, out value) == false)
+                    {
+                        throw new FormatException();
+                    }
+                    return BitConverter.GetBytes(value);
+                }
+
+                case FieldType.ComputeHash32:
+                {
+                    var value = CRC32.Hash(text);
+                    return BitConverter.GetBytes(value);
+                }
+
+                case FieldType.ComputeHash64:
+                {
+                    var value = CRC64.Hash(text);
+                    return BitConverter.GetBytes(value);
+                }
+            }
+
+            throw new NotSupportedException("unsupported field type");
+        }
+
+        public static byte[] Serialize(FieldDefinition fieldDef,
+                                       FieldType fieldType,
+                                       XPathNavigator nav)
+        {
+            switch (fieldType)
+            {
+                case FieldType.BinHex:
+                {
+                    using (var reader = new XmlTextReader(new StringReader(nav.OuterXml)))
+                    {
+                        reader.MoveToContent();
+                        var data = new byte[0];
+                        int read = 0;
+                        do
+                        {
+                            Array.Resize(ref data, data.Length + 4096);
+                            read += reader.ReadBinHex(data, read, 4096);
+                        }
+                        while (reader.EOF == false);
+                        Array.Resize(ref data, read);
+                        return data;
+                    }
+                }
+
+                case FieldType.Boolean:
+                case FieldType.UInt8:
+                case FieldType.Int8:
+                case FieldType.UInt16:
+                case FieldType.Int16:
+                case FieldType.UInt32:
+                case FieldType.Int32:
+                case FieldType.UInt64:
+                case FieldType.Int64:
+                case FieldType.Float32:
+                case FieldType.Float64:
+                case FieldType.Vector2:
+                case FieldType.Vector3:
+                case FieldType.Vector4:
+                case FieldType.String:
+                {
+                    return Serialize(fieldType, nav.Value);
                 }
 
                 case FieldType.Enum:
@@ -311,43 +390,11 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 }
 
                 case FieldType.Hash32:
-                {
-                    uint value;
-                    if (TryParseHash32(nav.Value, out value) == false)
-                    {
-                        throw new FormatException();
-                    }
-                    return BitConverter.GetBytes(value);
-                }
-
                 case FieldType.Hash64:
-                {
-                    ulong value;
-                    if (TryParseHash64(nav.Value, out value) == false)
-                    {
-                        throw new FormatException();
-                    }
-                    return BitConverter.GetBytes(value);
-                }
-
                 case FieldType.Id32:
-                {
-                    uint value;
-                    if (TryParseUInt32(nav.Value, out value) == false)
-                    {
-                        throw new FormatException();
-                    }
-                    return BitConverter.GetBytes(value);
-                }
-
                 case FieldType.Id64:
                 {
-                    ulong value;
-                    if (TryParseUInt64(nav.Value, out value) == false)
-                    {
-                        throw new FormatException();
-                    }
-                    return BitConverter.GetBytes(value);
+                    return Serialize(fieldType, nav.Value);
                 }
 
                 case FieldType.Rml:
@@ -367,14 +414,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
                 case FieldType.ComputeHash32:
                 {
-                    var value = CRC32.Hash(nav.Value);
-                    return BitConverter.GetBytes(value);
-                }
-
-                case FieldType.ComputeHash64:
-                {
-                    var value = CRC64.Hash(nav.Value);
-                    return BitConverter.GetBytes(value);
+                    return Serialize(fieldType, nav.Value);
                 }
             }
 

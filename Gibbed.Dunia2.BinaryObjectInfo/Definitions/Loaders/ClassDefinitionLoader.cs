@@ -113,6 +113,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
                 Class = root[raw.Name],
                 ConditionField = raw.ConditionField,
                 ConditionValue = raw.ConditionValue,
+                ConditionType = raw.ConditionType,
             };
         }
 

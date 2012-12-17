@@ -10,12 +10,12 @@
 	</field>
 	<merge name="CPhysStim"
 	       condition_field="selStimType"
-	       condition_value="0" />
+	       condition_value="0" condition_type="Int32" />
 	<merge name="CPhysBulletHitStim"
 	       condition_field="selStimType"
-	       condition_value="1" />
+	       condition_value="1" condition_type="Int32" />
 	<merge name="CPhysExplosionStim"
 	       condition_field="selStimType"
-	       condition_value="2" />
+	       condition_value="2" condition_type="Int32" />
 	<field name="bAppliesRangeMultipliers" type="Boolean" />
 </class>

@@ -30,9 +30,9 @@ using Gibbed.Dunia2.FileFormats;
 using Gibbed.Dunia2.BinaryObjectInfo;
 using Gibbed.Dunia2.BinaryObjectInfo.Definitions;
 
-namespace Gibbed.Dunia2.ConvertBinaryObject
+namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    internal static class FieldTypeDeserializers
+    public static class FieldTypeDeserializers
     {
         public static object Deserialize(FieldType fieldType, byte[] data)
         {

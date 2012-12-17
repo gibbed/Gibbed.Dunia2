@@ -3,9 +3,9 @@
 	<field name="hidType" type="Int32" />
 	<field name="level" desc="Level. Starts from 1." type="Int32" />
 	<object name="Properties" desc="Contains properties specific to the ability.">
-		<inherit name="CRecipePotionEffect" condition_field="^hidType" condition_value="1" />
-		<inherit name="CRecipeGearEffect" condition_field="^hidType" condition_value="2" />
-		<inherit name="CRecipeMedkitEffect" condition_field="^hidType" condition_value="3" />
-		<inherit name="CRecipeArrowEffect" condition_field="^hidType" condition_value="4" />
+		<inherit name="CRecipePotionEffect" condition_field="^hidType" condition_value="1" condition_type="Int32" />
+		<inherit name="CRecipeGearEffect" condition_field="^hidType" condition_value="2" condition_type="Int32" />
+		<inherit name="CRecipeMedkitEffect" condition_field="^hidType" condition_value="3" condition_type="Int32" />
+		<inherit name="CRecipeArrowEffect" condition_field="^hidType" condition_value="4" condition_type="Int32" />
 	</object>
 </class>

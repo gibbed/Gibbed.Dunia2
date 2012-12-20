@@ -1,4 +1,4 @@
-; 410/423 (96%)
+; 423/423 (100%)
 domino\library\sp\lib_common.backupinventory.lua
 domino\library\sp\lib_common.bng_playermodel.lua
 domino\library\sp\lib_common.displaymarkerincave.lua
@@ -22,6 +22,7 @@ domino\library\sp\lib_defend.outpost_hard_core2_1_dog.lua
 domino\library\sp\lib_defend.outpost_med_core2_0.lua
 domino\library\sp\lib_defend.outpost_med_core2_1_dog.lua
 domino\library\sp\lib_defend.outpost_nowave_core2_0.lua
+domino\library\sp\lib_defend.outpost_sequence.lua
 domino\library\sp\lib_defend.rebelvo.lua
 domino\library\sp\lib_defend.rebelvo2.lua
 domino\library\sp\lib_mission.addmissionlocationmarker.lua
@@ -65,16 +66,19 @@ domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b11\ulc_010_b11.b11_dialog.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b11\ulc_010_b11.enemy_group_01.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b11\ulc_010_b11.initial_setting.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b11\ulc_010_b11.objective.lua
+domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b11\ulc_010_b11.play_music.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b11\ulc_010_b11.ulc_010_b11.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b15\ulc_010_b15.controlroomenemies.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b15\ulc_010_b15.power_on.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b15\ulc_010_b15.power_puzzle.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b15\ulc_010_b15.ulc_010_b15.lua
+domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.b21_dialog.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.b21_objective.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.big_door_control.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.death_conut.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.enemy_group_02.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.initial_setting.lua
+domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.play_music.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.power_on.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_010\ulc_010_b21\ulc_010_b21.ulc_010_b21.lua
 domino\user\fc3\fc3_dlc_ulc\ulc_020\ulc_020_b05\ulc_020_b05.ulc_020_b05.lua
@@ -173,7 +177,9 @@ domino\user\fc3\fc3_mainmissions\bam_055\bam_055_b60\bam_055_b60.sub_traproom_bu
 domino\user\fc3\fc3_mainmissions\bam_055\bam_055_b60\bam_055_b60.sub_traproom_fireprocess.lua
 domino\user\fc3\fc3_mainmissions\bam_055\bam_055_b60\bam_055_b60.sub_traproom_obtainknife.lua
 domino\user\fc3\fc3_mainmissions\bam_060\bam_060_b10c\bam_060_b10c.bam_060_b10c.lua
+domino\user\fc3\fc3_mainmissions\bam_060\bam_060_b20e\bam_060_b20e.__cinematiccleanup.lua
 domino\user\fc3\fc3_mainmissions\bam_060\bam_060_b20e\bam_060_b20e.bam_060_b20e.lua
+domino\user\fc3\fc3_mainmissions\bam_060\bam_060_b30c\bam_060_b30c.bam_060_b30c.lua
 domino\user\fc3\fc3_mainmissions\bam_060\bam_060_main.__exoticfailorsuccess.lua
 domino\user\fc3\fc3_mainmissions\bam_060\bam_060_main.__rescuekeithnis.lua
 domino\user\fc3\fc3_mainmissions\bam_060\bam_060_main.bam_060_b20_knifefight_gsm.lua
@@ -256,8 +262,15 @@ domino\user\fc3\fc3_mainmissions\sam_015\sam_015_b40\sam_015_b40.sam_015_b40_esc
 domino\user\fc3\fc3_mainmissions\sam_015\sam_015_b40\sam_015_b40.sam_015_b40_finallookatexplosion.lua
 domino\user\fc3\fc3_mainmissions\sam_020\sam_020_b40c\sam_020_b40c.sam_020_b40c.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.event_animatedchopperarrival.lua
+domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.event_chopperarrival.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.event_convoyarrival.lua
+domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.event_deer.lua
+domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.event_startconvoy.lua
+domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.log_hidechopper.lua
+domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.log_ismissionrestartedb10.lua
+domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.log_keyentityloaded.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.log_lockbinocular.lua
+domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.log_snipingchallenge.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.log_updateminimapobjective.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.obj_clearthearea.lua
 domino\user\fc3\fc3_mainmissions\wil_050\wil_050_b10\wil_050_b10.obj_identifyoliver.lua

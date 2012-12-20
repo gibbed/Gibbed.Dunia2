@@ -1,4 +1,4 @@
-; 2968/3063 (96%)
+; 2969/3063 (96%)
 actionmaps\inputactionmapbenchmark.xml
 actionmaps\inputactionmapchat.xml
 actionmaps\inputactionmapcommon.xml
@@ -2946,6 +2946,7 @@ ui\singleplayer\video\tutorial\18_social_challenge.bik
 ui\singleplayer\video\tutorial\19_weapon_swap.bik
 ui\singleplayer\video\tutorial\20_detection_meter.bik
 ui\singleplayer\video\tutorial\tutorial_window_test.bik
+ui\singleplayer\video\ubisoftlogo.bik
 ui\singleplayer\video\vaas_30_sec_wip.bik
 ui\supertextures\coopnameplate_0.xbt
 ui\supertextures\dominationbar_0.xbt

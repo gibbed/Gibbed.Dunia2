@@ -1,0 +1,37 @@
+<class name="CFCXIntelService">
+	<inherit name="IGameModeService" />
+	<field name="NumPointsTreshold" type="Int32" />
+	<object name="IntelProgressParams">
+		<object name="GameMode">
+			<field name="text_GameMode" type="String" />
+			<field name="GameMode" type="Hash32" />
+			<field name="TimePlayedMultiplier" type="Float32" />
+			<field name="PlayerScoreMultiplier" type="Float32" />
+			<field name="MatchWonBonus" type="Int32" />
+			<field name="BreedingBonus" type="Int32" />
+			<field name="BreedingTreshold" type="Int32" />
+		</object>
+	</object>
+	<object name="IntelTypeParams">
+		<object name="MP_Tier1">
+			<inherit name="CIntelTypeParams" />
+		</object>
+		<object name="MP_Tier2">
+			<inherit name="CIntelTypeParams" />
+		</object>
+		<object name="MP_Tier3">
+			<inherit name="CIntelTypeParams" />
+		</object>
+		<object name="MP_Tier4">
+			<inherit name="CIntelTypeParams" />
+		</object>
+		<object name="MP_Tier5">
+			<inherit name="CIntelTypeParams" />
+		</object>
+	</object>
+	<object name="MachineUnlockLevels">
+		<field name="MP_Machine1" type="Int32" />
+		<field name="MP_Machine2" type="Int32" />
+		<field name="MP_Machine3" type="Int32" />
+	</object>
+</class>

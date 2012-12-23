@@ -1,0 +1,49 @@
+<class name="CFCXMusicService::State">
+	<inherit name="#11E152C8" />
+	<field name="sName" type="String" />
+	<field name="text_sId" type="String" />
+	<field name="sId" desc="The name (can be shared by multiple states) used to reference this state from external scripts or cinema." type="Hash32" />
+	<field name="iPriority" desc="If more than one state have their conditions verified, the one with the lower priority value will be choosen." type="Int32" />
+	<field name="bExternal" desc="External sound. Can only be triggered by scripts/cinema and not systemically." type="Boolean" />
+	<field name="bAllowInterruptions" desc="If this is an external sound allows it to still be interrupted." type="Boolean" />
+	<field name="bCanBeStacked" desc="Determines if the state will be stacked or not." type="Boolean" />
+	<field name="sndtpSoundType" desc="If not invalid it will use this instead of the overall music Sound Type." type="Int32" />
+	<field name="sndStartSoundId" type="String" />
+	<field name="sndStopEventId" type="String" />
+	<field name="fFadeOutTime" desc="Time taken to completely fade out from full volume. -1 if unused." type="Float32" />
+	<field name="fFadeInTime" desc="Time taken to completely fade up from nothing. -1 if unused." type="Float32" />
+	<field name="sndchBattleLevelMultitrackChannel" desc="Multitrack channel used to change the track volume based on battle level." type="Int32" />
+	<object name="BattleLevelCurves">
+		<field name="arkTrackCurve1" type="Id64" />
+		<field name="arkTrackCurve2" type="Id64" />
+		<field name="arkTrackCurve3" type="Id64" />
+		<field name="arkTrackCurve4" type="Id64" />
+	</object>
+	<field name="sndchAiCombatMultitrackChannel" desc="Multitrack channel used to change the track volume based on number of ai in combat." type="Int32" />
+	<field name="arkAiCombatCountCurve" desc="Maps current number of AI in combat (horizontal axis) onto a value to pass into the multitrack." type="Id64" />
+	<field name="sndchAiInvestigateMultitrackChannel" desc="Multitrack channel used to change the track volume based on number of ai investigating" type="Int32" />
+	<field name="arkAiInvestigateCountCurve" desc="Maps current number of AI investigating (horizontal axis) onto a value to pass into the multitrack." type="Id64" />
+	<field name="sndchMissionMultitrackChannel" desc="Multitrack channel used to change the track volume based on number of ai in combat." type="Int32" />
+	<field name="fBanishDelay" desc="After exiting the state, it won't be available for that period of time in sec." type="Float32" />
+	<field name="fStayInDelay" desc="After entering the state, it won't be possible to enter another state for that period of time in sec" type="Float32" />
+	<field name="fNoExitDelay" desc="The amount of time after a state becomes invalid that it must stay in before it can be interrupted by another state." type="Float32" />
+	<field name="fMinAvailabilityWaitTime" desc="Used to define a random interval in sec where the state won't be available when all it's other conditions are verified. Negative value disabled the feature" type="Float32" />
+	<field name="fMaxAvailabilityWaitTime" desc="Used to define a random interval in sec where the state won't be available when all it's other conditions are verified. Negative value disabled the feature" type="Float32" />
+	<field name="fMinForcedDurationTime" desc="Used to define a random interval in sec that the state will use as a duration if it started. After that duration it will automatically exit. Negative value disabled the feature" type="Float32" />
+	<field name="fMaxForcedDurationTime" desc="Used to define a random interval in sec that the state will use as a duration if it started. After that duration it will automatically exit. Negative value disabled the feature" type="Float32" />
+	<object name="Condition">
+		<inherit name="CFCXMusicService::State::SCondition" />
+	</object>
+	<object name="AllowedArea">
+		<object name="AllowedArea">
+			<field name="musicareaMusicArea" type="Int8" />
+		</object>
+	</object>
+	<object name="Transitions">
+		<object name="Transition">
+			<field name="sTargetState" type="String" />
+			<field name="sndTransitionEventId" type="String" />
+			<field name="sndStopOverrideEventId" type="String" />
+		</object>
+	</object>
+</class>

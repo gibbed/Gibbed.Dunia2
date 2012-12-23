@@ -1,0 +1,11 @@
+<class name="CIntelTypeParams">
+	<inherit name="#11E152C8" />
+	<field name="KeyInsightDropChancePercent" type="Int32" />
+	<object name="Weights">
+		<object name="Weight">
+			<field name="Weight" type="Int32" />
+			<field name="MinRank" type="Int32" />
+			<field name="MaxRank" type="Int32" />
+		</object>
+	</object>
+</class>

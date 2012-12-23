@@ -1,0 +1,22 @@
+<class name="CFCXMusicService::SBattleIntensityLevel">
+	<inherit name="#11E152C8" />
+	<object name="BulletShotNPC" desc="Battle intensity added wen a npc is shooting">
+		<inherit name="CFCXMusicService::SBattleIntensityLevel::SSettings" />
+	</object>
+	<field name="fBulletShotPlayer" desc="Battle intensity added when the player is shooting" type="Float32" />
+	<object name="Explosion" desc="Battle intensity added when there is an explosion">
+		<inherit name="CFCXMusicService::SBattleIntensityLevel::SSettings" />
+	</object>
+	<object name="BulletHitNPC" desc="Battle intensity added when a bullet shot by a npc hit something around the player">
+		<inherit name="CFCXMusicService::SBattleIntensityLevel::SSettings" />
+	</object>
+	<object name="BulletHitPlayer" desc="Battle intensity added when a bullet shot by the player hit something around him">
+		<inherit name="CFCXMusicService::SBattleIntensityLevel::SSettings" />
+	</object>
+	<field name="fBulletPassBy" desc="Battle intensity added when a bullet pass near enough to the player to ear a bulelt passby" type="Float32" />
+	<field name="fBulletDamage" desc="Battle intensity added when a bullet hit the player and causes damage to him" type="Float32" />
+	<field name="fBufferTime" desc="The battle intensity is reset to 0 after that time in sec." type="Float32" />
+	<field name="fBufferDepletionPerSecond" desc="Amount of battle intensity drained per second when moving to a smaller battle intensity." type="Float32" />
+	<field name="fBufferIncreasePerSecond" desc="Amount of battle intensity added per second when moving to a larger battle intensity." type="Float32" />
+	<field name="fTargetDepletePerBufferCheck" desc="Amount removed from the target battle intensity level when the buffer is less than the current level.." type="Float32" />
+</class>

@@ -1,0 +1,56 @@
+<class name="CFCXMusicService">
+	<inherit name="CMusicService" />
+	<field name="sndSpawnSound" type="String" />
+	<field name="iDefaultWorld" type="Int32" />
+	<object name="settings">
+		<inherit name="CNomadObject" />
+		<field name="sndtpMenuMusicSoundType" type="Int32" />
+		<field name="sndtpMusicSoundType" type="Int32" />
+		<field name="sndtpBriefingMusicSoundType" type="Int32" />
+		<field name="sndtpMemorableMusicSoundType" type="Int32" />
+		<field name="sndtpRadioMusicSoundType" type="Int32" />
+		<field name="sndLoadingScreenStartId" type="String" />
+		<field name="sndLoadingScreenStopId" type="String" />
+		<field name="sndStartMenuStartId" type="String" />
+		<field name="sndStartMenuStopId" type="String" />
+		<field name="sndPauseMenuStartId" type="String" />
+		<field name="sndPauseMenuStopId" type="String" />
+		<field name="sndMuteAllButMusic" type="String" />
+		<field name="sndUnMuteAllButMusic" type="String" />
+		<field name="sndStopAllButMusic" type="String" />
+		<field name="fTutorialMusicVolume" type="Float32" />
+		<field name="iMaxPriorityDuringMission" desc="The battle intensity is reset to 0 after that time in sec." type="Int32" />
+		<object name="BattleIntensityLevel">
+			<inherit name="CFCXMusicService::SBattleIntensityLevel" />
+		</object>
+		<field name="MultitrackFadeTime" desc="Duration of volume fade for multitrack channels." type="Float32" />
+		<field name="VolumeFadeTime" desc="Duration of volume fade up when no other fade in time exists in the current state." type="Float32" />
+		<object name="EnemyCounts">
+			<inherit name="CFCXMusicService::SEnemyCounts" />
+		</object>
+		<object name="StatesMap">
+			<object name="StateFolder">
+				<field name="text_FolderName" type="String" />
+				<field name="FolderName" type="Hash32" />
+				<object name="States">
+					<object name="States">
+						<object name="State">
+							<inherit name="CFCXMusicService::State" />
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+		<object name="States">
+			<object name="State">
+				<inherit name="CFCXMusicService::State" />
+			</object>
+		</object>
+		<object name="Worlds">
+			<object name="World">
+				<field name="sName" type="String" />
+				<field name="iId" type="Int32" />
+			</object>
+		</object>
+	</object>
+</class>

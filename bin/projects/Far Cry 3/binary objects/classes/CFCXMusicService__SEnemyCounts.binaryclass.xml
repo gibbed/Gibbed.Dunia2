@@ -1,0 +1,11 @@
+<class name="CFCXMusicService::SEnemyCounts">
+	<inherit name="#11E152C8" />
+	<field name="fWalkingDetectionRadius" desc="Radius in meters of the detection circle to be used while the player is walking" type="Float32" />
+	<field name="fDrivingDetectionRadius" desc="Radius in meters of the detection circle to be used while the player is in a land vehicle" type="Float32" />
+	<field name="fFlyingDetectionRadius" desc="Radius in meters of the detection circle to be used while the player is flying" type="Float32" />
+	<field name="fZiplineDetectionRadius" desc="Radius in meters of the detection circle to be used while the player is ziplining" type="Float32" />
+	<field name="fSwimDetectionRadius" desc="Radius in meters of the detection circle to be used while the player is swimming" type="Float32" />
+	<field name="fStealthDetectionRadius" desc="Radius in meters of the detection circle to be used while the player is stealth" type="Float32" />
+	<field name="fAiCountIncreaseRate" desc="Rate per second enemy count increases to the current target level." type="Float32" />
+	<field name="fAiCountDecreaseRate" desc="Rate per second enemy count decreases to the current target level." type="Float32" />
+</class>

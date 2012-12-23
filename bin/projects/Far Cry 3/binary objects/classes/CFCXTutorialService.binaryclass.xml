@@ -1,0 +1,19 @@
+<class name="CFCXTutorialService">
+	<inherit name="CTutorialService" />
+	<object name="Subjects">
+		<object name="Subject">
+			<inherit name="CFCXTutorialSubjectSettings" />
+		</object>
+	</object>
+	<object name="LoadingSubjects">
+		<object name="Subject">
+			<inherit name="CFCXTutorialSubjectSettings" />
+		</object>
+	</object>
+	<object name="Settings">
+		<field name="PointsAddedWhenTaughtInGame" type="Float32" />
+		<field name="PointsAddedWhenUsedInGame" type="Float32" />
+		<field name="PointsAddedWhenTaughtInLoading" type="Float32" />
+	</object>
+	<field name="arkBreadCrumArchetype" type="Id64" />
+</class>

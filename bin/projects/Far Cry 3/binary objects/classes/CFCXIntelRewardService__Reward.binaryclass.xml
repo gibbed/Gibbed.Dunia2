@@ -1,0 +1,19 @@
+<class name="CFCXIntelRewardService::Reward">
+	<inherit name="#11E152C8" />
+	<field name="text_ID" type="String"/>
+	<field name="ID" type="Hash32" />
+	<field name="selType" type="Enum">
+		<enum name="enumType">
+			<element name="Experience">0</element>
+			<element name="WeaponMod">1</element>
+		</enum>
+	</field>
+	<field name="XP" type="Int32" />
+	<field name="text_WeaponModId" type="String" />
+	<field name="WeaponModId" type="Hash32" />
+	<field name="WeaponModTierIndex" type="Int32" />
+	<field name="SellValue" type="Int32" />
+	<field name="Weight" type="Int32" />
+	<field name="MinRank" type="Int32" />
+	<field name="MaxRank" type="Int32" />
+</class>

@@ -1,0 +1,3 @@
+<class name="CTutorialService">
+	<inherit name="IGameModeService" />
+</class>

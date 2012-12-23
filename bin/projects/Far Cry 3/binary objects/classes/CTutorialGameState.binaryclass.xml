@@ -1,0 +1,10 @@
+<class name="CTutorialGameState">
+	<inherit name="CNomadObject" />
+	<field name="selTutorialGameStateType" type="Enum">
+		<enum name="enumTutorialGameStateType">
+			<element name="Loading">0</element>
+			<element name="InGame">1</element>
+			<element name="None">2</element>
+		</enum>
+	</field>
+</class>

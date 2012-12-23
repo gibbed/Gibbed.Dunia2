@@ -1,0 +1,61 @@
+<class name="CFCXMusicService::State::SCondition">
+	<inherit name="#11E152C8" />
+	<field name="text_worldName" type="String" />
+	<field name="worldName" type="Hash32" />
+	<field name="selMovementMecanism" type="Enum">
+		<enum name="enumMovementMecanism">
+			<element name="Any Movement">0</element>
+			<element name="Walking">1</element>
+			<element name="Driving">2</element>
+			<element name="Flying">3</element>
+			<element name="Zipline">4</element>
+			<element name="Swimming">5</element>
+			<element name="Stealth">6</element>
+			<element name="Floating">7</element>
+		</enum>
+	</field>
+	<field name="selAreaType" type="Enum">
+		<enum name="enumAreaType">
+			<element name="Any Area">0</element>
+			<element name="Normal Area">1</element>
+			<element name="Neutral Area">2</element>
+			<element name="Safe Area">3</element>
+		</enum>
+	</field>
+	<field name="selGameState" type="Enum">
+		<enum name="enumGameState">
+			<element name="Any game state">0</element>
+			<element name="Pre-round camera">1</element>
+			<element name="In game">2</element>
+			<element name="NOT_USED_3">3</element>
+			<element name="End of match idle">4</element>
+			<element name="End of match action">5</element>
+			<element name="NOT_USED_6">6</element>
+		</enum>
+	</field>
+	<field name="selFaction" type="Enum">
+		<enum name="enumFaction">
+			<element name="Any faction">0</element>
+			<element name="Survivors">1</element>
+			<element name="Pirates">2</element>
+		</enum>
+	</field>
+	<field name="selFireStormState" type="Enum">
+		<enum name="enumFireStormState">
+			<element name="Any">0</element>
+			<element name="FireStorm">1</element>
+			<element name="GasolineDrop">2</element>
+			<element name="WaterDrop">3</element>
+		</enum>
+	</field>
+	<field name="fMinBattleIntensityLevel" type="Float32" />
+	<field name="fMaxBattleIntensityLevel" type="Float32" />
+	<field name="fMinTotalAi" type="Float32" />
+	<field name="fMinCombatAi" type="Float32" />
+	<field name="fMinInvestigateAi" type="Float32" />
+	<field name="bPumpNodeOverheat" type="Boolean" />
+	<field name="bIsStressMusic" type="Boolean" />
+	<field name="bCanPlayDuringMissions" type="Boolean" />
+	<field name="bCanPlayDuringCinematics" type="Boolean" />
+	<field name="bCanPlayDuringMainMenu" type="Boolean" />
+</class>

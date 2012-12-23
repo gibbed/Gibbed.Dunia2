@@ -1,0 +1,30 @@
+<class name="CFCXIntelRewardService">
+	<inherit name="IGameModeService" />
+	<field name="MediumXPThreshold" type="Int32" />
+	<field name="LargeXPThreshold" type="Int32" />
+	<object name="Rewards_MP_Tier1">
+		<object name="Reward">
+			<inherit name="CFCXIntelRewardService::Reward" />
+		</object>
+	</object>
+	<object name="Rewards_MP_Tier2">
+		<object name="Reward">
+			<inherit name="CFCXIntelRewardService::Reward" />
+		</object>
+	</object>
+	<object name="Rewards_MP_Tier3">
+		<object name="Reward">
+			<inherit name="CFCXIntelRewardService::Reward" />
+		</object>
+	</object>
+	<object name="Rewards_MP_Tier4">
+		<object name="Reward">
+			<inherit name="CFCXIntelRewardService::Reward" />
+		</object>
+	</object>
+	<object name="Rewards_MP_Tier5">
+		<object name="Reward">
+			<inherit name="CFCXIntelRewardService::Reward" />
+		</object>
+	</object>
+</class>

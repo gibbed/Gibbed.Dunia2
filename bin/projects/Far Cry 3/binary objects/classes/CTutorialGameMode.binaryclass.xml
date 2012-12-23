@@ -1,0 +1,16 @@
+<class name="CTutorialGameMode">
+	<inherit name="CNomadObject" />
+	<field name="selTutorialGameMode" type="Enum">
+		<enum name="enumTutorialGameMode">
+			<element name="Coop">0</element>
+			<element name="Domination">1</element>
+			<element name="Pump">2</element>
+			<element name="TeamDeathMatch">3</element>
+			<element name="DeathMatch">4</element>
+			<element name="Single">5</element>
+			<element name="FireStorm">6</element>
+			<element name="Dash">7</element>
+			<element name="None">8</element>
+		</enum>
+	</field>
+</class>

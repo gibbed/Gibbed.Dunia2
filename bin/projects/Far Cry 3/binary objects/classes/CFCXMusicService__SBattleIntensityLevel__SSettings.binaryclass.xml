@@ -1,0 +1,6 @@
+<class name="CFCXMusicService::SBattleIntensityLevel::SSettings">
+	<field name="fNearDistance" desc="Under that distance to the player, the danger value will be the near value. After that, there is an interpolation to the far value" type="Float32" />
+	<field name="fNearValue" desc="Danger value added when the event is closer to the player than the near distance." type="Float32" />
+	<field name="fFarDistance" desc="Maximum distance from the player for the vent to be consider. Under that, there is an interpolation to the near value" type="Float32" />
+	<field name="fFarValue" desc="Danger value added when the event is at the far limit." type="Float32" />
+</class>

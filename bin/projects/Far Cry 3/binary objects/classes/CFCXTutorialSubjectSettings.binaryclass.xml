@@ -1,0 +1,25 @@
+<class name="CFCXTutorialSubjectSettings">
+	<inherit name="CNomadObject" />
+	<field name="sName" type="String" />
+	<field name="fPriority" type="Float32" />
+	<field name="fTeachLimit" type="Float32" />
+	<field name="fPassLimit" type="Float32" />
+	<field name="fTeachCooldown" type="Float32" />
+	<field name="fUseRecordCooldown" type="Float32" />
+	<field name="fWaitForUseTime" type="Float32" />
+	<field name="bIsUnlockedByDefault" type="Boolean" />
+	<field name="locidLoadingTextPC" desc="PC text in loading screen" type="Int32" />
+	<field name="locidLoadingTextConsole" desc="XBox/PS3 text in loading screen" type="Int32" />
+	<field name="locidIngameTextPC" desc="PC text in game" type="Int32" />
+	<field name="locidIngameTextConsole" desc="XBox/PS3 text in game" type="Int32" />
+	<object name="AvailableInGameStates">
+		<object name="GamesState">
+			<inherit name="CTutorialGameState" />
+		</object>
+	</object>
+	<object name="AvailableInGameModes">
+		<object name="GamesMode">
+			<inherit name="CTutorialGameMode" />
+		</object>
+	</object>
+</class>

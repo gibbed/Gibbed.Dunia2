@@ -1,4 +1,5 @@
 <file name="EntityLibrary">
+	<alias>EntityLibrary_full</alias>
 	<object name="EntityLibraries">
 		<inherit name="EntityLibraries" />
 	</object>

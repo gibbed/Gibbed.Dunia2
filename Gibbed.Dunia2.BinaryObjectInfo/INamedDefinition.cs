@@ -22,9 +22,8 @@
 
 namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    public interface IDefinition
+    public interface INamedDefinition
     {
         string Name { get; }
-        uint Hash { get; }
     }
 }

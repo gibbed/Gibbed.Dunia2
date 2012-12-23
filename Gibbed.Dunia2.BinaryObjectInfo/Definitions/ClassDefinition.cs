@@ -27,14 +27,38 @@ using System.Linq;
 
 namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
 {
-    public class ClassDefinition : IDefinition
+    public class ClassDefinition : IHashedDefinition
     {
+        private ReadOnlyCollection<FieldDefinition> _Fields;
+        private Dictionary<uint, FieldDefinition> _FieldLookup;
+
+        private ReadOnlyCollection<ClassDefinition> _Objects;
+        private Dictionary<uint, ClassDefinition> _ObjectLookup;
+
         public string Name { get; internal set; }
         public uint Hash { get; internal set; }
 
         public ReadOnlyCollection<FriendDefinition> Friends { get; internal set; }
-        public ReadOnlyCollection<FieldDefinition> Fields { get; internal set; }
-        public ReadOnlyCollection<ClassDefinition> Objects { get; internal set; }
+
+        public ReadOnlyCollection<FieldDefinition> Fields
+        {
+            get { return this._Fields; }
+            internal set
+            {
+                this._Fields = value;
+                this._FieldLookup = value.ToDictionary(f => f.Hash, f => f);
+            }
+        }
+
+        public ReadOnlyCollection<ClassDefinition> Objects
+        {
+            get { return this._Objects; }
+            internal set
+            {
+                this._Objects = value;
+                this._ObjectLookup = value.ToDictionary(f => f.Hash, f => f);
+            }
+        }
 
         public bool DynamicNestedClasses { get; internal set; }
         public string ClassFieldName { get; internal set; }
@@ -47,10 +71,9 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
 
         public FieldDefinition GetFieldDefinition(uint hash, IEnumerable<FileFormats.BinaryObject> chain)
         {
-            var def = this.Fields.FirstOrDefault(fd => fd.Hash == hash);
-            if (def != null)
+            if (this._FieldLookup.ContainsKey(hash) == true)
             {
-                return def;
+                return this._FieldLookup[hash];
             }
 
             foreach (var friend in this.Friends)
@@ -76,7 +99,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
                     }
                 }
 
-                def = friend.Class.GetFieldDefinition(hash, chain);
+                var def = friend.Class.GetFieldDefinition(hash, chain);
                 if (def != null)
                 {
                     return def;
@@ -93,10 +116,9 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
 
         public ClassDefinition GetObjectDefinition(uint hash, IEnumerable<FileFormats.BinaryObject> chain)
         {
-            var def = this.Objects.FirstOrDefault(fd => fd.Hash == hash);
-            if (def != null)
+            if (this._ObjectLookup.ContainsKey(hash) == true)
             {
-                return def;
+                return this._ObjectLookup[hash];
             }
 
             foreach (var friend in this.Friends)
@@ -122,7 +144,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
                     }
                 }
 
-                def = friend.Class.GetObjectDefinition(hash, chain);
+                var def = friend.Class.GetObjectDefinition(hash, chain);
                 if (def != null)
                 {
                     return def;

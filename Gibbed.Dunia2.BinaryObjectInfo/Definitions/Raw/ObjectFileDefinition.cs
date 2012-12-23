@@ -20,6 +20,7 @@
  *    distribution.
  */
 
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Raw
@@ -27,11 +28,19 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Raw
     [XmlRoot("file")]
     public class ObjectFileDefinition : IFileDefinition
     {
+        public ObjectFileDefinition()
+        {
+            this.Object = new ClassDefinition();
+        }
+
         [XmlIgnore]
         public string Path { get; set; }
 
         [XmlAttribute("name")]
         public string Name { get; set; }
+
+        [XmlElement("alias")]
+        public List<string> Aliases { get; set; }
 
         [XmlElement("object")]
         public ClassDefinition Object { get; set; }

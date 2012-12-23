@@ -26,44 +26,52 @@ using System.Linq;
 
 namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    public sealed class InfoDictionary<TType>
-        where TType : IDefinition
+    public sealed class HashedDefinitionDictionary<TType>
+        where TType : IHashedDefinition
     {
-        private readonly List<TType> _Items;
+        private readonly Dictionary<uint, TType> _Items;
 
-        public InfoDictionary(IEnumerable<TType> items)
+        public HashedDefinitionDictionary(IEnumerable<TType> items)
         {
             if (items == null)
             {
                 throw new ArgumentNullException("items");
             }
 
-            this._Items = items.ToList();
+            this._Items = items.ToDictionary(i => i.Hash, i => i);
         }
 
         public bool ContainsKey(uint key)
         {
-            return this._Items.Any(i => i.Hash == key);
+            return this._Items.ContainsKey(key);
         }
 
         public bool ContainsKey(string key)
         {
-            return this._Items.Any(i => i.Name == key);
+            return this.ContainsKey(FileFormats.CRC32.Hash(key));
         }
 
         public TType this[uint key]
         {
-            get { return this._Items.FirstOrDefault(i => i.Hash == key); }
+            get
+            {
+                if (this._Items.ContainsKey(key) == false)
+                {
+                    return default(TType);
+                }
+
+                return this._Items[key];
+            }
         }
 
         public TType this[string key]
         {
-            get { return this._Items.FirstOrDefault(i => i.Name == key); }
+            get { return this[FileFormats.CRC32.Hash(key)]; }
         }
 
         public IEnumerable<TType> Items
         {
-            get { return this._Items; }
+            get { return this._Items.Values; }
         }
     }
 }

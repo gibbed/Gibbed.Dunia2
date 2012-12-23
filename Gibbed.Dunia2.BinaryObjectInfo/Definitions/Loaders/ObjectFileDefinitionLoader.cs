@@ -20,6 +20,7 @@
  *    distribution.
  */
 
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,24 +29,32 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
 {
     internal static class ObjectFileDefinitionLoader
     {
-        public static InfoDictionary<ObjectFileDefinition> Load(string basePath,
-                                                                InfoDictionary<ClassDefinition> classDefs)
+        public static NamedDefinitionDictionary<ObjectFileDefinition> Load(string basePath,
+                                                                           HashedDefinitionDictionary<ClassDefinition>
+                                                                               classDefs)
         {
             var raws = LoaderHelper.Load<Raw.ObjectFileDefinition>(GetObjectFilePaths(basePath));
             var defs = new List<ObjectFileDefinition>();
+            var names = new List<string>();
             foreach (var raw in raws)
             {
-                if (defs.Any(d => d.Name == raw.Name) == true)
+                foreach (var alias in raw.Aliases)
                 {
-                    throw new LoadException(string.Format("duplicate binary object file '{0}'", raw.Name));
+                    if (names.Contains(alias) == true)
+                    {
+                        throw new LoadException(string.Format("duplicate binary object file '{0}'", raw.Name));
+                    }
                 }
+
                 defs.Add(LoadObjectFileDefinition(raw, classDefs));
+                names.AddRange(raw.Aliases);
             }
-            return new InfoDictionary<ObjectFileDefinition>(defs);
+            return new NamedDefinitionDictionary<ObjectFileDefinition>(defs);
         }
 
         private static ObjectFileDefinition LoadObjectFileDefinition(Raw.ObjectFileDefinition raw,
-                                                                     InfoDictionary<ClassDefinition> classDefs)
+                                                                     HashedDefinitionDictionary<ClassDefinition>
+                                                                         classDefs)
         {
             if (string.IsNullOrEmpty(raw.Name) == true)
             {
@@ -62,7 +71,11 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
             return new ObjectFileDefinition()
             {
                 Name = raw.Name,
-                Hash = FileFormats.CRC32.Hash(raw.Name),
+                Aliases =
+                    new ReadOnlyCollection<string>(
+                        new[] {raw.Name.ToLowerInvariant()}.Concat(raw.Aliases.Select(a => a.ToLowerInvariant()))
+                                                           .Distinct()
+                                                           .ToList()),
                 Object = classDef,
             };
         }

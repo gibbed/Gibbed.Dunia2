@@ -151,7 +151,7 @@
 		<field name="sndswvlSoundSwitchPlayerOutdoor" type="Hash32" />
 	</object>
 	<field name="sCharacterName" type="String" />
-	<field name="nCharacterFireID" type="String" />
+	<field name="nCharacterFireID" type="UInt8" />
 	<field name="sCharacterType" type="String" />
 	<object name="DropInfos">
 		<inherit name="CPawn::SPawnImpl::SDropInfos" />

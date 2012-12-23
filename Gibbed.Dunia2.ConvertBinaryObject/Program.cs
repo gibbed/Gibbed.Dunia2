@@ -259,6 +259,10 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 basePath = Path.GetFullPath(basePath);
 
                 var objectFileDef = infoManager.GetObjectFileDefinition(baseName);
+                if (objectFileDef == null)
+                {
+                    Console.WriteLine("Warning: could not find binary object file definition '{0}'", baseName);
+                }
 
                 if (verbose == true)
                 {

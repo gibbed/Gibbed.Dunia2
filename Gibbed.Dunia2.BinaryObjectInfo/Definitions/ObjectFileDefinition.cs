@@ -20,12 +20,14 @@
  *    distribution.
  */
 
+using System.Collections.ObjectModel;
+
 namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
 {
-    public class ObjectFileDefinition : IDefinition
+    public class ObjectFileDefinition : INamedDefinition
     {
         public string Name { get; internal set; }
-        public uint Hash { get; internal set; }
+        public ReadOnlyCollection<string> Aliases { get; internal set; }
         public ClassDefinition Object { get; internal set; }
     }
 }

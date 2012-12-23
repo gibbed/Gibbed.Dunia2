@@ -51,8 +51,10 @@
     <Compile Include="Definitions\Loaders\ObjectFileDefinitionLoader.cs" />
     <Compile Include="FieldType.cs" />
     <Compile Include="FieldTypeDeserializers.cs" />
+    <Compile Include="FieldTypeHelper.cs" />
     <Compile Include="FieldTypeSerializers.cs" />
     <Compile Include="IFileDefinition.cs" />
+    <Compile Include="INamedDefinition.cs" />
     <Compile Include="LoadException.cs" />
     <Compile Include="Definitions\ObjectFileDefinition.cs" />
     <Compile Include="Definitions\Raw\ClassDefinition.cs" />
@@ -61,9 +63,10 @@
     <Compile Include="Definitions\Raw\FieldDefinition.cs" />
     <Compile Include="Definitions\Raw\FriendDefinition.cs" />
     <Compile Include="Definitions\Raw\ObjectFileDefinition.cs" />
+    <Compile Include="NamedDefinitionDictionary.cs" />
     <Compile Include="XmlLoadException.cs" />
-    <Compile Include="IDefinition.cs" />
-    <Compile Include="InfoDictionary.cs" />
+    <Compile Include="IHashedDefinition.cs" />
+    <Compile Include="HashedDefinitionDictionary.cs" />
     <Compile Include="InfoManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

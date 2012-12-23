@@ -20,35 +20,40 @@
  *    distribution.
  */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Gibbed.Dunia2.BinaryObjectInfo
 {
-    // Don't forget to update FieldTypeHelper if you add something here.
-    public enum FieldType
+    public sealed class NamedDefinitionDictionary<TType>
+        where TType : INamedDefinition
     {
-        Invalid = 0,
-        BinHex,
-        Boolean,
-        UInt8,
-        Int8,
-        UInt16,
-        Int16,
-        UInt32,
-        Int32,
-        UInt64,
-        Int64,
-        Float32,
-        Float64,
-        Vector2,
-        Vector3,
-        Vector4,
-        String,
-        Enum,
-        Hash32,
-        Hash64,
-        Id32,
-        Id64,
-        Rml,
-        ComputeHash32,
-        ComputeHash64,
+        private readonly List<TType> _Items;
+
+        public NamedDefinitionDictionary(IEnumerable<TType> items)
+        {
+            if (items == null)
+            {
+                throw new ArgumentNullException("items");
+            }
+
+            this._Items = items.ToList();
+        }
+
+        public bool ContainsKey(string key)
+        {
+            return this._Items.Any(i => i.Name == key);
+        }
+
+        public TType this[string key]
+        {
+            get { return this._Items.FirstOrDefault(i => i.Name == key); }
+        }
+
+        public IEnumerable<TType> Items
+        {
+            get { return this._Items; }
+        }
     }
 }

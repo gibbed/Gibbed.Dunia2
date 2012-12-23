@@ -494,8 +494,6 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 {
                     writer.WriteStartElement("field");
 
-                    writer.Flush();
-
                     var fieldDef = def != null ? def.GetFieldDefinition(kv.Key, chain) : null;
 
                     if (fieldDef != null && fieldDef.Name != null && fieldDef.Hash == kv.Key)
@@ -509,12 +507,12 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
                     if (fieldDef == null)
                     {
-                        writer.WriteAttributeString("type", FieldType.BinHex.ToString());
+                        writer.WriteAttributeString("type", FieldType.BinHex.GetString());
                         writer.WriteBinHex(kv.Value, 0, kv.Value.Length);
                     }
                     else
                     {
-                        writer.WriteAttributeString("type", fieldDef.Type.ToString());
+                        writer.WriteAttributeString("type", fieldDef.Type.GetString());
                         FieldTypeDeserializers.Deserialize(writer, fieldDef, kv.Value);
                     }
 

@@ -29,8 +29,8 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
 {
     public class InfoManager
     {
-        public InfoDictionary<ClassDefinition> ClassDefinitions { get; private set; }
-        public InfoDictionary<ObjectFileDefinition> ObjectFileDefinitions { get; private set; }
+        public HashedDefinitionDictionary<ClassDefinition> ClassDefinitions { get; private set; }
+        public NamedDefinitionDictionary<ObjectFileDefinition> ObjectFileDefinitions { get; private set; }
 
         private InfoManager()
         {
@@ -62,8 +62,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
             }
 
             name = name.ToLowerInvariant();
-            return this.ObjectFileDefinitions.Items
-                .FirstOrDefault(i => i.Name.ToLowerInvariant() == name);
+            return this.ObjectFileDefinitions.Items.FirstOrDefault(i => i.Aliases.Contains(name) == true);
         }
     }
 }

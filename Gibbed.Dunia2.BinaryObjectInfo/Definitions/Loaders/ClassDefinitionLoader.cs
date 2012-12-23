@@ -29,7 +29,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
 {
     internal static class ClassDefinitionLoader
     {
-        public static InfoDictionary<ClassDefinition> Load(string basePath)
+        public static HashedDefinitionDictionary<ClassDefinition> Load(string basePath)
         {
             var raws = LoaderHelper.Load<Raw.ClassDefinition>(GetClassDefinitionPaths(basePath));
 
@@ -44,7 +44,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
                 pairs.Add(raw, GetClass(raw));
             }
 
-            var defs = new InfoDictionary<ClassDefinition>(pairs.Values);
+            var defs = new HashedDefinitionDictionary<ClassDefinition>(pairs.Values);
             foreach (var pair in pairs)
             {
                 LoadClass(pair.Value, pair.Key, defs);
@@ -62,7 +62,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
         }
 
         public static ClassDefinition LoadClass(Raw.ClassDefinition raw,
-                                                InfoDictionary<ClassDefinition> root)
+                                                HashedDefinitionDictionary<ClassDefinition> root)
         {
             var def = GetClass(raw);
             LoadClass(def, raw, root);
@@ -70,7 +70,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
         }
 
         public static ClassDefinition LoadAnonymousClass(Raw.ClassDefinition raw,
-                                                         InfoDictionary<ClassDefinition> root)
+                                                         HashedDefinitionDictionary<ClassDefinition> root)
         {
             var def = new ClassDefinition();
             LoadClass(def, raw, root);
@@ -79,7 +79,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
 
         private static void LoadClass(ClassDefinition def,
                                       Raw.ClassDefinition raw,
-                                      InfoDictionary<ClassDefinition> root)
+                                      HashedDefinitionDictionary<ClassDefinition> root)
         {
             def.Friends = new ReadOnlyCollection<FriendDefinition>(LoadFriends(raw.Friends, root));
             def.Fields = new ReadOnlyCollection<FieldDefinition>(LoadFields(raw.Fields));
@@ -90,7 +90,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
         }
 
         private static IList<FriendDefinition> LoadFriends(IEnumerable<Raw.FriendDefinition> raws,
-                                                           InfoDictionary<ClassDefinition> root)
+                                                           HashedDefinitionDictionary<ClassDefinition> root)
         {
             var defs = new List<FriendDefinition>();
             if (raws != null)
@@ -100,7 +100,8 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
             return defs;
         }
 
-        private static FriendDefinition LoadFriend(Raw.FriendDefinition raw, InfoDictionary<ClassDefinition> root)
+        private static FriendDefinition LoadFriend(Raw.FriendDefinition raw,
+                                                   HashedDefinitionDictionary<ClassDefinition> root)
         {
             if (root.ContainsKey(raw.Name) == false)
             {
@@ -199,7 +200,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
         }
 
         private static IList<ClassDefinition> LoadObjects(IEnumerable<Raw.ClassDefinition> raws,
-                                                          InfoDictionary<ClassDefinition> root)
+                                                          HashedDefinitionDictionary<ClassDefinition> root)
         {
             var defs = new List<ClassDefinition>();
             if (raws != null)

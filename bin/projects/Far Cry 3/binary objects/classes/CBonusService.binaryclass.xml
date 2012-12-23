@@ -1,0 +1,23 @@
+<class name="CBonusService">
+	<inherit name="IGameModeService" />
+	<object name="Categories">
+		<object name="Category">
+			<field name="sName" type="String" />
+			<object name="BonusPlans">
+				<object name="BonusPlan">
+					<field name="text_name" type="String" />
+					<field name="name" type="Hash32" />
+					<field name="selBonusTypeId" type="Enum">
+						<enum name="enumBonusTypeId">
+							<element name="Invalid">-1</element>
+							<element name="CBonusPlan">227563465</element>
+						</enum>
+					</field>
+					<object name="BonusPlan">
+						<inherit name="CBonusPlan" />
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+</class>

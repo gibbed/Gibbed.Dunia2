@@ -1,0 +1,158 @@
+<class name="CBonusPlan">
+	<inherit name="CNomadObject" />
+	<field name="bAllowMultipleInstances" type="Boolean" />
+	<object name="Bonuses">
+		<object name="Bonus">
+			<field name="selAttribute" type="Enum">
+				<enum name="enumAttribute">
+					<element name="Invalid">0</element>
+					<element name="Accuracy">1</element>
+					<element name="RepairTime">2</element>
+					<element name="MaxAmmo">3</element>
+					<element name="Damage">4</element>
+					<element name="Recoil">5</element>
+					<element name="Degradation">6</element>
+					<element name="UnjamTime">7</element>
+					<element name="Sticky">8</element>
+					<element name="DamageVsArmored">9</element>
+					<element name="DamageVsUnArmored">10</element>
+					<element name="DrawTime">11</element>
+					<element name="IronsightTransitionTime">12</element>
+					<element name="ReloadTime">13</element>
+					<element name="FireRate">14</element>
+					<element name="AmmoInClip">15</element>
+					<element name="PrepareShotTime">16</element>
+					<element name="WalkSpeed">17</element>
+					<element name="SprintSpeed">18</element>
+					<element name="HipAccuracy">19</element>
+					<element name="SwayReduction">20</element>
+					<element name="FLAG_QuickReload">21</element>
+					<element name="StartAmmo">22</element>
+					<element name="FireRange">23</element>
+					<element name="TimeToSpotTraps">24</element>
+					<element name="SpotDistanceTraps">25</element>
+					<element name="DropRateTraps">26</element>
+					<element name="BattleCryCooldown">27</element>
+					<element name="BattleCryRange">28</element>
+					<element name="NumberOfWeaponAttachments">29</element>
+					<element name="FLAG_IronsightReload">30</element>
+					<element name="FLAG_SprintReload">31</element>
+					<element name="FLAG_CrouchSprint">32</element>
+					<element name="ReflexFireWeightingHead">33</element>
+					<element name="ReflexFireWeightingTorso">34</element>
+					<element name="ReflexFireWeightingOtherBodyParts">35</element>
+					<element name="ReflexFireWeightingDefaultAim">360</element>
+					<element name="HoldBreathTime">37</element>
+					<element name="FLAG_TakedownFromAbove">38</element>
+					<element name="FLAG_TakedownDrag">39</element>
+					<element name="FLAG_TakedownKnifeThrow">40</element>
+					<element name="DamageReceived">41</element>
+					<element name="FireDamageReceived">42</element>
+					<element name="FLAG_BreatheUnderwater">43</element>
+					<element name="SwimSpeed">44</element>
+					<element name="SeeEnemyShadersRange">45</element>
+					<element name="SeePlantShadersRange">46</element>
+					<element name="SeeExplosiveShadersRange">47</element>
+					<element name="SeeAllShadersRange">48</element>
+					<element name="AnimalFleeRangeOverride">49</element>
+					<element name="AnimalAttackRangeOverride">50</element>
+					<element name="FLAG_Wingsuit">51</element>
+					<element name="MaxArrows">52</element>
+					<element name="MaxMedKits">53</element>
+					<element name="MaxWeapons">54</element>
+					<element name="MaxThrowables">55</element>
+					<element name="MaxExplosives">56</element>
+					<element name="MaxFlamethrowerAmmo">57</element>
+					<element name="MaxRockets">58</element>
+					<element name="MaxPotions">59</element>
+					<element name="FLAG_TakedownChain">60</element>
+					<element name="FLAG_TakedownGrenade">61</element>
+					<element name="MaxLoot">62</element>
+					<element name="FLAG_TakedownPistol">63</element>
+					<element name="MeleeKnockdownResistance">64</element>
+					<element name="SprintStaminaDrainRate">65</element>
+					<element name="PotionEffectDuration">66</element>
+					<element name="FLAG_ShootOnParachutes">67</element>
+					<element name="FLAG_ShootOnZiplines">68</element>
+					<element name="VehicleRepairSpeed">69</element>
+					<element name="FallDamage">70</element>
+					<element name="HealthSlots">71</element>
+					<element name="VehicleHealth">72</element>
+					<element name="ManualHealPower">73</element>
+					<element name="MedkitHealPower">74</element>
+					<element name="SwaySpeed">75</element>
+					<element name="BowPrimeTime">76</element>
+					<element name="ArmorDamageResistance">77</element>
+					<element name="MountedWeaponOverheatFactor">78</element>
+					<element name="FLAG_CrouchSlide">79</element>
+					<element name="FLAG_DoublePlantLoot">80</element>
+					<element name="FLAG_DoubleAnimalLoot">81</element>
+					<element name="PotionStrength">82</element>
+					<element name="ExplosionDamageReceived">83</element>
+					<element name="WalkFootstepRadius">84</element>
+					<element name="RunFootstepRadius">85</element>
+					<element name="FallDistanceA">86</element>
+					<element name="FallDistanceB">87</element>
+					<element name="FallDistanceC">88</element>
+					<element name="FallDistanceD">89</element>
+					<element name="MaxM79Ammo">90</element>
+					<element name="MaxFlares">91</element>
+					<element name="FLAG_TakedownAboveDouble">92</element>
+					<element name="FLAG_ExtraCookingSlot">93</element>
+					<element name="OxygenSwimDrain">94</element>
+					<element name="FLAG_CorpseDoubleCashLoot">95</element>
+					<element name="FLAG_TakedownLedgeSingle">96</element>
+					<element name="FLAG_TakedownLedgeDouble">97</element>
+					<element name="FLAG_TakedownWaterSingle">98</element>
+					<element name="FLAG_TakedownWaterDouble">99</element>
+					<element name="FLAG_TakedownHeavyUnit">100</element>
+					<element name="FLAG_TakedownAutoLoot">101</element>
+					<element name="FLAG_TakedownStandard">102</element>
+					<element name="MaxPistolAmmo">103</element>
+					<element name="MaxSMGAmmo">104</element>
+					<element name="MaxShotgunAmmo">105</element>
+					<element name="MaxAssaultAmmo">106</element>
+					<element name="MaxSniperAmmo">107</element>
+					<element name="MaxLMGAmmo">108</element>
+					<element name="MaxMoney">109</element>
+					<element name="RangeMultiplier">110</element>
+					<element name="BusyDuration">111</element>
+					<element name="PiercingPower">112</element>
+					<element name="FLAG_HideOnMiniMap">113</element>
+					<element name="FootstepsNormalThreateningRadius">114</element>
+					<element name="FootstepsLoudThreateningRadius">115</element>
+					<element name="FootstepsLandingRadius">116</element>
+					<element name="LootSalePrice">117</element>
+					<element name="FLAG_PreventStunFailure">118</element>
+					<element name="HealthRegenRate">119</element>
+					<element name="DamageFromAnimals">120</element>
+					<element name="SeeAnimalShadersRange">121</element>
+					<element name="DamageToAnimals">122</element>
+					<element name="FLAG_SilentRun">123</element>
+					<element name="FLAG_OneHitKill">124</element>
+					<element name="ReviveDuration">125</element>
+					<element name="TaggingDuration">126</element>
+					<element name="AnimalRepellantFleeRange">127</element>
+					<element name="StartAmmoRockets">128</element>
+					<element name="StartAmmoM79">129</element>
+					<element name="StartAmmoFlameThrower">130</element>
+					<element name="StartAmmoArrows">131</element>
+				</enum>
+			</field>
+			<field name="fValue" type="Float32" />
+			<field name="iDifficultyLevel" type="Int32" />
+			<field name="bAllowStacking" type="Boolean" />
+			<field name="bPositive" desc="If the bonus has a positive effect" type="Boolean" />
+			<field name="locidLocName" type="Int32" />
+			<field name="selValueType" type="Enum">
+				<enum name="enumValueType">
+					<element name="Percentage">0</element>
+					<element name="Additive">1</element>
+				</enum>
+			</field>
+			<object name="UIAttribute">
+				<inherit name="SUnlockUIAttribute" />
+			</object>
+		</object>
+	</object>
+</class>

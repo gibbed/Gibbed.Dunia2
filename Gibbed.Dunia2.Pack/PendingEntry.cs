@@ -28,6 +28,5 @@ namespace Gibbed.Dunia2.Pack
         public ulong NameHash;
         public string FullPath;
         public string PartPath;
-        public int SubfatIndex;
     }
 }

@@ -21,34 +21,37 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+using Gibbed.IO;
 
-namespace RebuildFileLists
+namespace Gibbed.Dunia2.FileFormats
 {
-    internal class Breakdown
+    public class SubFatFile
     {
-        public long Known = 0;
-        public long Total = 0;
+        public readonly List<Big.Entry> Entries = new List<Big.Entry>();
 
-        public int Percent
+        public void Serialize(FileStream output)
         {
-            get
-            {
-                if (this.Total == 0)
-                {
-                    return 0;
-                }
-
-                return (int)Math.Floor(((float)this.Known /
-                                        (float)this.Total) * 100.0);
-            }
+            throw new NotImplementedException();
         }
 
-        public override string ToString()
+        public void Deserialize(Stream input, BigFile fat)
         {
-            return string.Format("{0}/{1} ({2}%)",
-                                 this.Known,
-                                 this.Total,
-                                 this.Percent);
+            var entrySerializer = fat.EntrySerializer;
+
+            uint entryCount = input.ReadValueU32(Endian.Little);
+            for (uint i = 0; i < entryCount; i++)
+            {
+                Big.Entry entry;
+                entrySerializer.Deserialize(input, fat.Endian, out entry);
+                this.Entries.Add(entry);
+            }
+
+            foreach (var entry in this.Entries)
+            {
+                BigFile.SanityCheckEntry(entry, fat.Platform);
+            }
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Breakdown.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracking.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gibbed.Dunia2.FileFormats\Gibbed.Dunia2.FileFormats.csproj">

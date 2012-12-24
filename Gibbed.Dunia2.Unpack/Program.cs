@@ -27,7 +27,9 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Gibbed.Dunia2.FileFormats;
+using Gibbed.IO;
 using NDesk.Options;
+using Big = Gibbed.Dunia2.FileFormats.Big;
 using EntryDecompression = Gibbed.Dunia2.FileFormats.Big.EntryDecompression;
 
 namespace Gibbed.Dunia2.Unpack
@@ -43,37 +45,23 @@ namespace Gibbed.Dunia2.Unpack
         {
             bool showHelp = false;
             bool extractUnknowns = true;
+            bool extractFiles = true;
+            bool extractSubFats = true;
+            bool unpackSubFats = false;
             string filterPattern = null;
             bool overwriteFiles = false;
             bool verbose = false;
 
             var options = new OptionSet()
             {
-                {
-                    "o|overwrite",
-                    "overwrite existing files",
-                    v => overwriteFiles = v != null
-                    },
-                {
-                    "nu|no-unknowns",
-                    "don't extract unknown files",
-                    v => extractUnknowns = v == null
-                    },
-                {
-                    "f|filter=",
-                    "only extract files using pattern",
-                    v => filterPattern = v
-                    },
-                {
-                    "v|verbose",
-                    "be verbose",
-                    v => verbose = v != null
-                    },
-                {
-                    "h|help",
-                    "show this message and exit",
-                    v => showHelp = v != null
-                    },
+                {"o|overwrite", "overwrite existing files", v => overwriteFiles = v != null},
+                {"nf|no-files", "don't extract files", v => extractFiles = v == null},
+                {"nu|no-unknowns", "don't extract unknown files", v => extractUnknowns = v == null},
+                {"ns|no-subfats", "don't extract subfats", v => extractSubFats = v == null},
+                {"us|unpack-subfats", "unpack files from subfats", v => unpackSubFats = v != null},
+                {"f|filter=", "only extract files using pattern", v => filterPattern = v},
+                {"v|verbose", "be verbose", v => verbose = v != null},
+                {"h|help", "show this message and exit", v => showHelp = v != null},
             };
 
             List<string> extras;
@@ -121,103 +109,242 @@ namespace Gibbed.Dunia2.Unpack
                 datPath = Path.ChangeExtension(fatPath, ".dat");
             }
 
+            if (verbose == true)
+            {
+                Console.WriteLine("Loading project...");
+            }
+
             var manager = ProjectData.Manager.Load();
             if (manager.ActiveProject == null)
             {
                 Console.WriteLine("Warning: no active project loaded.");
             }
 
-            ProjectData.HashList<ulong> hashes;
+            if (verbose == true)
+            {
+                Console.Write("Reading FAT...");
+            }
 
             BigFile fat;
-            using (var header = File.OpenRead(fatPath))
+            using (var input = File.OpenRead(fatPath))
             {
                 fat = new BigFile();
-                fat.Deserialize(header);
+                fat.Deserialize(input);
             }
 
-            if (fat.Version >= 9) // TODO: check if this is right...
-            {
-                hashes = manager.LoadLists("*.filelist",
-                                           a => CRC64.Hash(a.ToLowerInvariant()),
-                                           s => s.Replace("/", "\\"));
-            }
-            else
-            {
-                hashes = manager.LoadLists("*.filelist",
-                                           a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
-                                           s => s.Replace("\\", "/"));
-            }
+            var hashes = manager.LoadListsFileNames(fat.Version);
+            var subFatHashes = manager.LoadListsSubFatNames(fat.Version);
 
-            using (var data = File.OpenRead(datPath))
+            using (var input = File.OpenRead(datPath))
             {
-                long current = 0;
-                long total = fat.Entries.Count;
-                var padding = total.ToString(CultureInfo.InvariantCulture).Length;
-
-                var duplicates = new Dictionary<ulong, int>();
-
-                foreach (var entry in fat.Entries.OrderBy(e => e.Offset))
+                if (extractFiles == true)
                 {
-                    current++;
-
-                    string entryName;
-                    if (GetEntryName(data, fat, entry, hashes, extractUnknowns, out entryName) == false)
+                    Big.Entry[] entries;
+                    if (extractSubFats == true &&
+                        unpackSubFats == true)
                     {
-                        continue;
-                    }
-
-                    if (entry.SubFatIndex >= 0)
-                    {
-                        entryName = Path.Combine("__SUBFAT", entry.SubFatIndex.ToString(CultureInfo.InvariantCulture), entryName);
-                    }
-
-                    if (duplicates.ContainsKey(entry.NameHash) == true)
-                    {
-                        var number = duplicates[entry.NameHash]++;
-                        var e = Path.GetExtension(entryName);
-                        var nn =
-                            Path.ChangeExtension(
-                                Path.ChangeExtension(entryName, null) + "__DUPLICATE_" + number.ToString(CultureInfo.InvariantCulture), e);
-                        entryName = Path.Combine("__DUPLICATE", nn);
+                        entries =
+                            fat.Entries.Concat(fat.SubFats.SelectMany(sf => sf.Entries))
+                               .OrderBy(e => e.Offset)
+                               .ToArray();
                     }
                     else
                     {
-                        duplicates[entry.NameHash] = 0;
+                        entries = fat.Entries.OrderBy(e => e.Offset).ToArray();
                     }
 
-                    if (filter != null &&
-                        filter.IsMatch(entryName) == false)
+                    if (entries.Length > 0)
                     {
-                        continue;
-                    }
+                        if (verbose == true)
+                        {
+                            Console.Write("Unpacking files...");
+                        }
 
-                    var entryPath = Path.Combine(outputPath, entryName);
-                    if (overwriteFiles == false &&
-                        File.Exists(entryPath) == true)
-                    {
-                        continue;
-                    }
+                        long current = 0;
+                        long total = entries.Length;
+                        var padding = total.ToString(CultureInfo.InvariantCulture).Length;
 
+                        var duplicates = new Dictionary<ulong, int>();
+
+                        foreach (var entry in entries)
+                        {
+                            current++;
+
+                            if (subFatHashes.Contains(entry.NameHash) == true)
+                            {
+                                continue;
+                            }
+
+                            string entryName;
+                            if (GetEntryName(input, fat, entry, hashes, extractUnknowns, out entryName) == false)
+                            {
+                                continue;
+                            }
+
+                            if (duplicates.ContainsKey(entry.NameHash) == true)
+                            {
+                                var number = duplicates[entry.NameHash]++;
+                                var e = Path.GetExtension(entryName);
+                                var nn =
+                                    Path.ChangeExtension(
+                                        Path.ChangeExtension(entryName, null) + "__DUPLICATE_" +
+                                        number.ToString(CultureInfo.InvariantCulture),
+                                        e);
+                                entryName = Path.Combine("__DUPLICATE", nn);
+                            }
+                            else
+                            {
+                                duplicates[entry.NameHash] = 0;
+                            }
+
+                            if (filter != null &&
+                                filter.IsMatch(entryName) == false)
+                            {
+                                continue;
+                            }
+
+                            var entryPath = Path.Combine(outputPath, entryName);
+                            if (overwriteFiles == false &&
+                                File.Exists(entryPath) == true)
+                            {
+                                continue;
+                            }
+
+                            if (verbose == true)
+                            {
+                                Console.WriteLine("[{0}/{1}] {2}",
+                                                  current.ToString(CultureInfo.InvariantCulture).PadLeft(padding),
+                                                  total,
+                                                  entryName);
+                            }
+
+                            input.Seek(entry.Offset, SeekOrigin.Begin);
+
+                            var entryParent = Path.GetDirectoryName(entryPath);
+                            if (string.IsNullOrEmpty(entryParent) == false)
+                            {
+                                Directory.CreateDirectory(entryParent);
+                            }
+
+                            using (var output = File.Create(entryPath))
+                            {
+                                EntryDecompression.Decompress(entry, input, output);
+                            }
+                        }
+                    }
+                }
+
+                if (extractSubFats == true &&
+                    unpackSubFats == false &&
+                    fat.SubFats.Count > 0)
+                {
                     if (verbose == true)
                     {
-                        Console.WriteLine("[{0}/{1}] {2}",
-                                          current.ToString(CultureInfo.InvariantCulture).PadLeft(padding),
-                                          total,
-                                          entryName);
+                        Console.Write("Unpacking subfats...");
                     }
 
-                    data.Seek(entry.Offset, SeekOrigin.Begin);
+                    var subFatsFromFat = fat.SubFats.ToList();
 
-                    var entryParent = Path.GetDirectoryName(entryPath);
-                    if (string.IsNullOrEmpty(entryParent) == false)
+                    long current = 0;
+                    long total = subFatsFromFat.Count;
+                    var padding = total.ToString(CultureInfo.InvariantCulture).Length;
+
+                    foreach (var headerEntry in fat.Entries.Where(e => subFatHashes.Contains(e.NameHash) == true))
                     {
-                        Directory.CreateDirectory(entryParent);
+                        current++;
+
+                        var subFat = new SubFatFile();
+                        using (var temp = new MemoryStream())
+                        {
+                            EntryDecompression.Decompress(headerEntry, input, temp);
+                            temp.Position = 0;
+                            subFat.Deserialize(temp, fat);
+                        }
+
+                        var matchingSubFats = subFatsFromFat
+                            .Where(sf => subFat.Entries.SequenceEqual(sf.Entries))
+                            .ToArray();
+
+                        if (matchingSubFats.Length == 0)
+                        {
+                            continue;
+                        }
+
+                        if (matchingSubFats.Length > 1)
+                        {
+                            throw new InvalidOperationException();
+                        }
+
+                        var entryName = subFatHashes[headerEntry.NameHash];
+                        entryName = FilterEntryName(entryName);
+
+                        var entryHeaderPath = Path.Combine(outputPath, "__SUBFAT", entryName);
+                        if (overwriteFiles == false &&
+                            File.Exists(entryHeaderPath) == true)
+                        {
+                            continue;
+                        }
+
+                        if (verbose == true)
+                        {
+                            Console.WriteLine("[{0}/{1}] {2}",
+                                              current.ToString(CultureInfo.InvariantCulture).PadLeft(padding),
+                                              total,
+                                              entryName);
+                        }
+
+                        var entryParent = Path.GetDirectoryName(entryHeaderPath);
+                        if (string.IsNullOrEmpty(entryParent) == false)
+                        {
+                            Directory.CreateDirectory(entryParent);
+                        }
+
+                        var entryDataPath = Path.ChangeExtension(entryHeaderPath, ".dat");
+
+                        var rebuiltFat = new BigFile
+                        {
+                            Version = fat.Version,
+                            Platform = fat.Platform,
+                            Unknown74 = fat.Unknown74
+                        };
+
+                        using (var output = File.Create(entryDataPath))
+                        {
+                            var rebuiltEntries = new List<Big.Entry>();
+                            foreach (var entry in subFat.Entries.OrderBy(e => e.Offset))
+                            {
+                                var rebuiltEntry = new Big.Entry
+                                {
+                                    NameHash = entry.NameHash,
+                                    UncompressedSize = entry.UncompressedSize,
+                                    CompressedSize = entry.CompressedSize,
+                                    Offset = output.Position,
+                                    CompressionScheme = entry.CompressionScheme
+                                };
+
+                                input.Seek(entry.Offset, SeekOrigin.Begin);
+                                output.WriteFromStream(input, entry.CompressedSize);
+                                output.Seek(output.Position.Align(16), SeekOrigin.Begin);
+
+                                rebuiltEntries.Add(rebuiltEntry);
+                            }
+                            rebuiltFat.Entries.AddRange(rebuiltEntries.OrderBy(e => e.NameHash));
+                        }
+
+                        using (var output = File.Create(entryHeaderPath))
+                        {
+                            rebuiltFat.Serialize(output);
+                        }
+
+                        foreach (var matchingSubFat in matchingSubFats)
+                        {
+                            subFatsFromFat.Remove(matchingSubFat);
+                        }
                     }
 
-                    using (var output = File.Create(entryPath))
+                    if (subFatsFromFat.Count > 0)
                     {
-                        EntryDecompression.Decompress(entry, data, output);
+                        Console.WriteLine("Warning: could not identify {0} subfats", subFatsFromFat.Count);
                     }
                 }
             }
@@ -225,7 +352,7 @@ namespace Gibbed.Dunia2.Unpack
 
         private static bool GetEntryName(Stream input,
                                          BigFile fat,
-                                         FileFormats.Big.Entry entry,
+                                         Big.Entry entry,
                                          ProjectData.HashList<ulong> hashes,
                                          bool extractUnknowns,
                                          out string entryName)
@@ -245,7 +372,7 @@ namespace Gibbed.Dunia2.Unpack
                     var guess = new byte[64];
                     int read = 0;
 
-                    if (entry.CompressionScheme == FileFormats.Big.CompressionScheme.None)
+                    if (entry.CompressionScheme == Big.CompressionScheme.None)
                     {
                         if (entry.CompressedSize > 0)
                         {
@@ -284,14 +411,20 @@ namespace Gibbed.Dunia2.Unpack
             }
             else
             {
-                entryName = entryName.Replace("/", "\\");
-                if (entryName.StartsWith("\\") == true)
-                {
-                    entryName = entryName.Substring(1);
-                }
+                entryName = FilterEntryName(entryName);
             }
 
             return true;
+        }
+
+        private static string FilterEntryName(string entryName)
+        {
+            entryName = entryName.Replace("/", "\\");
+            if (entryName.StartsWith("\\") == true)
+            {
+                entryName = entryName.Substring(1);
+            }
+            return entryName;
         }
     }
 }

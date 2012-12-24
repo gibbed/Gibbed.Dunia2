@@ -29,7 +29,6 @@ namespace Gibbed.Dunia2.FileFormats.Big
         public uint CompressedSize;
         public long Offset;
         public CompressionScheme CompressionScheme;
-        public int SubFatIndex;
 
         public override string ToString()
         {
@@ -47,6 +46,48 @@ namespace Gibbed.Dunia2.FileFormats.Big
                                  this.UncompressedSize,
                                  this.CompressedSize,
                                  this.CompressionScheme);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return (Entry)obj == this;
+        }
+
+        public static bool operator ==(Entry a, Entry b)
+        {
+            return a.NameHash == b.NameHash &&
+                   a.UncompressedSize == b.UncompressedSize &&
+                   a.CompressedSize == b.CompressedSize &&
+                   a.Offset == b.Offset &&
+                   a.CompressionScheme == b.CompressionScheme;
+        }
+
+        public static bool operator !=(Entry a, Entry b)
+        {
+            return a.NameHash != b.NameHash ||
+                   a.UncompressedSize != b.UncompressedSize ||
+                   a.CompressedSize != b.CompressedSize ||
+                   a.Offset != b.Offset ||
+                   a.CompressionScheme != b.CompressionScheme;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + this.NameHash.GetHashCode();
+                hash = hash * 23 + this.UncompressedSize.GetHashCode();
+                hash = hash * 23 + this.CompressedSize.GetHashCode();
+                hash = hash * 23 + this.Offset.GetHashCode();
+                hash = hash * 23 + this.CompressionScheme.GetHashCode();
+                return hash;
+            }
         }
     }
 }

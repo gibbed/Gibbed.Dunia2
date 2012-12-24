@@ -53,5 +53,35 @@ namespace Gibbed.Dunia2.FileFormats
                                      a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
                                      s => s.Replace("\\", "/"));
         }
+
+        public static ProjectData.HashList<ulong> LoadListsSubFatNames(this ProjectData.Manager manager,
+                                                                       int bigVersion)
+        {
+            if (bigVersion >= 9) // TODO: check if this is right...
+            {
+                return manager.LoadLists("*.subfatlist",
+                                         a => CRC64.Hash(a.ToLowerInvariant()),
+                                         s => s.Replace("/", "\\"));
+            }
+
+            return manager.LoadLists("*.subfatlist",
+                                     a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
+                                     s => s.Replace("\\", "/"));
+        }
+
+        public static ProjectData.HashList<ulong> LoadListsSubFatNames(this ProjectData.Project project,
+                                                                       int bigVersion)
+        {
+            if (bigVersion >= 9) // TODO: check if this is right...
+            {
+                return project.LoadLists("*.subfatlist",
+                                         a => CRC64.Hash(a.ToLowerInvariant()),
+                                         s => s.Replace("/", "\\"));
+            }
+
+            return project.LoadLists("*.subfatlist",
+                                     a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
+                                     s => s.Replace("\\", "/"));
+        }
     }
 }

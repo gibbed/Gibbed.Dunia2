@@ -25,7 +25,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Gibbed.Dunia2.FileFormats;
+using Gibbed.ProjectData;
 using NDesk.Options;
+using Big = Gibbed.Dunia2.FileFormats.Big;
 
 namespace RebuildFileLists
 {
@@ -54,6 +56,26 @@ namespace RebuildFileLists
             return outputPath;
         }
 
+        private static string GetListPath(string installPath, string inputPath, string subfat)
+        {
+            installPath = installPath.ToLowerInvariant();
+            inputPath = inputPath.ToLowerInvariant();
+
+            if (inputPath.StartsWith(installPath) == false)
+            {
+                return null;
+            }
+
+            var baseName = inputPath.Substring(installPath.Length + 1);
+
+            string outputPath;
+            outputPath = Path.Combine("files", baseName);
+            outputPath = Path.ChangeExtension(outputPath, null);
+            outputPath = Path.Combine(outputPath + " subfats", subfat);
+            outputPath = Path.ChangeExtension(outputPath, ".filelist");
+            return outputPath;
+        }
+
         public static void Main(string[] args)
         {
             bool showHelp = false;
@@ -61,16 +83,8 @@ namespace RebuildFileLists
 
             var options = new OptionSet()
             {
-                {
-                    "h|help",
-                    "show this message and exit",
-                    v => showHelp = v != null
-                    },
-                {
-                    "p|project=",
-                    "override current project",
-                    v => currentProject = v
-                    },
+                {"h|help", "show this message and exit", v => showHelp = v != null},
+                {"p|project=", "override current project", v => currentProject = v},
             };
 
             List<string> extras;
@@ -98,7 +112,7 @@ namespace RebuildFileLists
 
             Console.WriteLine("Loading project...");
 
-            var manager = Gibbed.ProjectData.Manager.Load(currentProject);
+            var manager = Manager.Load(currentProject);
             if (manager.ActiveProject == null)
             {
                 Console.WriteLine("Nothing to do: no active project loaded.");
@@ -107,7 +121,8 @@ namespace RebuildFileLists
 
             var project = manager.ActiveProject;
             var version = -1;
-            Gibbed.ProjectData.HashList<ulong> hashes = null;
+            HashList<ulong> knownHashes = null;
+            HashList<ulong> subFatHashes = null;
 
             var installPath = project.InstallPath;
             var listsPath = project.ListsPath;
@@ -125,20 +140,21 @@ namespace RebuildFileLists
             }
 
             Console.WriteLine("Searching for archives...");
-            var inputPaths = new List<string>();
-            inputPaths.AddRange(Directory.GetFiles(installPath, "*.fat", SearchOption.AllDirectories));
+            var fatPaths = new List<string>();
+            fatPaths.AddRange(Directory.GetFiles(installPath, "*.fat", SearchOption.AllDirectories));
 
             var outputPaths = new List<string>();
 
             var breakdown = new Breakdown();
-
-            var allNames = new List<string>();
-            var allHashes = new List<ulong>();
+            var tracking = new Tracking();
 
             Console.WriteLine("Processing...");
-            foreach (var inputPath in inputPaths)
+            for (int i = 0; i < fatPaths.Count; i++)
             {
-                var outputPath = GetListPath(installPath, inputPath);
+                var fatPath = fatPaths[i];
+                var datPath = Path.ChangeExtension(fatPath, ".dat");
+
+                var outputPath = GetListPath(installPath, fatPath);
                 if (outputPath == null)
                 {
                     throw new InvalidOperationException();
@@ -154,104 +170,160 @@ namespace RebuildFileLists
 
                 outputPaths.Add(outputPath);
 
-                var fat = new BigFile();
-
-                if (File.Exists(inputPath + ".bak") == true)
+                if (File.Exists(fatPath + ".bak") == true)
                 {
-                    using (var input = File.OpenRead(inputPath + ".bak"))
-                    {
-                        fat.Deserialize(input);
-                    }
+                    fatPath += ".bak";
+                    datPath += ".bak";
                 }
-                else
+
+                var fat = new BigFile();
+                using (var input = File.OpenRead(fatPath))
                 {
-                    using (var input = File.OpenRead(inputPath))
-                    {
-                        fat.Deserialize(input);
-                    }
+                    fat.Deserialize(input);
                 }
 
                 if (version == -1)
                 {
                     version = fat.Version;
-
-                    if (fat.Version >= 9) // TODO: check if this is right...
-                    {
-                        hashes = manager.LoadLists("*.filelist",
-                                                   a => CRC64.Hash(a.ToLowerInvariant()),
-                                                   s => s.Replace("/", "\\"));
-                    }
-                    else
-                    {
-                        hashes = manager.LoadLists("*.filelist",
-                                                   a => (ulong)CRC32.Hash(a.ToLowerInvariant()),
-                                                   s => s.Replace("\\", "/"));
-                    }
+                    knownHashes = manager.LoadListsFileNames(fat.Version);
+                    subFatHashes = manager.LoadListsSubFatNames(fat.Version);
                 }
                 else if (version != fat.Version)
                 {
                     throw new InvalidOperationException();
                 }
 
-                var localBreakdown = new Breakdown();
-
-                var localNames = new List<string>();
-                var localHashes = fat.Entries
-                    .Select(e => e.NameHash)
-                    .Distinct()
-                    .ToArray();
-                foreach (var hash in localHashes)
+                if (knownHashes == null ||
+                    subFatHashes == null)
                 {
-                    var name = hashes[hash];
-                    if (name != null)
-                    {
-                        localNames.Add(name);
-                    }
-
-                    localBreakdown.Total++;
+                    throw new InvalidOperationException();
                 }
 
-                allHashes.AddRange(localHashes);
-                allNames.AddRange(localNames);
+                HandleEntries(fat.Entries.Select(e => e.NameHash).Distinct(),
+                              knownHashes,
+                              tracking,
+                              breakdown,
+                              outputPath);
 
-                var distinctLocalNames = localNames.Distinct().ToArray();
-                localBreakdown.Known += distinctLocalNames.Length;
-
-                breakdown.Known += localBreakdown.Known;
-                breakdown.Total += localBreakdown.Total;
-
-                var outputParent = Path.GetDirectoryName(outputPath);
-                if (string.IsNullOrEmpty(outputParent) == false)
+                using (var input = File.OpenRead(datPath))
                 {
-                    Directory.CreateDirectory(outputParent);
-                }
-                
-                using (var writer = new StringWriter())
-                {
-                    writer.WriteLine("; {0}", localBreakdown);
-
-                    foreach (string name in distinctLocalNames.OrderBy(dn => dn))
+                    foreach (var headerEntry in fat.Entries.Where(e => subFatHashes.Contains(e.NameHash) == true))
                     {
-                        writer.WriteLine(name);
-                    }
+                        var subFat = new SubFatFile();
+                        using (var temp = new MemoryStream())
+                        {
+                            Big.EntryDecompression.Decompress(headerEntry, input, temp);
+                            temp.Position = 0;
+                            subFat.Deserialize(temp, fat);
+                        }
 
-                    writer.Flush();
+                        var matchingSubFats = fat.SubFats
+                            .Where(sf => subFat.Entries.SequenceEqual(sf.Entries))
+                            .ToArray();
 
-                    using (var output = new StreamWriter(outputPath))
-                    {
-                        output.Write(writer.GetStringBuilder());
+                        if (matchingSubFats.Length == 0)
+                        {
+                            continue;
+                        }
+
+                        if (matchingSubFats.Length > 1)
+                        {
+                            throw new InvalidOperationException();
+                        }
+
+                        var subfatPath = GetListPath(installPath,
+                                                     fatPath,
+                                                     FilterEntryName(subFatHashes[headerEntry.NameHash]));
+                        if (subfatPath == null)
+                        {
+                            throw new InvalidOperationException();
+                        }
+
+                        Console.WriteLine(subfatPath);
+                        subfatPath = Path.Combine(listsPath, subfatPath);
+
+                        HandleEntries(subFat.Entries.Select(e => e.NameHash),
+                                      knownHashes,
+                                      tracking,
+                                      breakdown,
+                                      subfatPath);
                     }
                 }
             }
 
             using (var output = new StreamWriter(Path.Combine(Path.Combine(listsPath, "files"), "status.txt")))
             {
-                output.WriteLine("{0}", new Breakdown()
-                {
-                    Known = allNames.Distinct().Count(),
-                    Total = allHashes.Distinct().Count(),
-                });
+                output.WriteLine("{0}",
+                                 new Breakdown()
+                                 {
+                                     Known = tracking.Names.Distinct().Count(),
+                                     Total = tracking.Hashes.Distinct().Count(),
+                                 });
             }
+        }
+
+        private static void HandleEntries(IEnumerable<ulong> entries,
+                                          HashList<ulong> knownHashes,
+                                          Tracking tracking,
+                                          Breakdown breakdown,
+                                          string outputPath)
+        {
+            var localBreakdown = new Breakdown();
+
+            var localNames = new List<string>();
+            var localHashes = entries.ToArray();
+            foreach (var hash in localHashes)
+            {
+                var name = knownHashes[hash];
+                if (name != null)
+                {
+                    localNames.Add(name);
+                }
+
+                localBreakdown.Total++;
+            }
+
+            tracking.Hashes.AddRange(localHashes);
+            tracking.Names.AddRange(localNames);
+
+            var distinctLocalNames = localNames.Distinct().ToArray();
+            localBreakdown.Known += distinctLocalNames.Length;
+
+            breakdown.Known += localBreakdown.Known;
+            breakdown.Total += localBreakdown.Total;
+
+            var outputParent = Path.GetDirectoryName(outputPath);
+            if (string.IsNullOrEmpty(outputParent) == false)
+            {
+                Directory.CreateDirectory(outputParent);
+            }
+
+            using (var writer = new StringWriter())
+            {
+                writer.WriteLine("; {0}", localBreakdown);
+
+                foreach (string name in distinctLocalNames.OrderBy(dn => dn))
+                {
+                    writer.WriteLine(name);
+                }
+
+                writer.Flush();
+
+                using (var output = new StreamWriter(outputPath))
+                {
+                    output.Write(writer.GetStringBuilder());
+                }
+            }
+        }
+
+        private static string FilterEntryName(string entryName)
+        {
+            entryName = entryName.Replace("/", "\\");
+            if (entryName.StartsWith("\\") == true)
+            {
+                entryName = entryName.Substring(1);
+            }
+            return entryName;
         }
     }
 }

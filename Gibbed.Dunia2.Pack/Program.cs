@@ -155,7 +155,6 @@ namespace Gibbed.Dunia2.Pack
 
                     pendingEntry.FullPath = fullPath;
                     pendingEntry.PartPath = partPath;
-                    pendingEntry.SubfatIndex = -1;
 
                     var pieces = partPath.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
                     int index = 0;
@@ -167,19 +166,8 @@ namespace Gibbed.Dunia2.Pack
 
                     if (pieces[index].ToUpperInvariant() == "__SUBFAT")
                     {
-                        index++;
-
-                        if (index >= pieces.Length)
-                        {
-                            continue;
-                        }
-
-                        if (int.TryParse(pieces[index], out pendingEntry.SubfatIndex) == false)
-                        {
-                            continue;
-                        }
-
-                        index++;
+                        Console.WriteLine("Sorry, packing of subfats is not currently implemented.");
+                        return;
                     }
 
                     if (index >= pieces.Length)
@@ -269,7 +257,6 @@ namespace Gibbed.Dunia2.Pack
 
                     var entry = new Big.Entry();
                     entry.NameHash = pendingEntry.NameHash;
-                    entry.SubFatIndex = pendingEntry.SubfatIndex;
                     entry.Offset = output.Position;
 
                     using (var input = File.OpenRead(pendingEntry.FullPath))

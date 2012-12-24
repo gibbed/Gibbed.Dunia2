@@ -1,0 +1,21 @@
+<class name="CFCXUnlockService::SWeapon">
+	<inherit name="CFCXUnlockService::SUnlockable" />
+	<field name="NumUpgradeSlots" type="Int32" />
+	<object name="UIInfo">
+		<inherit name="CUnlockUIInfoWeapon" />
+	</object>
+	<field name="iAmmoPvP" desc="Number of bullets to start with (set to -1 for default)" type="Int32" />
+	<field name="iAmmoCoop" desc="Number of bullets to start with (set to -1 for default)" type="Int32" />
+	<field name="text_sRankLadder" type="String" />
+	<field name="sRankLadder" type="Hash32" />
+	<object name="UnlockableMods">
+		<object name="Mod">
+			<inherit name="CFCXUnlockService::SWeaponMod" />
+		</object>
+	</object>
+	<object name="UnlockableUpgrades">
+		<object name="Upgrade">
+			<inherit name="CFCXUnlockService::SWeaponUpgrade" />
+		</object>
+	</object>
+</class>

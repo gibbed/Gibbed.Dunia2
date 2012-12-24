@@ -1,0 +1,14 @@
+<class name="CFCXUnlockService::SEndOfMatchMovie">
+	<inherit name="CFCXUnlockService::SUnlockable" />
+	<object name="UIInfo">
+		<inherit name="CUnlockUIInfoEndOfMatchMovie" />
+	</object>
+	<field name="text_EndOfMatchMovieName" type="String" />
+	<field name="EndOfMatchMovieName" desc="EndOfMatchMovie name in the EndOfMatchMovie template" type="Hash32" />
+	<field name="selMovieType" type="Enum">
+		<enum name="enumMovieType">
+			<element name="Mercy">1</element>
+			<element name="Punish">2</element>
+		</enum>
+	</field>
+</class>

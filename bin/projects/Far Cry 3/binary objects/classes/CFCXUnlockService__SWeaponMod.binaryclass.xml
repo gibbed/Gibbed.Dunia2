@@ -1,0 +1,20 @@
+<class name="CFCXUnlockService::SWeaponMod">
+	<inherit name="CFCXUnlockService::SUnlockable" />
+	<field name="text_sSkinName" type="String" />
+	<field name="sSkinName" desc="Case sensitive!" type="Hash32" />
+	<object name="UIInfo">
+		<inherit name="CUnlockUIInfoWeaponMod" />
+	</object>
+	<object name="Tiers">
+		<object name="Tier">
+			<field name="text_sName" type="String" />
+			<field name="sName" type="Hash32" />
+			<object name="BonusPlans">
+				<object name="BonusPlan">
+					<field name="text_BonusPlan" type="String" />
+					<field name="BonusPlan" type="Hash32" />
+				</object>
+			</object>
+		</object>
+	</object>
+</class>

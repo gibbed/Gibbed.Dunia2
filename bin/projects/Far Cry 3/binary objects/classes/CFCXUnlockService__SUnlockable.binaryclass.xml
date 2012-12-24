@@ -1,0 +1,10 @@
+<class name="CFCXUnlockService::SUnlockable">
+	<inherit name="CNomadObject" />
+	<field name="sName" type="String" />
+	<field name="sULCName" type="String" />
+	<field name="arkArchetypeName" type="Id64" />
+	<field name="bForceUnlocked" desc="Unlocked by default" type="Boolean" />
+	<field name="bIsHidden" desc="Hide from class customization / loadout" type="Boolean" />
+	<field name="bIsDisabled" desc="Visible but not cannot be unlocked" type="Boolean" />
+	<field name="iUnlockAtRank" type="Int32" />
+</class>

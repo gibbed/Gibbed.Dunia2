@@ -1,0 +1,10 @@
+<class name="CFCXUnlockService::SBaseAsset">
+	<inherit name="CFCXUnlockService::SUnlockable" />
+	<field name="NumRequiredSlots" type="Int32" />
+	<field name="text_sBonusPlan" type="String" />
+	<field name="sBonusPlan" type="Hash32" />
+	<field name="text_AbilityName" type="String" />
+	<field name="AbilityName" desc="Skill name in the AbilityService template" type="Hash32" />
+	<field name="fArmor" desc="Adds a value to the Armor counter" type="Float32" />
+	<field name="fExplosionStimMultiplier" desc="Multiplies damage taken from explosions" type="Float32" />
+</class>

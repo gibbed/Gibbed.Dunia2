@@ -1,0 +1,14 @@
+<class name="CFCXUnlockService::SWeaponUpgrade">
+	<inherit name="CFCXUnlockService::SUnlockable" />
+	<object name="UIInfo">
+		<inherit name="CUnlockUIInfoWeaponUpgrade" />
+	</object>
+	<field name="NumRequiredSlots" type="Int32" />
+	<field name="text_sBonusPlan" type="String" />
+	<field name="sBonusPlan" type="Hash32" />
+	<field name="text_sAttachmentName" type="String" />
+	<field name="sAttachmentName" type="Hash32" />
+	<field name="sIconNameOverride" type="String" />
+	<field name="vecIconOffset" type="Vector2" />
+	<field name="bArchetypeIsWeaponOverride" desc="Hack for bow! only works on secondary weapon" type="Boolean" />
+</class>

@@ -1,0 +1,6 @@
+<class name="CUnlockUIInfoSkill">
+	<inherit name="CUnlockUIInfo" />
+	<field name="selUIType" type="Enum">
+		<enum name="enumUIType" />
+	</field>
+</class>

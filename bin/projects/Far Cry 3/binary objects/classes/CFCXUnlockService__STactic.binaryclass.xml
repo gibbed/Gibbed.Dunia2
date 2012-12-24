@@ -1,0 +1,9 @@
+<class name="CFCXUnlockService::STactic">
+	<inherit name="CFCXUnlockService::SUnlockable" />
+	<object name="UIInfo">
+		<inherit name="CUnlockUIInfoTactic" />
+	</object>
+	<field name="NumRequiredSlots" type="Int32" />
+	<field name="text_AbilityName" type="String" />
+	<field name="AbilityName" desc="Skill name in the AbilityService template" type="Hash32" />
+</class>

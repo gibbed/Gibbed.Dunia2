@@ -1,0 +1,8 @@
+<class name="CFCXUnlockService::SAsset">
+	<inherit name="CFCXUnlockService::SBaseAsset" />
+	<object name="UIInfo">
+		<inherit name="CUnlockUIInfoAsset" />
+	</object>
+	<field name="iNumUses" desc="Sets num uses if asset is a gadget in PvP" type="Int32" />
+	<field name="iNumUsesCoop" desc="Sets num uses if asset is a gadget in Coop" type="Int32" />
+</class>

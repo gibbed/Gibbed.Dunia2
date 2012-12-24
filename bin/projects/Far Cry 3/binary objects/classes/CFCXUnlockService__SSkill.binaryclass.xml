@@ -1,0 +1,6 @@
+<class name="CFCXUnlockService::SSkill">
+	<inherit name="CFCXUnlockService::SBaseAsset" />
+	<object name="UIInfo">
+		<inherit name="CUnlockUIInfoSkill" />
+	</object>
+</class>

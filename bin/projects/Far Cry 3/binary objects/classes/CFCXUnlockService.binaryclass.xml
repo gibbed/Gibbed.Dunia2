@@ -1,0 +1,34 @@
+<class name="CFCXUnlockService">
+	<inherit name="CUnlockService" />
+	<object name="UnlockableWeapons">
+		<object name="Weapon">
+			<inherit name="CFCXUnlockService::SWeapon" />
+		</object>
+	</object>
+	<object name="UnlockableAssets">
+		<object name="Asset">
+			<inherit name="CFCXUnlockService::SAsset" />
+		</object>
+	</object>
+	<object name="UnlockableSkills">
+		<object name="Skill">
+			<inherit name="CFCXUnlockService::SSkill" />
+		</object>
+	</object>
+	<object name="UnlockableTactics">
+		<object name="Tactic">
+			<inherit name="CFCXUnlockService::STactic" />
+		</object>
+	</object>
+	<object name="UnlockableSupportWeapons">
+		<object name="SupportWeapon">
+			<inherit name="CFCXUnlockService::SSupportWeapon" />
+		</object>
+	</object>
+	<object name="UnlockableEndOfMatchMovies">
+		<object name="EndOfMatchMovie">
+			<inherit name="CFCXUnlockService::SEndOfMatchMovie" />
+		</object>
+	</object>
+	<field name="hidUnlockOrderCRC" type="Hash32" />
+</class>

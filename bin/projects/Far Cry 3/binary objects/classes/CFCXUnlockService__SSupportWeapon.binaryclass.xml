@@ -1,0 +1,9 @@
+<class name="CFCXUnlockService::SSupportWeapon">
+	<inherit name="CFCXUnlockService::SUnlockable" />
+	<object name="UIInfo">
+		<inherit name="CUnlockUIInfoSupportWeapon" />
+	</object>
+	<field name="text_SupportWeaponName" type="String" />
+	<field name="SupportWeaponName" desc="SupportWeapon name in the SupportWeaponService template" type="Hash32" />
+	<field name="iTier" type="Int32" />
+</class>

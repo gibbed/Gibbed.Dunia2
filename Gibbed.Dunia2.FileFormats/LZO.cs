@@ -98,7 +98,7 @@ namespace Gibbed.Dunia2.FileFormats
                 throw new ArgumentNullException("inputBytes");
             }
 
-            if (inputOffset < 0 || inputOffset >= inputBytes.Length)
+            if (inputOffset < 0 || inputOffset > inputBytes.Length)
             {
                 throw new ArgumentOutOfRangeException("inputOffset");
             }
@@ -113,7 +113,7 @@ namespace Gibbed.Dunia2.FileFormats
                 throw new ArgumentNullException("outputBytes");
             }
 
-            if (outputOffset < 0 || outputOffset >= outputBytes.Length)
+            if (outputOffset < 0 || outputOffset > outputBytes.Length)
             {
                 throw new ArgumentOutOfRangeException("outputOffset");
             }
@@ -163,7 +163,7 @@ namespace Gibbed.Dunia2.FileFormats
                 throw new ArgumentNullException("inputBytes");
             }
 
-            if (inputOffset < 0 || inputOffset >= inputBytes.Length)
+            if (inputOffset < 0 || inputOffset > inputBytes.Length)
             {
                 throw new ArgumentOutOfRangeException("inputOffset");
             }
@@ -178,7 +178,7 @@ namespace Gibbed.Dunia2.FileFormats
                 throw new ArgumentNullException("outputBytes");
             }
 
-            if (outputOffset < 0 || outputOffset >= outputBytes.Length)
+            if (outputOffset < 0 || outputOffset > outputBytes.Length)
             {
                 throw new ArgumentOutOfRangeException("outputOffset");
             }

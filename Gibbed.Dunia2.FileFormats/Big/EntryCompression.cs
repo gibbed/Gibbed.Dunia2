@@ -34,7 +34,13 @@ namespace Gibbed.Dunia2.FileFormats.Big
                                     bool compress,
                                     Stream output)
         {
-            if (compress == false)
+            if (input.Length == 0)
+            {
+                entry.CompressionScheme = CompressionScheme.None;
+                entry.UncompressedSize = 0;
+                entry.CompressedSize = 0;
+            }
+            else if (compress == false)
             {
                 entry.CompressionScheme = CompressionScheme.None;
                 entry.UncompressedSize = 0;

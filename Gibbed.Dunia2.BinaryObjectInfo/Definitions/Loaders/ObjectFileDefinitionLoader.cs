@@ -38,12 +38,9 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
             var names = new List<string>();
             foreach (var raw in raws)
             {
-                foreach (var alias in raw.Aliases)
+                if (raw.Aliases.Any(alias => names.Contains(alias) == true))
                 {
-                    if (names.Contains(alias) == true)
-                    {
-                        throw new LoadException(string.Format("duplicate binary object file '{0}'", raw.Name));
-                    }
+                    throw new LoadException(string.Format("duplicate binary object file '{0}'", raw.Name));
                 }
 
                 defs.Add(LoadObjectFileDefinition(raw, classDefs));

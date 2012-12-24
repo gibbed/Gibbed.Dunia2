@@ -48,7 +48,7 @@ namespace Gibbed.Dunia2.FileFormats.Big
             c |= ((entry.UncompressedSize << 2) & 0xFFFFFFFCu);
             c |= (uint)(((byte)entry.CompressionScheme << 0) & 0x00000003u);
 
-            uint d = (uint)((entry.Offset & 0X00000003FFFFFFFCL) >> 2);
+            var d = (uint)((entry.Offset & 0X00000003FFFFFFFCL) >> 2);
 
             uint e = 0;
             e |= (uint)((entry.Offset & 0X0000000000000003L) << 30);

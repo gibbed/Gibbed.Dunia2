@@ -26,9 +26,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using Gibbed.Dunia2.FileFormats;
-using Gibbed.Dunia2.BinaryObjectInfo;
 using Gibbed.Dunia2.BinaryObjectInfo.Definitions;
+using Gibbed.Dunia2.FileFormats;
 
 namespace Gibbed.Dunia2.BinaryObjectInfo
 {

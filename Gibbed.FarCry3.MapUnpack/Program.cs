@@ -269,14 +269,7 @@ namespace Gibbed.FarCry3.MapUnpack
                     extension = tuple != null ? tuple.Item2 : null;
                 }
 
-                if (fat.Version >= 9)
-                {
-                    entryName = entry.NameHash.ToString("X16");
-                }
-                else
-                {
-                    entryName = entry.NameHash.ToString("X8");
-                }
+                entryName = entry.NameHash.ToString(fat.Version >= 9 ? "X16" : "X8");
 
                 if (string.IsNullOrEmpty(extension) == false)
                 {

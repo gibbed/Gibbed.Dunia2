@@ -49,7 +49,7 @@ namespace Gibbed.Dunia2.GeometryFormats.Chunks
             for (int i = 0; i < sknd.Unknown0.Count; i++)
             {
                 uint count = input.ReadValueU32(endian);
-                List<UnknownData0> unknowns = new List<UnknownData0>();
+                var unknowns = new List<UnknownData0>();
                 for (int j = 0; j < count; j++)
                 {
                     var unknown = new UnknownData0();

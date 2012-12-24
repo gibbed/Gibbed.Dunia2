@@ -122,7 +122,7 @@ namespace Gibbed.Dunia2.Unpack
 
             if (verbose == true)
             {
-                Console.Write("Reading FAT...");
+                Console.WriteLine("Reading FAT...");
             }
 
             BigFile fat;
@@ -157,7 +157,7 @@ namespace Gibbed.Dunia2.Unpack
                     {
                         if (verbose == true)
                         {
-                            Console.Write("Unpacking files...");
+                            Console.WriteLine("Unpacking files...");
                         }
 
                         long current = 0;
@@ -240,7 +240,7 @@ namespace Gibbed.Dunia2.Unpack
                 {
                     if (verbose == true)
                     {
-                        Console.Write("Unpacking subfats...");
+                        Console.WriteLine("Unpacking subfats...");
                     }
 
                     var subFatsFromFat = fat.SubFats.ToList();

@@ -226,9 +226,10 @@ namespace Gibbed.Dunia2.FileFormats
             }
 
             var subfatComputedTotalEntryCount = this.SubFats.Sum(sf => sf.Entries.Count);
-            if (subfatTotalEntryCount != subfatComputedTotalEntryCount)
+            if (subfatCount > 0 &&
+                subfatTotalEntryCount != subfatComputedTotalEntryCount)
             {
-                throw new FormatException();
+                throw new FormatException("subfat total entry count mismatch");
             }
 
             this.Version = version;

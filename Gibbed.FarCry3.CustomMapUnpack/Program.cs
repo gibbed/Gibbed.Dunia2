@@ -32,7 +32,7 @@ using Gibbed.IO;
 using NDesk.Options;
 using Assembly = System.Reflection.Assembly;
 
-namespace Gibbed.FarCry3.MapUnpack
+namespace Gibbed.FarCry3.CustomMapUnpack
 {
     internal class Program
     {

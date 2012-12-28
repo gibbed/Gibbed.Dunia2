@@ -20,37 +20,21 @@
  *    distribution.
  */
 
+using System;
 using Newtonsoft.Json;
 
-namespace Gibbed.FarCry3.MapUnpack
+namespace Gibbed.FarCry3.CustomMapUnpack
 {
     [JsonObject(MemberSerialization.OptIn)]
-    public class MapConfiguration
+    public class MapId
     {
-        public MapConfiguration()
-        {
-            this.Header = new MapHeader();
-        }
+        [JsonProperty(PropertyName = "guid")]
+        public Guid Guid { get; set; }
 
-        [JsonProperty(PropertyName = "header")]
-        public MapHeader Header { get; set; }
+        [JsonProperty(PropertyName = "unknown2")]
+        public uint Unknown2 { get; set; }
 
-        [JsonProperty(PropertyName = "snapshot_path")]
-        public string SnapshotPath { get; set; }
-
-        [JsonProperty(PropertyName = "extra_snapshot_path")]
-        public string ExtraSnapshotPath { get; set; }
-
-        [JsonProperty(PropertyName = "filesystem_header_path")]
-        public string FilesystemHeaderPath { get; set; }
-
-        [JsonProperty(PropertyName = "filesystem_data_path")]
-        public string FilesystemDataPath { get; set; }
-
-        [JsonProperty(PropertyName = "filesystem_descriptor_path")]
-        public string FilesystemDescriptorPath { get; set; }
-
-        [JsonProperty(PropertyName = "data")]
-        public MapData Data { get; set; }
+        [JsonProperty(PropertyName = "unknown3")]
+        public uint Unknown3 { get; set; }
     }
 }

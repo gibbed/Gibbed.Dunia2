@@ -24,7 +24,7 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Gibbed.FarCry3.MapUnpack
+namespace Gibbed.FarCry3.CustomMapUnpack
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class MapHeader

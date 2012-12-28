@@ -31,11 +31,11 @@ namespace Gibbed.FarCry3.FileFormats
         public const uint Version = 19;
         public const uint Signature = 0xD2FD0A6B; // crc32(CCustomMapGameFile)
 
-        public CustomMapGameFileHeader Header;
-        public Snapshot Snapshot;
-        public Snapshot ExtraSnapshot;
-        public CustomMap.Data Data;
-        public CustomMap.Archive Archive;
+        public CustomMapGameFileHeader Header = new CustomMapGameFileHeader();
+        public Snapshot Snapshot = new Snapshot();
+        public Snapshot ExtraSnapshot = null;
+        public CustomMap.Data Data = new CustomMap.Data();
+        public CustomMap.Archive Archive = new CustomMap.Archive();
 
         public void Serialize(Stream output)
         {

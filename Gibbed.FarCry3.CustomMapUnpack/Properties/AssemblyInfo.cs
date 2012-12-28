@@ -27,11 +27,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Gibbed.FarCry3.MapUnpack")]
+[assembly: AssemblyTitle("Gibbed.FarCry3.CustomMapUnpack")]
 [assembly: AssemblyDescription("http://gib.me/")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Gibbed.FarCry3.MapUnpack")]
+[assembly: AssemblyProduct("Gibbed.FarCry3.CustomMapUnpack")]
 [assembly: AssemblyCopyright("Copyright © Gibbed 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -44,7 +44,7 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("80df0ef4-cd55-46aa-a3ef-73ab245d19c1")]
+[assembly: Guid("4553e0d9-36dc-468c-9c6e-784f853afedf")]
 
 // Version information for an assembly consists of the following four values:
 //

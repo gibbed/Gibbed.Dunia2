@@ -249,25 +249,29 @@ namespace Gibbed.FarCry3.CustomMapUnpack
             throw new NotSupportedException();
         }
 
-        private static Bitmap MakeBitmapFromArgb(
-            uint width, uint height, byte[] input)
+        private static Bitmap MakeBitmapFromArgb(uint width, uint height, byte[] bytes)
         {
-            var output = new byte[width * height * 4];
             var bitmap = new Bitmap((int)width,
                                     (int)height,
                                     PixelFormat.Format32bppArgb);
 
+            var temp = new byte[width * height * 4];
             for (uint i = 0; i < width * height * 4; i += 4)
             {
-                output[i + 0] = input[i + 3];
-                output[i + 1] = input[i + 2];
-                output[i + 2] = input[i + 1];
-                output[i + 3] = input[i + 0];
+                temp[i + 0] = bytes[i + 3];
+                temp[i + 1] = bytes[i + 2];
+                temp[i + 2] = bytes[i + 1];
+                temp[i + 3] = bytes[i + 0];
             }
 
             var area = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-            var data = bitmap.LockBits(area, ImageLockMode.WriteOnly, bitmap.PixelFormat);
-            Marshal.Copy(output, 0, data.Scan0, output.Length);
+            var data = bitmap.LockBits(area, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+            var scan = data.Scan0;
+            for (int x = 0, y = 0; y < data.Height; x += data.Width, y++)
+            {
+                Marshal.Copy(temp, x, scan, data.Width);
+                scan += data.Stride;
+            }
             bitmap.UnlockBits(data);
             return bitmap;
         }

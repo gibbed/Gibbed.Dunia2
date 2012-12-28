@@ -24,44 +24,24 @@ using System;
 using System.IO;
 using Gibbed.IO;
 
-namespace Gibbed.FarCry3.FileFormats.Map
+namespace Gibbed.FarCry3.FileFormats
 {
     public class Snapshot
     {
         public uint Width;
         public uint Height;
         public uint BytesPerPixel;
-        public uint Unknown4;
+        public uint BitsPerComponent;
         public byte[] Data;
-
-        public void Deserialize(Stream input, Endian endian)
-        {
-            this.Width = input.ReadValueU32(endian);
-            this.Height = input.ReadValueU32(endian);
-            this.BytesPerPixel = input.ReadValueU32(endian);
-            this.Unknown4 = input.ReadValueU32(endian);
-
-            var size = (this.Width *
-                        this.Height *
-                        this.BytesPerPixel *
-                        this.Unknown4) / 8;
-            this.Data = input.ReadBytes(size);
-
-            var unknown6 = input.ReadValueU32(endian);
-            for (uint i = 0; i < unknown6; i++)
-            {
-                throw new NotSupportedException();
-            }
-        }
 
         public void Serialize(Stream output, Endian endian)
         {
             output.WriteValueU32(this.Width, endian);
             output.WriteValueU32(this.Height, endian);
             output.WriteValueU32(this.BytesPerPixel, endian);
-            output.WriteValueU32(this.Unknown4, endian);
+            output.WriteValueU32(this.BitsPerComponent, endian);
 
-            var size = (this.Unknown4 *
+            var size = (this.BitsPerComponent *
                         this.BytesPerPixel *
                         this.Height *
                         this.Width) / 8;
@@ -74,6 +54,27 @@ namespace Gibbed.FarCry3.FileFormats.Map
             output.WriteBytes(this.Data);
 
             output.WriteValueU32(0, endian); // unknown6
+        }
+
+        public void Deserialize(Stream input, Endian endian)
+        {
+            this.Width = input.ReadValueU32(endian);
+            this.Height = input.ReadValueU32(endian);
+            this.BytesPerPixel = input.ReadValueU32(endian);
+            this.BitsPerComponent = input.ReadValueU32(endian);
+
+            var size = (this.Width *
+                        this.Height *
+                        this.BytesPerPixel *
+                        this.BitsPerComponent) / 8;
+            this.Data = input.ReadBytes(size);
+
+            var unknown6 = input.ReadValueU32(endian);
+            for (uint i = 0; i < unknown6; i++)
+            {
+                throw new NotSupportedException();
+                // two strings prefixed by a uint length?
+            }
         }
     }
 }

@@ -20,12 +20,32 @@
  *    distribution.
  */
 
-namespace Gibbed.FarCry3.FileFormats.Map
+using System;
+using System.IO;
+using Gibbed.IO;
+
+namespace Gibbed.FarCry3.FileFormats.CustomMap
 {
-    public enum MapSize : uint
+    public struct MapId
     {
-        Small = 0,
-        Medium = 1,
-        Large = 2,
+        public Guid Guid;
+        public uint Unknown2;
+        public uint Unknown3;
+
+        public void Serialize(Stream output, Endian endian)
+        {
+            Helpers.WriteMungedGuid(output, this.Guid, endian);
+            output.WriteValueU32(this.Unknown2, endian);
+            output.WriteValueU32(this.Unknown3, endian);
+        }
+
+        public static MapId Deserialize(Stream input, Endian endian)
+        {
+            MapId id;
+            id.Guid = Helpers.ReadMungedGuid(input, endian);
+            id.Unknown2 = input.ReadValueU32(endian);
+            id.Unknown3 = input.ReadValueU32(endian);
+            return id;
+        }
     }
 }

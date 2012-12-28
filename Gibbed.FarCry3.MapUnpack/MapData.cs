@@ -20,13 +20,17 @@
  *    distribution.
  */
 
-namespace Gibbed.FarCry3.FileFormats.Map
+using Newtonsoft.Json;
+
+namespace Gibbed.FarCry3.MapUnpack
 {
-    public enum PlayerRange : uint
+    [JsonObject(MemberSerialization.OptIn)]
+    public class MapData
     {
-        TwoToFour = 0,
-        FourToEight = 1,
-        EightToTwelve = 2,
-        TwelveToSixteen = 3,
+        [JsonProperty(PropertyName = "unknown1")]
+        public string Unknown1 { get; set; }
+
+        [JsonProperty(PropertyName = "unknown2path")]
+        public string Unknown2Path { get; set; }
     }
 }

@@ -22,47 +22,54 @@
 
 using System;
 using System.IO;
-using System.Text;
 using Gibbed.IO;
+using System.Text;
+using Gibbed.FarCry3.FileFormats.CustomMap;
 
-namespace Gibbed.FarCry3.FileFormats.Map
+namespace Gibbed.FarCry3.FileFormats
 {
-    public class Info
+    public class CustomMapGameFileHeader
     {
-        public uint Unknown2;
-        public uint Unknown3;
-        public uint Unknown4;
-
+        public float Unknown2;
+        public float Unknown3;
+        public float Unknown4;
         public long Unknown5;
         public string Creator;
         public long Unknown7;
         public string Author;
         public string Name;
-        public MapId Id;
+        public MapId MapId;
         public Guid VersionId;
         public DateTime TimeModified;
         public DateTime TimeCreated;
-        public MapSize Size;
-        public PlayerRange PlayerRange;
+        public MapSize MapSize = MapSize.Invalid;
+        public PlayerRange PlayerRange = PlayerRange.TwoToFour;
         public uint Unknown16;
         public byte Unknown17;
 
         public void Deserialize(Stream input, Endian endian)
         {
-            this.Unknown2 = input.ReadValueU32(endian);
-            this.Unknown3 = input.ReadValueU32(endian);
-            this.Unknown4 = input.ReadValueU32(endian);
+            this.Unknown2 = input.ReadValueF32(endian);
+            this.Unknown3 = input.ReadValueF32(endian);
+            this.Unknown4 = input.ReadValueF32(endian);
+
+            if (this.Unknown2.Equals(0.0f) == false ||
+                this.Unknown3.Equals(0.0f) == false ||
+                this.Unknown4.Equals(0.0f) == false)
+            {
+                throw new FormatException();
+            }
 
             this.Unknown5 = input.ReadValueS64(endian);
             this.Creator = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
             this.Unknown7 = input.ReadValueS64(endian);
             this.Author = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
             this.Name = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
-            this.Id = MapId.Deserialize(input, endian);
+            this.MapId = MapId.Deserialize(input, endian);
             this.VersionId = Helpers.ReadMungedGuid(input, endian);
             this.TimeModified = (DateTime)Helpers.ReadTime(input, endian);
             this.TimeCreated = (DateTime)Helpers.ReadTime(input, endian);
-            this.Size = input.ReadValueEnum<MapSize>(endian);
+            this.MapSize = input.ReadValueEnum<MapSize>(endian);
             this.PlayerRange = input.ReadValueEnum<PlayerRange>(endian);
             this.Unknown16 = input.ReadValueU32(endian);
             this.Unknown17 = input.ReadValueU8();

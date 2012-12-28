@@ -22,26 +22,26 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
-using System.Xml;
-using Gibbed.Dunia2.FileFormats;
+using System.Runtime.InteropServices;
+using System.Text;
 using Gibbed.FarCry3.FileFormats;
 using Gibbed.IO;
 using NDesk.Options;
-using Big = Gibbed.Dunia2.FileFormats.Big;
-using CompressionScheme = Gibbed.Dunia2.FileFormats.Big.CompressionScheme;
-using EntryDecompression = Gibbed.Dunia2.FileFormats.Big.EntryDecompression;
+using Assembly = System.Reflection.Assembly;
 
 namespace Gibbed.FarCry3.MapUnpack
 {
-    public class Program
+    internal class Program
     {
         private static string GetExecutableName()
         {
-            return Path.GetFileName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+            return Path.GetFileName(Assembly.GetExecutingAssembly().Location);
         }
 
-        public static void Main(string[] args)
+        private static void Main(string[] args)
         {
             bool showHelp = false;
             bool verbose = false;
@@ -52,12 +52,12 @@ namespace Gibbed.FarCry3.MapUnpack
                     "v|verbose",
                     "be verbose",
                     v => verbose = v != null
-                    },
+                },
                 {
                     "h|help",
                     "show this message and exit",
                     v => showHelp = v != null
-                    },
+                },
             };
 
             List<string> extras;
@@ -92,207 +92,181 @@ namespace Gibbed.FarCry3.MapUnpack
                 Console.WriteLine("Warning: no active project loaded.");
             }
 
-            var map = new MapFile();
+            var map = new CustomMapGameFile();
             using (var input = File.OpenRead(inputPath))
             {
                 map.Deserialize(input);
             }
 
             Directory.CreateDirectory(outputPath);
-            using (var output = File.Create(Path.Combine(outputPath, "map.xml")))
+
+            var config = new MapConfiguration();
+
+            if (map.Header != null)
             {
-                var settings = new XmlWriterSettings();
-                settings.Indent = true;
-
-                using (var writer = XmlWriter.Create(output, settings))
+                config.Header = new MapHeader()
                 {
-                    writer.WriteStartDocument();
-                    writer.WriteStartElement("map");
-
-                    writer.WriteStartElement("info");
-                    writer.WriteElementString("name", map.Info.Name);
-                    writer.WriteElementString("creator", map.Info.Creator);
-                    writer.WriteElementString("author", map.Info.Author);
-                    writer.WriteStartElement("map_id");
-                    writer.WriteElementString("guid", map.Info.Id.Guid.ToString());
-                    writer.WriteElementString("unknown2", map.Info.Id.Unknown2.ToString());
-                    writer.WriteElementString("unknown3", map.Info.Id.Unknown3.ToString());
-                    writer.WriteEndElement();
-                    writer.WriteElementString("version_id", map.Info.VersionId.ToString());
-                    writer.WriteElementString("time_modified", map.Info.TimeModified.ToString());
-                    writer.WriteElementString("time_created", map.Info.TimeCreated.ToString());
-                    writer.WriteElementString("unknown2", map.Info.Unknown2.ToString());
-                    writer.WriteElementString("unknown3", map.Info.Unknown3.ToString());
-                    writer.WriteElementString("unknown4", map.Info.Unknown4.ToString());
-                    writer.WriteElementString("unknown5", map.Info.Unknown5.ToString());
-                    writer.WriteElementString("unknown7", map.Info.Unknown7.ToString());
-                    writer.WriteElementString("map_size", map.Info.Size.ToString());
-                    writer.WriteElementString("player_range", map.Info.PlayerRange.ToString());
-                    writer.WriteElementString("unknown16", map.Info.Unknown16.ToString());
-                    writer.WriteElementString("unknown17", map.Info.Unknown17.ToString());
-                    writer.WriteEndElement();
-
-                    writer.WriteStartElement("snapshot");
-                    writer.WriteElementString("width", map.Snapshot.Width.ToString());
-                    writer.WriteElementString("height", map.Snapshot.Height.ToString());
-                    writer.WriteElementString("bpp", map.Snapshot.BytesPerPixel.ToString());
-                    writer.WriteElementString("unknown4", map.Snapshot.Unknown4.ToString());
-                    writer.WriteEndElement();
-
-                    if (map.ExtraSnapshot != null)
+                    Unknown2 = map.Header.Unknown2,
+                    Unknown3 = map.Header.Unknown3,
+                    Unknown4 = map.Header.Unknown4,
+                    Unknown5 = map.Header.Unknown5,
+                    Creator = map.Header.Creator,
+                    Unknown7 = map.Header.Unknown7,
+                    Author = map.Header.Author,
+                    Name = map.Header.Name,
+                    MapId = new MapId()
                     {
-                        writer.WriteStartElement("extra_snapshot");
-                        writer.WriteElementString("width", map.ExtraSnapshot.Width.ToString());
-                        writer.WriteElementString("height", map.ExtraSnapshot.Height.ToString());
-                        writer.WriteElementString("bpp", map.ExtraSnapshot.BytesPerPixel.ToString());
-                        writer.WriteElementString("unknown4", map.ExtraSnapshot.Unknown4.ToString());
-                        writer.WriteEndElement();
+                        Guid = map.Header.MapId.Guid,
+                        Unknown2 = map.Header.MapId.Unknown2,
+                        Unknown3 = map.Header.MapId.Unknown3,
+                    },
+                    VersionId = map.Header.VersionId,
+                    TimeModified = map.Header.TimeModified,
+                    TimeCreated = map.Header.TimeCreated,
+                    MapSize = map.Header.MapSize,
+                    PlayerRange = map.Header.PlayerRange,
+                    Unknown16 = map.Header.Unknown16,
+                    Unknown17 = map.Header.Unknown17,
+                };
+            }
+
+            if (map.Snapshot != null)
+            {
+                using (var temp = new MemoryStream())
+                {
+                    var extension = ExportSnapshot(map.Snapshot, temp);
+                    config.SnapshotPath = Path.ChangeExtension("snapshot", extension);
+
+                    using (var output = File.Create(Path.Combine(outputPath, config.SnapshotPath)))
+                    {
+                        temp.Position = 0;
+                        output.WriteFromStream(temp, temp.Length);
                     }
-
-                    writer.WriteStartElement("data");
-                    writer.WriteElementString("unknown1", map.Data.Unknown1);
-                    writer.WriteEndElement();
-
-                    writer.WriteEndElement();
-                    writer.WriteEndDocument();
                 }
+            }
+
+            if (map.ExtraSnapshot != null)
+            {
+                using (var temp = new MemoryStream())
+                {
+                    var extension = ExportSnapshot(map.ExtraSnapshot, temp);
+                    config.SnapshotPath = Path.ChangeExtension("extra_snapshot", extension);
+
+                    using (var output = File.Create(Path.Combine(outputPath, config.SnapshotPath)))
+                    {
+                        temp.Position = 0;
+                        output.WriteFromStream(temp, temp.Length);
+                    }
+                }
+            }
+
+            if (map.Data != null)
+            {
+                config.Data = new MapData()
+                {
+                    Unknown1 = map.Data.Unknown1,
+                    Unknown2Path = "data_unknown2.bin",
+                };
+
+                using (var output = File.Create(Path.Combine(outputPath, "data_unknown2.bin")))
+                {
+                    output.WriteBytes(map.Data.Unknown2);
+                }
+            }
+
+            using (var output = new StreamWriter(Path.Combine(outputPath, "config.json"), false, Encoding.Unicode))
+            using (var writer = new Newtonsoft.Json.JsonTextWriter(output))
+            {
+                writer.Indentation = 2;
+                writer.IndentChar = ' ';
+                writer.Formatting = Newtonsoft.Json.Formatting.Indented;
+
+                var serializer = new Newtonsoft.Json.JsonSerializer();
+                serializer.Serialize(writer, config);
             }
 
             using (var input = map.Archive.Descriptor.Unpack())
             {
-                using (var output = File.Create(Path.Combine(outputPath, "archive.xml")))
+                using (var output = File.Create(Path.Combine(outputPath, "filesystem.xml")))
                 {
                     output.WriteFromStream(input, input.Length);
                 }
             }
 
-            using (var output = File.Create(Path.Combine(outputPath, "snapshot.bin")))
-            {
-                output.Write(map.Snapshot.Data, 0, map.Snapshot.Data.Length);
-            }
-
-            if (map.ExtraSnapshot != null)
-            {
-                using (var output = File.Create(Path.Combine(outputPath, "extra_snapshot.bin")))
-                {
-                    output.Write(map.ExtraSnapshot.Data, 0, map.ExtraSnapshot.Data.Length);
-                }
-            }
-
-            using (var output = File.Create(Path.Combine(outputPath, "snapshot.png")))
-            {
-                output.Write(map.Data.Unknown2, 0, map.Data.Unknown2.Length);
-            }
-
-            var fat = new BigFile();
             using (var input = map.Archive.Header.Unpack())
             {
-                input.Position = 0;
-                fat.Deserialize(input);
+                using (var output = File.Create(Path.Combine(outputPath, "filesystem.fat")))
+                {
+                    output.WriteFromStream(input, input.Length);
+                }
             }
 
-            var hashes = manager.LoadListsFileNames(fat.Version);
-
-            var dataPath = Path.Combine(outputPath, "archive");
-            Directory.CreateDirectory(dataPath);
-
-            using (var data = map.Archive.Data.Unpack())
+            using (var input = map.Archive.Data.Unpack())
             {
-                long current = 0;
-                long total = fat.Entries.Count;
-
-                foreach (var entry in fat.Entries)
+                using (var output = File.Create(Path.Combine(outputPath, "filesystem.dat")))
                 {
-                    current++;
-
-                    var entryName = GetEntryName(data, fat, entry, hashes);
-
-                    var entryPath = Path.Combine(dataPath, entryName);
-
-                    var entryParent = Path.GetDirectoryName(entryPath);
-                    if (string.IsNullOrEmpty(entryParent) == false)
-                    {
-                        Directory.CreateDirectory(entryParent);
-                    }
-
-                    if (verbose == true)
-                    {
-                        Console.WriteLine("[{0}/{1}] {2}",
-                                          current,
-                                          total,
-                                          entryName);
-                    }
-
-                    using (var output = File.Create(entryPath))
-                    {
-                        EntryDecompression.Decompress(entry, data, output);
-                    }
+                    output.WriteFromStream(input, input.Length);
                 }
+            }
+
+            using (var output = new StreamWriter(Path.Combine(outputPath, "filesystem_unpack.bat")))
+            {
+                output.WriteLine("@echo off");
+                output.WriteLine("\"{0}\" -v -o \"filesystem.fat\" \"filesystem\"",
+                                 Assembly.GetAssembly(typeof(Dunia2.Unpack.Dummy)).Location);
+                output.WriteLine("pause");
+            }
+
+            using (var output = new StreamWriter(Path.Combine(outputPath, "filesystem_pack.bat")))
+            {
+                output.WriteLine("@echo off");
+                output.WriteLine("\"{0}\" -v \"filesystem.fat\" \"filesystem\"",
+                                 Assembly.GetAssembly(typeof(Dunia2.Pack.Dummy)).Location);
+                output.WriteLine("pause");
             }
         }
 
-        private static string GetEntryName(Stream input,
-                                           BigFile fat,
-                                           Big.Entry entry,
-                                           ProjectData.HashList<ulong> hashes)
+        private static string ExportSnapshot(Snapshot snapshot, MemoryStream output)
         {
-            var entryName = hashes[entry.NameHash];
-
-            if (entryName == null)
+            if (snapshot == null)
             {
-                string type;
-                string extension;
-                {
-                    var guess = new byte[64];
-                    int read = 0;
-
-                    if (entry.CompressionScheme == CompressionScheme.None)
-                    {
-                        if (entry.CompressedSize > 0)
-                        {
-                            input.Seek(entry.Offset, SeekOrigin.Begin);
-                            read = input.Read(guess, 0, (int)Math.Min(entry.CompressedSize, guess.Length));
-                        }
-                    }
-                    else
-                    {
-                        using (var temp = new MemoryStream())
-                        {
-                            EntryDecompression.Decompress(entry, input, temp);
-                            temp.Position = 0;
-                            read = temp.Read(guess, 0, (int)Math.Min(temp.Length, guess.Length));
-                        }
-                    }
-
-                    var tuple = FileExtensions.Detect(guess, Math.Min(guess.Length, read));
-                    type = tuple != null ? tuple.Item1 : "unknown";
-                    extension = tuple != null ? tuple.Item2 : null;
-                }
-
-                entryName = entry.NameHash.ToString(fat.Version >= 9 ? "X16" : "X8");
-
-                if (string.IsNullOrEmpty(extension) == false)
-                {
-                    entryName = Path.ChangeExtension(entryName, "." + extension);
-                }
-
-                if (string.IsNullOrEmpty(type) == false)
-                {
-                    entryName = Path.Combine(type, entryName);
-                }
-
-                entryName = Path.Combine("__UNKNOWN", entryName);
+                return null;
             }
-            else
+
+            if (snapshot.BytesPerPixel == 4 &&
+                snapshot.BitsPerComponent == 8)
             {
-                entryName = entryName.Replace("/", "\\");
-                if (entryName.StartsWith("\\") == true)
+                using (var bitmap = MakeBitmapFromArgb(snapshot.Width, snapshot.Height, snapshot.Data))
                 {
-                    entryName = entryName.Substring(1);
+                    bitmap.Save(output, ImageFormat.Png);
+                    return ".png";
                 }
             }
 
-            return entryName;
+            throw new NotSupportedException();
+        }
+
+        private static Bitmap MakeBitmapFromArgb(
+            uint width, uint height, byte[] input)
+        {
+            var output = new byte[width * height * 4];
+            var bitmap = new Bitmap((int)width,
+                                    (int)height,
+                                    PixelFormat.Format32bppArgb);
+
+            for (uint i = 0; i < width * height * 4; i += 4)
+            {
+                output[i + 0] = input[i + 3];
+                output[i + 1] = input[i + 2];
+                output[i + 2] = input[i + 1];
+                output[i + 3] = input[i + 0];
+            }
+
+            var area = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+            var data = bitmap.LockBits(area, ImageLockMode.WriteOnly, bitmap.PixelFormat);
+            Marshal.Copy(output, 0, data.Scan0, output.Length);
+            bitmap.UnlockBits(data);
+            return bitmap;
         }
     }
 }

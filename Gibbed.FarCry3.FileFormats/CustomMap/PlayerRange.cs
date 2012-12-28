@@ -20,36 +20,13 @@
  *    distribution.
  */
 
-using System;
-
-namespace Gibbed.FarCry3.FileFormats.Map
+namespace Gibbed.FarCry3.FileFormats.CustomMap
 {
-    public struct Time
+    public enum PlayerRange : uint
     {
-        public int Second;
-        public int Minute;
-        public int Hour;
-        public int DayOfMonth;
-        public int Month;
-        public int Year;
-        public int DayOfWeek;
-        public int DayOfYear;
-        public int IsDaylightsSavingTime;
-
-        public static explicit operator DateTime(Time time)
-        {
-            return new DateTime(1900 + time.Year,
-                                1 + time.Month,
-                                time.DayOfMonth,
-                                time.Hour,
-                                time.Minute,
-                                time.Second,
-                                DateTimeKind.Utc);
-        }
-
-        public static explicit operator Time(DateTime dateTime)
-        {
-            throw new NotImplementedException();
-        }
+        TwoToFour = 0,
+        FourToEight = 1,
+        EightToTwelve = 2,
+        TwelveToSixteen = 3,
     }
 }

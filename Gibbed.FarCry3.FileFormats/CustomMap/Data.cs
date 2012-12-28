@@ -22,30 +22,34 @@
 
 using System;
 using System.IO;
+using System.Text;
 using Gibbed.IO;
 
-namespace Gibbed.FarCry3.FileFormats.Map
+namespace Gibbed.FarCry3.FileFormats.CustomMap
 {
-    public struct MapId
+    public class Data
     {
-        public Guid Guid;
-        public uint Unknown2;
-        public uint Unknown3;
+        public string Unknown1;
+        public byte[] Unknown2;
+
+        public void Deserialize(Stream input, Endian endian)
+        {
+            this.Unknown1 = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
+
+            var length = input.ReadValueU32(endian);
+            this.Unknown2 = input.ReadBytes(length);
+
+            var unknown3 = input.ReadValueU32(endian);
+            for (uint i = 0; i < unknown3; i++)
+            {
+                throw new NotSupportedException();
+                var unknown4 = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
+            }
+        }
 
         public void Serialize(Stream output, Endian endian)
         {
-            Helpers.WriteMungedGuid(output, this.Guid, endian);
-            output.WriteValueU32(this.Unknown2, endian);
-            output.WriteValueU32(this.Unknown3, endian);
-        }
-
-        public static MapId Deserialize(Stream input, Endian endian)
-        {
-            MapId id;
-            id.Guid = Helpers.ReadMungedGuid(input, endian);
-            id.Unknown2 = input.ReadValueU32(endian);
-            id.Unknown3 = input.ReadValueU32(endian);
-            return id;
+            throw new NotImplementedException();
         }
     }
 }

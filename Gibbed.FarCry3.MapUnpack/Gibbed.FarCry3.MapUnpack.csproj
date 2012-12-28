@@ -13,6 +13,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -34,8 +36,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.9\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,13 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapConfiguration.cs" />
+    <Compile Include="MapData.cs" />
+    <Compile Include="MapId.cs" />
+    <Compile Include="MapHeader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gibbed.Dunia2.FileFormats\Gibbed.Dunia2.FileFormats.csproj">
-      <Project>{936B8D92-3DD5-4CF5-9C87-A36A073E6BC2}</Project>
-      <Name>Gibbed.Dunia2.FileFormats</Name>
+    <ProjectReference Include="..\Gibbed.Dunia2.Pack\Gibbed.Dunia2.Pack.csproj">
+      <Project>{331555F4-86A1-41D9-AB3C-CBBCAD5C2D90}</Project>
+      <Name>Gibbed.Dunia2.Pack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gibbed.Dunia2.Unpack\Gibbed.Dunia2.Unpack.csproj">
+      <Project>{3AFC0511-F4F4-4AFE-AF44-DA8384A7BC8E}</Project>
+      <Name>Gibbed.Dunia2.Unpack</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gibbed.FarCry3.FileFormats\Gibbed.FarCry3.FileFormats.csproj">
       <Project>{05BE44A7-DA2B-4631-8F6D-CA1C518A07D0}</Project>
@@ -68,7 +82,11 @@
       <Name>NDesk.Options</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

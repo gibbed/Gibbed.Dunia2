@@ -26,16 +26,16 @@ using Gibbed.IO;
 
 namespace Gibbed.FarCry3.FileFormats
 {
-    public class MapFile
+    public class CustomMapGameFile
     {
         public const uint Version = 19;
         public const uint Signature = 0xD2FD0A6B; // crc32(CCustomMapGameFile)
 
-        public Map.Info Info;
-        public Map.Snapshot Snapshot;
-        public Map.Snapshot ExtraSnapshot;
-        public Map.Data Data;
-        public Map.Archive Archive;
+        public CustomMapGameFileHeader Header;
+        public Snapshot Snapshot;
+        public Snapshot ExtraSnapshot;
+        public CustomMap.Data Data;
+        public CustomMap.Archive Archive;
 
         public void Serialize(Stream output)
         {
@@ -58,10 +58,10 @@ namespace Gibbed.FarCry3.FileFormats
                 throw new FormatException("bad magic");
             }
 
-            this.Info = new Map.Info();
-            this.Info.Deserialize(input, endian);
+            this.Header = new CustomMapGameFileHeader();
+            this.Header.Deserialize(input, endian);
 
-            this.Snapshot = new Map.Snapshot();
+            this.Snapshot = new Snapshot();
             this.Snapshot.Deserialize(input, endian);
 
             /* PS3 map files have an extra snapshot which has a larger resolution,
@@ -69,14 +69,14 @@ namespace Gibbed.FarCry3.FileFormats
              * of a 360 map file. */
             if (endian == Endian.Big)
             {
-                this.ExtraSnapshot = new Map.Snapshot();
+                this.ExtraSnapshot = new Snapshot();
                 this.ExtraSnapshot.Deserialize(input, endian);
             }
 
-            this.Data = new Map.Data();
+            this.Data = new CustomMap.Data();
             this.Data.Deserialize(input, endian);
 
-            this.Archive = new Map.Archive();
+            this.Archive = new CustomMap.Archive();
             this.Archive.Deserialize(input, endian);
         }
     }

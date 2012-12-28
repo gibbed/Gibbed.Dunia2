@@ -27,7 +27,7 @@ using System.Linq;
 using Gibbed.IO;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
-namespace Gibbed.FarCry3.FileFormats.Map
+namespace Gibbed.FarCry3.FileFormats.CustomMap
 {
     public class CompressedData
     {

@@ -37,7 +37,7 @@ namespace Gibbed.Dunia2.Pack
     {
         private static string GetExecutableName()
         {
-            return Path.GetFileName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
+            return Path.GetFileName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
 
         private static int ParsePackageVersion(string text)
@@ -61,7 +61,7 @@ namespace Gibbed.Dunia2.Pack
             return value;
         }
 
-        public static void Main(string[] args)
+        private static void Main(string[] args)
         {
             bool showHelp = false;
             bool verbose = false;

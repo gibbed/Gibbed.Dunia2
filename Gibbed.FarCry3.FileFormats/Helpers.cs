@@ -24,7 +24,7 @@ using System;
 using System.IO;
 using Gibbed.IO;
 
-namespace Gibbed.FarCry3.FileFormats.Map
+namespace Gibbed.FarCry3.FileFormats
 {
     internal static class Helpers
     {
@@ -54,7 +54,7 @@ namespace Gibbed.FarCry3.FileFormats.Map
             return new Guid(a, b, c, d, e, f, g, h, i, j, k);
         }
 
-        public static void WriteTime(Stream output, Time time, Endian endian)
+        public static void WriteTime(Stream output, CustomMap.Time time, Endian endian)
         {
             output.WriteValueS32(time.Second, endian);
             output.WriteValueS32(time.Minute, endian);
@@ -67,9 +67,9 @@ namespace Gibbed.FarCry3.FileFormats.Map
             output.WriteValueS32(time.IsDaylightsSavingTime, endian);
         }
 
-        public static Time ReadTime(Stream input, Endian endian)
+        public static CustomMap.Time ReadTime(Stream input, Endian endian)
         {
-            Time time;
+            CustomMap.Time time;
             time.Second = input.ReadValueS32(endian);
             time.Minute = input.ReadValueS32(endian);
             time.Hour = input.ReadValueS32(endian);

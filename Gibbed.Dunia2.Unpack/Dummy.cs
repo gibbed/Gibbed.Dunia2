@@ -20,36 +20,9 @@
  *    distribution.
  */
 
-using System;
-using System.IO;
-using System.Text;
-using Gibbed.IO;
-
-namespace Gibbed.FarCry3.FileFormats.Map
+namespace Gibbed.Dunia2.Unpack
 {
-    public class Data
+    public static class Dummy
     {
-        public string Unknown1;
-        public byte[] Unknown2;
-
-        public void Deserialize(Stream input, Endian endian)
-        {
-            this.Unknown1 = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
-
-            var length = input.ReadValueU32(endian);
-            this.Unknown2 = input.ReadBytes(length);
-
-            var unknown3 = input.ReadValueU32(endian);
-            for (uint i = 0; i < unknown3; i++)
-            {
-                throw new NotSupportedException();
-                var unknown4 = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
-            }
-        }
-
-        public void Serialize(Stream output, Endian endian)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

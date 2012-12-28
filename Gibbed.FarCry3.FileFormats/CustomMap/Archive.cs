@@ -24,7 +24,7 @@ using System;
 using System.IO;
 using Gibbed.IO;
 
-namespace Gibbed.FarCry3.FileFormats.Map
+namespace Gibbed.FarCry3.FileFormats.CustomMap
 {
     public class Archive
     {

@@ -52,6 +52,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gibbed.Dunia2.Pack\Gibbed.Dunia2.Pack.csproj">
+      <Project>{331555F4-86A1-41D9-AB3C-CBBCAD5C2D90}</Project>
+      <Name>Gibbed.Dunia2.Pack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gibbed.Dunia2.Unpack\Gibbed.Dunia2.Unpack.csproj">
+      <Project>{3AFC0511-F4F4-4AFE-AF44-DA8384A7BC8E}</Project>
+      <Name>Gibbed.Dunia2.Unpack</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gibbed.FarCry3.FileFormats\Gibbed.FarCry3.FileFormats.csproj">
       <Project>{05BE44A7-DA2B-4631-8F6D-CA1C518A07D0}</Project>
       <Name>Gibbed.FarCry3.FileFormats</Name>

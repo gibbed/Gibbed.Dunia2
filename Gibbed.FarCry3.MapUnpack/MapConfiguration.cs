@@ -41,6 +41,15 @@ namespace Gibbed.FarCry3.MapUnpack
         [JsonProperty(PropertyName = "extra_snapshot_path")]
         public string ExtraSnapshotPath { get; set; }
 
+        [JsonProperty(PropertyName = "filesystem_header_path")]
+        public string FilesystemHeaderPath { get; set; }
+
+        [JsonProperty(PropertyName = "filesystem_data_path")]
+        public string FilesystemDataPath { get; set; }
+
+        [JsonProperty(PropertyName = "filesystem_descriptor_path")]
+        public string FilesystemDescriptorPath { get; set; }
+
         [JsonProperty(PropertyName = "data")]
         public MapData Data { get; set; }
     }

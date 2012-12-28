@@ -174,6 +174,33 @@ namespace Gibbed.FarCry3.MapUnpack
                 }
             }
 
+            using (var input = map.Archive.Header.Unpack())
+            {
+                config.FilesystemHeaderPath = "filesystem.fat";
+                using (var output = File.Create(Path.Combine(outputPath, config.FilesystemHeaderPath)))
+                {
+                    output.WriteFromStream(input, input.Length);
+                }
+            }
+
+            using (var input = map.Archive.Data.Unpack())
+            {
+                config.FilesystemDataPath = "filesystem.dat";
+                using (var output = File.Create(Path.Combine(outputPath, config.FilesystemDataPath)))
+                {
+                    output.WriteFromStream(input, input.Length);
+                }
+            }
+
+            using (var input = map.Archive.Descriptor.Unpack())
+            {
+                config.FilesystemDescriptorPath = "filesystem.xml";
+                using (var output = File.Create(Path.Combine(outputPath, config.FilesystemDescriptorPath)))
+                {
+                    output.WriteFromStream(input, input.Length);
+                }
+            }
+
             using (var output = new StreamWriter(Path.Combine(outputPath, "config.json"), false, Encoding.Unicode))
             using (var writer = new Newtonsoft.Json.JsonTextWriter(output))
             {
@@ -183,30 +210,6 @@ namespace Gibbed.FarCry3.MapUnpack
 
                 var serializer = new Newtonsoft.Json.JsonSerializer();
                 serializer.Serialize(writer, config);
-            }
-
-            using (var input = map.Archive.Descriptor.Unpack())
-            {
-                using (var output = File.Create(Path.Combine(outputPath, "filesystem.xml")))
-                {
-                    output.WriteFromStream(input, input.Length);
-                }
-            }
-
-            using (var input = map.Archive.Header.Unpack())
-            {
-                using (var output = File.Create(Path.Combine(outputPath, "filesystem.fat")))
-                {
-                    output.WriteFromStream(input, input.Length);
-                }
-            }
-
-            using (var input = map.Archive.Data.Unpack())
-            {
-                using (var output = File.Create(Path.Combine(outputPath, "filesystem.dat")))
-                {
-                    output.WriteFromStream(input, input.Length);
-                }
             }
 
             using (var output = new StreamWriter(Path.Combine(outputPath, "filesystem_unpack.bat")))

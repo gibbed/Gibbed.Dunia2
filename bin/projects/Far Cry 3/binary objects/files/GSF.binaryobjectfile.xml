@@ -1,0 +1,8 @@
+<file name="GSF">
+	<object name="lib">
+		<object hash="72DE4948">
+			<inherit name="CNomadDbObjectNamed" />
+			<field name="GSF_Object_Type" type="Hash32" />
+		</object>
+	</object>
+</file>

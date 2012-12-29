@@ -49,7 +49,18 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
 
         public static explicit operator Time(DateTime dateTime)
         {
-            throw new NotImplementedException();
+            return new Time()
+            {
+                Second = dateTime.Second,
+                Minute = dateTime.Minute,
+                Hour = dateTime.Hour,
+                DayOfMonth = dateTime.Day,
+                Month = dateTime.Month - 1,
+                Year = dateTime.Year - 1900,
+                DayOfWeek = (int)dateTime.DayOfWeek,
+                DayOfYear = dateTime.DayOfYear - 1,
+                IsDaylightsSavingTime = 0,
+            };
         }
     }
 }

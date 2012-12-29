@@ -25,8 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dunia 2", "Dunia 2", "{4F52
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Far Cry 3", "Far Cry 3", "{FD3DBD4B-DD60-4B1B-B73F-A14F6791B876}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.FarCry3.MapUnpack", "Gibbed.FarCry3.MapUnpack\Gibbed.FarCry3.MapUnpack.csproj", "{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Dunia2.ConvertXml", "Gibbed.Dunia2.ConvertXml\Gibbed.Dunia2.ConvertXml.csproj", "{892A5036-FF59-41E9-AFDC-BC489AC435CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Dunia2.BinaryObjectInfo", "Gibbed.Dunia2.BinaryObjectInfo\Gibbed.Dunia2.BinaryObjectInfo.csproj", "{419092A1-B3E8-4619-8BB3-6099505B74F1}"
@@ -35,9 +33,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Dunia2.ConvertBinary
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.Dunia2.GeometryFormats", "Gibbed.Dunia2.GeometryFormats\Gibbed.Dunia2.GeometryFormats.csproj", "{667A14C3-596E-4A47-B5F2-D3EC72B47A03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.FarCry3.MapPack", "Gibbed.FarCry3.MapPack\Gibbed.FarCry3.MapPack.csproj", "{AD50670B-9441-4E44-A360-D205B9F6D4A3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.FarCry3.CustomMapUnpack", "Gibbed.FarCry3.CustomMapUnpack\Gibbed.FarCry3.CustomMapUnpack.csproj", "{AE47502B-9932-4634-88AE-F3E3C98D8BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gibbed.FarCry3.CustomMapPack", "Gibbed.FarCry3.CustomMapPack\Gibbed.FarCry3.CustomMapPack.csproj", "{546DE460-31FF-4681-8129-A8C87E560176}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,16 +137,6 @@ Global
 		{331555F4-86A1-41D9-AB3C-CBBCAD5C2D90}.Release|Mixed Platforms.Build.0 = Release|x86
 		{331555F4-86A1-41D9-AB3C-CBBCAD5C2D90}.Release|x86.ActiveCfg = Release|x86
 		{331555F4-86A1-41D9-AB3C-CBBCAD5C2D90}.Release|x86.Build.0 = Release|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Debug|x86.ActiveCfg = Debug|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Debug|x86.Build.0 = Debug|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Release|Any CPU.ActiveCfg = Release|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Release|Mixed Platforms.Build.0 = Release|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Release|x86.ActiveCfg = Release|x86
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7}.Release|x86.Build.0 = Release|x86
 		{892A5036-FF59-41E9-AFDC-BC489AC435CD}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{892A5036-FF59-41E9-AFDC-BC489AC435CD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{892A5036-FF59-41E9-AFDC-BC489AC435CD}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -189,16 +177,6 @@ Global
 		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{667A14C3-596E-4A47-B5F2-D3EC72B47A03}.Release|x86.ActiveCfg = Release|Any CPU
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Debug|x86.ActiveCfg = Debug|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Debug|x86.Build.0 = Debug|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Release|Any CPU.ActiveCfg = Release|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Release|Mixed Platforms.Build.0 = Release|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Release|x86.ActiveCfg = Release|x86
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3}.Release|x86.Build.0 = Release|x86
 		{AE47502B-9932-4634-88AE-F3E3C98D8BAF}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{AE47502B-9932-4634-88AE-F3E3C98D8BAF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{AE47502B-9932-4634-88AE-F3E3C98D8BAF}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -209,6 +187,16 @@ Global
 		{AE47502B-9932-4634-88AE-F3E3C98D8BAF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{AE47502B-9932-4634-88AE-F3E3C98D8BAF}.Release|x86.ActiveCfg = Release|x86
 		{AE47502B-9932-4634-88AE-F3E3C98D8BAF}.Release|x86.Build.0 = Release|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Debug|x86.ActiveCfg = Debug|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Debug|x86.Build.0 = Debug|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Release|Any CPU.ActiveCfg = Release|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Release|Mixed Platforms.Build.0 = Release|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Release|x86.ActiveCfg = Release|x86
+		{546DE460-31FF-4681-8129-A8C87E560176}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -225,8 +213,7 @@ Global
 		{C98A6CD6-9422-4B35-8B7A-F520D75534D1} = {2E201B56-277D-40F6-8CAB-A9BC9D48C0A0}
 		{F27A289E-3376-4653-89F3-D19C1ECABF33} = {2E201B56-277D-40F6-8CAB-A9BC9D48C0A0}
 		{05BE44A7-DA2B-4631-8F6D-CA1C518A07D0} = {FD3DBD4B-DD60-4B1B-B73F-A14F6791B876}
-		{1D770869-49CD-4B0D-AF21-1B94BB98E8F7} = {FD3DBD4B-DD60-4B1B-B73F-A14F6791B876}
-		{AD50670B-9441-4E44-A360-D205B9F6D4A3} = {FD3DBD4B-DD60-4B1B-B73F-A14F6791B876}
 		{AE47502B-9932-4634-88AE-F3E3C98D8BAF} = {FD3DBD4B-DD60-4B1B-B73F-A14F6791B876}
+		{546DE460-31FF-4681-8129-A8C87E560176} = {FD3DBD4B-DD60-4B1B-B73F-A14F6791B876}
 	EndGlobalSection
 EndGlobal

@@ -20,7 +20,9 @@
  *    distribution.
  */
 
+using Gibbed.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Gibbed.FarCry3.CustomMapUnpack
 {
@@ -29,8 +31,13 @@ namespace Gibbed.FarCry3.CustomMapUnpack
     {
         public MapConfiguration()
         {
+            this.Endian = Endian.Little;
             this.Header = new MapHeader();
         }
+
+        [JsonProperty(PropertyName = "endian")]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Endian Endian { get; set; }
 
         [JsonProperty(PropertyName = "header")]
         public MapHeader Header { get; set; }

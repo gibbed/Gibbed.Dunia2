@@ -48,16 +48,8 @@ namespace Gibbed.FarCry3.CustomMapUnpack
 
             var options = new OptionSet()
             {
-                {
-                    "v|verbose",
-                    "be verbose",
-                    v => verbose = v != null
-                },
-                {
-                    "h|help",
-                    "show this message and exit",
-                    v => showHelp = v != null
-                },
+                {"v|verbose", "be verbose", v => verbose = v != null},
+                {"h|help", "show this message and exit",v => showHelp = v != null},
             };
 
             List<string> extras;
@@ -85,12 +77,6 @@ namespace Gibbed.FarCry3.CustomMapUnpack
 
             string inputPath = extras[0];
             string outputPath = extras.Count > 1 ? extras[1] : Path.ChangeExtension(inputPath, null) + "_unpack";
-
-            var manager = ProjectData.Manager.Load();
-            if (manager.ActiveProject == null)
-            {
-                Console.WriteLine("Warning: no active project loaded.");
-            }
 
             var map = new CustomMapGameFile();
             using (var input = File.OpenRead(inputPath))
@@ -134,7 +120,7 @@ namespace Gibbed.FarCry3.CustomMapUnpack
             {
                 using (var temp = new MemoryStream())
                 {
-                    var extension = ExportSnapshot(map.Snapshot, temp);
+                    var extension = ExportSnapshot(map.Snapshot, temp, map.Endian);
                     config.SnapshotPath = Path.ChangeExtension("snapshot", extension);
 
                     using (var output = File.Create(Path.Combine(outputPath, config.SnapshotPath)))
@@ -149,7 +135,7 @@ namespace Gibbed.FarCry3.CustomMapUnpack
             {
                 using (var temp = new MemoryStream())
                 {
-                    var extension = ExportSnapshot(map.ExtraSnapshot, temp);
+                    var extension = ExportSnapshot(map.ExtraSnapshot, temp, map.Endian);
                     config.SnapshotPath = Path.ChangeExtension("extra_snapshot", extension);
 
                     using (var output = File.Create(Path.Combine(outputPath, config.SnapshotPath)))
@@ -229,7 +215,7 @@ namespace Gibbed.FarCry3.CustomMapUnpack
             }
         }
 
-        private static string ExportSnapshot(Snapshot snapshot, MemoryStream output)
+        private static string ExportSnapshot(Snapshot snapshot, MemoryStream output, Endian endian)
         {
             if (snapshot == null)
             {
@@ -239,7 +225,13 @@ namespace Gibbed.FarCry3.CustomMapUnpack
             if (snapshot.BytesPerPixel == 4 &&
                 snapshot.BitsPerComponent == 8)
             {
-                using (var bitmap = MakeBitmapFromArgb(snapshot.Width, snapshot.Height, snapshot.Data))
+                var data = snapshot.Data;
+                if (endian == Endian.Big)
+                {
+                    data = SwapArgb(data);
+                }
+
+                using (var bitmap = MakeBitmapFromArgb(snapshot.Width, snapshot.Height, data))
                 {
                     bitmap.Save(output, ImageFormat.Png);
                     return ".png";
@@ -249,27 +241,31 @@ namespace Gibbed.FarCry3.CustomMapUnpack
             throw new NotSupportedException();
         }
 
-        private static Bitmap MakeBitmapFromArgb(uint width, uint height, byte[] bytes)
+        private static byte[] SwapArgb(byte[] bytes)
         {
-            var bitmap = new Bitmap((int)width,
-                                    (int)height,
-                                    PixelFormat.Format32bppArgb);
-
-            var temp = new byte[width * height * 4];
-            for (uint i = 0; i < width * height * 4; i += 4)
+            var temp = new byte[bytes.Length];
+            for (int i = 0; i < bytes.Length; i += 4)
             {
                 temp[i + 0] = bytes[i + 3];
                 temp[i + 1] = bytes[i + 2];
                 temp[i + 2] = bytes[i + 1];
                 temp[i + 3] = bytes[i + 0];
             }
+            return temp;
+        }
 
+        private static Bitmap MakeBitmapFromArgb(uint width, uint height, byte[] bytes)
+        {
+            var bitmap = new Bitmap((int)width,
+                                    (int)height,
+                                    PixelFormat.Format32bppArgb);
             var area = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
             var data = bitmap.LockBits(area, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
             var scan = data.Scan0;
-            for (int x = 0, y = 0; y < data.Height; x += data.Width, y++)
+            var run = data.Width * 4;
+            for (int x = 0, y = 0; y < data.Height; x += run, y++)
             {
-                Marshal.Copy(temp, x, scan, data.Width);
+                Marshal.Copy(bytes, x, scan, run);
                 scan += data.Stride;
             }
             bitmap.UnlockBits(data);

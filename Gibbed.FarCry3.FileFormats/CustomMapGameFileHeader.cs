@@ -47,6 +47,27 @@ namespace Gibbed.FarCry3.FileFormats
         public uint Unknown16;
         public byte Unknown17;
 
+        public void Serialize(Stream output, Endian endian)
+        {
+            output.WriteValueF32(this.Unknown2, endian);
+            output.WriteValueF32(this.Unknown3, endian);
+            output.WriteValueF32(this.Unknown4, endian);
+
+            output.WriteValueS64(this.Unknown5, endian);
+            output.WriteString(this.Creator, endian);
+            output.WriteValueS64(this.Unknown7, endian);
+            output.WriteString(this.Author, endian);
+            output.WriteString(this.Name, endian);
+            this.MapId.Serialize(output, endian);
+            Helpers.WriteMungedGuid(output, this.VersionId, endian);
+            Helpers.WriteTime(output, (Time)this.TimeModified, endian);
+            Helpers.WriteTime(output, (Time)this.TimeCreated, endian);
+            output.WriteValueEnum<MapSize>(this.MapSize, endian);
+            output.WriteValueEnum<PlayerRange>(this.PlayerRange, endian);
+            output.WriteValueU32(this.Unknown16, endian);
+            output.WriteValueU8(this.Unknown17);
+        }
+
         public void Deserialize(Stream input, Endian endian)
         {
             this.Unknown2 = input.ReadValueF32(endian);
@@ -61,10 +82,10 @@ namespace Gibbed.FarCry3.FileFormats
             }
 
             this.Unknown5 = input.ReadValueS64(endian);
-            this.Creator = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
+            this.Creator = input.ReadString(endian);
             this.Unknown7 = input.ReadValueS64(endian);
-            this.Author = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
-            this.Name = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
+            this.Author = input.ReadString(endian);
+            this.Name = input.ReadString(endian);
             this.MapId = MapId.Deserialize(input, endian);
             this.VersionId = Helpers.ReadMungedGuid(input, endian);
             this.TimeModified = (DateTime)Helpers.ReadTime(input, endian);
@@ -73,11 +94,6 @@ namespace Gibbed.FarCry3.FileFormats
             this.PlayerRange = input.ReadValueEnum<PlayerRange>(endian);
             this.Unknown16 = input.ReadValueU32(endian);
             this.Unknown17 = input.ReadValueU8();
-        }
-
-        public void Serialize(Stream output, Endian endian)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -31,6 +31,7 @@ namespace Gibbed.FarCry3.FileFormats
         public const uint Version = 19;
         public const uint Signature = 0xD2FD0A6B; // crc32(CCustomMapGameFile)
 
+        public Endian Endian;
         public CustomMapGameFileHeader Header = new CustomMapGameFileHeader();
         public Snapshot Snapshot = new Snapshot();
         public Snapshot ExtraSnapshot = null;
@@ -39,7 +40,21 @@ namespace Gibbed.FarCry3.FileFormats
 
         public void Serialize(Stream output)
         {
-            throw new NotImplementedException();
+            var endian = this.Endian;
+
+            output.WriteValueU32(Version, endian);
+            output.WriteValueU32(Signature, endian);
+            
+            this.Header.Serialize(output, endian);
+            this.Snapshot.Serialize(output, endian);
+
+            if (endian == Endian.Big)
+            {
+                this.ExtraSnapshot.Serialize(output, endian);
+            }
+
+            this.Data.Serialize(output, endian);
+            this.Archive.Serialize(output, endian);
         }
 
         public void Deserialize(Stream input)
@@ -57,6 +72,8 @@ namespace Gibbed.FarCry3.FileFormats
             {
                 throw new FormatException("bad magic");
             }
+
+            this.Endian = endian;
 
             this.Header = new CustomMapGameFileHeader();
             this.Header.Deserialize(input, endian);

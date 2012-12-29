@@ -30,14 +30,30 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
     {
         public const uint Signature = 0x4D334346; // 'FC3M'
 
-        public uint Version;
+        public uint Version = 1;
         public CompressedData Data;
         public CompressedData Header;
         public CompressedData Descriptor;
 
         public void Serialize(Stream output, Endian endian)
         {
-            throw new NotImplementedException();
+            output.WriteValueU32(Signature, endian);
+            output.WriteValueU32(this.Version, endian);
+
+            uint offset = 0;
+
+            offset += 20;
+            output.WriteValueU32(offset, endian);
+
+            offset += 4 + (uint)this.Data.Data.Length + 4 + ((uint)this.Data.Blocks.Count * 8);
+            output.WriteValueU32(offset, endian);
+
+            offset += 4 + (uint)this.Header.Data.Length + 4 + ((uint)this.Header.Blocks.Count * 8);
+            output.WriteValueU32(offset, endian);
+
+            this.Data.Serialize(output, endian);
+            this.Header.Serialize(output, endian);
+            this.Descriptor.Serialize(output, endian);
         }
 
         public void Deserialize(Stream input, Endian endian)

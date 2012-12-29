@@ -22,7 +22,6 @@
 
 using System;
 using System.IO;
-using System.Text;
 using Gibbed.IO;
 
 namespace Gibbed.FarCry3.FileFormats.CustomMap
@@ -34,7 +33,7 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
 
         public void Deserialize(Stream input, Endian endian)
         {
-            this.Unknown1 = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
+            this.Unknown1 = input.ReadString(endian);
 
             var length = input.ReadValueU32(endian);
             this.Unknown2 = input.ReadBytes(length);
@@ -43,13 +42,25 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
             for (uint i = 0; i < unknown3; i++)
             {
                 throw new NotSupportedException();
-                var unknown4 = input.ReadString(input.ReadValueU32(endian), Encoding.UTF8);
+                var unknown4 = input.ReadString(endian);
             }
         }
 
         public void Serialize(Stream output, Endian endian)
         {
-            throw new NotImplementedException();
+            output.WriteString(this.Unknown1, endian);
+            
+            if (this.Unknown2 == null)
+            {
+                output.WriteValueU32(0, endian);
+            }
+            else
+            {
+                output.WriteValueS32(this.Unknown2.Length);
+                output.WriteBytes(this.Unknown2);
+            }
+
+            output.WriteValueU32(0, endian); // unknown3
         }
     }
 }

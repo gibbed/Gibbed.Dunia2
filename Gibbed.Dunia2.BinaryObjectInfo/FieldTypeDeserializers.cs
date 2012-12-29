@@ -193,7 +193,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
                         throw new FormatException("field type Vector3 requires 12 bytes");
                     }
 
-                    read = 16;
+                    read = 12;
                     return new Vector3
                     {
                         X = BitConverter.ToSingle(data, offset + 0),

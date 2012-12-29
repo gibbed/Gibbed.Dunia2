@@ -26,7 +26,7 @@ using Gibbed.IO;
 
 namespace Gibbed.FarCry3.FileFormats
 {
-    public class Snapshot
+    public class Snapshot : ICloneable
     {
         public uint Width;
         public uint Height;
@@ -75,6 +75,18 @@ namespace Gibbed.FarCry3.FileFormats
                 throw new NotSupportedException();
                 // two strings prefixed by a uint length?
             }
+        }
+
+        public object Clone()
+        {
+            return new Snapshot()
+            {
+                Width = this.Width,
+                Height = this.Height,
+                BytesPerPixel = this.BytesPerPixel,
+                BitsPerComponent = this.BitsPerComponent,
+                Data = this.Data != null ? (byte[])this.Data.Clone() : null,
+            };
         }
     }
 }

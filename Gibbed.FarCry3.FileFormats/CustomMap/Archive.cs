@@ -26,14 +26,19 @@ using Gibbed.IO;
 
 namespace Gibbed.FarCry3.FileFormats.CustomMap
 {
-    public class Archive
+    public class Archive : ICloneable
     {
+        public Archive()
+        {
+            this.Version = 1;
+        }
+
         public const uint Signature = 0x4D334346; // 'FC3M'
 
-        public uint Version = 1;
-        public CompressedData Data;
-        public CompressedData Header;
-        public CompressedData Descriptor;
+        private uint Version { get; set; }
+        public CompressedData Data { get; set; }
+        public CompressedData Header { get; set; }
+        public CompressedData Descriptor { get; set; }
 
         public void Serialize(Stream output, Endian endian)
         {
@@ -99,6 +104,17 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
 
             this.Descriptor = new CompressedData();
             this.Descriptor.Deserialize(input, endian);
+        }
+
+        public object Clone()
+        {
+            return new Archive()
+            {
+                Version = this.Version,
+                Header = this.Header != null ? (CompressedData)this.Header.Clone() : null,
+                Data = this.Data != null ? (CompressedData)this.Data.Clone() : null,
+                Descriptor = this.Descriptor != null ? (CompressedData)this.Descriptor.Clone() : null,
+            };
         }
     }
 }

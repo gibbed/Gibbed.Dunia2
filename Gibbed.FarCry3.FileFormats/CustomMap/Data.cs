@@ -26,7 +26,7 @@ using Gibbed.IO;
 
 namespace Gibbed.FarCry3.FileFormats.CustomMap
 {
-    public class Data
+    public class Data : ICloneable
     {
         public string Unknown1;
         public byte[] Unknown2;
@@ -61,6 +61,15 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
             }
 
             output.WriteValueU32(0, endian); // unknown3
+        }
+
+        public object Clone()
+        {
+            return new Data()
+            {
+                Unknown1 = this.Unknown1,
+                Unknown2 = this.Unknown2 != null ? (byte[])this.Unknown2.Clone() : null,
+            };
         }
     }
 }

@@ -29,10 +29,16 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 
 namespace Gibbed.FarCry3.FileFormats.CustomMap
 {
-    public class CompressedData
+    public class CompressedData : ICloneable
     {
-        public byte[] Data;
-        public readonly List<Block> Blocks = new List<Block>();
+        private readonly List<Block> _Blocks = new List<Block>();
+
+        public byte[] Data { get; set; }
+
+        public List<Block> Blocks
+        {
+            get { return _Blocks; }
+        }
 
         public void Deserialize(Stream input, Endian endian)
         {
@@ -46,7 +52,7 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
             }
 
             var blockCount = input.ReadValueU32(endian);
-            this.Blocks.Clear();
+            this._Blocks.Clear();
             for (uint i = 0; i < blockCount; i++)
             {
                 var block = new Block();
@@ -54,20 +60,20 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
                 block.FileOffset = input.ReadValueU32(endian);
                 block.IsCompressed = (block.FileOffset & 0x80000000) != 0;
                 block.FileOffset &= 0x7FFFFFFF;
-                this.Blocks.Add(block);
+                this._Blocks.Add(block);
             }
 
-            if (this.Blocks.Count == 0)
+            if (this._Blocks.Count == 0)
             {
                 throw new FormatException();
             }
 
-            if (this.Blocks.First().FileOffset != 4)
+            if (this._Blocks.First().FileOffset != 4)
             {
                 throw new FormatException();
             }
 
-            if (this.Blocks.Last().FileOffset != 4 + this.Data.Length)
+            if (this._Blocks.Last().FileOffset != 4 + this.Data.Length)
             {
                 throw new FormatException();
             }
@@ -78,8 +84,8 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
             output.WriteValueS32(4 + this.Data.Length, endian);
             output.Write(this.Data, 0, this.Data.Length);
 
-            output.WriteValueS32(this.Blocks.Count, endian);
-            foreach (var block in this.Blocks)
+            output.WriteValueS32(this._Blocks.Count, endian);
+            foreach (var block in this._Blocks)
             {
                 output.WriteValueU32(block.VirtualOffset, endian);
 
@@ -105,10 +111,10 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
 
             using (var data = new MemoryStream(this.Data))
             {
-                for (int i = 0; i + 1 < this.Blocks.Count; i++)
+                for (int i = 0; i + 1 < this._Blocks.Count; i++)
                 {
-                    var block = this.Blocks[i + 0];
-                    var next = this.Blocks[i + 1];
+                    var block = this._Blocks[i + 0];
+                    var next = this._Blocks[i + 1];
 
                     var size = next.VirtualOffset - block.VirtualOffset;
 
@@ -130,6 +136,16 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
 
             memory.Position = 0;
             return memory;
+        }
+
+        public object Clone()
+        {
+            var clone = new CompressedData()
+            {
+                Data = this.Data != null ? (byte[])this.Data.Clone() : null,
+            };
+            clone._Blocks.AddRange(this._Blocks);
+            return clone;
         }
     }
 }

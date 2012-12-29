@@ -26,7 +26,7 @@ using Gibbed.IO;
 
 namespace Gibbed.FarCry3.FileFormats
 {
-    public class CustomMapGameFile
+    public class CustomMapGameFile : ICloneable
     {
         public const uint Version = 19;
         public const uint Signature = 0xD2FD0A6B; // crc32(CCustomMapGameFile)
@@ -95,6 +95,19 @@ namespace Gibbed.FarCry3.FileFormats
 
             this.Archive = new CustomMap.Archive();
             this.Archive.Deserialize(input, endian);
+        }
+
+        public object Clone()
+        {
+            return new CustomMapGameFile()
+            {
+                Endian = this.Endian,
+                Header = this.Header != null ? (CustomMapGameFileHeader)this.Header.Clone() : null,
+                Snapshot = this.Snapshot != null ? (Snapshot)this.Snapshot.Clone() : null,
+                ExtraSnapshot = this.ExtraSnapshot != null ? (Snapshot)this.ExtraSnapshot.Clone() : null,
+                Data = this.Data != null ? (CustomMap.Data)this.Data.Clone() : null,
+                Archive = this.Archive != null ? (CustomMap.Archive)this.Archive.Clone() : null,
+            };
         }
     }
 }

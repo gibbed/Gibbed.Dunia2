@@ -23,12 +23,11 @@
 using System;
 using System.IO;
 using Gibbed.IO;
-using System.Text;
 using Gibbed.FarCry3.FileFormats.CustomMap;
 
 namespace Gibbed.FarCry3.FileFormats
 {
-    public class CustomMapGameFileHeader
+    public class CustomMapGameFileHeader : ICloneable
     {
         public float Unknown2;
         public float Unknown3;
@@ -94,6 +93,29 @@ namespace Gibbed.FarCry3.FileFormats
             this.PlayerRange = input.ReadValueEnum<PlayerRange>(endian);
             this.Unknown16 = input.ReadValueU32(endian);
             this.Unknown17 = input.ReadValueU8();
+        }
+
+        public object Clone()
+        {
+            return new CustomMapGameFileHeader()
+            {
+                Unknown2 = this.Unknown2,
+                Unknown3 = this.Unknown3,
+                Unknown4 = this.Unknown4,
+                Unknown5 = this.Unknown5,
+                Creator = this.Creator,
+                Unknown7 = this.Unknown7,
+                Author = this.Author,
+                Name = this.Name,
+                MapId = this.MapId,
+                VersionId = this.VersionId,
+                TimeModified = this.TimeModified,
+                TimeCreated = this.TimeCreated,
+                MapSize = this.MapSize,
+                PlayerRange = this.PlayerRange,
+                Unknown16 = this.Unknown16,
+                Unknown17 = this.Unknown17,
+            };
         }
     }
 }

@@ -51,7 +51,7 @@ namespace Gibbed.Dunia2.FileFormats
         public readonly List<Big.Entry> Entries = new List<Big.Entry>();
         public readonly List<Big.SubFatEntry> SubFats = new List<Big.SubFatEntry>();
 
-        public void Serialize(FileStream output)
+        public void Serialize(Stream output)
         {
             var version = this.Version;
 

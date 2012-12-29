@@ -334,13 +334,6 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
         {
             switch (fieldType)
             {
-                case FieldType.BinHex:
-                {
-                    writer.WriteBinHex(data, 0, data.Length);
-                    read = data.Length;
-                    break;
-                }
-
                 case FieldType.Boolean:
                 {
                     var value = Deserialize<bool>(fieldType, data, offset, count, out read);
@@ -483,26 +476,6 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
                     break;
                 }
 
-                case FieldType.Rml:
-                {
-                    if (HasLeft(data, offset, count, 5) == false)
-                    {
-                        throw new FormatException("field type Rml requires at least 5 bytes");
-                    }
-
-                    var rez = new XmlResourceFile();
-                    using (var input = new MemoryStream(data, offset, count, false))
-                    {
-                        rez.Deserialize(input);
-                        read = (int)(offset - input.Position);
-                    }
-
-                    writer.WriteStartElement("rml");
-                    ConvertXml.Program.WriteNode(writer, rez.Root);
-                    writer.WriteEndElement();
-                    break;
-                }
-
                 default:
                 {
                     throw new NotSupportedException("unsupported field type");
@@ -544,7 +517,6 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
                 case FieldType.Hash64:
                 case FieldType.Id32:
                 case FieldType.Id64:
-                case FieldType.Rml:
                 {
                     Deserialize(writer, fieldDef.Type, data, 0, data.Length, out read);
                     break;
@@ -565,6 +537,26 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
                     }
 
                     writer.WriteString(value.ToString(CultureInfo.InvariantCulture));
+                    break;
+                }
+
+                case FieldType.Rml:
+                {
+                    if (HasLeft(data, 0, data.Length, 5) == false)
+                    {
+                        throw new FormatException("field type Rml requires at least 5 bytes");
+                    }
+
+                    var rez = new XmlResourceFile();
+                    using (var input = new MemoryStream(data, 0, data.Length, false))
+                    {
+                        rez.Deserialize(input);
+                        read = data.Length;
+                    }
+
+                    writer.WriteStartElement("rml");
+                    ConvertXml.Program.WriteNode(writer, rez.Root);
+                    writer.WriteEndElement();
                     break;
                 }
 

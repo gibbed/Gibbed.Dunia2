@@ -1,0 +1,16 @@
+<file name="MetaSectorInfos">
+	<object name="MetaSectorInfos">
+		<object name="OutsideAreaDep">
+			<object name="MetaSectorInfo">
+				<field name="MetaSectorId" type="Int32" />
+				<field name="MetaSectorFlags" type="UInt32" />
+				<field name="WorldSectors" type="Array32" array_type="UInt32" />
+				<field name="MissionLayers" type="Array32" array_type="UInt64" />
+			</object>
+			<object name="DepToMetaSector">
+				<field name="SectorId" type="UInt32" />
+				<field name="MetaSectors" type="Array32" array_type="UInt32" />
+			</object>
+		</object>
+	</object>
+</file>

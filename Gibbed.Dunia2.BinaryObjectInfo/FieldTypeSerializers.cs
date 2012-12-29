@@ -310,6 +310,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
 
         public static byte[] Serialize(FieldDefinition fieldDef,
                                        FieldType fieldType,
+                                       FieldType arrayFieldType,
                                        XPathNavigator nav)
         {
             switch (fieldType)
@@ -414,6 +415,25 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
                 case FieldType.ComputeHash32:
                 {
                     return Serialize(fieldType, nav.Value);
+                }
+
+                case FieldType.ComputeHash64:
+                {
+                    return Serialize(fieldType, nav.Value);
+                }
+
+                case FieldType.Array32:
+                {
+                    using (var temp = new MemoryStream())
+                    {
+                        var items = nav.Select("item");
+                        temp.WriteValueS32(items.Count);
+                        while (items.MoveNext() == true)
+                        {
+                            temp.WriteBytes(Serialize(arrayFieldType, items.Current.Value));
+                        }
+                        return temp.ToArray();
+                    }
                 }
             }
 

@@ -605,10 +605,18 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
             {
                 if (string.IsNullOrEmpty(fieldDef.Name) == false)
                 {
-                    throw new FormatException(string.Format("did not consume all data for field '{0}' (read {1}, total {2})", fieldDef.Name, read, data.Length));
+                    throw new FormatException(
+                        string.Format("did not consume all data for field '{0}' (read {1}, total {2})",
+                                      fieldDef.Name,
+                                      read,
+                                      data.Length));
                 }
 
-                throw new FormatException(string.Format("did not consume all data for field 0x{0:X8}  (read {1}, total {2})", fieldDef.Hash, read, data.Length));
+                throw new FormatException(
+                    string.Format("did not consume all data for field 0x{0:X8}  (read {1}, total {2})",
+                                  fieldDef.Hash,
+                                  read,
+                                  data.Length));
             }
         }
     }

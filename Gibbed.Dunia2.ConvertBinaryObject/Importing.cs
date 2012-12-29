@@ -97,8 +97,18 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                     throw new InvalidOperationException();
                 }
 
+                var arrayFieldType = FieldType.Invalid;
+                var arrayFieldTypeName = fields.Current.GetAttribute("array_type", "");
+                if (string.IsNullOrEmpty(arrayFieldTypeName) == false)
+                {
+                    if (Enum.TryParse(arrayFieldTypeName, true, out arrayFieldType) == false)
+                    {
+                        throw new InvalidOperationException();
+                    }
+                }
+
                 var fieldDef = objectDef != null ? objectDef.GetFieldDefinition(fieldNameHash, chain) : null;
-                var data = FieldTypeSerializers.Serialize(fieldDef, fieldType, fields.Current);
+                var data = FieldTypeSerializers.Serialize(fieldDef, fieldType, arrayFieldType, fields.Current);
                 node.Fields.Add(fieldNameHash, data);
             }
 

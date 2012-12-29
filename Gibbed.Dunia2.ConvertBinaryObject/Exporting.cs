@@ -513,6 +513,12 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                     else
                     {
                         writer.WriteAttributeString("type", fieldDef.Type.GetString());
+
+                        if (fieldDef.ArrayType != FieldType.Invalid)
+                        {
+                            writer.WriteAttributeString("array_type", fieldDef.ArrayType.GetString());
+                        }
+
                         FieldTypeDeserializers.Deserialize(writer, fieldDef, kv.Value);
                     }
 

@@ -115,6 +115,11 @@ namespace Gibbed.Dunia2.FileFormats
                     return new Tuple<string, string>("game", "fcb");
                 }
 
+                if (magic == 0x534E644E) // 'SNdN'
+                {
+                    return new Tuple<string, string>("game", "rnv");
+                }
+
                 if (magic == 0x474E5089) // 'PNG\x89'
                 {
                     return new Tuple<string, string>("gfx", "png");

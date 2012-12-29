@@ -50,5 +50,6 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
         Rml,
         ComputeHash32,
         ComputeHash64,
+        Array32,
     }
 }

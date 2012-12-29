@@ -27,6 +27,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions
         public string Name { get; internal set; }
         public uint Hash { get; internal set; }
         public FieldType Type { get; internal set; }
+        public FieldType ArrayType { get; internal set; }
         public EnumDefinition Enum { get; internal set; }
     }
 }

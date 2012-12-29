@@ -147,6 +147,11 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
                 {
                     return "ComputeHash64";
                 }
+
+                case FieldType.Array32:
+                {
+                    return "Array32";
+                }
             }
 
             throw new NotSupportedException();

@@ -139,11 +139,22 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Loaders
 
         private static FieldDefinition GetField(Raw.FieldDefinition raw)
         {
+            if (raw.ArrayType != FieldType.Invalid &&
+                raw.Type != FieldType.Array32 &&
+                raw.Type != FieldType.Array32)
+            {
+                throw new LoadException(
+                    string.Format("field '{0}' specifies array type '{1}' when it is not an array type",
+                                  raw.Name,
+                                  raw.ArrayType));
+            }
+
             return new FieldDefinition()
             {
                 Name = raw.Name,
                 Hash = raw.Hash,
                 Type = raw.Type,
+                ArrayType = raw.ArrayType,
                 Enum = LoadEnum(raw.Enum),
             };
         }

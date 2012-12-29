@@ -34,6 +34,7 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Raw
         public FieldDefinition()
         {
             this.Type = FieldType.BinHex;
+            this.ArrayType = FieldType.Invalid;
         }
 
         [XmlAttribute("name")]
@@ -93,6 +94,9 @@ namespace Gibbed.Dunia2.BinaryObjectInfo.Definitions.Raw
 
         [XmlAttribute("type")]
         public FieldType Type { get; set; }
+
+        [XmlAttribute("array_type")]
+        public FieldType ArrayType { get; set; }
 
         [XmlElement("enum")]
         public EnumDefinition Enum { get; set; }

@@ -1,0 +1,7 @@
+<class name="CFCXEndEventEntity">
+	<inherit name="COmniMapEntity" />
+	<field name="isFromArchetype" />
+	<field name="entCinematicSceneId" desc="Cinematic scene entity id" type="Hash64" />
+	<field name="text_sLayerId" type="String" />
+	<field name="sLayerId" desc="Layer only active during the eomm" type="Hash32" />
+</class>

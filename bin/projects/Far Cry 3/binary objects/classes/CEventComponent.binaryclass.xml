@@ -1,0 +1,7 @@
+<class name="CEventComponent">
+	<inherit name="CEntityComponent" />
+	<object name="hidLinks">
+		<object name="Link">
+		</object>
+	</object>
+</class>

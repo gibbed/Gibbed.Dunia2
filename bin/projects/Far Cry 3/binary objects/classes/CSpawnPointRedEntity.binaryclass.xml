@@ -1,0 +1,3 @@
+<class name="CSpawnPointRedEntity">
+	<inherit name="CSpawnPointMPEntity" />
+</class>

@@ -1,0 +1,12 @@
+<class name="CFCXCinematicEntity::SFakePawnInfo">
+	<field name="entEntityId" type="Hash64" />
+	<field name="selCharacterType" type="Enum">
+		<enum name="enumCharacterType">
+			<element name="Yuriy">0</element>
+			<element name="Leonard">1</element>
+			<element name="Tisha">2</element>
+			<element name="Audrey">3</element>
+			<element name="Undefined">4</element>
+		</enum>
+	</field>
+</class>

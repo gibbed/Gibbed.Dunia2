@@ -1,0 +1,5 @@
+<class name="CSpawnPointEntity">
+	<inherit name="COmniMapEntity" />
+	<field name="bWorldStart" type="Boolean" />
+	<field name="entSpawnMissionTrigger" type="Hash64" />
+</class>

@@ -1,0 +1,15 @@
+<file name="MapsData">
+	<object name="mapsdata">
+		<field name="Version" type="UInt32" />
+		<object name="MissionLayer">
+			<field name="missionLayerId" type="Hash64"/>
+			<object name="Entity" class_field_name="hidEntityClass" />
+		</object>
+		<object name="ige_map">
+			<object name="MissionLayer">
+				<field name="missionLayerId" type="Hash64"/>
+				<object name="Entity" class_field_name="hidEntityClass" />
+			</object>
+		</object>
+	</object>
+</file>

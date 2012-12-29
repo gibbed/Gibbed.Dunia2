@@ -1,0 +1,17 @@
+<class name="CFCXCinematicEntity">
+	<inherit name="COmniMapEntity" />
+	<field name="entCinematicSceneId" desc="Cinematic scene entity id" type="Hash64" />
+	<field name="sSequenceFileName" desc="filename.cseq" type="String" />
+	<field name="selCinematicType" type="Enum">
+		<enum name="enumCinematicType">
+			<element name="PreRoundFlyOver">1</element>
+			<element name="CutScene">2</element>
+			<element name="EndEvent">4</element>
+		</enum>
+	</field>
+	<object name="FakePawns">
+		<object name="FakePawn">
+			<inherit name="CFCXCinematicEntity::SFakePawnInfo" />
+		</object>
+	</object>
+</class>

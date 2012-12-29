@@ -83,7 +83,7 @@ namespace Gibbed.FarCry3.CustomMapPack
             }
 
             string inputPath = extras[0];
-            string outputPath = extras.Count > 1 ? extras[1] : Path.ChangeExtension(inputPath, null) + ".fc2map";
+            string outputPath = extras.Count > 1 ? extras[1] : Path.ChangeExtension(inputPath, null) + ".fc3map";
 
             MapConfiguration config;
             using (var input = File.OpenRead(Path.Combine(inputPath, "config.json")))

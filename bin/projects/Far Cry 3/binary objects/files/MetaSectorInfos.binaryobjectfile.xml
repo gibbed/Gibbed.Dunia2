@@ -2,7 +2,7 @@
 	<object name="MetaSectorInfos">
 		<object name="OutsideAreaDep">
 			<object name="MetaSectorInfo">
-				<field name="MetaSectorId" type="Int32" />
+				<field name="MetaSectorId" type="UInt32" />
 				<field name="MetaSectorFlags" type="UInt32" />
 				<field name="WorldSectors" type="Array32" array_type="UInt32" />
 				<field name="MissionLayers" type="Array32" array_type="UInt64" />

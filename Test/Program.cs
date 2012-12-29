@@ -20,61 +20,12 @@
  *    distribution.
  */
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Gibbed.IO;
-
 namespace Test
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
-            /*
-            using (var input = File.OpenRead(@"T:\Games\Steam\steamapps\common\Far Cry 3\modding\18108\patch\__UNKNOWN\gfx\53A14FB06434D0C9.xbg"))
-            {
-                var grf = new Gibbed.Dunia2.GeometryFormats.GeometryResourceFile();
-                grf.Deserialize(input);
-            }
-            */
-
-            /*
-            var bof = new Gibbed.Dunia2.FileFormats.BinaryObjectFile();
-            using (var input = File.OpenRead("ige_boot.fcb"))
-            {
-                bof.Deserialize(input);
-            }
-
-            HandleNode(bof.Root);
-            */
-
-            var butt = ulong.Parse("7670070514511").Swap().ToString("X16");
-            var a = Gibbed.Dunia2.FileFormats.CRC32.Hash("NomadObject").ToString("X8");
-            var b = Gibbed.Dunia2.FileFormats.CRC32.Hash("nomadObject").ToString("X8");
-            var c = Gibbed.Dunia2.FileFormats.CRC32.Hash("objectTemplate").ToString("X8");
-            var d = Gibbed.Dunia2.FileFormats.CRC32.Hash("shopping_Item").ToString("X8");
-        }
-
-        private static readonly byte[] _Prefix = Encoding.UTF8.GetBytes(@"ui\");
-
-        private static void HandleNode(Gibbed.Dunia2.FileFormats.BinaryObject node)
-        {
-            foreach (var kv in node.Fields)
-            {
-                if (kv.Value != null && kv.Value.Take(_Prefix.Length).SequenceEqual(_Prefix) == true)
-                {
-                    var line = Encoding.UTF8.GetString(kv.Value, 0, kv.Value.Length - 1);
-                    Console.WriteLine(line);
-                }
-            }
-
-            foreach (var child in node.Children)
-            {
-                HandleNode(child);
-            }
         }
     }
 }

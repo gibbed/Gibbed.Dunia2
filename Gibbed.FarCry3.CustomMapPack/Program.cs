@@ -32,7 +32,6 @@ using System.Text;
 using System.Xml;
 using Gibbed.FarCry3.FileFormats;
 using Gibbed.IO;
-using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using NDesk.Options;
 using Newtonsoft.Json;
 using CustomMap = Gibbed.FarCry3.FileFormats.CustomMap;
@@ -45,55 +44,6 @@ namespace Gibbed.FarCry3.CustomMapPack
         private static string GetExecutableName()
         {
             return Path.GetFileName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-        }
-
-        private static CustomMap.CompressedData MakeCompressedData(Stream input)
-        {
-            var cd = new CustomMap.CompressedData();
-
-            using (var data = new MemoryStream())
-            {
-                uint virtualOffset = 0;
-                uint realOffset = 4;
-                while (input.Position < input.Length)
-                {
-                    var length = (uint)Math.Min(0x40000, input.Length - input.Position);
-
-                    using (var block = new MemoryStream())
-                    {
-                        var zlib = new DeflaterOutputStream(block); //, new Deflater(9, false));
-                        zlib.WriteFromStream(input, length);
-                        zlib.Finish();
-
-                        cd.Blocks.Add(new CustomMap.CompressedData.Block()
-                        {
-                            VirtualOffset = virtualOffset,
-                            FileOffset = realOffset,
-                            IsCompressed = true,
-                        });
-
-                        block.Position = 0;
-                        data.WriteFromStream(block, block.Length);
-
-                        realOffset += (uint)block.Length;
-                    }
-
-                    virtualOffset += length;
-                }
-
-                data.Position = 0;
-                cd.Data = new byte[data.Length];
-                data.Read(cd.Data, 0, cd.Data.Length);
-
-                cd.Blocks.Add(new CustomMap.CompressedData.Block()
-                {
-                    VirtualOffset = virtualOffset,
-                    FileOffset = realOffset,
-                    IsCompressed = true,
-                });
-            }
-
-            return cd;
         }
 
         public static void Main(string[] args)
@@ -216,7 +166,7 @@ namespace Gibbed.FarCry3.CustomMapPack
             {
                 using (var input = File.OpenRead(Path.Combine(inputPath, config.FilesystemHeaderPath)))
                 {
-                    map.Archive.Header = MakeCompressedData(input);
+                    map.Archive.Header = CustomMap.CompressedData.Pack(input);
                 }
             }
 
@@ -224,7 +174,7 @@ namespace Gibbed.FarCry3.CustomMapPack
             {
                 using (var input = File.OpenRead(Path.Combine(inputPath, config.FilesystemDataPath)))
                 {
-                    map.Archive.Data = MakeCompressedData(input);
+                    map.Archive.Data = CustomMap.CompressedData.Pack(input);
                 }
             }
 
@@ -234,7 +184,7 @@ namespace Gibbed.FarCry3.CustomMapPack
                 {
                     using (var input = File.OpenRead(Path.Combine(inputPath, config.FilesystemDescriptorPath)))
                     {
-                        map.Archive.Descriptor = MakeCompressedData(input);
+                        map.Archive.Descriptor = CustomMap.CompressedData.Pack(input);
                     }
                 }
             }
@@ -277,7 +227,7 @@ namespace Gibbed.FarCry3.CustomMapPack
                         }
 
                         output.Position = 0;
-                        map.Archive.Descriptor = MakeCompressedData(output);
+                        map.Archive.Descriptor = CustomMap.CompressedData.Pack(output);
                     }
                 }
             }

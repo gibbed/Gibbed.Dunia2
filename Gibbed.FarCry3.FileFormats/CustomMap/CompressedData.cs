@@ -40,6 +40,25 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
             get { return _Blocks; }
         }
 
+        public void Serialize(Stream output, Endian endian)
+        {
+            output.WriteValueS32(4 + this.Data.Length, endian);
+            output.Write(this.Data, 0, this.Data.Length);
+
+            output.WriteValueS32(this._Blocks.Count, endian);
+            foreach (var block in this._Blocks)
+            {
+                output.WriteValueU32(block.VirtualOffset, endian);
+
+                uint foic = 0;
+                foic |= block.FileOffset;
+                foic &= 0x7FFFFFFF;
+                foic |= (block.IsCompressed == true ? 1u : 0u) << 31;
+
+                output.WriteValueU32(foic, endian);
+            }
+        }
+
         public void Deserialize(Stream input, Endian endian)
         {
             var offset = input.ReadValueU32(endian);
@@ -79,30 +98,60 @@ namespace Gibbed.FarCry3.FileFormats.CustomMap
             }
         }
 
-        public void Serialize(Stream output, Endian endian)
-        {
-            output.WriteValueS32(4 + this.Data.Length, endian);
-            output.Write(this.Data, 0, this.Data.Length);
-
-            output.WriteValueS32(this._Blocks.Count, endian);
-            foreach (var block in this._Blocks)
-            {
-                output.WriteValueU32(block.VirtualOffset, endian);
-
-                uint foic = 0;
-                foic |= block.FileOffset;
-                foic &= 0x7FFFFFFF;
-                foic |= (block.IsCompressed == true ? 1u : 0u) << 31;
-
-                output.WriteValueU32(foic, endian);
-            }
-        }
-
         public struct Block
         {
             public uint VirtualOffset;
             public uint FileOffset;
             public bool IsCompressed;
+        }
+
+        public static CompressedData Pack(Stream input)
+        {
+            var compressedData = new CompressedData();
+
+            using (var output = new MemoryStream())
+            {
+                uint virtualOffset = 0;
+                uint realOffset = 4;
+                while (input.Position < input.Length)
+                {
+                    var length = (uint)Math.Min(0x40000, input.Length - input.Position);
+
+                    using (var block = new MemoryStream())
+                    {
+                        var zlib = new DeflaterOutputStream(block); //, new Deflater(9, false));
+                        zlib.WriteFromStream(input, length);
+                        zlib.Finish();
+
+                        compressedData.Blocks.Add(new Block()
+                        {
+                            VirtualOffset = virtualOffset,
+                            FileOffset = realOffset,
+                            IsCompressed = true,
+                        });
+
+                        block.Position = 0;
+                        output.WriteFromStream(block, block.Length);
+
+                        realOffset += (uint)block.Length;
+                    }
+
+                    virtualOffset += length;
+                }
+
+                output.Position = 0;
+                compressedData.Data = new byte[output.Length];
+                output.Read(compressedData.Data, 0, compressedData.Data.Length);
+
+                compressedData.Blocks.Add(new Block()
+                {
+                    VirtualOffset = virtualOffset,
+                    FileOffset = realOffset,
+                    IsCompressed = true,
+                });
+            }
+
+            return compressedData;
         }
 
         public MemoryStream Unpack()

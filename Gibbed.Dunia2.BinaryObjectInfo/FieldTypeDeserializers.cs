@@ -603,7 +603,12 @@ namespace Gibbed.Dunia2.BinaryObjectInfo
 
             if (read != data.Length)
             {
-                throw new FormatException();
+                if (string.IsNullOrEmpty(fieldDef.Name) == false)
+                {
+                    throw new FormatException(string.Format("did not consume all data for field '{0}'", fieldDef.Name));
+                }
+
+                throw new FormatException(string.Format("did not consume all data for field 0x{0:X8}", fieldDef.Hash));
             }
         }
     }

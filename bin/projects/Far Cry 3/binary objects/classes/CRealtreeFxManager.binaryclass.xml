@@ -1,0 +1,3 @@
+<class name="CRealtreeFxManager">
+	<inherit name="CSingletonEntity" />
+</class>

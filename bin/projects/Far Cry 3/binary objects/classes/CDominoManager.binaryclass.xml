@@ -1,0 +1,11 @@
+<class name="CDominoManager">
+	<inherit name="CSingletonEntity" />
+	<object name="hidRetainedEvents">
+		<object name="EntityEvents">
+		</object>
+	</object>
+	<object name="hidRetainedRegisteredEvents">
+		<object name="EntityRegisteredEvents">
+		</object>
+	</object>
+</class>

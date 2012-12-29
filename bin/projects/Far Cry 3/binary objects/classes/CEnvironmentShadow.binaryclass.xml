@@ -1,0 +1,8 @@
+<class name="CEnvironmentShadow">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="bEnableSun" type="Boolean" />
+</class>

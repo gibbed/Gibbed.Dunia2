@@ -1,0 +1,20 @@
+<class name="CEnvironmentAdaptiveBloom">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="bEnabled" type="Boolean" />
+	<field name="fIntensity" desc="Intensity of bloom" type="Float32" />
+	<field name="fBlurKernelScale" desc="Size of the blur (between 0.7 and 1.0f)" type="Float32" />
+	<field name="fColorRemapRed" desc="Change in red channel" type="Float32" />
+	<field name="fColorRemapGreen" desc="Change in green channel" type="Float32" />
+	<field name="fColorRemapBlue" desc="Change in blue channel" type="Float32" />
+	<field name="fContrast" desc="Contrast of the image" type="Float32" />
+	<field name="fSaturation" desc="Saturation of the image" type="Float32" />
+	<field name="bScaleByInverseIntensity" type="Boolean" />
+	<field name="bUseTimeOfDay" type="Boolean" />
+	<object name="curveTimeOfDayIntensityCurve" desc="Intensity curve along time of day (0-24)">
+		<inherit name="CCurveObj" />
+	</object>
+</class>

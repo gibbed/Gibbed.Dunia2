@@ -1,0 +1,5 @@
+<class name="CRealTreeCapsComponent">
+	<inherit name="CEntityComponent" />
+	<field name="matMaterial" type="String" />
+	<field name="matHybridMaterial" type="String" />
+</class>

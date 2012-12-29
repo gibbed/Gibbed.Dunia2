@@ -1,0 +1,13 @@
+<class name="CEnvironmentWind">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="fWindForce" type="Float32" />
+	<field name="fMinForceRatio" type="Float32" />
+	<field name="fMaxForceRatio" type="Float32" />
+	<field name="fWindCycle" type="Float32" />
+	<field name="fDirectionChangeRange" type="Float32" />
+	<field name="fDirectionCycle" type="Float32" />
+</class>

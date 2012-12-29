@@ -1,0 +1,7 @@
+<class name="COceanEntity">
+	<inherit name="CSingletonEntity" />
+	<field name="bEnableOcean" type="Boolean" />
+	<field name="fOceanLevel" type="Float32" />
+	<field name="matMaterial" type="String" />
+	<field name="matMaterialUnderOcean" type="String" />
+</class>

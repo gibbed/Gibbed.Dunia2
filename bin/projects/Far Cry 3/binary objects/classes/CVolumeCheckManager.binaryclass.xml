@@ -1,0 +1,3 @@
+<class name="CVolumeCheckManager">
+	<inherit name="CSingletonEntity" />
+</class>

@@ -1,0 +1,23 @@
+<class name="CPrefabManager">
+	<inherit name="CSingletonEntity" />
+	<object name="PrefabDescriptions">
+		<object name="Description">
+			<field name="text_Name" type="String" />
+			<field name="Name" type="Hash32" />
+			<object name="PrefabObjects">
+				<object name="PrefabObject">	
+					<field name="selSourceType" type="Enum">
+						<enum name="enumSourceType">
+							<element name="Archetype">0</element>
+							<element name="Prefab">1</element>
+						</enum>
+					</field>
+					<field name="SourceName" type="String" />
+					<field name="Pos" type="Vector3" />
+					<field name="Angles" type="Vector3" />
+					<field name="EventTarget" />
+				</object>
+			</object>
+		</object>
+	</object>
+</class>

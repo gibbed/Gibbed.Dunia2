@@ -1,0 +1,26 @@
+<class name="CEnvironmentDepthOfField">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="bEnabled" type="Boolean" />
+	<field name="fFocusDistance" desc="Focus distance" type="Float32" />
+	<field name="fNearDistance" desc="Distance at which close DOF ends" type="Float32" />
+	<field name="fFarDistance" desc="Distance at which far DOF starts" type="Float32" />
+	<field name="fBlurScale" desc="Range of smoothness of bokeh effect" type="Float32" />
+	<field name="fCircleOfConfusion" desc="Circle of confusion" type="Float32" />
+	<field name="bApplyDOFToSky" type="Boolean" />
+	<field name="selBokehShape" type="Enum">
+		<enum name="enumBokehShape">
+			<element name="Triangle">0</element>
+			<element name="Square">1</element>
+			<element name="Pentagon">2</element>
+			<element name="Hexagon">3</element>
+			<element name="Circle">4</element>
+			<element name="Gaussian">5</element>
+		</enum>
+	</field>
+	<field name="fBokehBrightnessThreshold" type="Float32" />
+	<field name="fBokehBrightnessMultiplier" type="Float32" />
+</class>

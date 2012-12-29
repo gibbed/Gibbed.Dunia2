@@ -1,0 +1,8 @@
+<class name="CPortalsDebugEntity">
+	<inherit name="CSingletonEntity" />
+	<field name="bRenderCollisions" type="Boolean" />
+	<field name="bRenderSectors" type="Boolean" />
+	<field name="bRenderFrustums" type="Boolean" />
+	<field name="fFrustumFarDistance" type="Float32" />
+	<field name="bRenderPortalsSpheres" type="Boolean" />
+</class>

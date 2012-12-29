@@ -1,0 +1,34 @@
+<class name="CEnvironmentLighting">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<object name="curveLightHDRMul">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="gradSunLightColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="gradMoonLightColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="curveProbeSunBounceMultiplier">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveProbeSkyBounceMultiplier">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveProbeSkyDirectMultiplier">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveProbeSaturation">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveProbeScale">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveProbeHDRMul">
+		<inherit name="CCurveObj" />
+	</object>
+</class>

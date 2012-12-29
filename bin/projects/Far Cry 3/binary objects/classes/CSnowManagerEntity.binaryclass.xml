@@ -1,0 +1,13 @@
+<class name="CSnowManagerEntity">
+	<inherit name="CSingletonEntity" />
+	<field name="text_fileDiffuse" type="String" />
+	<field name="fileDiffuse" type="Hash64" />
+	<field name="text_fileNormal" type="String" />
+	<field name="fileNormal" type="Hash64" />
+	<field name="text_fileSpecular" type="String" />
+	<field name="fileSpecular" type="Hash64" />
+	<field name="bEnabled" type="Boolean" />
+	<field name="iSnowFactor" type="Int32" />
+	<field name="iShininessModifier" type="Int32" />
+	<field name="colorIceColor" type="Vector3" />
+</class>

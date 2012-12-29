@@ -1,0 +1,3 @@
+<class name="CRealTreeCapsManager">
+	<inherit name="CSingletonEntity" />
+</class>

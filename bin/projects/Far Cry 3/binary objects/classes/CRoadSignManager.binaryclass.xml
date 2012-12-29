@@ -1,0 +1,4 @@
+<class name="CRoadSignManager">
+	<inherit name="CSingletonEntity" />
+	<field name="strState" />
+</class>

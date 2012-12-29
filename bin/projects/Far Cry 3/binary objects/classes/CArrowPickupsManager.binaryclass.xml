@@ -1,0 +1,8 @@
+<class name="CArrowPickupsManager">
+	<inherit name="CSingletonEntity" />
+	<object name="ArrowPickups">
+		<object name="ArrowPickups">
+			<field name="ArrowPickups" type="Hash64" />
+		</object>
+	</object>
+</class>

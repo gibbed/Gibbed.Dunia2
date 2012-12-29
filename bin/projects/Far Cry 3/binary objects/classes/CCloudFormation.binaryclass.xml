@@ -1,0 +1,9 @@
+<class name="CCloudFormation">
+	<inherit name="#11E152C8" />
+	<field name="fCoverage" type="Float32" />
+	<field name="fFallOffCurve" type="Float32" />
+	<field name="fNormalStrength" type="Float32" />
+	<field name="fParallaxStrength" type="Float32" />
+	<field name="fWindSpeedScale" type="Float32" />
+	<field name="bEnable" type="Boolean" />
+</class>

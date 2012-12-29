@@ -1,0 +1,20 @@
+<class name="CEnvironmentAtmosphericScattering">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="bEnabled" type="Boolean" />
+	<object name="gradColorTint">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="curveIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fZoomFactor" type="Float32" />
+	<field name="fAttenuationStartAngle" type="Float32" />
+	<field name="fAttenuationEndAngle" type="Float32" />
+	<object name="curveCloudMaskIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+</class>

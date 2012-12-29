@@ -1,0 +1,9 @@
+<class name="CBaseMissionBlock">
+	<inherit name="CNomadObject" />
+	<field name="mblockId" type="Id64" />
+	<field name="text_mblockName" type="String" />
+	<field name="mblockName" type="Hash32" />
+	<object name="MissionBlockLayersList">
+		<object name="MBlockLayer" class_field_name="hid_DTCTH_ClassName" />
+	</object>
+</class>

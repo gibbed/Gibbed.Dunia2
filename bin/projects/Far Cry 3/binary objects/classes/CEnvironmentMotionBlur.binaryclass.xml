@@ -1,0 +1,10 @@
+<class name="CEnvironmentMotionBlur">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="bEnabled" type="Boolean" />
+	<field name="fIntensity" desc="Intensity" type="Float32" />
+	<field name="fMaxBlurModifier" desc="Max Blur Modifier" type="Float32" />
+</class>

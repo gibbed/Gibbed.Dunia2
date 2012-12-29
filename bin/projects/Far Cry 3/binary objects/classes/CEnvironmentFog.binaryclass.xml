@@ -1,0 +1,16 @@
+<class name="CEnvironmentFog">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<object name="curveFogDensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fMinimumDistance" type="Float32" />
+	<field name="fMaximumDistance" type="Float32" />
+	<field name="clrColor" type="Vector3" />
+	<field name="fSkyColorFactor" type="Float32" />
+	<field name="fSkyFogPower" type="Float32" />
+	<field name="fSkyFogIntensity" type="Float32" />
+</class>

@@ -1,0 +1,31 @@
+<class name="CMissionBlock">
+	<inherit name="CBaseMissionBlock" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="mblockZoneCoreLayerId" type="Id64" />
+	<field name="mblockZoneBoundLayersList" type="Array32" array_type="Id64" />
+	<field name="bIsQuest" type="Boolean" />
+	<field name="bUseDeactivationBuffer" type="Boolean" />
+	<field name="selEncounterSystemResponse" type="Enum">
+		<enum name="enumEncounterSystemResponse">
+			<element name="Mission">0</element>
+			<element name="Village">1</element>
+			<element name="Quest">2</element>
+			<element name="Hamlet">3</element>
+			<element name="Outpost">4</element>
+			<element name="Race">5</element>
+			<element name="Giver">6</element>
+			<element name="Social">7</element>
+			<element name="Shooting">8</element>
+			<element name="Hunting">9</element>
+		</enum>
+	</field>
+	<field name="bWarnOnZoneExit" type="Boolean" />
+	<field name="iXpGiven" type="Int32" />
+	<field name="refMBlocksList" type="Int32" />
+	
+	<!-- This should be in CMissionBlockManager but due to technical limitations... -->
+	<field name="gameMBlockId" type="Id64" />
+</class>

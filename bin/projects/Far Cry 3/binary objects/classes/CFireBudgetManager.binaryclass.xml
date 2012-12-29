@@ -1,0 +1,13 @@
+<class name="CFireBudgetManager">
+	<inherit name="CNomadObject" />
+	<object name="FireBudget">
+		<field name="iTotalBudget" type="Int16" />
+		<field name="iCostRegion" type="Int16" />
+		<field name="iCostObject" type="Int16" />
+		<field name="iCostRealtree" type="Int16" />
+		<field name="iCostCompound" type="Int16" />
+		<field name="iMolotovCash" type="Int16" />
+		<field name="iFlameThrowCash" type="Int16" />
+		<field name="iExplosionCash" type="Int16" />
+	</object>
+</class>

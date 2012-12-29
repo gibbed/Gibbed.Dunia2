@@ -1,0 +1,10 @@
+<class name="CEnvironmentTransition">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<object name="curveTransition">
+		<inherit name="CCurveObj" />
+	</object>
+</class>

@@ -1,0 +1,16 @@
+<class name="CEnvironmentWeather">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="fClearMinimumTime" type="Float32" />
+	<field name="fClearMaximumTime" type="Float32" />
+	<field name="fStormMinimumTime" type="Float32" />
+	<field name="fStormMaximumTime" type="Float32" />
+	<field name="fStormTransitionTime" type="Float32" />
+	<field name="fLightningIntensity" type="Float32" />
+	<field name="fLightningSpeed" type="Float32" />
+	<field name="fLightningMinimumTime" type="Float32" />
+	<field name="fLightningMaximumTime" type="Float32" />
+</class>

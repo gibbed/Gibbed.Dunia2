@@ -1,0 +1,9 @@
+<class name="CPostFxManager">
+	<inherit name="CSingletonEntity" />
+	<object name="PostFxAutostarts">
+		<object name="PostFxAutostart">
+			<field name="Name" type="String" />
+		</object>
+	</object>
+	<field name="bEnableAutostarts" type="Boolean" />
+</class>

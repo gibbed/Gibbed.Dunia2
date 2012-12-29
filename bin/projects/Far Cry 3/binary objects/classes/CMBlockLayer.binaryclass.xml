@@ -1,0 +1,9 @@
+<class name="CMBlockLayer">
+	<inherit name="CEntityLayer" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="isActivatedOnMBlockActivate" type="Boolean" />
+	<field name="isDisabledOnMBlockDeactivate" type="Boolean" />
+</class>

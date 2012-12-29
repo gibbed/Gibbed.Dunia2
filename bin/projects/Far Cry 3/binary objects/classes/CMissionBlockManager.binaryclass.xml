@@ -1,0 +1,7 @@
+<class name="CMissionBlockManager">
+	<inherit name="CNomadObject" />
+	<object name="MBlocksList">
+		<object name="MissionBlock" class_field_name="hid_DTCTH_ClassName" />
+	</object>
+	<field name="activeOnInitMBlocksList" type="Int32" />
+</class>

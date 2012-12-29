@@ -1,0 +1,3 @@
+<class name="CParticlesLightManagerImpl">
+	<inherit name="CSingletonEntity" />
+</class>

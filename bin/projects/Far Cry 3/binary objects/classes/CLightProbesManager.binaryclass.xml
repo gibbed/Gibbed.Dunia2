@@ -1,0 +1,3 @@
+<class name="CLightProbesManager">
+	<inherit name="CSingletonEntity" />
+</class>

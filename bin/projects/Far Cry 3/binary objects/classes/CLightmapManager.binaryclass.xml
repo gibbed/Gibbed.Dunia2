@@ -1,0 +1,12 @@
+<class name="CLightmapManager">
+	<inherit name="CSingletonEntity" />
+	<object name="LightmapRecords">
+		<object name="LightmapRecord">
+		</object>
+	</object>
+	<object name="TerrainSectorLightmapRecords">
+		<object name="TerrainSectorLightmapRecord">
+		</object>
+	</object>
+	<field name="fileGradientTexture" type="String" />
+</class>

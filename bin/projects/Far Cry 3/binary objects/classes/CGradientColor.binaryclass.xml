@@ -1,0 +1,11 @@
+<class name="CGradientColor">
+	<inherit name="CNomadObject" />
+	<object name="Knots">
+		<object name="Knot">
+			<inherit name="#11E152C8" />
+			<field name="Position" type="Float32" />
+			<field name="isColorType" type="Boolean" />
+			<field name="Color" type="Vector3" />
+		</object>
+	</object>
+</class>

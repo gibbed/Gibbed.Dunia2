@@ -1,0 +1,3 @@
+<class name="CWeaponModelManager">
+	<inherit name="CSingletonEntity" />
+</class>

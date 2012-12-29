@@ -1,0 +1,3 @@
+<class name="CInteriorsManager">
+	<inherit name="CSingletonEntity" />
+</class>

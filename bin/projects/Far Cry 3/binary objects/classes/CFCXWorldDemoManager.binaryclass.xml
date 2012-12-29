@@ -1,0 +1,8 @@
+<class name="CFCXWorldDemoManager">
+	<inherit name="CSingletonEntity" />
+	<field name="fTimeDemoStartTimeHour" type="Float32" />
+	<field name="fTimeDemoStartTimeMinute" type="Float32" />
+	<field name="fTimeDemoStopTimeHour" type="Float32" />
+	<field name="fTimeDemoStopTimeMinute" type="Float32" />
+	<field name="arkTimeDemoCurveName" type="Id64" />
+</class>

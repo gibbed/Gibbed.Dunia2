@@ -1,0 +1,3 @@
+<class name="CMusicManager">
+	<inherit name="CSingletonEntity" />
+</class>

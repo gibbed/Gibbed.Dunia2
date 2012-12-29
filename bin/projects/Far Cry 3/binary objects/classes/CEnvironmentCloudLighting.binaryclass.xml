@@ -1,0 +1,26 @@
+<class name="CEnvironmentCloudLighting">
+	<inherit name="CNomadObject" />
+	<object name="gradSunColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="gradMoonColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="curveLightIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="gradCloudColorSun">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="gradCloudColorOppositeSun">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="gradRimLightColor">
+		<inherit name="CGradientColor" />
+	</object>
+	<object name="curveRimLightIntensity">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fCloudMaskScale" type="Float32" />
+	<field name="fCloudMaskOffset" type="Float32" />
+</class>

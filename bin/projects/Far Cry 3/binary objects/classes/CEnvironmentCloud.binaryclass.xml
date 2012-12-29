@@ -1,0 +1,18 @@
+<class name="CEnvironmentCloud">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="bEnable" type="Boolean" />
+	<field name="fAnimationScale" type="Float32" />
+	<object name="FormationLayer1">
+		<inherit name="CCloudFormation" />
+	</object>
+	<object name="FormationLayer2">
+		<inherit name="CCloudFormation" />
+	</object>
+	<object name="Lighting">
+		<inherit name="CEnvironmentCloudLighting" />
+	</object>
+</class>

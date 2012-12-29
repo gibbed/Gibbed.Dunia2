@@ -1,0 +1,11 @@
+<file name="Managers">
+	<object name="Managers">
+		<object name="MissionLayer">
+			<field name="missionLayerId" type="Hash64"/>
+			<object name="Entity" class_field_name="hidEntityClass" />
+		</object>
+		<object name="MissionBlockManager">
+			<inherit name="CMissionBlockManager" />
+		</object>
+	</object>
+</file>

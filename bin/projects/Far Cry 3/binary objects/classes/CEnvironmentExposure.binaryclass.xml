@@ -1,0 +1,22 @@
+<class name="CEnvironmentExposure">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<object name="curveExposure" desc="Scene exposure">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fExposure" desc="Scene exposure" type="Float32" />
+	<object name="curveMiddleGrey" desc="Scene middle grey">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveExposureMin" desc="Scene minimum exposure">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveExposureMax" desc="Scene maximum exposure">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fExposureDarkAdaptionSpeed" desc="Scene exposure adaption speed to dark environments" type="Float32" />
+	<field name="fExposureBrightAdaptionSpeed" desc="Scene exposure adaption speed to bright environments" type="Float32" />
+</class>

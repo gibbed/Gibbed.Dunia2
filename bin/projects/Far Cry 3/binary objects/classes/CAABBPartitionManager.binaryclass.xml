@@ -1,0 +1,3 @@
+<class name="CAABBPartitionManager">
+	<inherit name="CSingletonEntity" />
+</class>

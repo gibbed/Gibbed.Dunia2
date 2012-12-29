@@ -1,0 +1,17 @@
+<class name="CDataBaseItemManager">
+	<inherit name="CSingletonEntity" />
+	<object name="Templates">
+		<object name="Template">
+			<field name="text_Template" type="String" />
+			<field name="Template" type="Hash32" />
+			<field name="text_NameId" type="String" />
+			<field name="NameId" type="Hash32" />
+			<object name="Template" class_field_name="hid_DTCTH_ClassName">
+				<!--
+				<field name="text_hid_DTCTH_ClassName" type="String" />
+				<field name="hid_DTCTH_ClassName" type="Hash32" />
+				-->
+			</object>
+		</object>
+	</object>
+</class>

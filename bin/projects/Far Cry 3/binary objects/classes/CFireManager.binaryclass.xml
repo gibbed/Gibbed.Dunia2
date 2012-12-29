@@ -1,0 +1,19 @@
+<class name="CFireManager">
+	<inherit name="CSingletonEntity" />
+	<object name="FireBugdetManager">
+		<inherit name="CFireBudgetManager" />
+	</object>
+	<object name="RainEffect">
+		<inherit name="CFireManager::SRainEffect" />
+	</object>
+	<field name="iNumberOfTotalSoundVoiceAllowed" type="Int8" />
+	<object name="WetnessLevel">
+		<object name="WetnessLevel">
+			<inherit name="#11E152C8" />
+			<field name="text_WetnessLevelName" type="String" />
+			<field name="WetnessLevelName" type="Hash32" />
+			<field name="NodeBufferIncrease" type="Int32" />
+			<field name="PropagationDecrease" type="Int32" />
+		</object>
+	</object>
+</class>

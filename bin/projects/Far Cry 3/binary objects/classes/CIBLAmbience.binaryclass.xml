@@ -1,0 +1,12 @@
+<class name="CIBLAmbience">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<field name="CubeMapIndex" type="Int32" />
+	<field name="fGlobalIrradiance" type="Float32" />
+	<field name="fGlobalHemiMap" type="Float32" />
+	<field name="fTerrainIrradiance" type="Float32" />
+	<field name="fTerrainHemiMap" type="Float32" />
+</class>

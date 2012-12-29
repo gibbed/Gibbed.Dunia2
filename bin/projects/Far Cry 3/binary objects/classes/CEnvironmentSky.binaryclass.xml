@@ -1,0 +1,26 @@
+<class name="CEnvironmentSky">
+	<inherit name="CNomadObject" />
+	
+	<field name="text_hid_DTCTH_ClassName" type="String" />
+	<field name="hid_DTCTH_ClassName" type="Hash32" />
+	
+	<object name="kfgradSkyDomeColorSunSide">
+		<inherit name="CKeyFramedGradientColor" />
+	</object>
+	<object name="kfgradSkyDomeColorSunOppositeSide">
+		<inherit name="CKeyFramedGradientColor" />
+	</object>
+	<object name="curveSkyColorHDRMul">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveAmbientLightMul">
+		<inherit name="CCurveObj" />
+	</object>
+	<object name="curveSkyLightSaturation">
+		<inherit name="CCurveObj" />
+	</object>
+	<field name="fSkyLightMinimum" type="Float32" />
+	<object name="gradSkyPostProcess">
+		<inherit name="CGradientColor" />
+	</object>
+</class>

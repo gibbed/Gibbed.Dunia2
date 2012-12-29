@@ -1,0 +1,21 @@
+<class name="CDynamicEnvironmentManager">
+	<inherit name="CSingletonEntity" />
+	<object name="Environment">
+		<inherit name="CEnvironmentSettings" />
+	</object>
+	<object name="TimeScale" />
+	<object name="TimeOfDay" />
+	<field name="fPreviousTimeOfDay" />
+	<object name="FogOverride" />
+	<object name="ShadowOverride" />
+	<object name="SkyOverride" />
+	<object name="LightingOverride" />
+	<object name="CloudOverride" />
+	<object name="WindOverride" />
+	<object name="DepthOfFieldOverride" />
+	<object name="MotionBlurOverride" />
+	<object name="CumulatedDays" />
+	<field name="IsSunLight" />
+	<object name="WindOverideEnable" />
+	<object name="RainEvaluator" />
+</class>

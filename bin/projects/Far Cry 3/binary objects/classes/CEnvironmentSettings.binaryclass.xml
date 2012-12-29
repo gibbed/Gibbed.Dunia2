@@ -1,0 +1,49 @@
+<class name="CEnvironmentSettings">
+	<inherit name="CNomadObject" />
+	<field name="ColorRemapVolumeMapTexture" offset="52" />
+	<field name="fileColorRemapVolumeMapTexture" type="String" />
+	<field name="fTerrainNoiseTransitionAmplitude" desc="Polidori amplitude." type="Float32" />
+	<field name="fTerrainNoiseTransitionSharpness" desc="Polidori sharpness." type="Float32" />
+	<field name="fTerrainNoiseTransitionUvScale" desc="Polidori Uv Scale." type="Float32" />
+	<object name="ZoneTemplates">
+		<object name="ZoneTemplate">
+			<field name="text_ZoneName" type="String" />
+			<field name="ZoneName" type="Hash32" />
+		</object>
+	</object>
+	<field name="etLighting" type="String" />
+	<field name="etAdaptiveBloom" type="String" />
+	<field name="etDepthOfField" type="String" />
+	<field name="etExposure" type="String" />
+	<field name="etCloud" type="String" />
+	<field name="etFog" type="String" />
+	<field name="etSky" type="String" />
+	<field name="etWind" type="String" />
+	<field name="etMotionBlur" type="String" />
+	<field name="etShadow" type="String" />
+	<field name="etParticleWind" type="String" />
+	<field name="etAtmosphericScattering" type="String" />
+	<field name="fileEnvironmentMap" type="String" />
+	<field name="fAirFloor" desc="Min height above ground to trigger air zone" type="Float32" />
+	<field name="fAirCeil" desc="height above ground for full air zone" type="Float32" />
+	<object name="Jungle">
+	</object>
+	<object name="Desert">
+	</object>
+	<object name="Storm">
+	</object>
+	<object name="DefaultEnvSettings">
+	</object>
+	<object name="CurvedHorizon">
+	</object>
+	<object name="DayCycleScale">
+	</object>
+	<object name="Shadow">
+	</object>
+	<object name="Sky">
+	</object>
+	<object name="Clouds">
+	</object>
+	<object name="RealTreeCaps">
+	</object>
+</class>

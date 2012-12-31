@@ -55,7 +55,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             using (var writer = XmlWriter.Create(outputPath, settings))
             {
                 writer.WriteStartDocument();
-                WriteNode(infoManager, writer, new BinaryObject[0], bof.Root, objectDef);
+                WriteNode(infoManager, writer, new BinaryObject[0], bof.Root, objectDef, objectFileDef);
                 writer.WriteEndDocument();
             }
         }
@@ -98,13 +98,19 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                     writer.WriteStartElement("object");
                     writer.WriteAttributeString("name", "EntityLibraries");
 
+                    if (objectFileDef != null &&
+                        string.IsNullOrEmpty(objectFileDef.Name) == false)
+                    {
+                        writer.WriteAttributeString("def", objectFileDef.Name);
+                    }
+
                     var libraryNames = new Dictionary<string, int>();
 
                     Directory.CreateDirectory(basePath);
 
                     foreach (var library in root.Children)
                     {
-                        var chain = new[] {bof.Root, library};
+                        var chain = new[] { bof.Root, library };
 
                         var libraryDef = objectDef != null
                                              ? objectDef.GetObjectDefinition(library.NameHash, null)
@@ -196,7 +202,8 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                                               itemWriter,
                                               chain,
                                               item,
-                                              itemDef);
+                                              itemDef,
+                                              null);
                                     itemWriter.WriteEndDocument();
                                 }
                             }
@@ -221,8 +228,8 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 return false;
             }
 
-            var nameSeq = new[] {NameHash};
-            var idAndNameSeq = new[] {DisLibItemIdHash, NameHash};
+            var nameSeq = new[] { NameHash };
+            var idAndNameSeq = new[] { DisLibItemIdHash, NameHash };
 
             foreach (var library in bof.Root.Children)
             {
@@ -274,10 +281,16 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 writer.WriteStartDocument();
 
                 var root = bof.Root;
-                var chain = new[] {root};
+                var chain = new[] { root };
                 {
                     writer.WriteStartElement("object");
                     writer.WriteAttributeString("name", "lib");
+
+                    if (objectFileDef != null &&
+                        string.IsNullOrEmpty(objectFileDef.Name) == false)
+                    {
+                        writer.WriteAttributeString("def", objectFileDef.Name);
+                    }
 
                     Directory.CreateDirectory(basePath);
 
@@ -325,7 +338,8 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                                       itemWriter,
                                       chain,
                                       item,
-                                      itemDef);
+                                      itemDef,
+                                      null);
                             itemWriter.WriteEndDocument();
                         }
                     }
@@ -364,10 +378,16 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 writer.WriteStartDocument();
 
                 var root = bof.Root;
-                var chain = new[] {root};
+                var chain = new[] { root };
                 {
                     writer.WriteStartElement("object");
                     writer.WriteAttributeString("name", "NomadObjectTemplates");
+
+                    if (objectFileDef != null &&
+                        string.IsNullOrEmpty(objectFileDef.Name) == false)
+                    {
+                        writer.WriteAttributeString("def", objectFileDef.Name);
+                    }
 
                     Directory.CreateDirectory(basePath);
 
@@ -415,7 +435,8 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                                       itemWriter,
                                       chain,
                                       item,
-                                      itemDef);
+                                      itemDef,
+                                      null);
                             itemWriter.WriteEndDocument();
                         }
                     }
@@ -434,7 +455,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 return false;
             }
 
-            var nameSeq = new[] {NameHash};
+            var nameSeq = new[] { NameHash };
 
             foreach (var library in bof.Root.Children)
             {
@@ -456,9 +477,10 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                                       XmlWriter writer,
                                       IEnumerable<BinaryObject> parentChain,
                                       BinaryObject node,
-                                      ClassDefinition def)
+                                      ClassDefinition def,
+                                      ObjectFileDefinition objectFileDef)
         {
-            var chain = parentChain.Concat(new[] {node});
+            var chain = parentChain.Concat(new[] { node });
 
             var originalDef = def;
 
@@ -486,6 +508,12 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
             else
             {
                 writer.WriteAttributeString("hash", node.NameHash.ToString("X8"));
+            }
+
+            if (objectFileDef != null &&
+                string.IsNullOrEmpty(objectFileDef.Name) == false)
+            {
+                writer.WriteAttributeString("def", objectFileDef.Name);
             }
 
             if (node.Fields != null)
@@ -531,7 +559,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 foreach (var childNode in node.Children)
                 {
                     var childDef = def != null ? def.GetObjectDefinition(childNode.NameHash, chain) : null;
-                    WriteNode(infoManager, writer, chain, childNode, childDef);
+                    WriteNode(infoManager, writer, chain, childNode, childDef, null);
                 }
             }
             else if (def.DynamicNestedClasses == true)
@@ -539,7 +567,7 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                 foreach (var childNode in node.Children)
                 {
                     var childDef = infoManager.GetClassDefinition(childNode.NameHash);
-                    WriteNode(infoManager, writer, chain, childNode, childDef);
+                    WriteNode(infoManager, writer, chain, childNode, childDef, null);
                 }
             }
 

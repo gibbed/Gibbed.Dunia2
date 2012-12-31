@@ -47,15 +47,15 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
             var options = new OptionSet()
             {
-                {"i|import|fcb", "convert XML to FCB", v => mode = v != null ? Mode.Import : mode},
-                {"e|export|xml", "convert FCB to XML", v => mode = v != null ? Mode.Export : mode},
-                {"b|base-name=", "when converting, use specified base name instead of file name", v => baseName = v},
+                { "i|import|fcb", "convert XML to FCB", v => mode = v != null ? Mode.Import : mode },
+                { "e|export|xml", "convert FCB to XML", v => mode = v != null ? Mode.Export : mode },
+                { "b|base-name=", "when converting, use specified base name instead of file name", v => baseName = v },
                 {
                     "nme|no-multi-export", "when exporting, disable multi-exporting of entitylibrary and lib files",
                     v => useMultiExporting = v == null
-                    },
-                {"v|verbose", "be verbose", v => verbose = v != null},
-                {"h|help", "show this message and exit", v => showHelp = v != null},
+                },
+                { "v|verbose", "be verbose", v => verbose = v != null },
+                { "h|help", "show this message and exit", v => showHelp = v != null },
             };
 
             List<string> extras;
@@ -176,11 +176,6 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
 
                 var basePath = Path.ChangeExtension(inputPath, null);
 
-                if (string.IsNullOrEmpty(baseName) == true)
-                {
-                    baseName = GetBaseNameFromPath(inputPath);
-                }
-
                 inputPath = Path.GetFullPath(inputPath);
                 outputPath = Path.GetFullPath(outputPath);
                 basePath = Path.GetFullPath(basePath);
@@ -196,6 +191,19 @@ namespace Gibbed.Dunia2.ConvertBinaryObject
                     if (root == null)
                     {
                         throw new FormatException();
+                    }
+
+                    if (string.IsNullOrEmpty(baseName) == true)
+                    {
+                        var baseNameFromObject = root.GetAttribute("def", "");
+                        if (string.IsNullOrEmpty(baseNameFromObject) == false)
+                        {
+                            baseName = baseNameFromObject;
+                        }
+                        else
+                        {
+                            baseName = GetBaseNameFromPath(inputPath);
+                        }
                     }
 
                     if (verbose == true)

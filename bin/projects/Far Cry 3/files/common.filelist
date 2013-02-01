@@ -1,4 +1,4 @@
-; 2969/3063 (96%)
+; 2972/3063 (97%)
 actionmaps\inputactionmapbenchmark.xml
 actionmaps\inputactionmapchat.xml
 actionmaps\inputactionmapcommon.xml
@@ -23,6 +23,7 @@ domino\system\lualibraries\lualibstateless.lua
 engine\gamemodes\gamemodesconfig.xml
 engine\online\onlineengine\default.netchannel.xml
 engine\online\onlineengine\default.netsimulation.xml
+engine\online\onlineengine\onlineengine.netobject.xml
 engine\online\onlineengine\session.netpeerchannel.xml
 engine\resourceconfig.xml
 engine\settings\defaultengineconfig.xml
@@ -490,6 +491,7 @@ graphics\fonts\couriernew9x16.xbt
 graphics\fonts\terminal4x7.xbt
 graphics\fonts\terminal6x9.xbt
 graphics\move\movemgr.bin
+graphics\move\movemgrnamed.bin
 graphics\terrain\water\watercloud_n.xbt
 ingameeditor\ambience_inventory.xml
 ingameeditor\collection_inventory.xml
@@ -627,6 +629,7 @@ soundbinary\001c249f.spk
 soundbinary\001c256b.spk
 soundbinary\2fffffff.spk
 soundbinary\7fffffff.bao
+soundregions.xml
 ui\common\buttonlib.feu
 ui\common\fonts\fire\trade_gothic_neurotic_default.ffd
 ui\common\fonts\fire\trade_gothic_neurotic_default_1.xbt

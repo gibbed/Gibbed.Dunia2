@@ -207,7 +207,6 @@ namespace Gibbed.Dunia2.FileFormats
                 uint unknown2Count = input.ReadValueU32(Endian.Little);
                 for (uint i = 0; i < unknown2Count; i++)
                 {
-                    throw new NotSupportedException();
                     input.ReadBytes(16);
                 }
             }
